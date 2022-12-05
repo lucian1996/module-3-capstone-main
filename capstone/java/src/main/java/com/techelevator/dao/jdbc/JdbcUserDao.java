@@ -1,9 +1,10 @@
-package com.techelevator.dao;
+package com.techelevator.dao.jdbc;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.techelevator.dao.UserDao;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -80,6 +81,12 @@ public class JdbcUserDao implements UserDao {
         String ssRole = role.toUpperCase().startsWith("ROLE_") ? role.toUpperCase() : "ROLE_" + role.toUpperCase();
 
         return jdbcTemplate.update(insertUserSql, username, password_hash, ssRole) == 1;
+    }
+    //TODO: actually work this out.
+    @Override
+    public boolean deleteUser(int userId){
+        System.out.println("poop");
+        return true;
     }
 
     private User mapRowToUser(SqlRowSet rs) {
