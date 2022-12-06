@@ -25,19 +25,26 @@ public class GroupController {
 //TODO: Do we want the principal to be passed into all parameters incase we need to verfiy or determine the user?
 
     @GetMapping(path = "")
-    public List<Group> displayAllGroups(Principal principal){
+    public List<Group> findAllGroups(Principal principal){
          return groupDao.getAllGroups();
 }
     @GetMapping(path = "/{id}")
-    public Group displayGroupById(@PathVariable int id, Principal principal){
+    public Group findGroupById(@PathVariable int id, Principal principal){
         return groupDao.getGroupById(id);
     }
 
     @DeleteMapping(path = "")
-    public boolean deleteGroup(@RequestBody @Valid int groupId, int userId){
+    public boolean deleteAGroup(@RequestBody @Valid int groupId, int userId){
          return groupDao.deleteGroup(groupId,userId);
     }
 
-
+    @PostMapping(path = "")
+    public boolean createAGroup(@RequestBody @Valid int userId, String name){
+         return groupDao.createGroup(userId, name);
+    }
+    @PutMapping(path = "")
+    public boolean editAGroup(@RequestBody @Valid Group group){
+         return groupDao.editGroup(group);
+    }
 
 }
