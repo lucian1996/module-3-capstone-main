@@ -25,7 +25,7 @@ public class ItemController {
     @GetMapping("/{itemId}")
     public Item getItem(@RequestBody @Valid int listId, @PathVariable int itemId, Principal principal) {
         try {
-            return itemDao.getItemById(listId, itemId);
+            return itemDao.getItemById(itemId);
         } catch (GetException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve the item");
         }
@@ -43,9 +43,9 @@ public class ItemController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public boolean createItem(@RequestParam int listId, Principal principal) {
+    public void createItem(@RequestParam int listId, Principal principal) {
         try {
-            return itemDao.createItem(listId);
+            itemDao.createItem(listId);
         } catch (CreateException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not create item");
         }
@@ -53,9 +53,9 @@ public class ItemController {
 
     @DeleteMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public boolean deleteItem(@RequestParam int itemId, Principal principal) {
+    public void deleteItem(@RequestParam int itemId, Principal principal) {
         try {
-            return itemDao.deleteItem(itemId);
+             itemDao.deleteItem(itemId);
         } catch (DeleteException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not delete item");
         }
@@ -63,9 +63,9 @@ public class ItemController {
 
     @PutMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public boolean updateItem(@RequestParam Item item, Principal principal) {
+    public void updateItem(@RequestParam Item item, Principal principal) {
         try {
-            return itemDao.updateItem(item);
+            itemDao.updateItem(item);
         } catch (UpdateException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not update item");
         }

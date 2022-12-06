@@ -8,10 +8,10 @@ public interface ListDao {
 
     List getList(int userId, int listId);
 
-    boolean createList(int groupId, int userId);
+    void createList(int groupId, int userId);
 
-    boolean deleteList(int groupId, int userId);
+    void deleteList(int groupId, int userId);
 
-    boolean updateList(List list);
+    void updateList(List list);
 
 }

@@ -22,18 +22,18 @@ public class JdbcListDao implements ListDao {
     }
 
     @Override
-    public boolean createList(int groupId, int userId) {
-        return false;
+    public void createList(int groupId, int userId) {
+        //return false;
     }
 
     @Override
-    public boolean deleteList(int groupId, int userId) {
-        return false;
+    public void deleteList(int groupId, int userId) {
+        //return false;
     }
 
     @Override
-    public boolean updateList(List list) {
-        return false;
+    public void updateList(List list) {
+        //return false;
     }
 
     private List mapRowToList(SqlRowSet rs) {

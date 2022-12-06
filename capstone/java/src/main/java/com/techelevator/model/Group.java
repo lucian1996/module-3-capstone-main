@@ -23,7 +23,7 @@ public class Group {
     public List<Integer> getUsers() {
         return users;
     }
-
+    
     public void setUsers(List<Integer> users) {
         this.users = users;
     }

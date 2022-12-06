@@ -16,19 +16,19 @@ public class JdbcGroupDao implements GroupDao {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public boolean createGroup(int userId, String name) {
+    public void createGroup(int userId, String name) {
         String sql = "INSERT INTO groups (user_id, group_name) values (?, ?)";
-        return true;
+        //return true;
     }
 
     @Override
-    public boolean deleteGroup(int groupId, int userId) {
-        return false;
+    public void deleteGroup(int groupId, int userId) {
+        //return false;
     }
 
     @Override
-    public boolean editGroup(Group group) {
-        return false;
+    public void editGroup(Group group) {
+        //return false;
     }
 
     @Override
@@ -47,6 +47,7 @@ public class JdbcGroupDao implements GroupDao {
     private Group mapRowToGroup(SqlRowSet rs) {
         Group group = new Group();
         List<Integer> users = new ArrayList<>();
+        group.set
         group.setGroupId(rs.getInt("group_id"));
         users.add(rs.getInt("user_id"));
         group.setUsers(users);

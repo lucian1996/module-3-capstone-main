@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface ItemDao {
 
-    Item getItemById(int listId, int itemId);
+    Item getItemById(int itemId);
 
-    boolean createItem(int listId);
+    void createItem(int listId);
 
-    boolean deleteItem(int itemId);
+    void deleteItem(int itemId);
 
-    boolean updateItem(Item item);
+    void updateItem(Item item);
 
     List<Item> listItems(int listId);
 }

@@ -16,31 +16,31 @@ public class JdbcItemDao implements ItemDao {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public Item getItemById(int listId, int itemId) {
-        String sql = "SELECT item FROM list WHERE list_id = ? AND item_id = ?";
+    public Item getItemById(int itemId) {
+        String sql = "SELECT item FROM list WHERE item_id = ?";
         Item item;
-        item = jdbcTemplate.queryForObject(sql, Item.class, listId, itemId);
+        item = jdbcTemplate.queryForObject(sql, Item.class, itemId);
         return item;
     }
 
     //TODO
     @Override
-    public boolean createItem(int listId) {
+    public void createItem(int listId) {
         String sql = "INSERT INTO items (item_id, list_id, claimed_id) VALUES" +
                 " (DEFAULT, ?, ?) RETURNING user_id";
-        return true;
+        //return true;
     }
 
     //TODO
     @Override
-    public boolean deleteItem(int itemId) {
-        return false;
+    public void deleteItem(int itemId) {
+       // return false;
     }
 
     //TODO
     @Override
-    public boolean updateItem(Item item) {
-        return false;
+    public void updateItem(Item item) {
+        //return false;
     }
 
     @Override

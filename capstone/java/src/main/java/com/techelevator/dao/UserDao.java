@@ -16,5 +16,5 @@ public interface UserDao {
 
     boolean create(String username, String password, String role);
     //TODO: permissions for deleting?
-    boolean deleteUser(int userId);
+    void deleteUser(int userId);
 }
