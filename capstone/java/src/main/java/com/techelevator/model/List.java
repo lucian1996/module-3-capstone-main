@@ -1,9 +1,14 @@
 package com.techelevator.model;
 
+import javax.validation.constraints.NotEmpty;
+
 public class List {
+    @NotEmpty
     private int listId;
+    @NotEmpty
     private int groupId;
     private String description;
+    @NotEmpty
     private String listName;
     private int claimedId;
 

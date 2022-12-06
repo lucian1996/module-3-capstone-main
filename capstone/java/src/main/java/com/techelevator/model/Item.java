@@ -1,13 +1,22 @@
 package com.techelevator.model;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+
 public class Item {
+    @NotEmpty
     private int itemId;
+    @NotEmpty
     private int listId;
     //TODO: Can be null.
    // private int claimedId; --NICK HAS DECIDED THIS STUPID THING
+    @NotEmpty
     private String dateModified;
     //TODO: lastModifier defaults to creator of the list.
     private int lastModifier;
+    @Min(1)
+    @Max(64)
     private int quantity;
     private String description;
 
