@@ -4,7 +4,7 @@ import com.techelevator.model.List;
 
 public interface ListDao {
 
-    List getList(int userId, int listId);
+    List getList(int groupId, int userId, int listId);
 
     boolean createList(int groupId, int userId);
 
