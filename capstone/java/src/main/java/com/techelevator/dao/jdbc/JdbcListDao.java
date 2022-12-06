@@ -13,6 +13,7 @@ public class JdbcListDao implements ListDao {
 
     @Override
     public List getList(int groupId, int userId, int listId) {
+        String sql = "SELECT * FROM list WHERE group_id";
         return null;
     }
 

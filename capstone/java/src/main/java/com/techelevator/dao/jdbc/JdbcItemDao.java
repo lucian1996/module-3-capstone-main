@@ -23,30 +23,37 @@ public class JdbcItemDao implements ItemDao {
         return item;
     }
 
-    //TODO
+    //TODO: address null exception
     @Override
-    public void createItem(int listId) {
-        String sql = "INSERT INTO items (item_id, list_id, claimed_id) VALUES" +
-                " (DEFAULT, ?, ?) RETURNING user_id";
-        //return true;
+    public boolean createItem(int listId) {
+        String sql = "INSERT INTO list_item (list_item_id, list_id, date_modified, quantity, last_modifier, description)" +
+                "VALUES (DEFAULT, ?, GETDATE(), 0, 0, NULL) RETURNING list_item_id;";
+        Integer itemId = jdbcTemplate.queryForObject(sql, Integer.class, listId);
+        return getItemById(listId, itemId) != null;
     }
 
-    //TODO
+    //TODO: make sure implementation works
     @Override
-    public void deleteItem(int itemId) {
-       // return false;
+    public boolean deleteItem(int itemId) {
+        String sql = "DELETE FROM list_item WHERE list_item_id = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql,itemId);
+        return results.wasNull();
     }
 
-    //TODO
+    //TODO: boolean implementation
     @Override
-    public void updateItem(Item item) {
-        //return false;
+    public boolean updateItem(Item item) {
+        String sql = "UPDATE list_item SET date_modified = GETDATE(), " +
+                "last_modifier = ?, quantity = ?, description = ?; " +
+                "COMMIT;";
+        jdbcTemplate.update(sql, item.getLastModifier(), item.getQuantity(), item.getDescription());
+        return false;
     }
 
     @Override
     public List<Item> listItems(int listId) {
     List<Item> items = new ArrayList<>();
-    String sql = "SELECT * FROM items WHERE list_id = ?";
+    String sql = "SELECT * FROM list_item WHERE list_id = ?;";
     SqlRowSet results = jdbcTemplate.queryForRowSet(sql, listId);
         while (results.next()) {
         Item item = mapRowToItem(results);
@@ -57,13 +64,13 @@ public class JdbcItemDao implements ItemDao {
 
     private Item mapRowToItem(SqlRowSet rs) {
         Item item = new Item();
-        item.setItemId(rs.getInt("item_id"));
+        item.setItemId(rs.getInt("list_item_id"));
         item.setListId(rs.getInt("list_id"));
 //        item.setClaimedId(rs.getInt("claimed_id"));
         item.setDateModified(rs.getString("date_modified"));
         item.setLastModifier(rs.getInt("last_modifier"));
         item.setQuantity(rs.getInt("quantity"));
-        item.setDescription("description");
+        item.setDescription(rs.getString("description"));
         return item;
     }
 }
