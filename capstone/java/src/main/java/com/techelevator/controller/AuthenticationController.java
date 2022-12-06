@@ -52,12 +52,26 @@ public class AuthenticationController {
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public void register(@Valid @RequestBody RegisterUserDto newUser) {
+
+        if (!doPasswordsMatch(newUser.getPassword(), newUser.getConfirmPassword())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Passwords Do Not Match");
+        }
+        if (!isStrongPassword(newUser.getPassword())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "password is not strong enough");
+        }
+
         try {
             User user = userDao.findByUsername(newUser.getUsername());
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User Already Exists.");
         } catch (UsernameNotFoundException e) {
             userDao.create(newUser.getUsername(),newUser.getPassword(), newUser.getRole());
         }
+    }
+    private boolean doPasswordsMatch (String password, String confirmedPassword) {
+        return password.equals(confirmedPassword);
+    }
+    private boolean isStrongPassword(String password) {
+        return (password.matches("(?=^.{8,}$)(?=.*\\d)(?=.*[!@#$%^&*]+)(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$"));
     }
 
 }
