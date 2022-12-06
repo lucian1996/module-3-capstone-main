@@ -22,7 +22,7 @@ public class GroupController {
          this.groupDao = groupDao;
      }
 
-//TODO: Do we want the principal to be passed into all parameters incase we need to verfiy or determine the user?
+//TODO: Do we want the principal to be passed into all parameters in the case where we need to verfiy or determine the user?
 
     @GetMapping(path = "")
     public List<Group> findAllGroups(Principal principal){

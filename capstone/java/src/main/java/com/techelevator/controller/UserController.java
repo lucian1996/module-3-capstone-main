@@ -24,14 +24,13 @@ public class UserController {
     public User getUserById(@PathVariable("userId") int userId, Principal principal){
         return userDao.getUserById(userId);
     }
-    //TODO: Does the [ principal.getName() ] return the username?
     @GetMapping(path = "/username")
-    public User findByUsername(Principal principal){
-        return userDao.findByUsername(principal.getName());
+    public User findByUsername(@RequestBody @Valid String username, Principal principal){
+        return userDao.findByUsername(username);
     }
     @GetMapping(path = "")
-    public int findIdByUsername(Principal principal){
-        return userDao.findIdByUsername(principal.getName());
+    public int findIdByUsername(@RequestBody @Valid String username, Principal principal){
+        return userDao.findIdByUsername(username);
     }
     @PostMapping(path = "")
     public boolean createUser(@RequestBody @Valid String username, String password, String role, Principal principal){
