@@ -24,53 +24,55 @@ import java.util.List;
 public class GroupController {
     private GroupDao groupDao;
 
-     public GroupController(GroupDao groupDao){
-         this.groupDao = groupDao;
-     }
+    public GroupController(GroupDao groupDao) {
+        this.groupDao = groupDao;
+    }
 
     @GetMapping("")
-    public List<Group> findAllGroups(Principal principal){
-         try{
-         return groupDao.getAllGroups();
-         } catch (GetException e) {
-             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve groups");
-         }
-}
+    public List<Group> findAllGroups(Principal principal) {
+        try {
+            return groupDao.getAllGroups();
+        } catch (GetException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve groups");
+        }
+    }
+
     @GetMapping("/{id}")
-    public Group findGroupById(@PathVariable int id, Principal principal){
-         try{
-        return groupDao.getGroupById(id);
-         } catch (GetException e) {
-             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve group by id");
-         }
+    public Group findGroupById(@PathVariable int id, Principal principal) {
+        try {
+            return groupDao.getGroupById(id);
+        } catch (GetException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve group by id");
+        }
     }
 
     @DeleteMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public boolean deleteAGroup(@RequestBody @Valid int groupId, int userId){
-         try{
-         return groupDao.deleteGroup(groupId,userId);
-         } catch (DeleteException e) {
-             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not delete group");
-         }
+    public boolean deleteAGroup(@RequestBody @Valid int groupId, int userId) {
+        try {
+            return groupDao.deleteGroup(groupId, userId);
+        } catch (DeleteException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not delete group");
+        }
     }
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public boolean createAGroup(@RequestBody @Valid int userId, String name){
-         try{
-         return groupDao.createGroup(userId, name);
-         } catch (CreateException e) {
-             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not create group");
-         }
+    public boolean createAGroup(@RequestBody @Valid int userId, String name) {
+        try {
+            return groupDao.createGroup(userId, name);
+        } catch (CreateException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not create group");
+        }
     }
+
     @PutMapping("")
-    public boolean editAGroup(@RequestBody @Valid Group group){
-         try{
-         return groupDao.editGroup(group);
-         } catch (UpdateException e) {
-             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not update group");
-         }
+    public boolean editAGroup(@RequestBody @Valid Group group) {
+        try {
+            return groupDao.editGroup(group);
+        } catch (UpdateException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not update group");
+        }
     }
 
 }
