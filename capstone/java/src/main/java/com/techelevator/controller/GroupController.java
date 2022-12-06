@@ -3,6 +3,7 @@ package com.techelevator.controller;
 import com.techelevator.dao.GroupDao;
 import com.techelevator.dao.UserDao;
 import com.techelevator.model.Group;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,27 +23,27 @@ public class GroupController {
          this.groupDao = groupDao;
      }
 
-//TODO: Do we want the principal to be passed into all parameters in the case where we need to verfiy or determine the user?
-
-    @GetMapping(path = "")
+    @GetMapping("")
     public List<Group> findAllGroups(Principal principal){
          return groupDao.getAllGroups();
 }
-    @GetMapping(path = "/{id}")
+    @GetMapping("/{id}")
     public Group findGroupById(@PathVariable int id, Principal principal){
         return groupDao.getGroupById(id);
     }
 
-    @DeleteMapping(path = "")
+    @DeleteMapping("")
+    @ResponseStatus(HttpStatus.OK)
     public boolean deleteAGroup(@RequestBody @Valid int groupId, int userId){
          return groupDao.deleteGroup(groupId,userId);
     }
 
-    @PostMapping(path = "")
+    @PostMapping("")
+    @ResponseStatus(HttpStatus.CREATED)
     public boolean createAGroup(@RequestBody @Valid int userId, String name){
          return groupDao.createGroup(userId, name);
     }
-    @PutMapping(path = "")
+    @PutMapping("")
     public boolean editAGroup(@RequestBody @Valid Group group){
          return groupDao.editGroup(group);
     }

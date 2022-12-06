@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.UserDao;
 import com.techelevator.model.User;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,7 @@ import java.util.List;
 public class UserController {
     private UserDao userDao;
 
-    @GetMapping(path = "/all")
+    @GetMapping("/all")
     public List<User> getAllUsers(Principal principal){
         return userDao.findAll();
     }
@@ -24,19 +25,21 @@ public class UserController {
     public User getUserById(@PathVariable("userId") int userId, Principal principal){
         return userDao.getUserById(userId);
     }
-    @GetMapping(path = "/username")
+    @GetMapping("/username")
     public User findByUsername(@RequestBody @Valid String username, Principal principal){
         return userDao.findByUsername(username);
     }
-    @GetMapping(path = "")
+    @GetMapping("")
     public int findIdByUsername(@RequestBody @Valid String username, Principal principal){
         return userDao.findIdByUsername(username);
     }
-    @PostMapping(path = "")
+    @PostMapping("")
+    @ResponseStatus(HttpStatus.CREATED)
     public boolean createUser(@RequestBody @Valid String username, String password, String role, Principal principal){
         return userDao.create(username, password, role);
     }
-    @DeleteMapping(path = "")
+    @DeleteMapping("")
+    @ResponseStatus(HttpStatus.OK)
     public boolean deleteUser(@RequestBody @Valid int userid, Principal principal){
         return userDao.deleteUser(userid);
     }
