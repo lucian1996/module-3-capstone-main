@@ -22,13 +22,13 @@ CREATE TABLE  groups (
 	group_name varchar(50) NOT NULL,
 	group_owner int NOT NULL,
 	CONSTRAINT PK_group PRIMARY KEY (group_id),
-	CONSTRAINT FK_group_owner FOREIGN KEY (group_onwer) REFERENCES users (user_id)
+	CONSTRAINT FK_group_owner FOREIGN KEY (group_owner) REFERENCES users (user_id)
 );
 
 CREATE TABLE group_member (
     user_id int NOT NULL,
     group_id int NOT NULL,
-    date_joined varcar(50) NOT NULL,
+    date_joined varchar(50) NOT NULL,
     CONSTRAINT PK_group_member PRIMARY KEY (user_id, group_id),
     CONSTRAINT FK_group_member_user FOREIGN KEY (user_id) REFERENCES users (user_id),
     CONSTRAINT FK_group_member_group FOREIGN KEY (group_id) REFERENCES groups (group_id)
