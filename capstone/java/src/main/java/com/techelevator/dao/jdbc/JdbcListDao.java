@@ -44,8 +44,4 @@ public class JdbcListDao implements ListDao {
         list.setListName(rs.getString("list_name"));
         return list;
     }
-    private int listId;
-    private int groupId;
-    private String description;
-    private String listName;
 }
