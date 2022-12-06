@@ -6,6 +6,8 @@ public interface ListDao {
 
     List getList(int groupId, int userId, int listId);
 
+    List getList(int userId, int listId);
+
     boolean createList(int groupId, int userId);
 
     boolean deleteList(int groupId, int userId);
