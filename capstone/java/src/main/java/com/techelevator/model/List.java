@@ -5,7 +5,15 @@ public class List {
     private int groupId;
     private String description;
     private String listName;
+    private int claimedId;
 
+    public int getClaimedId() {
+        return claimedId;
+    }
+
+    public void setClaimedId(int claimedId) {
+        this.claimedId = claimedId;
+    }
 
     public int getListId() {
         return listId;
@@ -46,6 +54,7 @@ public class List {
                 ", groupId=" + groupId +
                 ", description='" + description + '\'' +
                 ", listName='" + listName + '\'' +
+                ", claimedId=" + claimedId +
                 '}';
     }
 }
