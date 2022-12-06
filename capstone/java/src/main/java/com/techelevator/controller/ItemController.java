@@ -1,10 +1,15 @@
 package com.techelevator.controller;
 
 import com.techelevator.dao.ItemDao;
+import com.techelevator.dao.exceptions.CreateException;
+import com.techelevator.dao.exceptions.DeleteException;
+import com.techelevator.dao.exceptions.GetException;
+import com.techelevator.dao.exceptions.UpdateException;
 import com.techelevator.model.Item;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -18,26 +23,51 @@ public class ItemController {
     private ItemDao itemDao;
 
     @GetMapping("/{itemId}")
-    public Item getItem(@RequestBody @Valid int listId, @PathVariable int itemId, Principal principal){
-        return itemDao.getItemById(listId, itemId);
+    public Item getItem(@RequestBody @Valid int listId, @PathVariable int itemId, Principal principal) {
+        try {
+            return itemDao.getItemById(listId, itemId);
+        } catch (GetException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve the item");
+        }
     }
+
     @GetMapping("")
-    public List<Item> getAllItems(@RequestParam int listId, Principal principal){
-        return itemDao.listItems(listId);
+    public List<Item> getAllItems(@RequestParam int listId, Principal principal) {
+        try {
+            return itemDao.listItems(listId);
+        } catch (GetException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve all items");
+        }
+
     }
+
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public boolean createItem(@RequestParam int listId, Principal principal){
-        return itemDao.createItem(listId);
+    public boolean createItem(@RequestParam int listId, Principal principal) {
+        try {
+            return itemDao.createItem(listId);
+        } catch (CreateException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not create item");
+        }
     }
+
     @DeleteMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public boolean deleteItem(@RequestParam int itemId, Principal principal){
-        return itemDao.deleteItem(itemId);
+    public boolean deleteItem(@RequestParam int itemId, Principal principal) {
+        try {
+            return itemDao.deleteItem(itemId);
+        } catch (DeleteException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not delete item");
+        }
     }
+
     @PutMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public boolean updateItem(@RequestParam Item item, Principal principal){
-        return itemDao.updateItem(item);
+    public boolean updateItem(@RequestParam Item item, Principal principal) {
+        try {
+            return itemDao.updateItem(item);
+        } catch (UpdateException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not update item");
+        }
     }
 }

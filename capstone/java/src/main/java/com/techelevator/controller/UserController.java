@@ -1,10 +1,14 @@
 package com.techelevator.controller;
 
 import com.techelevator.dao.UserDao;
+import com.techelevator.dao.exceptions.CreateException;
+import com.techelevator.dao.exceptions.DeleteException;
+import com.techelevator.dao.exceptions.GetException;
 import com.techelevator.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -18,30 +22,59 @@ public class UserController {
     private UserDao userDao;
 
     @GetMapping("/all")
-    public List<User> getAllUsers(Principal principal){
-        return userDao.findAll();
+    public List<User> getAllUsers(Principal principal) {
+        try {
+            return userDao.findAll();
+        } catch (GetException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve users");
+        }
     }
+
     @GetMapping(path = "/{userId}")
-    public User getUserById(@PathVariable("userId") int userId, Principal principal){
-        return userDao.getUserById(userId);
+    public User getUserById(@PathVariable("userId") int userId, Principal principal) {
+        try {
+            return userDao.getUserById(userId);
+        } catch (GetException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve user");
+        }
     }
+
     @GetMapping("/username")
-    public User findByUsername(@RequestBody @Valid String username, Principal principal){
-        return userDao.findByUsername(username);
+    public User findByUsername(@RequestBody @Valid String username, Principal principal) {
+        try {
+            return userDao.findByUsername(username);
+        } catch (GetException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve user");
+        }
     }
+
     @GetMapping("")
-    public int findIdByUsername(@RequestBody @Valid String username, Principal principal){
-        return userDao.findIdByUsername(username);
+    public int findIdByUsername(@RequestBody @Valid String username, Principal principal) {
+        try {
+            return userDao.findIdByUsername(username);
+        } catch (GetException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve user");
+        }
     }
+
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public boolean createUser(@RequestBody @Valid String username, String password, String role, Principal principal){
-        return userDao.create(username, password, role);
+    public boolean createUser(@RequestBody @Valid String username, String password, String role, Principal principal) {
+        try {
+            return userDao.create(username, password, role);
+        } catch (CreateException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not create user");
+        }
     }
+
     @DeleteMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public boolean deleteUser(@RequestBody @Valid int userid, Principal principal){
-        return userDao.deleteUser(userid);
+    public boolean deleteUser(@RequestBody @Valid int userid, Principal principal) {
+        try {
+            return userDao.deleteUser(userid);
+        } catch (DeleteException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not delete user");
+        }
     }
 
 
