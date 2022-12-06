@@ -7,6 +7,7 @@ import java.util.List;
 public class Group {
     @NotEmpty
     private int groupId;
+    private String groupName;
     private List<Integer> users = new ArrayList<>();
     private String groupDescription;
     @NotEmpty
@@ -26,6 +27,14 @@ public class Group {
 
     public void setUsers(List<Integer> users) {
         this.users = users;
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 
     public String getGroupDescription() {
@@ -48,10 +57,10 @@ public class Group {
     public String toString() {
         return "Group{" +
                 "groupId=" + groupId +
+                ", groupName='" + groupName + '\'' +
                 ", users=" + users +
                 ", groupDescription='" + groupDescription + '\'' +
                 ", groupOwnerId=" + groupOwnerId +
                 '}';
     }
-
 }

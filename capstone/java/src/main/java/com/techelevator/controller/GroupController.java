@@ -58,18 +58,18 @@ public class GroupController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createAGroup(@RequestBody @Valid int userId, String name) {
+    public void createAGroup( Principal principal, @RequestParam @Valid String groupName) {
         try {
-           groupDao.createGroup(userId, name);
+           groupDao.createGroup(principal.getName(), groupName);
         } catch (CreateException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not create group");
         }
     }
 
     @PutMapping("")
-    public void editAGroup(@RequestBody @Valid Group group) {
+    public void editAGroup(@RequestBody @Valid Group group, Principal principal) {
         try {
-          groupDao.editGroup(group);
+          groupDao.editGroup(group, principal.getName());
         } catch (UpdateException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not update group");
         }

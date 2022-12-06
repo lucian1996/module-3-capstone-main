@@ -29,7 +29,7 @@ public class UserController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve users");
         }
     }
-// 
+//
 //    @GetMapping(path = "/{userId}")
 //    public User getUserById(@PathVariable("userId") int userId) {
 //        try {

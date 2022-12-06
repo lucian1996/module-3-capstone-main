@@ -16,8 +16,9 @@ public class JdbcGroupDao implements GroupDao {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public void createGroup(int userId, String name) {
-        String sql = "INSERT INTO groups (user_id, group_name) values (?, ?)";
+    public void createGroup(String username, String groupName) {
+        String sql = "INSERT INTO groups (user_id, group_name) values (1, ?)";
+        //TODO: do not forget about the hardcoded '1'.
         //return true;
     }
 
@@ -39,18 +40,23 @@ public class JdbcGroupDao implements GroupDao {
 
     @Override
     public List<Group> getAllGroups() {
+
+        List<Group> groups = new ArrayList<>();
         String sql = "SELECT * FROM groups";
-        return null;
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while (results.next()) {
+            Group group = mapRowToGroup(results);
+            groups.add(group);
+        }
+        return groups;
     }
 
     //TODO: mapRowToGroup is not complete
     private Group mapRowToGroup(SqlRowSet rs) {
+        System.out.println(rs);
         Group group = new Group();
-        List<Integer> users = new ArrayList<>();
-       // group.set add name
+        group.setGroupName(rs.getString("group_name"));
         group.setGroupId(rs.getInt("group_id"));
-        users.add(rs.getInt("user_id"));
-        group.setUsers(users);
         group.setGroupOwnerId(rs.getInt("group_owner_id"));
         return group;
     }

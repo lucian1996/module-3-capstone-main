@@ -5,7 +5,7 @@ import com.techelevator.model.Group;
 import java.util.List;
 
 public interface GroupDao {
-    void createGroup(int userId, String name);
+    void createGroup(String username, String groupName);
 
     void deleteGroup(int groupId, String string);
 

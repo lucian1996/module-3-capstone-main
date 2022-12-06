@@ -11,13 +11,8 @@ public class JdbcListDao implements ListDao {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public List getList(int groupId, int userId, int listId) {
+    public List getList(int groupId, int listId, String username) {
         String sql = "SELECT * FROM list WHERE group_id";
-        return null;
-    }
-
-    @Override
-    public List getList(int userId, int listId) {
         return null;
     }
 
