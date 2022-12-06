@@ -22,44 +22,43 @@ public class UserController {
     private UserDao userDao;
 
     @GetMapping("/all")
-    public List<User> getAllUsers(Principal principal) {
+    public List<User> getAllUsers() {
         try {
             return userDao.findAll();
         } catch (GetException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve users");
         }
     }
-
-    @GetMapping(path = "/{userId}")
-    public User getUserById(@PathVariable("userId") int userId, Principal principal) {
-        try {
-            return userDao.getUserById(userId);
-        } catch (GetException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve user");
-        }
-    }
-
-    @GetMapping("/username")
-    public User findByUsername(@RequestBody @Valid String username, Principal principal) {
-        try {
-            return userDao.findByUsername(username);
-        } catch (GetException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve user");
-        }
-    }
-
-    @GetMapping("")
-    public int findIdByUsername(@RequestBody @Valid String username, Principal principal) {
-        try {
-            return userDao.findIdByUsername(username);
-        } catch (GetException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve user");
-        }
-    }
+// 
+//    @GetMapping(path = "/{userId}")
+//    public User getUserById(@PathVariable("userId") int userId) {
+//        try {
+//            return userDao.getUserById(userId);
+//        } catch (GetException e) {
+//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve user");
+//        }
+//    }
+//
+//    @GetMapping("/username")
+//    public User findByUsername(@RequestBody @Valid String username) {
+//        try {
+//            return userDao.findByUsername(username);
+//        } catch (GetException e) {
+//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve user");
+//        }
+//    }
+//    @GetMapping("")
+//    public int findIdByUsername(@RequestBody @Valid String username) {
+//        try {
+//            return userDao.findIdByUsername(username);
+//        } catch (GetException e) {
+//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve user");
+//        }
+//    }
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public boolean createUser(@RequestBody @Valid String username, String password, String role, Principal principal) {
+    public boolean createUser(@RequestBody @Valid String username, String password, String role) {
         try {
             return userDao.create(username, password, role);
         } catch (CreateException e) {
@@ -69,9 +68,9 @@ public class UserController {
 
     @DeleteMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteUser(@RequestBody @Valid int userid, Principal principal) {
+    public void deleteUser(Principal principal) {
         try {
-            userDao.deleteUser(userid);
+            userDao.deleteUser(principal.getName());
         } catch (DeleteException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not delete user");
         }

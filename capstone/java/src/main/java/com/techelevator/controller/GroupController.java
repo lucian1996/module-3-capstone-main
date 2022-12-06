@@ -40,7 +40,7 @@ public class GroupController {
     @GetMapping("/{id}")
     public Group findGroupById(@PathVariable int id, Principal principal) {
         try {
-            return groupDao.getGroupById(id);
+            return groupDao.getGroupById(id, principal.getName());
         } catch (GetException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve group by id");
         }
@@ -48,9 +48,9 @@ public class GroupController {
 
     @DeleteMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteAGroup(@RequestBody @Valid int groupId, int userId) {
+    public void deleteAGroup(@RequestBody @Valid int groupId, Principal principal) {
         try {
-           groupDao.deleteGroup(groupId, userId);
+           groupDao.deleteGroup(groupId, principal.getName());
         } catch (DeleteException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not delete group");
         }

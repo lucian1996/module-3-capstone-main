@@ -7,11 +7,11 @@ import java.util.List;
 public interface GroupDao {
     void createGroup(int userId, String name);
 
-    void deleteGroup(int groupId, int userId);
+    void deleteGroup(int groupId, String string);
 
-    void editGroup(Group group);
+    void editGroup(Group group, String string);
 
-    Group getGroupById(int groupId);
+    Group getGroupById(int groupId, String name);
 
     List<Group> getAllGroups();
 

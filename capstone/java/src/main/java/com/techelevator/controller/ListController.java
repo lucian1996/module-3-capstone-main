@@ -22,9 +22,9 @@ public class ListController {
     private ListDao listDao;
 
     @GetMapping("/{groupId}/{listId}")
-    public List getListByListId(@PathVariable("groupId") int groupId, @PathVariable("listId") int listId, @RequestBody @Valid int userId, Principal principal) {
+    public List getListByListId(@PathVariable("groupId") int groupId, @PathVariable("listId") int listId, Principal principal) {
         try {
-            return listDao.getList(groupId, listId, userId);
+            return listDao.getList(groupId, listId, principal.getName());
         } catch (GetException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve list with id");
         }
@@ -34,16 +34,16 @@ public class ListController {
     @ResponseStatus(HttpStatus.CREATED)
     public void createAList(@PathVariable("groupId") int groupId, @RequestBody @Valid int userId, Principal principal) {
         try {
-            listDao.createList(groupId, userId);
+            listDao.createList(groupId, userId, principal.getName());
         } catch (CreateException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not create list");
         }
     }
 
     @PutMapping("/updateList")
-    public void updateAList(@RequestBody @Valid List list) {
+    public void updateAList(@RequestBody @Valid List list, Principal principal) {
         try {
-            listDao.updateList(list);
+            listDao.updateList(list, principal.getName());
         } catch (UpdateException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not update list");
         }
@@ -53,7 +53,7 @@ public class ListController {
     @ResponseStatus(HttpStatus.OK)
     public void deleteAList(@PathVariable("groupId") int groupId, @RequestBody @Valid int userId, Principal principal) {
         try {
-            listDao.deleteList(groupId, userId);
+            listDao.deleteList(groupId, userId, principal.getName());
         } catch (DeleteException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not delete list");
         }

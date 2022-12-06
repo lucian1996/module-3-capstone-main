@@ -4,14 +4,12 @@ import com.techelevator.model.List;
 
 public interface ListDao {
 
-    List getList(int groupId, int userId, int listId);
+    List getList(int groupId, int listId, String username);
 
-    List getList(int userId, int listId);
+    void createList(int groupId, int userId, String name);
 
-    void createList(int groupId, int userId);
+    void deleteList(int groupId, int userId, String name);
 
-    void deleteList(int groupId, int userId);
-
-    void updateList(List list);
+    void updateList(List list, String name);
 
 }

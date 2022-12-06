@@ -7,9 +7,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Component
 public class JdbcGroupDao implements GroupDao {
@@ -22,18 +22,18 @@ public class JdbcGroupDao implements GroupDao {
     }
 
     @Override
-    public void deleteGroup(int groupId, int userId) {
+    public void deleteGroup(int groupId, String username) {
         //return false;
     }
 
     @Override
-    public void editGroup(Group group) {
+    public void editGroup(Group group, String username) {
         //return false;
     }
 
     @Override
 
-    public Group getGroupById(int groupId) {
+    public Group getGroupById(int groupId, String name) {
         return null;
     }
 

@@ -84,7 +84,7 @@ public class JdbcUserDao implements UserDao {
     }
     //TODO: actually work this out.
     @Override
-    public void deleteUser(int userId){
+    public void deleteUser(String username){
         System.out.println("poop");
         //return true;
     }

@@ -1,7 +1,6 @@
 package com.techelevator.dao.jdbc;
 
 import com.techelevator.dao.ListDao;
-import com.techelevator.model.Item;
 import com.techelevator.model.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -23,17 +22,17 @@ public class JdbcListDao implements ListDao {
     }
 
     @Override
-    public void createList(int groupId, int userId) {
+    public void createList(int groupId, int userId, String name) {
         //return false;
     }
 
     @Override
-    public void deleteList(int groupId, int userId) {
+    public void deleteList(int groupId, int userId, String name) {
         //return false;
     }
 
     @Override
-    public void updateList(List list) {
+    public void updateList(List list, String name) {
         //return false;
     }
 

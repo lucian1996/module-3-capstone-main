@@ -22,23 +22,22 @@ import java.util.List;
 public class ItemController {
     private ItemDao itemDao;
 
-    @GetMapping("/{itemId}")
-    public Item getItem(@RequestBody @Valid int listId, @PathVariable int itemId, Principal principal) {
-        try {
-            return itemDao.getItemById(itemId);
-        } catch (GetException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve the item");
-        }
-    }
+//    @GetMapping("/{itemId}")
+//    public Item getItem(@PathVariable int itemId, Principal principal) {
+//        try {
+//            return itemDao.getItemById(itemId);
+//        } catch (GetException e) {
+//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve the item");
+//        }
+//    }
 
-    @GetMapping("")
-    public List<Item> getAllItems(@RequestParam int listId, Principal principal) {
+    @GetMapping("/{itemId}")
+    public List<Item> getAllItems(@PathVariable int listId, Principal principal) {
         try {
             return itemDao.listItems(listId);
         } catch (GetException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve all items");
         }
-
     }
 
     @PostMapping("")
