@@ -73,7 +73,7 @@ public class JdbcItemDao implements ItemDao {
         item.setDateModified(rs.getString("date_modified"));
         item.setLastModifier(rs.getInt("last_modifier"));
         item.setQuantity(rs.getInt("quantity"));
-        item.setDescription("description");
+        item.setDescription(rs.getString("description"));
         return item;
     }
 }
