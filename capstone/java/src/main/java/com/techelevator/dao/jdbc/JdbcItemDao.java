@@ -59,7 +59,7 @@ public class JdbcItemDao implements ItemDao {
         Item item = new Item();
         item.setItemId(rs.getInt("item_id"));
         item.setListId(rs.getInt("list_id"));
-        item.setClaimedId(rs.getInt("claimed_id"));
+//        item.setClaimedId(rs.getInt("claimed_id"));
         item.setDateModified(rs.getString("date_modified"));
         item.setLastModifier(rs.getInt("last_modifier"));
         item.setQuantity(rs.getInt("quantity"));

@@ -4,7 +4,7 @@ public class Item {
     private int itemId;
     private int listId;
     //TODO: Can be null.
-    private int claimedId;
+   // private int claimedId; --NICK HAS DECIDED THIS STUPID THING
     private String dateModified;
     //TODO: lastModifier defaults to creator of the list.
     private int lastModifier;
@@ -28,13 +28,13 @@ public class Item {
         this.listId = listId;
     }
 
-    public int getClaimedId() {
-        return claimedId;
-    }
-
-    public void setClaimedId(int claimedId) {
-        this.claimedId = claimedId;
-    }
+//    public int getClaimedId() {
+//        return claimedId;
+//    }
+//
+//    public void setClaimedId(int claimedId) {
+//        this.claimedId = claimedId;
+//    }
 
     public String getDateModified() {
         return dateModified;
@@ -73,7 +73,7 @@ public class Item {
         return "Item{" +
                 "itemId=" + itemId +
                 ", listId=" + listId +
-                ", claimedId=" + claimedId +
+//                ", claimedId=" + claimedId +
                 ", dateModified='" + dateModified + '\'' +
                 ", lastModifier=" + lastModifier +
                 ", quantity=" + quantity +
