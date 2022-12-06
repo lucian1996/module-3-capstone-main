@@ -43,6 +43,8 @@ CREATE TABLE list (
 	group_id int NOT NULL,
 	list_title varchar(50) NOT NULL,
 	description varchar(500),
+    claimed int,
+    date_modified varchar(50) NOT NULL,
 	CONSTRAINT PK_list PRIMARY KEY (list_id),
 	CONSTRAINT FK_list_group FOREIGN KEY (group_id) REFERENCES groups (group_id)
 );
@@ -54,7 +56,6 @@ CREATE SEQUENCE seq_list_item_id
 CREATE TABLE list_item (
     list_item_id int NOT NULL DEFAULT nextval('seq_list_item_id'),
     list_id int NOT NULL,
-    claimed int,
     date_modified varchar(50) NULL,
     quantity int NOT NULL,
     last_modifier int NOT NULL,
