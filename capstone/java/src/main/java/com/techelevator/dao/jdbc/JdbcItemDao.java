@@ -17,36 +17,46 @@ public class JdbcItemDao implements ItemDao {
 
     @Override
     public Item getItemById(int listId, int itemId) {
-        String sql = "SELECT item FROM list WHERE list_id = ? AND item_id = ?";
-        Item item;
-        item = jdbcTemplate.queryForObject(sql, Item.class, listId, itemId);
+        Item item = null;
+        String sql = "SELECT list_item FROM list WHERE list_id = ? AND item_id = ?;";
+        SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, Item.class, listId, itemId);
+        if (rs.next()) {
+            item = mapRowToItem(rs);
+        }
         return item;
     }
 
-    //TODO
+    //TODO: address null exception
     @Override
     public boolean createItem(int listId) {
-        String sql = "INSERT INTO items (item_id, list_id, claimed_id) VALUES" +
-                " (DEFAULT, ?, ?) RETURNING user_id";
-        return true;
+        String sql = "INSERT INTO list_item (list_item_id, list_id, date_modified, quantity, last_modifier, description)" +
+                "VALUES (DEFAULT, ?, GETDATE(), 0, 0, NULL) RETURNING list_item_id;";
+        Integer itemId = jdbcTemplate.queryForObject(sql, Integer.class, listId);
+        return getItemById(listId, itemId) != null;
     }
 
-    //TODO
+    //TODO: make sure implementation works
     @Override
     public boolean deleteItem(int itemId) {
-        return false;
+        String sql = "DELETE FROM list_item WHERE list_item_id = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql,itemId);
+        return results.wasNull();
     }
 
-    //TODO
+    //TODO: boolean implementation
     @Override
     public boolean updateItem(Item item) {
+        String sql = "UPDATE list_item SET date_modified = GETDATE(), " +
+                "last_modifier = ?, quantity = ?, description = ?; " +
+                "COMMIT;";
+        jdbcTemplate.update(sql, item.getLastModifier(), item.getQuantity(), item.getDescription());
         return false;
     }
 
     @Override
     public List<Item> listItems(int listId) {
     List<Item> items = new ArrayList<>();
-    String sql = "SELECT * FROM items WHERE list_id = ?";
+    String sql = "SELECT * FROM list_item WHERE list_id = ?;";
     SqlRowSet results = jdbcTemplate.queryForRowSet(sql, listId);
         while (results.next()) {
         Item item = mapRowToItem(results);
@@ -57,7 +67,7 @@ public class JdbcItemDao implements ItemDao {
 
     private Item mapRowToItem(SqlRowSet rs) {
         Item item = new Item();
-        item.setItemId(rs.getInt("item_id"));
+        item.setItemId(rs.getInt("list_item_id"));
         item.setListId(rs.getInt("list_id"));
 //        item.setClaimedId(rs.getInt("claimed_id"));
         item.setDateModified(rs.getString("date_modified"));
