@@ -69,9 +69,9 @@ public class UserController {
 
     @DeleteMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public boolean deleteUser(@RequestBody @Valid int userid, Principal principal) {
+    public void deleteUser(@RequestBody @Valid int userid, Principal principal) {
         try {
-            return userDao.deleteUser(userid);
+            userDao.deleteUser(userid);
         } catch (DeleteException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not delete user");
         }

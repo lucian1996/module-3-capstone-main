@@ -25,29 +25,29 @@ public class JdbcItemDao implements ItemDao {
 
     //TODO: address null exception
     @Override
-    public boolean createItem(int listId) {
+    public void createItem(int listId) {
         String sql = "INSERT INTO list_item (list_item_id, list_id, date_modified, quantity, last_modifier, description)" +
                 "VALUES (DEFAULT, ?, GETDATE(), 0, 0, NULL) RETURNING list_item_id;";
         Integer itemId = jdbcTemplate.queryForObject(sql, Integer.class, listId);
-        return getItemById(listId, itemId) != null;
+        //return getItemById(listId, itemId) != null;
     }
 
     //TODO: make sure implementation works
     @Override
-    public boolean deleteItem(int itemId) {
+    public void deleteItem(int itemId) {
         String sql = "DELETE FROM list_item WHERE list_item_id = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql,itemId);
-        return results.wasNull();
+       // return results.wasNull();
     }
 
     //TODO: boolean implementation
     @Override
-    public boolean updateItem(Item item) {
+    public void updateItem(Item item) {
         String sql = "UPDATE list_item SET date_modified = GETDATE(), " +
                 "last_modifier = ?, quantity = ?, description = ?; " +
                 "COMMIT;";
         jdbcTemplate.update(sql, item.getLastModifier(), item.getQuantity(), item.getDescription());
-        return false;
+      //  return false;
     }
 
     @Override

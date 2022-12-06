@@ -48,9 +48,9 @@ public class GroupController {
 
     @DeleteMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public boolean deleteAGroup(@RequestBody @Valid int groupId, int userId) {
+    public void deleteAGroup(@RequestBody @Valid int groupId, int userId) {
         try {
-            return groupDao.deleteGroup(groupId, userId);
+           groupDao.deleteGroup(groupId, userId);
         } catch (DeleteException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not delete group");
         }
@@ -58,18 +58,18 @@ public class GroupController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public boolean createAGroup(@RequestBody @Valid int userId, String name) {
+    public void createAGroup(@RequestBody @Valid int userId, String name) {
         try {
-            return groupDao.createGroup(userId, name);
+           groupDao.createGroup(userId, name);
         } catch (CreateException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not create group");
         }
     }
 
     @PutMapping("")
-    public boolean editAGroup(@RequestBody @Valid Group group) {
+    public void editAGroup(@RequestBody @Valid Group group) {
         try {
-            return groupDao.editGroup(group);
+          groupDao.editGroup(group);
         } catch (UpdateException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not update group");
         }

@@ -47,7 +47,7 @@ public class JdbcGroupDao implements GroupDao {
     private Group mapRowToGroup(SqlRowSet rs) {
         Group group = new Group();
         List<Integer> users = new ArrayList<>();
-        group.set
+       // group.set add name
         group.setGroupId(rs.getInt("group_id"));
         users.add(rs.getInt("user_id"));
         group.setUsers(users);

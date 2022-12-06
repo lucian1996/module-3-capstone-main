@@ -32,18 +32,18 @@ public class ListController {
 
     @PostMapping("/{groupId}")
     @ResponseStatus(HttpStatus.CREATED)
-    public boolean createAList(@PathVariable("groupId") int groupId, @RequestBody @Valid int userId, Principal principal) {
+    public void createAList(@PathVariable("groupId") int groupId, @RequestBody @Valid int userId, Principal principal) {
         try {
-            return listDao.createList(groupId, userId);
+            listDao.createList(groupId, userId);
         } catch (CreateException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not create list");
         }
     }
 
     @PutMapping("/updateList")
-    public boolean updateAList(@RequestBody @Valid List list) {
+    public void updateAList(@RequestBody @Valid List list) {
         try {
-            return listDao.updateList(list);
+            listDao.updateList(list);
         } catch (UpdateException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not update list");
         }
@@ -51,9 +51,9 @@ public class ListController {
 
     @DeleteMapping("/{groupId}")
     @ResponseStatus(HttpStatus.OK)
-    public boolean deleteAList(@PathVariable("groupId") int groupId, @RequestBody @Valid int userId, Principal principal) {
+    public void deleteAList(@PathVariable("groupId") int groupId, @RequestBody @Valid int userId, Principal principal) {
         try {
-            return listDao.deleteList(groupId, userId);
+            listDao.deleteList(groupId, userId);
         } catch (DeleteException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not delete list");
         }
