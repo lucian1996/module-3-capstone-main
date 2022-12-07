@@ -5,8 +5,6 @@ import com.techelevator.dao.ListDao;
 import com.techelevator.dao.UserDao;
 import com.techelevator.dao.exceptions.DeleteException;
 import com.techelevator.dao.exceptions.GetException;
-import com.techelevator.model.Group;
-import com.techelevator.model.Item;
 import com.techelevator.model.List;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -17,18 +15,20 @@ import javax.sql.DataSource;
 
 @Component
 public class JdbcListDao implements ListDao {
-    private JdbcTemplate jdbcTemplate;
-    private GroupDao groupDao;
-    private UserDao userDao;
+    private final JdbcTemplate jdbcTemplate;
+    private final GroupDao groupDao;
+    private final UserDao userDao;
 
-    public JdbcListDao(DataSource dataSource) {
+    public JdbcListDao(DataSource dataSource, GroupDao groupDao, UserDao userDao) {
         this.jdbcTemplate = new JdbcTemplate((dataSource));
+        this.groupDao = groupDao;
+        this.userDao = userDao;
     }
 
     @Override
     public List getList(int groupId, int listId, String username) {
-        String sql = "SELECT * FROM list WHERE group_id = ? OR list_id = ?;";
-        SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, listId, username);
+        String sql = "SELECT * FROM list WHERE group_id = ? AND list_id = ?;";
+        SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, groupId, listId);
         return mapRowToList(rs);
     }
 
