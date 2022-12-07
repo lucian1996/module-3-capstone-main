@@ -5,12 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Group {
-    @NotEmpty
     private int groupId;
     private String groupName;
     private List<Integer> users = new ArrayList<>();
     private String groupDescription;
-    @NotEmpty
     private int groupOwnerId;
 
     public int getGroupId() {

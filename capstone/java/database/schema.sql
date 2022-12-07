@@ -21,6 +21,7 @@ CREATE TABLE  groups (
 	group_id int NOT NULL DEFAuLT nextval('seq_group_id'),
 	group_name varchar(50) NOT NULL,
 	group_owner int NOT NULL,
+	description varchar(500),
 	CONSTRAINT PK_group PRIMARY KEY (group_id),
 	CONSTRAINT FK_group_owner FOREIGN KEY (group_owner) REFERENCES users (user_id)
 );
