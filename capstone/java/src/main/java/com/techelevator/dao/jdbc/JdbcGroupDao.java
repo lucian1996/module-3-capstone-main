@@ -35,10 +35,10 @@ public class JdbcGroupDao implements GroupDao {
     }
 
     @Override
-    public void createGroup(String username, String groupName) {
+    public void createGroup(String username, String groupName, String description) {
         int creatorId = userDao.findIdByUsername(username);
         String groupCode = getGroupCode();
-        String sql = "INSERT INTO groups (group_owner, group_name, group_code) values (?, ?, ?) RETURNING group_id";
+        String sql = "INSERT INTO groups (group_owner, group_name, group_code, description) values (?, ?, ?, ?) RETURNING group_id";
         try {
             Integer groupId = jdbcTemplate.queryForObject(sql, Integer.class, creatorId, groupName, groupCode);
             addUserToGroup(username, groupId, groupCode);
@@ -119,8 +119,8 @@ public class JdbcGroupDao implements GroupDao {
     @Override
     public List<GroupMember> getAllMembers(int groupId) {
         List<GroupMember> allMembers = new ArrayList<>();
-        String sql = "SELECT * FROM group_member";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        String sql = "SELECT * FROM group_member WHERE group_id = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, groupId);
         while (results.next()) {
             GroupMember groupMember = mapRowToMemberGroup(results);
             allMembers.add(groupMember);
@@ -150,6 +150,7 @@ public class JdbcGroupDao implements GroupDao {
         group.setGroupId(rs.getInt("group_id"));
         group.setGroupOwnerId(rs.getInt("group_owner"));
         group.setGroupCode(rs.getString("group_code"));
+        group.setGroupDescription(rs.getString("description"));
         return group;
     }
     private GroupMember mapRowToMemberGroup(SqlRowSet rs){
@@ -159,8 +160,6 @@ public class JdbcGroupDao implements GroupDao {
         groupMember.setDateJoined(rs.getString("date_joined"));
         return groupMember;
     }
-
-
     private String getGroupCode () {
         char[] chars = new char[] {'a', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
                 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
@@ -182,6 +181,4 @@ public class JdbcGroupDao implements GroupDao {
         String date = now.toString();
         return date;
     }
-
-
 }
