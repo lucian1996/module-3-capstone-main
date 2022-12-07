@@ -7,12 +7,19 @@ import com.techelevator.dao.exceptions.CreateException;
 import com.techelevator.dao.exceptions.DeleteException;
 import com.techelevator.dao.exceptions.GetException;
 import com.techelevator.model.Group;
+import com.techelevator.model.GroupMember;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.objenesis.ObjenesisException;
 import org.springframework.stereotype.Component;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 
 import javax.sql.DataSource;
+import java.security.Principal;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -21,6 +28,7 @@ import java.util.Random;
 public class JdbcGroupDao implements GroupDao {
     private final JdbcTemplate jdbcTemplate;
     private final UserDao userDao;
+
     public JdbcGroupDao(DataSource dataSource, UserDao userDao) {
         this.jdbcTemplate = new JdbcTemplate((dataSource));
         this.userDao = userDao;
@@ -29,9 +37,11 @@ public class JdbcGroupDao implements GroupDao {
     @Override
     public void createGroup(String username, String groupName) {
         int creatorId = userDao.findIdByUsername(username);
-        String sql = "INSERT INTO groups (group_owner, group_name, group_code) values (?, ?, ?)";
+        String groupCode = getGroupCode();
+        String sql = "INSERT INTO groups (group_owner, group_name, group_code) values (?, ?, ?) RETURNING group_id";
         try {
-            jdbcTemplate.update(sql, creatorId, groupName, getGroupCode());
+            Integer groupId = jdbcTemplate.queryForObject(sql, Integer.class, creatorId, groupName, groupCode);
+            addUserToGroup(username, groupId, groupCode);
         } catch (DataAccessException e) {
             throw new CreateException(e);
         }
@@ -91,8 +101,38 @@ public class JdbcGroupDao implements GroupDao {
         }
         return groups;
     }
+    @Override
+    public void addUserToGroup(String username, int groupId, String groupCode) {
+        if( !verifyGroupCode(groupCode, groupId, username)) {
+            throw new CreateException("invalid code");
+        } else {
+            String sql = "INSERT INTO group_member (group_id, user_id, date_joined) values (?, ?, ?)";
+            try {
+                jdbcTemplate.update(sql, groupId, userDao.findIdByUsername(username), currentDay());
+            } catch (DataAccessException e) {
+                throw new CreateException(e);
+            }
+        }
+    }
+    //TODO: implement
+    @Override
+    public List<GroupMember> getAllMembers(int groupId) {
+        List<GroupMember> allMembers = new ArrayList<>();
+        String sql = "SELECT * FROM group_member";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while (results.next()) {
+            GroupMember groupMember = mapRowToMemberGroup(results);
+            allMembers.add(groupMember);
+        }
+        return allMembers;
+    }
+    //TODO: implement
+    @Override
+    public void removeUserFromGroup(String username, int groupId) {
 
-    //TODO: mapRowToGroup is not complete
+    }
+
+
     private Group mapRowToGroup(SqlRowSet rs) {
         Group group = new Group();
         group.setGroupName(rs.getString("group_name"));
@@ -101,6 +141,12 @@ public class JdbcGroupDao implements GroupDao {
         group.setGroupCode(rs.getString("group_code"));
         return group;
     }
+    Private GroupMember mapRowToMemberGroup(SqlRowSet rs){
+        GroupMember
+    }
+    //get all group members
+    //add member to membergroup
+    //remove member to membergroup
 
     private String getGroupCode () {
         char[] chars = new char[] {'a', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
@@ -114,4 +160,15 @@ public class JdbcGroupDao implements GroupDao {
         return groupCode;
 
     }
+    private boolean verifyGroupCode(String groupCode, int groupId, String username){
+        return getGroupById(groupId, username).getGroupCode().equals(groupCode);
+    }
+    private String currentDay(){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        String date = now.toString();
+        return date;
+    }
+
+
 }
