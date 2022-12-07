@@ -37,8 +37,9 @@ export default {
          //const data = response.data
         if (response.status == 201) {
          this.group.groupName = '';
-          this.groupDescription = '';
-          this.$router.push({ name: "home" });
+          this.group.groupDescription = '';
+          window.location.reload();
+          // this.$router.push({ name: "home" });
         }
       });
     },
