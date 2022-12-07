@@ -47,7 +47,7 @@ public class JdbcListDao implements ListDao {
     public void createList(int groupId, int userId, String name) {
         String sql = "INSERT INTO list (list_id, group_id, list_title, description, claimed, date_modified) " +
                 "VALUES (DEFAULT, ?, ?, NULL, NULL, 'test');";
-        Integer itemId = jdbcTemplate.queryForObject(sql, Integer.class, groupId, name);
+       jdbcTemplate.update(sql, groupId, name);
         //return false;
     }
 
