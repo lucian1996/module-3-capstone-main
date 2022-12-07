@@ -62,7 +62,7 @@ public class GroupController {
     @ResponseStatus(HttpStatus.CREATED)
     public void createAGroup(Principal principal, @RequestParam @Valid String groupName) {
         try {
-           groupDao.createGroup(principal.getName(), groupName);
+           groupDao.createGroup(principal.getName(), groupName, "test");
         } catch (CreateException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not create group");
         }
