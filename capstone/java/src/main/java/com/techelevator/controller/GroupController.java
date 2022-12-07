@@ -58,7 +58,7 @@ public class GroupController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createAGroup( Principal principal, @RequestParam @Valid String groupName) {
+    public void createGroup( Principal principal, @RequestParam @Valid String groupName) {
         try {
            groupDao.createGroup(principal.getName(), groupName);
         } catch (CreateException e) {
