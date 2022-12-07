@@ -40,7 +40,7 @@ public class JdbcGroupDao implements GroupDao {
         String groupCode = getGroupCode();
         String sql = "INSERT INTO groups (group_owner, group_name, group_code, description) values (?, ?, ?, ?) RETURNING group_id";
         try {
-            Integer groupId = jdbcTemplate.queryForObject(sql, Integer.class, creatorId, groupName, groupCode);
+            Integer groupId = jdbcTemplate.queryForObject(sql, Integer.class, creatorId, groupName, groupCode, description);
             addUserToGroup(username, groupId, groupCode);
         } catch (DataAccessException e) {
             throw new CreateException(e);
