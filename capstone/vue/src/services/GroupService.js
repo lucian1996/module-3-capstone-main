@@ -1,16 +1,16 @@
 import axios from 'axios';
 
-const http = axios.create({
-    baseURL: "http://localhost:3000"
-})
+// const http = axios.create({
+//     baseURL: "http://localhost:9000"
+// })
 
 export default {
 
     getGroups() {
-        return http.get('/')
+        return axios.get('/groups')
     },
 
     createGroup(group) {
-        return http.post('/', group)
+        return axios.post('/groups', group)
       },
 }
