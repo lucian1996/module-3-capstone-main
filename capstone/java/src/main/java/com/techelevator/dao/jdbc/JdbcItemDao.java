@@ -38,9 +38,10 @@ public class JdbcItemDao implements ItemDao {
     //TODO: make sure implementation works
     @Override
     public void deleteItem(Item item) {
-        String sql = "DELETE FROM list_item WHERE list_item_id = ?;";
+        System.out.println(item.toString());
+        String sql = "DELETE FROM list_item WHERE list_item_id = 3001;";
         try {
-            jdbcTemplate.queryForRowSet(sql, item.getItemId());
+            jdbcTemplate.queryForRowSet(sql);
         } catch (DataAccessException e) {
             throw new DeleteException (e);
         }
