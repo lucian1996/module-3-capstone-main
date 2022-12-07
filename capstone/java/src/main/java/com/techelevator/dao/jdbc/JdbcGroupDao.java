@@ -35,10 +35,10 @@ public class JdbcGroupDao implements GroupDao {
     }
 
     @Override
-    public void createGroup(String username, String groupName) {
+    public void createGroup(String username, String groupName, String description) {
         int creatorId = userDao.findIdByUsername(username);
         String groupCode = getGroupCode();
-        String sql = "INSERT INTO groups (group_owner, group_name, group_code) values (?, ?, ?) RETURNING group_id";
+        String sql = "INSERT INTO groups (group_owner, group_name, group_code, description) values (?, ?, ?, ?) RETURNING group_id";
         try {
             Integer groupId = jdbcTemplate.queryForObject(sql, Integer.class, creatorId, groupName, groupCode);
             addUserToGroup(username, groupId, groupCode);
@@ -150,6 +150,7 @@ public class JdbcGroupDao implements GroupDao {
         group.setGroupId(rs.getInt("group_id"));
         group.setGroupOwnerId(rs.getInt("group_owner"));
         group.setGroupCode(rs.getString("group_code"));
+        group.setGroupDescription(rs.getString("description"));
         return group;
     }
     private GroupMember mapRowToMemberGroup(SqlRowSet rs){
