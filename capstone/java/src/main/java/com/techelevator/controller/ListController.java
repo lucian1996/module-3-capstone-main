@@ -1,5 +1,6 @@
 package com.techelevator.controller;
 
+import com.techelevator.dao.GroupDao;
 import com.techelevator.dao.ListDao;
 import com.techelevator.dao.exceptions.CreateException;
 import com.techelevator.dao.exceptions.DeleteException;
@@ -18,8 +19,15 @@ import java.security.Principal;
 @CrossOrigin
 @RequestMapping("/group")
 @PreAuthorize("isAuthenticated()")
+
+
 public class ListController {
     private ListDao listDao;
+
+    public ListController(ListDao listDao) {
+        this.listDao = listDao;
+    }
+
 
     @GetMapping("/{groupId}/{listId}")
     public List getListByListId(@PathVariable("groupId") int groupId, @PathVariable("listId") int listId, Principal principal) {
