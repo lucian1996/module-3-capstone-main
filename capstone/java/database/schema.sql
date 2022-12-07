@@ -67,5 +67,4 @@ CREATE TABLE list_item (
     CONSTRAINT chk_quantity CHECK (quantity > 0)
     );
 
-
 COMMIT TRANSACTION;

@@ -2,8 +2,12 @@ package com.techelevator.dao.jdbc;
 
 import com.techelevator.dao.ItemDao;
 import com.techelevator.dao.UserDao;
+import com.techelevator.dao.exceptions.CreateException;
+import com.techelevator.dao.exceptions.DeleteException;
+import com.techelevator.dao.exceptions.UpdateException;
 import com.techelevator.model.Item;
 import com.techelevator.model.User;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -20,41 +24,53 @@ public class JdbcItemDao implements ItemDao {
         this.jdbcTemplate = new JdbcTemplate((dataSource));
     }
 
-    @Override
-    public Item getItemById(int itemId) {
-        String sql = "SELECT item FROM list WHERE item_id = ?";
-        Item item;
-        item = jdbcTemplate.queryForObject(sql, Item.class, itemId);
-        return item;
-    }
-
     //TODO: address null exception
     @Override
-    public void createItem(int listId) {
-        String sql = "INSERT INTO list_item (list_item_id, list_id, date_modified, quantity, last_modifier, description)" +
-                "VALUES (DEFAULT, ?, GETDATE(), 0, 0, NULL) RETURNING list_item_id;";
-        Integer itemId = jdbcTemplate.queryForObject(sql, Integer.class, listId);
-        //return getItemById(listId, itemId) != null;
+    public void createItem(Item item) {
+        String sql = "INSERT INTO list_item (date_modified, quantity, last_modifier, description) VALUES (?, ?, ?, ?)";
+        try {
+            jdbcTemplate.update(item.getDateModified(), item.getQuantity(), item.getLastModifier(), item.getDescription());
+        } catch (DataAccessException e) {
+            throw new CreateException(e);
+        }
     }
 
     //TODO: make sure implementation works
     @Override
-    public void deleteItem(int itemId) {
+    public void deleteItem(Item item) {
         String sql = "DELETE FROM list_item WHERE list_item_id = ?;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql,itemId);
-       // return results.wasNull();
+        try {
+            jdbcTemplate.queryForRowSet(sql, item.getItemId());
+        } catch (DataAccessException e) {
+            throw new DeleteException (e);
+        }
     }
 
     //TODO: boolean implementation
     @Override
     public void updateItem(Item item) {
-        String sql = "UPDATE list_item SET date_modified = GETDATE(), " +
-                "last_modifier = ?, quantity = ?, description = ?; " +
-                "COMMIT;";
-        jdbcTemplate.update(sql, item.getLastModifier(), item.getQuantity(), item.getDescription());
-      //  return false;
+        String sql = "UPDATE item SET date_modified, quantity, last_modifier, description VALUES (?, ?, ?, ?)";
+        try {
+            jdbcTemplate.update(sql, item.getDescription(), item.getQuantity(), item.getLastModifier(), item.getDescription());
+        } catch (DataAccessException e) {
+            throw new UpdateException(e);
+        }
     }
 
+//    CREATE TABLE list_item (
+//            list_item_id int NOT NULL DEFAULT nextval('seq_list_item_id'),
+//    list_id int NOT NULL,
+//    date_modified varchar(50) NULL,
+//    quantity int NOT NULL,
+//    last_modifier int NOT NULL,
+//    description varchar(500),
+//    CONSTRAINT PK_list_item PRIMARY KEY (list_item_id),
+//    CONSTRAINT FK_list_item_list FOREIGN KEY (list_id) REFERENCES list (list_id),
+//    CONSTRAINT chk_quantity CHECK (quantity > 0)
+//    );
+
+
+    //TODO have some verification that list id is valid
     @Override
     public List<Item> listItems(int listId) {
     List<Item> items = new ArrayList<>();

@@ -33,6 +33,7 @@ public class ItemController {
 
     @GetMapping("/{itemId}")
     public List<Item> getAllItems(@PathVariable int listId, Principal principal) {
+        //TODO validate principal
         try {
             return itemDao.listItems(listId);
         } catch (GetException e) {
@@ -42,9 +43,11 @@ public class ItemController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createItem(@RequestParam int listId, Principal principal) {
+    public void createItem(@RequestBody Item item, Principal principal) {
+        // here we could do the principal validation
+        item.setDateModified("test");
         try {
-            itemDao.createItem(listId);
+            itemDao.createItem(item);
         } catch (CreateException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not create item");
         }
@@ -52,9 +55,9 @@ public class ItemController {
 
     @DeleteMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteItem(@RequestParam int itemId, Principal principal) {
+    public void deleteItem(@RequestBody Item item, Principal principal) {
         try {
-             itemDao.deleteItem(itemId);
+             itemDao.deleteItem(item);
         } catch (DeleteException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not delete item");
         }

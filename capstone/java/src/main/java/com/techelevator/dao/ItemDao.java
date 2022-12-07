@@ -5,12 +5,8 @@ import com.techelevator.model.Item;
 import java.util.List;
 
 public interface ItemDao {
-
-    Item getItemById(int itemId);
-
-    void createItem(int listId);
-
-    void deleteItem(int itemId);
+    void createItem(Item item);
+    void deleteItem(Item item);
 
     void updateItem(Item item);
 

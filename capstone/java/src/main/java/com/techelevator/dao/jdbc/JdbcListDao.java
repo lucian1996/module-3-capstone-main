@@ -31,6 +31,17 @@ public class JdbcListDao implements ListDao {
         SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, groupId, listId);
         return mapRowToList(rs);
     }
+    //CREATE TABLE list_item (
+    //    list_item_id int NOT NULL DEFAULT nextval('seq_list_item_id'),
+    //    list_id int NOT NULL,
+    //    date_modified varchar(50) NULL,
+    //    quantity int NOT NULL,
+    //    last_modifier int NOT NULL,
+    //    description varchar(500),
+    //    CONSTRAINT PK_list_item PRIMARY KEY (list_item_id),
+    //    CONSTRAINT FK_list_item_list FOREIGN KEY (list_id) REFERENCES list (list_id),
+    //    CONSTRAINT chk_quantity CHECK (quantity > 0)
+    //    );
 
     @Override
     public void createList(int groupId, int userId, String name) {

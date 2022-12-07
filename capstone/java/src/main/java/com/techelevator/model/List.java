@@ -11,6 +11,15 @@ public class List {
     @NotEmpty
     private String listName;
     private int claimedId;
+    private String dateModified;
+
+    public String getDateModified() {
+        return dateModified;
+    }
+
+    public void setDateModified(String dateModified) {
+        this.dateModified = dateModified;
+    }
 
     public int getClaimedId() {
         return claimedId;
