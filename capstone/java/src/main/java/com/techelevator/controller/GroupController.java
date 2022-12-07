@@ -60,9 +60,9 @@ public class GroupController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createAGroup(Principal principal, @RequestParam @Valid String groupName) {
+    public void createAGroup(Principal principal, @RequestParam @Valid String groupName, @Valid String description) {
         try {
-           groupDao.createGroup(principal.getName(), groupName);
+           groupDao.createGroup(principal.getName(), groupName, description);
         } catch (CreateException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not create group");
         }
