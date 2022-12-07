@@ -27,9 +27,9 @@ public class JdbcItemDao implements ItemDao {
     //TODO: address null exception
     @Override
     public void createItem(Item item) {
-        String sql = "INSERT INTO list_item (date_modified, quantity, last_modifier, description) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO list_item (list_id, date_modified, quantity, last_modifier, description) VALUES (?, ?, ?, ?, ?)";
         try {
-            jdbcTemplate.update(item.getDateModified(), item.getQuantity(), item.getLastModifier(), item.getDescription());
+            jdbcTemplate.update(sql, item.getListId(), item.getDateModified(), item.getQuantity(), item.getLastModifier(), item.getDescription());
         } catch (DataAccessException e) {
             throw new CreateException(e);
         }
@@ -38,20 +38,22 @@ public class JdbcItemDao implements ItemDao {
     //TODO: make sure implementation works
     @Override
     public void deleteItem(Item item) {
-        String sql = "DELETE FROM list_item WHERE list_item_id = ?;";
+        System.out.println(item.toString());
+        String sql = "DELETE FROM list_item WHERE list_item_id = 3001;";
         try {
-            jdbcTemplate.queryForRowSet(sql, item.getItemId());
+            jdbcTemplate.queryForRowSet(sql);
         } catch (DataAccessException e) {
             throw new DeleteException (e);
         }
     }
 
-    //TODO: boolean implementation
+
+    //TODO add modify date and last modifier
     @Override
     public void updateItem(Item item) {
-        String sql = "UPDATE item SET date_modified, quantity, last_modifier, description VALUES (?, ?, ?, ?)";
+        String sql = "UPDATE list_item SET date_modified = ?, quantity = ?, last_modifier = ?, description = ? WHERE list_item_id = ?;";
         try {
-            jdbcTemplate.update(sql, item.getDescription(), item.getQuantity(), item.getLastModifier(), item.getDescription());
+            jdbcTemplate.update(sql, item.getDateModified(), item.getQuantity(), item.getLastModifier(), item.getDescription(), item.getItemId());
         } catch (DataAccessException e) {
             throw new UpdateException(e);
         }
@@ -73,6 +75,7 @@ public class JdbcItemDao implements ItemDao {
     //TODO have some verification that list id is valid
     @Override
     public List<Item> listItems(int listId) {
+        System.out.println(listId + " test ehre");
     List<Item> items = new ArrayList<>();
     String sql = "SELECT * FROM list_item WHERE list_id = ?;";
     SqlRowSet results = jdbcTemplate.queryForRowSet(sql, listId);
@@ -87,7 +90,7 @@ public class JdbcItemDao implements ItemDao {
         Item item = new Item();
         item.setItemId(rs.getInt("list_item_id"));
         item.setListId(rs.getInt("list_id"));
-//        item.setClaimedId(rs.getInt("claimed_id"));
+//       item.setClaimedId(rs.getInt("claimed_id"));
         item.setDateModified(rs.getString("date_modified"));
         item.setLastModifier(rs.getInt("last_modifier"));
         item.setQuantity(rs.getInt("quantity"));

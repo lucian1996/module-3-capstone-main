@@ -5,6 +5,7 @@ import com.techelevator.dao.ListDao;
 import com.techelevator.dao.UserDao;
 import com.techelevator.dao.exceptions.DeleteException;
 import com.techelevator.dao.exceptions.GetException;
+import com.techelevator.model.Group;
 import com.techelevator.model.List;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -29,7 +30,15 @@ public class JdbcListDao implements ListDao {
     public List getList(int groupId, int listId, String username) {
         String sql = "SELECT * FROM list WHERE group_id = ? AND list_id = ?;";
         SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, groupId, listId);
-        return mapRowToList(rs);
+        try {
+            if (rs.next()) {
+                return mapRowToList(rs);
+            }
+        }
+        catch (DataAccessException e) {
+            throw new GetException(e);
+        }
+        return new List();
     }
     //CREATE TABLE list_item (
     //    list_item_id int NOT NULL DEFAULT nextval('seq_list_item_id'),
@@ -47,7 +56,7 @@ public class JdbcListDao implements ListDao {
     public void createList(int groupId, int userId, String name) {
         String sql = "INSERT INTO list (list_id, group_id, list_title, description, claimed, date_modified) " +
                 "VALUES (DEFAULT, ?, ?, NULL, NULL, 'test');";
-        Integer itemId = jdbcTemplate.queryForObject(sql, Integer.class, groupId, name);
+       jdbcTemplate.update(sql, groupId, name);
         //return false;
     }
 
