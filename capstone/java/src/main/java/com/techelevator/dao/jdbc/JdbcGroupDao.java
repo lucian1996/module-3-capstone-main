@@ -61,6 +61,8 @@ public class JdbcGroupDao implements GroupDao {
             } catch (DataAccessException e) {
                 throw new DeleteException(e);
             }
+            sql = "DELETE FROM group_member WHERE group_id = ?";
+            jdbcTemplate.update(sql, groupId);
         }
     }
     //TODO only allow group to be edited by someone in it
@@ -114,7 +116,6 @@ public class JdbcGroupDao implements GroupDao {
             }
         }
     }
-    //TODO: implement
     @Override
     public List<GroupMember> getAllMembers(int groupId) {
         List<GroupMember> allMembers = new ArrayList<>();
@@ -129,7 +130,17 @@ public class JdbcGroupDao implements GroupDao {
     //TODO: implement
     @Override
     public void removeUserFromGroup(String username, int groupId) {
-
+        String sql = "DELETE FROM group_member WHERE user_id = ?;";
+        int userId = userDao.findIdByUsername(username);
+        // verify that user is not the owner
+        if (getGroupById(groupId, username).getGroupOwnerId() != userId) {
+            throw new DeleteException("you don't have permission");
+        }
+        try {
+            jdbcTemplate.update(sql, userDao.findIdByUsername(username));
+        } catch (DataAccessException e) {
+            throw new DeleteException(e);
+        }
     }
 
 

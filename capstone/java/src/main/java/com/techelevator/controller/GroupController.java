@@ -60,9 +60,9 @@ public class GroupController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createAGroup( Principal principal, @RequestBody @Valid Group group) {
+    public void createAGroup(Principal principal, @RequestParam @Valid String groupName) {
         try {
-           groupDao.createGroup(principal.getName(), group.getGroupName());
+           groupDao.createGroup(principal.getName(), groupName);
         } catch (CreateException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not create group");
         }
@@ -87,9 +87,9 @@ public class GroupController {
     }
     //TODO: can we preAuthorize individuals at this level?
     @GetMapping("/{groupId}/members")
-    public List<GroupMember> getAllMembers(@PathVariable int groupId){
+    public List <GroupMember> getAllMembers(@PathVariable int groupId){
         try {
-            return groupDao.getAllMembers( groupId);
+            return groupDao.getAllMembers(groupId);
         } catch (GetException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not get users in group");
         }
