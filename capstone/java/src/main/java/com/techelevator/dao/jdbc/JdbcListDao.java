@@ -44,10 +44,10 @@ public class JdbcListDao implements ListDao {
     //    );
 
     @Override
-    public void createList(int groupId, int userId, String name) {
+    public void createList(List list) {
         String sql = "INSERT INTO list (list_id, group_id, list_title, description, claimed, date_modified) " +
                 "VALUES (DEFAULT, ?, ?, NULL, NULL, 'test');";
-        Integer itemId = jdbcTemplate.queryForObject(sql, Integer.class, groupId, name);
+       jdbcTemplate.update(sql, list.getGroupId(), list.getListName());
         //return false;
     }
 
