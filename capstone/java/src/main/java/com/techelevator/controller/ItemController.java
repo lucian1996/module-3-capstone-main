@@ -11,7 +11,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 
@@ -20,20 +19,17 @@ import java.util.List;
 @RequestMapping("/list/item")
 @PreAuthorize("isAuthenticated()")
 public class ItemController {
-    private ItemDao itemDao;
+    private final ItemDao itemDao;
 
-//    @GetMapping("/{itemId}")
-//    public Item getItem(@PathVariable int itemId, Principal principal) {
-//        try {
-//            return itemDao.getItemById(itemId);
-//        } catch (GetException e) {
-//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve the item");
-//        }
-//    }
+    public ItemController(ItemDao itemDao) {
 
-    @GetMapping("/{itemId}")
-    public List<Item> getAllItems(@PathVariable int listId, Principal principal) {
+        this.itemDao = itemDao;
+    }
+    //TODO chqange to pathvar
+    @GetMapping("/")
+    public List<Item> getAllItems(@RequestParam int listId, Principal principal) {
         //TODO validate principal
+        System.out.println("here");
         try {
             return itemDao.listItems(listId);
         } catch (GetException e) {
@@ -65,7 +61,7 @@ public class ItemController {
 
     @PutMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public void updateItem(@RequestParam Item item, Principal principal) {
+    public void updateItem(@RequestBody Item item, Principal principal) {
         try {
             itemDao.updateItem(item);
         } catch (UpdateException e) {
