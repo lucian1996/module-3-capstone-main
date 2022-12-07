@@ -51,9 +51,9 @@ public class ListController {
 
     @DeleteMapping("/{groupId}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteAList(@PathVariable("groupId") int groupId, @RequestBody @Valid int userId, Principal principal) {
+    public void deleteAList(@PathVariable("groupId") int groupId, @RequestBody @Valid String username, Principal principal) {
         try {
-            listDao.deleteList(groupId, userId, principal.getName());
+            listDao.deleteList(groupId, username, principal.getName());
         } catch (DeleteException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not delete list");
         }
