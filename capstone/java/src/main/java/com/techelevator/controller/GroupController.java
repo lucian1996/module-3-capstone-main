@@ -25,13 +25,15 @@ import java.util.List;
 @PreAuthorize("isAuthenticated()")
 public class GroupController {
     private GroupDao groupDao;
+    private UserDao userDao;
 
-    public GroupController(GroupDao groupDao) {
+    public GroupController(GroupDao groupDao, UserDao userDao) {
         this.groupDao = groupDao;
+        this.userDao = userDao;
     }
 
     @GetMapping("")
-    public List<Group> findAllGroups(Principal principal) {
+    public List<Group> findAllGroups() {
         try {
             return groupDao.getAllGroups();
         } catch (GetException e) {
@@ -42,7 +44,7 @@ public class GroupController {
     @GetMapping("/{groupId}")
     public Group findGroupById(@PathVariable int groupId, Principal principal) {
         try {
-            return groupDao.getGroupById(groupId, principal.getName());
+            return groupDao.getGroupById(groupId);
         } catch (GetException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve group by id");
         }
@@ -50,42 +52,57 @@ public class GroupController {
 
     @DeleteMapping("/{groupId}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteAGroup(@PathVariable @Valid int groupId, Principal principal) {
-        try {
-           groupDao.deleteGroup(groupId, principal.getName());
-        } catch (DeleteException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not delete group");
+    public void deleteAGroup(@RequestBody Group group, Principal principal) {
+        int ownerId = group.getGroupOwnerId();
+        if(isOwner(principal.getName(), ownerId)) {
+            try {
+                groupDao.deleteGroup(group.getGroupId());
+            } catch (DeleteException e) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not delete group");
+            }
         }
     }
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createAGroup(Principal principal, @RequestParam @Valid String groupName, @Valid String description) {
+    public void createAGroup(Principal principal, @RequestBody Group group){
+        group.setGroupOwnerId(userDao.findIdByUsername(principal.getName()));
+        System.out.println(group);
         try {
-           groupDao.createGroup(principal.getName(), groupName, description);
+           groupDao.createGroup(group);
         } catch (CreateException e) {
+
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not create group");
         }
     }
 
     @PutMapping("")
     public void editAGroup(@RequestBody @Valid Group group, Principal principal) {
+        if(!isOwner(principal.getName(), group.getGroupOwnerId())){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "only owners may edit a group");
+        }
         try {
-          groupDao.editGroup(group, principal.getName());
+          groupDao.editGroup(group);
         } catch (UpdateException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not update group");
         }
     }
 // GroupMember Area ---------------------------------------------------------------------------------------------
     @PostMapping("/{groupId}/members/")
-    public void addUserToGroup(Principal principal, @PathVariable int groupId, @RequestParam String groupCode){
+    public void addUserToGroup(Principal principal, @RequestBody Group group, @PathVariable int groupId, @RequestParam String groupCode){
+        if(!group.getGroupCode().equals(groupCode)){
+            throw new CreateException("Invalid group code");
+        }
+        GroupMember groupMember = new GroupMember();
+        groupMember.setMemberId(userDao.findIdByUsername(principal.getName()));
+        groupMember.setGroupId(group.getGroupId());
         try {
-            groupDao.addUserToGroup((principal.getName()), groupId, groupCode);
+            groupDao.addUserToGroup(groupMember);
         } catch (CreateException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not add user to group");
         }
     }
-    //TODO: can we preAuthorize individuals at this level?
+
     @GetMapping("/{groupId}/members")
     public List <GroupMember> getAllMembers(@PathVariable int groupId){
         try {
@@ -96,13 +113,24 @@ public class GroupController {
     }
 
     @DeleteMapping("/{groupId}/members")
-    public void removeUserFromGroup(Principal principal, @PathVariable int groupId){
+    public void removeUserFromGroup(Principal principal, @PathVariable int groupId, GroupMember groupMember){
+        if(!isOwner(principal.getName(),groupDao.getGroupById(groupId).getGroupOwnerId())){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Owner can not remove themselves from group");
+        }
         try {
-            groupDao.removeUserFromGroup(principal.getName(), groupId);
+            groupDao.removeUserFromGroup(groupMember);
         } catch (DeleteException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not remove user from group");
         }
     }
 
+    private boolean isOwner(String username, int owner){
+       int userId = userDao.findIdByUsername(username);
+       int ownerId = owner;
+       if(userId == ownerId){
+           return true;
+       }
+       return false;
+    }
 
 }

@@ -35,26 +35,18 @@ public class JdbcGroupDao implements GroupDao {
     }
 
     @Override
-    public void createGroup(String username, String groupName, String description) {
-        int creatorId = userDao.findIdByUsername(username);
-        String groupCode = getGroupCode();
-        String sql = "INSERT INTO groups (group_owner, group_name, group_code, description) values (?, ?, ?, ?) RETURNING group_id";
+    public void createGroup(Group group) {
+        group.setGroupCode(getGroupCode());
+        String sql = "INSERT INTO groups (group_owner, group_name, group_code, description) values (?, ?, ?, ?)";
         try {
-            Integer groupId = jdbcTemplate.queryForObject(sql, Integer.class, creatorId, groupName, groupCode, description);
-            addUserToGroup(username, groupId, groupCode);
+           jdbcTemplate.update(sql, group.getGroupOwnerId(), group.getGroupName(), group.getGroupCode(), group.getGroupDescription());
         } catch (DataAccessException e) {
             throw new CreateException(e);
         }
     }
 
     @Override
-    public void deleteGroup(int groupId, String username) {
-        // get user id of principal and owner id and make sure they are equal
-        // if so preform delete
-        int userId =userDao.findIdByUsername(username);
-        int ownerId = getGroupById(groupId, username).getGroupOwnerId();
-
-        if (ownerId == userId) {
+    public void deleteGroup(int groupId) {
             String sql = "DELETE FROM groups WHERE group_id = ?;";
             try {
                 jdbcTemplate.update(sql, groupId);
@@ -64,10 +56,10 @@ public class JdbcGroupDao implements GroupDao {
             sql = "DELETE FROM group_member WHERE group_id = ?";
             jdbcTemplate.update(sql, groupId);
         }
-    }
-    //TODO only allow group to be edited by someone in it
+
+    //TODO only allow owner to edit
     @Override
-    public void editGroup(Group group, String username) {
+    public void editGroup(Group group) {
         String sql = "UPDATE groups set group_owner = ?, group_name = ? WHERE group_id = ?";
        try {
             jdbcTemplate.update(sql);
@@ -77,7 +69,7 @@ public class JdbcGroupDao implements GroupDao {
     }
 
     //TODO add validation so only user that has access to the group can access a group
-    public Group getGroupById(int groupId, String name) {
+    public Group getGroupById(int groupId){
         String sql = "SELECT * FROM groups WHERE group_id = ?";
        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, groupId);
         try {
@@ -104,18 +96,14 @@ public class JdbcGroupDao implements GroupDao {
         return groups;
     }
     @Override
-    public void addUserToGroup(String username, int groupId, String groupCode) {
-        if( !verifyGroupCode(groupCode, groupId, username)) {
-            throw new CreateException("invalid code");
-        } else {
+    public void addUserToGroup(GroupMember groupMember) {
             String sql = "INSERT INTO group_member (group_id, user_id, date_joined) values (?, ?, ?)";
             try {
-                jdbcTemplate.update(sql, groupId, userDao.findIdByUsername(username), currentDay());
+                jdbcTemplate.update(sql, groupMember.getGroupId(), groupMember.getMemberId(), currentDay());
             } catch (DataAccessException e) {
                 throw new CreateException(e);
             }
         }
-    }
     @Override
     public List<GroupMember> getAllMembers(int groupId) {
         List<GroupMember> allMembers = new ArrayList<>();
@@ -129,15 +117,11 @@ public class JdbcGroupDao implements GroupDao {
     }
     //TODO: implement
     @Override
-    public void removeUserFromGroup(String username, int groupId) {
-        String sql = "DELETE FROM group_member WHERE user_id = ?;";
-        int userId = userDao.findIdByUsername(username);
-        // verify that user is not the owner
-        if (getGroupById(groupId, username).getGroupOwnerId() != userId) {
-            throw new DeleteException("you don't have permission");
-        }
+    public void removeUserFromGroup(GroupMember groupMember) {
+        String sql = "DELETE FROM group_member WHERE user_id = ? AND group_id = ?;";
+
         try {
-            jdbcTemplate.update(sql, userDao.findIdByUsername(username));
+            jdbcTemplate.update(sql, groupMember.getMemberId(), groupMember.getGroupId());
         } catch (DataAccessException e) {
             throw new DeleteException(e);
         }
@@ -172,9 +156,13 @@ public class JdbcGroupDao implements GroupDao {
         return groupCode;
 
     }
-    private boolean verifyGroupCode(String groupCode, int groupId, String username){
-        return getGroupById(groupId, username).getGroupCode().equals(groupCode);
+    private boolean isVerified(String username, int groupId){
+        String sql = "SELECT * FROM group_member where group_id = ? and user_id = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, groupId, userDao.findIdByUsername(username));
+        return results.next();
     }
+
+
     private String currentDay(){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();

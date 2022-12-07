@@ -6,20 +6,20 @@ import com.techelevator.model.GroupMember;
 import java.util.List;
 
 public interface GroupDao {
-    void createGroup(String username, String groupName, String description);
+    void createGroup(Group group);
 
-    void deleteGroup(int groupId, String string);
+    void deleteGroup(int groupId);
 
-    void editGroup(Group group, String string);
+    void editGroup(Group group);
 
-    Group getGroupById(int groupId, String name);
+    Group getGroupById(int groupId);
 
     List<Group> getAllGroups();
 
-    void addUserToGroup(String username, int groupId, String groupCode);
+    void addUserToGroup(GroupMember groupMember);
 
     List<GroupMember> getAllMembers(int groupId);
 
-    void removeUserFromGroup(String username, int groupId);
+    void removeUserFromGroup(GroupMember groupMember);
 
 }

@@ -55,7 +55,7 @@ public class JdbcListDao implements ListDao {
     public void deleteList(int groupId, String username, String name) {
         {
             int userId = userDao.findIdByUsername(username);
-            int ownerId = groupDao.getGroupById(groupId, username).getGroupOwnerId();
+            int ownerId = groupDao.getGroupById(groupId).getGroupOwnerId();
 
             if (ownerId == userId) {
                 String sql = "DELETE FROM list WHERE list_title = ?;";
