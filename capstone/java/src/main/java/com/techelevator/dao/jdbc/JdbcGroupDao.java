@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Component
 public class JdbcGroupDao implements GroupDao {
@@ -28,9 +29,9 @@ public class JdbcGroupDao implements GroupDao {
     @Override
     public void createGroup(String username, String groupName) {
         int creatorId = userDao.findIdByUsername(username);
-        String sql = "INSERT INTO groups (group_owner, group_name) values (?, ?)";
+        String sql = "INSERT INTO groups (group_owner, group_name, group_code) values (?, ?, ?)";
         try {
-            jdbcTemplate.update(sql, creatorId, groupName);
+            jdbcTemplate.update(sql, creatorId, groupName, getGroupCode());
         } catch (DataAccessException e) {
             throw new CreateException(e);
         }
@@ -65,7 +66,7 @@ public class JdbcGroupDao implements GroupDao {
 
     //TODO add validation so only user that has access to the group can access a group
     public Group getGroupById(int groupId, String name) {
-        String sql = "SELECT group_id, group_owner, group_name FROM groups WHERE group_id = ?";
+        String sql = "SELECT * FROM groups WHERE group_id = ?";
        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, groupId);
         try {
             if (rowSet.next()) {
@@ -97,6 +98,20 @@ public class JdbcGroupDao implements GroupDao {
         group.setGroupName(rs.getString("group_name"));
         group.setGroupId(rs.getInt("group_id"));
         group.setGroupOwnerId(rs.getInt("group_owner"));
+        group.setGroupCode(rs.getString("group_code"));
         return group;
+    }
+
+    private String getGroupCode () {
+        char[] chars = new char[] {'a', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
+                'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+        String groupCode = "";
+        Random r = new Random();
+        for (int i =0; i<10; i++) {
+            int randomInt = r.nextInt(35);
+            groupCode += chars[randomInt];
+        }
+        return groupCode;
+
     }
 }

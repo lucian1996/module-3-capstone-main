@@ -10,6 +10,16 @@ public class Group {
     private List<Integer> users = new ArrayList<>();
     private String groupDescription;
     private int groupOwnerId;
+    private String groupCode;
+
+    public String getGroupCode() {
+        return groupCode;
+    }
+
+    public void setGroupCode(String groupCode) {
+        this.groupCode = groupCode;
+    }
+
 
     public int getGroupId() {
         return groupId;
