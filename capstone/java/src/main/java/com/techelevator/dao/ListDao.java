@@ -8,7 +8,7 @@ public interface ListDao {
 
     void createList(int groupId, int userId, String name);
 
-    void deleteList(int groupId, int userId, String name);
+    void deleteList(int groupId, String username, String name);
 
     void updateList(List list, String name);
 
