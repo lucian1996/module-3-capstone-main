@@ -1,12 +1,14 @@
 package com.techelevator.dao.jdbc;
 
 import com.techelevator.dao.ItemDao;
+import com.techelevator.dao.UserDao;
 import com.techelevator.model.Item;
 import com.techelevator.model.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -14,6 +16,9 @@ import java.util.Objects;
 @Component
 public class JdbcItemDao implements ItemDao {
     private JdbcTemplate jdbcTemplate;
+    public JdbcItemDao(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate((dataSource));
+    }
 
     @Override
     public Item getItemById(int itemId) {

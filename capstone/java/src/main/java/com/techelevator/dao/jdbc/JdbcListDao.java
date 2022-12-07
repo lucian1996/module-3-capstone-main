@@ -6,9 +6,14 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
+
 @Component
 public class JdbcListDao implements ListDao {
     private JdbcTemplate jdbcTemplate;
+    public JdbcListDao(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate((dataSource));
+    }
 
     @Override
     public List getList(int groupId, int listId, String username) {
