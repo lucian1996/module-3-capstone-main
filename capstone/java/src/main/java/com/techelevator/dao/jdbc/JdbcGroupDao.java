@@ -141,12 +141,14 @@ public class JdbcGroupDao implements GroupDao {
         group.setGroupCode(rs.getString("group_code"));
         return group;
     }
-    Private GroupMember mapRowToMemberGroup(SqlRowSet rs){
-        GroupMember
+    private GroupMember mapRowToMemberGroup(SqlRowSet rs){
+        GroupMember groupMember = new GroupMember();
+        groupMember.setGroupId(rs.getInt("group_id"));
+        groupMember.setMemberId(rs.getInt("user_id"));
+        groupMember.setDateJoined(rs.getString("date_joined"));
+        return groupMember;
     }
-    //get all group members
-    //add member to membergroup
-    //remove member to membergroup
+
 
     private String getGroupCode () {
         char[] chars = new char[] {'a', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',

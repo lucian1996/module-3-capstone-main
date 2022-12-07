@@ -7,6 +7,7 @@ import com.techelevator.dao.exceptions.DeleteException;
 import com.techelevator.dao.exceptions.GetException;
 import com.techelevator.dao.exceptions.UpdateException;
 import com.techelevator.model.Group;
+import com.techelevator.model.GroupMember;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -86,9 +87,9 @@ public class GroupController {
     }
     //TODO: can we preAuthorize individuals at this level?
     @GetMapping("/{groupId}/members")
-    public void getAllMembers(@PathVariable int groupId){
+    public List<GroupMember> getAllMembers(@PathVariable int groupId){
         try {
-            groupDao.getAllMembers( groupId);
+            return groupDao.getAllMembers( groupId);
         } catch (GetException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not get users in group");
         }
