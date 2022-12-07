@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Group;
+import com.techelevator.model.GroupMember;
 
 import java.util.List;
 
@@ -15,5 +16,10 @@ public interface GroupDao {
 
     List<Group> getAllGroups();
 
+    void addUserToGroup(String username, int groupId, String groupCode);
+
+    List<GroupMember> getAllMembers(int groupId);
+
+    void removeUserFromGroup(String username, int groupId);
 
 }
