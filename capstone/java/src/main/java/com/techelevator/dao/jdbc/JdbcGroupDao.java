@@ -119,8 +119,8 @@ public class JdbcGroupDao implements GroupDao {
     @Override
     public List<GroupMember> getAllMembers(int groupId) {
         List<GroupMember> allMembers = new ArrayList<>();
-        String sql = "SELECT * FROM group_member";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        String sql = "SELECT * FROM group_member WHERE group_id = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, groupId);
         while (results.next()) {
             GroupMember groupMember = mapRowToMemberGroup(results);
             allMembers.add(groupMember);
@@ -159,8 +159,6 @@ public class JdbcGroupDao implements GroupDao {
         groupMember.setDateJoined(rs.getString("date_joined"));
         return groupMember;
     }
-
-
     private String getGroupCode () {
         char[] chars = new char[] {'a', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
                 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
@@ -182,6 +180,4 @@ public class JdbcGroupDao implements GroupDao {
         String date = now.toString();
         return date;
     }
-
-
 }
