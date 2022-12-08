@@ -13,4 +13,7 @@ export default {
     createGroup(group) {
         return axios.post('/groups', group)
       },
+      getGroup(groupID) {
+          return axios.get(`/groups/${groupID}`)
+      }
 }

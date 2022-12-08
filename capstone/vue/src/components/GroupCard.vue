@@ -1,8 +1,12 @@
 <template>
    <div class="card">
+    <router-link v-bind:to=" {name:'group-details', params: { groupID: this.group.groupId}}">
+   
+   
   <div class="container">
     <div>{{group.groupName}}</div>
   </div>
+  </router-link>
 </div>
 </template>
 
@@ -10,8 +14,7 @@
 
 export default {
   name: 'group-card',
-  props: ['group']
-
+  props: ['group'],
 }
 </script>
 
