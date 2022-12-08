@@ -20,7 +20,7 @@ import java.security.Principal;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/group")
+@RequestMapping("/groups/{groupId}/lists/")
 @PreAuthorize("isAuthenticated()")
 
 
@@ -38,7 +38,7 @@ public class ListController {
     }
 
 
-    @GetMapping("/{groupId}")
+    @GetMapping("")
     public java.util.List<List> getAllLists(@PathVariable int groupId, Principal principal) {
         if (!utilDao.isVerified(principal.getName(), groupId)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "you do not have permission");
@@ -49,7 +49,7 @@ public class ListController {
             }
     }
 
-    @GetMapping("/{groupId}/{listId}")
+    @GetMapping("{listId}")
     public List getListByListId(@PathVariable int groupId, @PathVariable int listId, Principal principal) {
         if (!utilDao.isVerified(principal.getName(), groupId)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "you do not have permission");
@@ -60,7 +60,7 @@ public class ListController {
         }
     }
 
-    @PostMapping("/{groupId}")
+    @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public void createAList(@PathVariable int groupId, @RequestBody List list, Principal principal) {
         if (!utilDao.isVerified(principal.getName(), groupId)) {
@@ -72,7 +72,7 @@ public class ListController {
         }
     }
 
-    @PutMapping("/{groupId}/{listId}")
+    @PutMapping("")
     public void updateAList(@PathVariable int groupId, @PathVariable int listId, @RequestBody List list, Principal principal) {
         if (!utilDao.isVerified(principal.getName(), groupId)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "you do not have permission");
@@ -84,7 +84,7 @@ public class ListController {
     }
 
     //TODO: Should only be able to delete a list you have claimed(?)
-    @DeleteMapping("/{groupId}/{listId}")
+    @DeleteMapping("}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteAList(@PathVariable int groupId, @PathVariable int listId, Principal principal) {
         if (!utilDao.isVerified(principal.getName(), groupId)) {

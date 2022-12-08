@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/groups/group{id}/lists/list{id}/items")
+@RequestMapping("/groups/group{Id}/lists/list{Id}/items/")
 @PreAuthorize("isAuthenticated()")
 public class ItemController {
     private final ItemDao itemDao;
@@ -30,7 +30,7 @@ public class ItemController {
     }
     //TODO chqange to pathvar not working
     //TODO change sql statement to check verifiication
-    @GetMapping("/")
+    @GetMapping("")
     public List<Item> getAllItems(@PathVariable int groupId, @PathVariable int listId, Principal principal) {
         if (!utilDao.isVerified(principal.getName(), groupId)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "you do not have permission");
