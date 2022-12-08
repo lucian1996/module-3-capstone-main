@@ -32,9 +32,12 @@
         v-model="user.password"
         required
       />
-      <router-link :to="{ name: 'register' }" class="register">Register</router-link>
+      <router-link :to="{ name: 'register' }" class="register" v-if="!this.$route.query.registration">Register</router-link>
+      <button type="submit" class="submit">Sign in</button>
     </form>
-     <button type="submit" class="submit">Sign in</button>
+    <div>
+     
+     </div>
   </div>
 </template>
 
@@ -85,7 +88,8 @@ export default {
   margin-right: 25%;
   margin-left: 25%;
   border-radius: 25px;
-  opacity: .90
+  opacity: .90;
+  padding-bottom: 25px;
 }
 .sr-only {
   align-content: center;
@@ -95,7 +99,6 @@ export default {
   align-content: flex-end;
 }
 .submit {
-  display:inline-flex;
  align-self:center
 }
 </style>
