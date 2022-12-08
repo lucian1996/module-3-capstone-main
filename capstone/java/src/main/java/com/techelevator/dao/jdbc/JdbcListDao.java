@@ -13,6 +13,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
 
 @Component
 public class JdbcListDao implements ListDao {
@@ -24,6 +25,18 @@ public class JdbcListDao implements ListDao {
         this.jdbcTemplate = new JdbcTemplate((dataSource));
         this.groupDao = groupDao;
         this.userDao = userDao;
+    }
+
+    @Override
+    public java.util.List<List> getAllLists() {
+        java.util.List<List> lists = new ArrayList<>();
+        String sql = "SELECT * FROM list";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while (results.next()) {
+            List list = mapRowToList(results);
+            lists.add(list);
+        }
+        return lists;
     }
 
     @Override
@@ -40,24 +53,16 @@ public class JdbcListDao implements ListDao {
         }
         return new List();
     }
-    //CREATE TABLE list_item (
-    //    list_item_id int NOT NULL DEFAULT nextval('seq_list_item_id'),
-    //    list_id int NOT NULL,
-    //    date_modified varchar(50) NULL,
-    //    quantity int NOT NULL,
-    //    last_modifier int NOT NULL,
-    //    description varchar(500),
-    //    CONSTRAINT PK_list_item PRIMARY KEY (list_item_id),
-    //    CONSTRAINT FK_list_item_list FOREIGN KEY (list_id) REFERENCES list (list_id),
-    //    CONSTRAINT chk_quantity CHECK (quantity > 0)
-    //    );
 
     @Override
     public void createList(int groupId, int userId, String name) {
-        String sql = "INSERT INTO list (list_id, group_id, list_title, description, claimed, date_modified) " +
-                "VALUES (DEFAULT, ?, ?, NULL, NULL, 'test');";
-       jdbcTemplate.update(sql, groupId, name);
-        //return false;
+        String sql = "INSERT INTO list (group_id, list_title, description, claimed, date_modified) " +
+                "VALUES (?, ?, 'test', 0, 'test');";
+        try {
+            jdbcTemplate.update(sql, groupId, name);
+        } catch (DataAccessException e) {
+            throw new GetException(e);
+        }
     }
 
     @Override

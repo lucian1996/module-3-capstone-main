@@ -6,6 +6,7 @@ import com.techelevator.dao.exceptions.CreateException;
 import com.techelevator.dao.exceptions.DeleteException;
 import com.techelevator.dao.exceptions.GetException;
 import com.techelevator.dao.exceptions.UpdateException;
+import com.techelevator.model.Group;
 import com.techelevator.model.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -29,6 +30,15 @@ public class ListController {
     }
 
 
+    @GetMapping("")
+    public java.util.List<List> findAllGroups() {
+        try {
+            return listDao.getAllLists();
+        } catch (GetException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve lists");
+        }
+    }
+
     @GetMapping("/{groupId}/{listId}")
     public List getListByListId(@PathVariable("groupId") int groupId, @PathVariable("listId") int listId, Principal principal) {
         try {
@@ -48,7 +58,7 @@ public class ListController {
         }
     }
 
-    @PutMapping("/updateList")
+    @PutMapping("/{groupId}/{listId}")
     public void updateAList(@RequestBody @Valid List list, Principal principal) {
         try {
             listDao.updateList(list, principal.getName());
