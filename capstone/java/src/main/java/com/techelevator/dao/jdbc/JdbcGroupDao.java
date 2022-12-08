@@ -97,7 +97,7 @@ public class JdbcGroupDao implements GroupDao {
     @Override
     public List<Group> getAllGroups() {
         List<Group> groups = new ArrayList<>();
-        String sql = "SELECT * FROM groups";
+        String sql = "SELECT * FROM groups ORDER BY group_name";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while (results.next()) {
             Group group = mapRowToGroup(results);
