@@ -86,12 +86,9 @@ export default {
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-weight: light;
   display: flex;
-  height: 80vh;
   flex-direction: column;
   justify-content: first baseline;
   align-items: center;
-  padding-top: 5%;
-  padding-bottom: 5%;
   margin-bottom:  auto;
 }
 
@@ -100,11 +97,12 @@ export default {
   flex-direction: column;
   text-align: center;
   line-height: 200%;
-  background-color: #AAA599;
-  border-radius: 18%;
+  background-color: #6b6a66;
+  border-radius: 12%;
   justify-content: space-around;
   padding: 5%;
   flex-basis: 200px;
+  border: 5px solid #B7EC8C;
 }
 /* .form-signin {
   grid-area: form;
