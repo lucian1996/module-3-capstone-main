@@ -27,7 +27,7 @@ export default {
         groupId: '',
         groupName:	'',
         groupOwnerId:	'',
-        users: []
+        groupCode: '',
       },
     };
   },
