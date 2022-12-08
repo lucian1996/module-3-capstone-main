@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.GroupDao;
 import com.techelevator.dao.ListDao;
+import com.techelevator.dao.UserDao;
 import com.techelevator.dao.exceptions.CreateException;
 import com.techelevator.dao.exceptions.DeleteException;
 import com.techelevator.dao.exceptions.GetException;
@@ -23,26 +24,30 @@ import java.security.Principal;
 
 
 public class ListController {
-    private ListDao listDao;
+    private final ListDao listDao;
+    private final GroupDao groupDao;
+    private final UserDao userDao;
 
-    public ListController(ListDao listDao) {
+    public ListController(ListDao listDao, GroupDao groupDao, UserDao userDao) {
         this.listDao = listDao;
+        this.groupDao = groupDao;
+        this.userDao = userDao;
     }
 
 
     @GetMapping("/{groupId}")
-    public java.util.List<List> getAllLists(@PathVariable("groupId") int groupId, Principal principal) {
+    public java.util.List<List> getAllLists(@PathVariable int groupId, Principal principal) {
         try {
-            return listDao.getAllListsForGroup(groupId, principal.getName());
-        } catch (GetException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve lists");
-        }
+                return listDao.getAllListsForGroup(groupId);
+            } catch (GetException e) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve lists");
+            }
     }
 
     @GetMapping("/{groupId}/{listId}")
-    public List getListByListId(@PathVariable("groupId") int groupId, @PathVariable("listId") int listId, Principal principal) {
+    public List getListByListId(@PathVariable int groupId, @PathVariable int listId, Principal principal) {
         try {
-            return listDao.getList(groupId, listId, principal.getName());
+            return listDao.getList(groupId, listId);
         } catch (GetException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve list with id");
         }
@@ -50,30 +55,39 @@ public class ListController {
 
     @PostMapping("/{groupId}")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createAList(@PathVariable("groupId") int groupId, @RequestBody @Valid int userId, Principal principal) {
+    public void createAList(@PathVariable int groupId, @RequestBody List list, Principal principal) {
         try {
-            listDao.createList(groupId, userId, principal.getName());
+            listDao.createList(list);
         } catch (CreateException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not create list");
         }
     }
 
     @PutMapping("/{groupId}/{listId}")
-    public void updateAList(@RequestBody @Valid List list, Principal principal) {
+    public void updateAList(@PathVariable int groupId, @PathVariable int listId, @RequestBody @Valid List list, Principal principal) {
         try {
-            listDao.updateList(list, principal.getName());
+            listDao.updateList(list);
         } catch (UpdateException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not update list");
         }
     }
 
-    @DeleteMapping("/{groupId}")
+    //TODO: Should only be able to delete a list you have claimed(?)
+    @DeleteMapping("/{groupId}/{listId}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteAList(@PathVariable("groupId") int groupId, @RequestBody @Valid String username, Principal principal) {
+    public void deleteAList(@PathVariable int groupId, @PathVariable int listId, Principal principal) {
         try {
-            listDao.deleteList(groupId, username, principal.getName());
+            listDao.deleteList(groupId, listId);
         } catch (DeleteException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not delete list");
         }
+    }
+
+    private boolean isOwner(String username, int ownerId) {
+        int userId = userDao.findIdByUsername(username);
+        if (userId == ownerId) {
+            return true;
+        }
+        return false;
     }
 }
