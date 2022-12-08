@@ -85,9 +85,9 @@ public class JdbcListDao implements ListDao {
 
     @Override
     public void updateList(List list, String name) {
-            String sql = "UPDATE list set list_title = ?, description = ?, claimed = ?, date_modified = 'test' WHERE list_id = ?;";
+            String sql = "UPDATE list set list_title = ?, description = ?, claimed = ?, date_modified = ? WHERE group_id = ? AND list_id = ?;";
             try {
-                jdbcTemplate.update(sql, list.getListName(), list.getDescription(), list.getClaimedId(), list.getListId());
+                jdbcTemplate.update(sql, list.getListName(), list.getDescription(), list.getClaimedId(), list.getDateModified(), list.getGroupId(), list.getListId());
             } catch (DataAccessException e) {
                 throw new GetException(e);
             }
