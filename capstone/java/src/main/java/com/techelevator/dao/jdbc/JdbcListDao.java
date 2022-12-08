@@ -65,6 +65,7 @@ public class JdbcListDao implements ListDao {
         }
     }
 
+    //TODO
     @Override
     public void deleteList(int groupId, String username, String name) {
         {
@@ -82,7 +83,7 @@ public class JdbcListDao implements ListDao {
         }
         //return false;
     }
-
+//TODO: Method returns @NotEmpty constraint error, needs fixed
     @Override
     public void updateList(List list, String name) {
             String sql = "UPDATE list set list_title = ?, description = ?, claimed = ?, date_modified = ? WHERE group_id = ? AND list_id = ?;";
