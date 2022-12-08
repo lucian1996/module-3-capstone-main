@@ -1,11 +1,11 @@
 <template>
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">
-      <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
+      <h2 class="h3 mb-3 font-weight-normal">Create Account</h2>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
-      <label for="username" class="sr-only">Username</label>
+      <label for="username" class="sr-only"></label>
       <input
         type="text"
         id="username"
@@ -15,7 +15,7 @@
         required
         autofocus
       />
-      <label for="password" class="sr-only">Password</label>
+      <label for="password" class="sr-only"></label>
       <input
         type="password"
         id="password"
@@ -33,10 +33,13 @@
         required
       />
       <router-link :to="{ name: 'login' }">Have an account?</router-link>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
+      <button class="btn btn-lg btn-primary btn-block" type="submit" @submit.prevent="register">
         Create Account
       </button>
     </form>
+  <div>
+    
+  </div>
   </div>
 </template>
 
@@ -92,4 +95,48 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+#window {
+  display:flex;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: light;
+  display: flex;
+  height: 80vh;
+  flex-direction: column;
+  justify-content: first baseline;
+  align-items: center;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  margin-bottom:  auto;
+}
+
+.form-register {
+  display:flex;
+  flex-direction: column;
+  text-align: center;
+  line-height: 200%;
+  background-color: #AAA599;
+  border-radius: 18%;
+  justify-content: space-around;
+  margin-right:25%;
+  margin-left:25%;  
+  padding: 5%;
+  flex-basis: 200px;
+}
+/* .form-register {
+  grid-area: register;
+  display: flex;
+  background-color: rgb(184, 119, 184);
+  align-items: center;
+  flex-direction: column;
+  margin-right: 25%;
+  margin-left: 25%;
+  border-radius: 25px;
+  opacity: .90;
+  padding-bottom: 25px;
+}
+.btn {
+  grid-area: submit;
+  margin-top: 15px;
+} */
+</style>
