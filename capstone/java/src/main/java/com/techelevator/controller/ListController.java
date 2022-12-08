@@ -64,7 +64,7 @@ public class ListController {
     }
 
     @PutMapping("/{groupId}/{listId}")
-    public void updateAList(@PathVariable int groupId, @PathVariable int listId, @RequestBody @Valid List list, Principal principal) {
+    public void updateAList(@PathVariable int groupId, @PathVariable int listId, @RequestBody List list, Principal principal) {
         try {
             listDao.updateList(list);
         } catch (UpdateException e) {
