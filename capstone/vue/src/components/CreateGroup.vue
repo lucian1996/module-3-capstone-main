@@ -6,7 +6,7 @@
     </div>
     <div class="field">
       <label for="description">What is this group to do?</label>
-      <textarea id="description" name="description" rows="2" cols="10" placeholder="Description"
+      <textarea id="description" name="description" rows="2" cols="30" placeholder="Description"
       v-model="group.groupDescription"></textarea>
         </div>
     <div class="actions">
@@ -27,7 +27,7 @@ export default {
         groupId: '',
         groupName:	'',
         groupOwnerId:	'',
-        users: []
+        groupCode: '',
       },
     };
   },
