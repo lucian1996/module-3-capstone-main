@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.GroupDao;
 import com.techelevator.dao.UserDao;
+import com.techelevator.dao.UtilDao;
 import com.techelevator.dao.exceptions.CreateException;
 import com.techelevator.dao.exceptions.DeleteException;
 import com.techelevator.dao.exceptions.GetException;
@@ -26,10 +27,12 @@ import java.util.List;
 public class GroupController {
     private GroupDao groupDao;
     private UserDao userDao;
+    private UtilDao utilDao;
 
-    public GroupController(GroupDao groupDao, UserDao userDao) {
+    public GroupController(GroupDao groupDao, UserDao userDao, UtilDao utilDao) {
         this.groupDao = groupDao;
         this.userDao = userDao;
+        this.utilDao = utilDao;
     }
 
     @GetMapping("")
@@ -43,6 +46,7 @@ public class GroupController {
 
     @GetMapping("/{groupId}")
     public Group findGroupById(@PathVariable int groupId, Principal principal) {
+        //TODO: check firstly if the group exists. No issues right now besides the http response says it was OK.
         try {
             return groupDao.getGroupById(groupId);
         } catch (GetException e) {
@@ -54,14 +58,17 @@ public class GroupController {
     @ResponseStatus(HttpStatus.OK)
     public void deleteAGroup(@RequestBody Group group, Principal principal) {
         int ownerId = group.getGroupOwnerId();
-        if(isOwner(principal.getName(), ownerId)) {
+        //TODO: check firstly if the group exists. No issues right now besides the http response says it was OK.
+        if(!isOwner(principal.getName(), ownerId)) {
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "only owners may delete a group.");
+        }
             try {
                 groupDao.deleteGroup(group.getGroupId());
             } catch (DeleteException e) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not delete group");
             }
         }
-    }
+
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
@@ -104,7 +111,10 @@ public class GroupController {
     }
 
     @GetMapping("/{groupId}/members")
-    public List <GroupMember> getAllMembers(@PathVariable int groupId){
+    public List <GroupMember> getAllMembers(@PathVariable int groupId, Principal principal){
+        if(!utilDao.isVerified(principal.getName(), groupId)){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User is not a member of this group");
+        }
         try {
             return groupDao.getAllMembers(groupId);
         } catch (GetException e) {
@@ -124,9 +134,8 @@ public class GroupController {
         }
     }
 
-    private boolean isOwner(String username, int owner){
+    private boolean isOwner(String username, int ownerId){
        int userId = userDao.findIdByUsername(username);
-       int ownerId = owner;
        if(userId == ownerId){
            return true;
        }
