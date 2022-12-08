@@ -74,7 +74,6 @@ public class GroupController {
     @ResponseStatus(HttpStatus.CREATED)
     public void createAGroup(Principal principal, @RequestBody Group group){
         group.setGroupOwnerId(userDao.findIdByUsername(principal.getName()));
-        System.out.println(group);
         try {
            groupDao.createGroup(group);
         } catch (CreateException e) {
@@ -103,6 +102,7 @@ public class GroupController {
         GroupMember groupMember = new GroupMember();
         groupMember.setMemberId(userDao.findIdByUsername(principal.getName()));
         groupMember.setGroupId(group.getGroupId());
+        groupMember.setDateJoined(utilDao.currentDay());
         try {
             groupDao.addUserToGroup(groupMember);
         } catch (CreateException e) {
