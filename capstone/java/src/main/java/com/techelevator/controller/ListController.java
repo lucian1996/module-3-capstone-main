@@ -18,7 +18,7 @@ import java.security.Principal;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/group")
+@RequestMapping("/list")
 @PreAuthorize("isAuthenticated()")
 
 
