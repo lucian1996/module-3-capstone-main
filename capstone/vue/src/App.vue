@@ -11,10 +11,6 @@
 <style>
 html {
   display: flex;
-  @font-face {
-    font-family: "VG5000";
-    src: url("./fonts/VG5000-Regular.otf");
-  }
   flex-direction: column;
   background-color: #3A2E34;
   font-family: Georgia, 'Times New Roman', Times, serif;
