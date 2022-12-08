@@ -28,7 +28,7 @@ public class JdbcListDao implements ListDao {
     }
 
     @Override
-    public java.util.List<List> getAllListsForGroup(int groupId, String username) {
+    public java.util.List<List> getAllListsForGroup(int groupId) {
         java.util.List<List> lists = new ArrayList<>();
         String sql = "SELECT * FROM list where group_id = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, groupId);
@@ -40,7 +40,7 @@ public class JdbcListDao implements ListDao {
     }
 
     @Override
-    public List getList(int groupId, int listId, String username) {
+    public List getList(int groupId, int listId) {
         String sql = "SELECT * FROM list WHERE group_id = ? AND list_id = ?;";
         SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, groupId, listId);
         try {
@@ -55,36 +55,34 @@ public class JdbcListDao implements ListDao {
     }
 
     @Override
-    public void createList(int groupId, int userId, String name) {
+    public void createList(List list) {
         String sql = "INSERT INTO list (group_id, list_title, description, claimed, date_modified) " +
-                "VALUES (?, ?, 'test', 0, 'test');";
+                "VALUES (?, ?, ?, ?, ?);";
         try {
-            jdbcTemplate.update(sql, groupId, name);
+            jdbcTemplate.update(sql, list.getGroupId(), list.getListName(), list.getDescription(), list.getClaimedId(), list.getDateModified());
         } catch (DataAccessException e) {
             throw new GetException(e);
         }
     }
 
+    //TODO: Who can delete a list? Move verification logic to controller with helper method?
     @Override
-    public void deleteList(int groupId, String username, String name) {
-        {
-            int userId = userDao.findIdByUsername(username);
-            int ownerId = groupDao.getGroupById(groupId).getGroupOwnerId();
-
-            if (ownerId == userId) {
-                String sql = "DELETE FROM list WHERE list_title = ?;";
+    public void deleteList(int groupId, int listId) {
+//            int userId = userDao.findIdByUsername();
+//            int ownerId = groupDao.getGroupById(groupId).getGroupOwnerId();
+//
+//            if (ownerId == userId) {
+        String sql = "DELETE FROM list WHERE group_id = ? AND list_id = ?;";
                 try {
-                    jdbcTemplate.update(sql, name);
+                    jdbcTemplate.update(sql, groupId, listId);
                 } catch (DataAccessException e) {
                     throw new DeleteException(e);
                 }
             }
-        }
-        //return false;
-    }
 
+//TODO: Method returns @NotEmpty constraint error, needs fixed
     @Override
-    public void updateList(List list, String name) {
+    public void updateList(List list) {
             String sql = "UPDATE list set list_title = ?, description = ?, claimed = ?, date_modified = ? WHERE group_id = ? AND list_id = ?;";
             try {
                 jdbcTemplate.update(sql, list.getListName(), list.getDescription(), list.getClaimedId(), list.getDateModified(), list.getGroupId(), list.getListId());

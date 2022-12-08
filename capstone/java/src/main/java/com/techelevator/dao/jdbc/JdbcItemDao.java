@@ -46,7 +46,7 @@ public class JdbcItemDao implements ItemDao {
         System.out.println(item.toString());
         String sql = "DELETE FROM list_item WHERE list_item_id = 3001;";
         try {
-            jdbcTemplate.queryForRowSet(sql);
+            jdbcTemplate.update(sql);
         } catch (DataAccessException e) {
             throw new DeleteException (e);
         }

@@ -11,7 +11,6 @@ import com.techelevator.model.GroupMember;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
-import org.springframework.objenesis.ObjenesisException;
 import org.springframework.stereotype.Component;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
@@ -60,9 +59,9 @@ public class JdbcGroupDao implements GroupDao {
     //TODO only allow owner to edit
     @Override
     public void editGroup(Group group) {
-        String sql = "UPDATE groups set group_owner = ?, group_name = ? WHERE group_id = ?";
+        String sql = "UPDATE groups set description = ?, group_name = ? WHERE group_id = ?";
        try {
-            jdbcTemplate.update(sql);
+            jdbcTemplate.update(sql, group.getGroupDescription(), group.getGroupName(), group.getGroupId());
        } catch (DataAccessException e) {
            throw new GetException(e);
        }

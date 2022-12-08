@@ -49,7 +49,7 @@ public class GroupController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve group by id");
         }
     }
-
+    // Requires only a groupId
     @DeleteMapping("/{groupId}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteAGroup(@RequestBody Group group, Principal principal) {
