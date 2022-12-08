@@ -26,11 +26,9 @@ import java.util.Random;
 @Component
 public class JdbcGroupDao implements GroupDao {
     private final JdbcTemplate jdbcTemplate;
-    private final UserDao userDao;
 
-    public JdbcGroupDao(DataSource dataSource, UserDao userDao) {
+    public JdbcGroupDao(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate((dataSource));
-        this.userDao = userDao;
     }
 
     @Override
@@ -94,11 +92,12 @@ public class JdbcGroupDao implements GroupDao {
         }
         return groups;
     }
+    //TODO currentday is set in controller needs to be done
     @Override
     public void addUserToGroup(GroupMember groupMember) {
             String sql = "INSERT INTO group_member (group_id, user_id, date_joined) values (?, ?, ?)";
             try {
-                jdbcTemplate.update(sql, groupMember.getGroupId(), groupMember.getMemberId(), currentDay());
+                jdbcTemplate.update(sql, groupMember.getGroupId(), groupMember.getMemberId(), groupMember.getDateJoined());
             } catch (DataAccessException e) {
                 throw new CreateException(e);
             }
@@ -155,17 +154,9 @@ public class JdbcGroupDao implements GroupDao {
         return groupCode;
 
     }
-    private boolean isVerified(String username, int groupId){
-        String sql = "SELECT * FROM group_member where group_id = ? and user_id = ?";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, groupId, userDao.findIdByUsername(username));
-        return results.next();
-    }
-
-
-    private String currentDay(){
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-        String date = now.toString();
-        return date;
-    }
+//    boolean isVerified(String username, int groupId){
+//        String sql = "SELECT * FROM group_member where group_id = ? and user_id = ?";
+//        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, groupId, userDao.findIdByUsername(username));
+//        return results.next();
+//    }
 }

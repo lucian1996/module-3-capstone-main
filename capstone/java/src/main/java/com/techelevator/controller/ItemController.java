@@ -1,6 +1,7 @@
 package com.techelevator.controller;
 
 import com.techelevator.dao.ItemDao;
+import com.techelevator.dao.UtilDao;
 import com.techelevator.dao.exceptions.CreateException;
 import com.techelevator.dao.exceptions.DeleteException;
 import com.techelevator.dao.exceptions.GetException;
@@ -20,16 +21,18 @@ import java.util.List;
 @PreAuthorize("isAuthenticated()")
 public class ItemController {
     private final ItemDao itemDao;
+    private final UtilDao utilDao;
 
-    public ItemController(ItemDao itemDao) {
+    public ItemController(ItemDao itemDao, UtilDao utilDao) {
 
         this.itemDao = itemDao;
+        this.utilDao = utilDao;
     }
     //TODO chqange to pathvar not working
     //TODO change sql statement to check verifiication
     @GetMapping("/")
     public List<Item> getAllItems(@PathVariable int groupId, @PathVariable int listId, Principal principal) {
-        if (!itemDao.hasPermission(principal.getName(), listId)) {
+        if (!utilDao.isVerified(principal.getName(), groupId)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "you do not have permission");
         }
         try {
@@ -42,7 +45,7 @@ public class ItemController {
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public void createItem(@PathVariable int groupId, @PathVariable int listId, @RequestBody Item item, Principal principal) {
-        if (!itemDao.hasPermission(principal.getName(), listId)) {
+        if (!utilDao.isVerified(principal.getName(), groupId)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "you do not have permission");
         }
         item.setDateModified("test");
@@ -56,7 +59,7 @@ public class ItemController {
     @DeleteMapping("")
     @ResponseStatus(HttpStatus.OK)
     public void deleteItem(@PathVariable int groupId, @PathVariable int listId, @RequestBody Item item, Principal principal) {
-        if (!itemDao.hasPermission(principal.getName(), listId)) {
+        if (!utilDao.isVerified(principal.getName(), groupId)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "you do not have permission");
         }
         try {
@@ -69,6 +72,9 @@ public class ItemController {
     @PutMapping("")
     @ResponseStatus(HttpStatus.OK)
     public void updateItem(@PathVariable int groupId, @PathVariable int listId, @RequestBody Item item, Principal principal) {
+        if (!utilDao.isVerified(principal.getName(), groupId)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "you do not have permission");
+        }
         try {
             itemDao.updateItem(item);
         } catch (UpdateException e) {
