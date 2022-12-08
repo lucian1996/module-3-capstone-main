@@ -6,7 +6,6 @@ import com.techelevator.dao.exceptions.CreateException;
 import com.techelevator.dao.exceptions.DeleteException;
 import com.techelevator.dao.exceptions.UpdateException;
 import com.techelevator.model.Item;
-import com.techelevator.model.User;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -15,16 +14,23 @@ import org.springframework.stereotype.Component;
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Component
 public class JdbcItemDao implements ItemDao {
-    private JdbcTemplate jdbcTemplate;
-    public JdbcItemDao(DataSource dataSource) {
+    private final JdbcTemplate jdbcTemplate;
+    private final UserDao userDao;
+    public JdbcItemDao(DataSource dataSource, UserDao userDao) {
         this.jdbcTemplate = new JdbcTemplate((dataSource));
+        this.userDao = userDao;
+    }
+    String sql = "SELECT balance FROM account as a JOIN tenmo_user as u ON u.user_id = a.user_id WHERE u.username = ?";
+    @Override
+    public boolean hasPermission(String username, int listId) {
+        String sql = "SELECT * FROM list as l JOIN group_member as gm ON gm.user_id = l.list_id WHERE l.list_id = 2001 AND gm.user_id = 1";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, listId, userDao.findIdByUsername(username));
+        return results.next();
     }
 
-    //TODO: address null exception
     @Override
     public void createItem(Item item) {
         String sql = "INSERT INTO list_item (list_id, date_modified, quantity, last_modifier, description) VALUES (?, ?, ?, ?, ?)";
@@ -35,7 +41,7 @@ public class JdbcItemDao implements ItemDao {
         }
     }
 
-    //TODO: make sure implementation works
+    //TODO: make sure implementation works currently does not
     @Override
     public void deleteItem(Item item) {
         System.out.println(item.toString());
@@ -47,8 +53,6 @@ public class JdbcItemDao implements ItemDao {
         }
     }
 
-
-    //TODO add modify date and last modifier
     @Override
     public void updateItem(Item item) {
         String sql = "UPDATE list_item SET date_modified = ?, quantity = ?, last_modifier = ?, description = ? WHERE list_item_id = ?;";
@@ -59,23 +63,10 @@ public class JdbcItemDao implements ItemDao {
         }
     }
 
-//    CREATE TABLE list_item (
-//            list_item_id int NOT NULL DEFAULT nextval('seq_list_item_id'),
-//    list_id int NOT NULL,
-//    date_modified varchar(50) NULL,
-//    quantity int NOT NULL,
-//    last_modifier int NOT NULL,
-//    description varchar(500),
-//    CONSTRAINT PK_list_item PRIMARY KEY (list_item_id),
-//    CONSTRAINT FK_list_item_list FOREIGN KEY (list_id) REFERENCES list (list_id),
-//    CONSTRAINT chk_quantity CHECK (quantity > 0)
-//    );
-
 
     //TODO have some verification that list id is valid
     @Override
     public List<Item> listItems(int listId) {
-        System.out.println(listId + " test ehre");
     List<Item> items = new ArrayList<>();
     String sql = "SELECT * FROM list_item WHERE list_id = ?;";
     SqlRowSet results = jdbcTemplate.queryForRowSet(sql, listId);

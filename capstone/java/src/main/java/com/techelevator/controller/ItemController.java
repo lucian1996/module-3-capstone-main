@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/list/item")
+@RequestMapping("/groups/group{id}/lists/list{id}/items")
 @PreAuthorize("isAuthenticated()")
 public class ItemController {
     private final ItemDao itemDao;
@@ -25,9 +25,9 @@ public class ItemController {
 
         this.itemDao = itemDao;
     }
-    //TODO chqange to pathvar
+    //TODO chqange to pathvar not working
     @GetMapping("/")
-    public List<Item> getAllItems(@RequestParam int listId, Principal principal) {
+    public List<Item> getAllItems(@PathVariable int groupId, @PathVariable int listId, Principal principal) {
         //TODO validate principal
         System.out.println("here");
         try {
@@ -39,8 +39,8 @@ public class ItemController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createItem(@RequestBody Item item, Principal principal) {
-        // here we could do the principal validation
+    public void createItem(@PathVariable int groupId, @PathVariable int listId, @RequestBody Item item, Principal principal) {
+        //TODO validate principal
         item.setDateModified("test");
         try {
             itemDao.createItem(item);
@@ -51,7 +51,7 @@ public class ItemController {
 
     @DeleteMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteItem(@RequestBody Item item, Principal principal) {
+    public void deleteItem(@PathVariable int groupId, @PathVariable int listId, @RequestBody Item item, Principal principal) {
         try {
              itemDao.deleteItem(item);
         } catch (DeleteException e) {
@@ -61,7 +61,7 @@ public class ItemController {
 
     @PutMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public void updateItem(@RequestBody Item item, Principal principal) {
+    public void updateItem(@PathVariable int groupId, @PathVariable int listId, @RequestBody Item item, Principal principal) {
         try {
             itemDao.updateItem(item);
         } catch (UpdateException e) {
