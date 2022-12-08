@@ -3,6 +3,7 @@ package com.techelevator.dao.jdbc;
 import com.techelevator.dao.GroupDao;
 import com.techelevator.dao.ListDao;
 import com.techelevator.dao.UserDao;
+import com.techelevator.dao.UtilDao;
 import com.techelevator.dao.exceptions.DeleteException;
 import com.techelevator.dao.exceptions.GetException;
 import com.techelevator.model.List;
@@ -19,11 +20,13 @@ public class JdbcListDao implements ListDao {
     private final JdbcTemplate jdbcTemplate;
     private final GroupDao groupDao;
     private final UserDao userDao;
+    private final UtilDao utilDao;
 
-    public JdbcListDao(DataSource dataSource, GroupDao groupDao, UserDao userDao) {
+    public JdbcListDao(DataSource dataSource, GroupDao groupDao, UserDao userDao, UtilDao utilDao) {
         this.jdbcTemplate = new JdbcTemplate((dataSource));
         this.groupDao = groupDao;
         this.userDao = userDao;
+        this.utilDao = utilDao;
     }
 
     @Override
@@ -58,19 +61,15 @@ public class JdbcListDao implements ListDao {
         String sql = "INSERT INTO list (group_id, list_title, description, claimed, date_modified) " +
                 "VALUES (?, ?, ?, ?, ?);";
         try {
-            jdbcTemplate.update(sql, list.getGroupId(), list.getListName(), list.getDescription(), list.getClaimedId(), list.getDateModified());
+            jdbcTemplate.update(sql, list.getGroupId(), list.getListName(), list.getDescription(), list.getClaimedId(), utilDao.currentDay());
         } catch (DataAccessException e) {
             throw new GetException(e);
         }
     }
 
-    //TODO: Who can delete a list? Move verification logic to controller with helper method?
+    //TODO: Who can delete a list?
     @Override
     public void deleteList(int groupId, int listId) {
-//            int userId = userDao.findIdByUsername();
-//            int ownerId = groupDao.getGroupById(groupId).getGroupOwnerId();
-//
-//            if (ownerId == userId) {
         String sql = "DELETE FROM list WHERE group_id = ? AND list_id = ?;";
                 try {
                     jdbcTemplate.update(sql, groupId, listId);
@@ -79,12 +78,11 @@ public class JdbcListDao implements ListDao {
                 }
             }
 
-//TODO: Method returns @NotEmpty constraint error, needs fixed
     @Override
     public void updateList(List list) {
             String sql = "UPDATE list set list_title = ?, description = ?, claimed = ?, date_modified = ? WHERE group_id = ? AND list_id = ?;";
             try {
-                jdbcTemplate.update(sql, list.getListName(), list.getDescription(), list.getClaimedId(), list.getDateModified(), list.getGroupId(), list.getListId());
+                jdbcTemplate.update(sql, list.getListName(), list.getDescription(), list.getClaimedId(), utilDao.currentDay(), list.getGroupId(), list.getListId());
             } catch (DataAccessException e) {
                 throw new GetException(e);
             }
