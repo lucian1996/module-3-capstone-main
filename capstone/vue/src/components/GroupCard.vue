@@ -1,7 +1,7 @@
 <template>
    <div class="card">
   <div class="container">
-    <div>put group name here</div>
+    <div>{{group.groupName}}</div>
   </div>
 </div>
 </template>
@@ -10,6 +10,7 @@
 
 export default {
   name: 'group-card',
+  props: ['group']
 
 }
 </script>
