@@ -1,17 +1,18 @@
 <template>
   <div class="group-list">
-    <div v-for="group in groups" v-bind:key="group.id" class="group">  
-      
-      <router-link v-bind:to=" {name:'groups', params: { id:group.groupId}}">
-      {{ group.groupName }}
-      </router-link>
-    </div>
+    <group-card 
+    v-for="group in groups" 
+    v-bind:key="group.groupId" 
+    v-bind:group="group" 
+    />
   </div>
 </template>
 
 <script>
 import GroupService from '../services/GroupService'
+import GroupCard from './GroupCard.vue'
 export default {
+  components: { GroupCard },
   name: 'group-list',
   data() {
     return {
@@ -21,6 +22,7 @@ export default {
   created() {
     GroupService.getGroups().then(response => {
       this.groups = response.data;
+      console.log(this.groups)
     })
   }
 }
