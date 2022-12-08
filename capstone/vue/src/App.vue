@@ -9,19 +9,19 @@
   </div>
 </template>
 <style>
-/* #app {
-  display:flex;
+html {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(102, 94, 89);
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-weight: light;
+  height: 100%;
+}
+#nav {
   display: flex;
-  height: 80vh;
-  flex-direction: column;
-  justify-content: first baseline;
-  align-items: center;
-  padding-top: 5%;
-  padding-bottom: 5%;
-  margin-bottom:  auto;
-} */
+  flex-direction: row;
+  justify-content: baseline;
+}
 h1 {
   text-align: center;
 }
