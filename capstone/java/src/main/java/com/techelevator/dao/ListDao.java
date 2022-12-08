@@ -3,7 +3,7 @@ package com.techelevator.dao;
 import com.techelevator.model.List;
 
 public interface ListDao {
-
+    
     java.util.List<List> getAllListsForGroup(int groupId);
 
     List getList(int groupId, int listId);

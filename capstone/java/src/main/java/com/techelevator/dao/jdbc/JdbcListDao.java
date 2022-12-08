@@ -5,7 +5,6 @@ import com.techelevator.dao.ListDao;
 import com.techelevator.dao.UserDao;
 import com.techelevator.dao.exceptions.DeleteException;
 import com.techelevator.dao.exceptions.GetException;
-import com.techelevator.model.Group;
 import com.techelevator.model.List;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
