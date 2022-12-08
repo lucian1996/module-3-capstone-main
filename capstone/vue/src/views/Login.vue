@@ -1,5 +1,5 @@
 <template>
-  <div id="login" class="text-center">
+  <div id="window" class="text-center">
     
     <form class="form-signin" @submit.prevent="login">
       <h2 class="h3 mb-3 font-weight-normal">Please Sign In</h2>
@@ -33,8 +33,9 @@
         required
       />
       <router-link :to="{ name: 'register' }" class="register" v-if="!this.$route.query.registration">Register</router-link>
-      <button type="submit" class="submit">Sign in</button>
+      <button type="submit" class="btn" @click.prevent="login">Sign in</button>
     </form>
+
     <div>
      
      </div>
@@ -80,7 +81,33 @@ export default {
 </script>
 
 <style scoped>
+#window {
+  display:flex;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: light;
+  display: flex;
+  height: 80vh;
+  flex-direction: column;
+  justify-content: first baseline;
+  align-items: center;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  margin-bottom:  auto;
+}
+
 .form-signin {
+  display:flex;
+  flex-direction: column;
+  text-align: center;
+  line-height: 200%;
+  background-color: #AAA599;
+  border-radius: 18%;
+  justify-content: space-around;
+  padding: 5%;
+  flex-basis: 200px;
+}
+/* .form-signin {
+  grid-area: form;
   display: flex;
   background-color: rgb(184, 119, 184);
   align-items: center;
@@ -89,7 +116,7 @@ export default {
   margin-left: 25%;
   border-radius: 25px;
   opacity: .90;
-  padding-bottom: 25px;
+  padding-bottom: 20px;
 }
 .sr-only {
   align-content: center;
@@ -101,4 +128,18 @@ export default {
 .submit {
  align-self:center
 }
+.btn {
+  grid-area: login;
+  justify-content: center;
+  margin-top: 15px;
+}
+.text-center {
+  display:grid;
+  grid-template-areas:
+  "form form form form form"
+  "form form form form form"
+  "form form form form form"
+  "form form form form form"
+  
+} */
 </style>
