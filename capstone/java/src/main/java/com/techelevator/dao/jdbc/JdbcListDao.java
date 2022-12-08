@@ -28,10 +28,10 @@ public class JdbcListDao implements ListDao {
     }
 
     @Override
-    public java.util.List<List> getAllLists() {
+    public java.util.List<List> getAllListsForGroup(int groupId, String username) {
         java.util.List<List> lists = new ArrayList<>();
-        String sql = "SELECT * FROM list";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        String sql = "SELECT * FROM list where group_id = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, groupId);
         while (results.next()) {
             List list = mapRowToList(results);
             lists.add(list);
@@ -98,7 +98,9 @@ public class JdbcListDao implements ListDao {
         list.setListId(rs.getInt("list_id"));
         list.setGroupId(rs.getInt("group_id"));
         list.setDescription(rs.getString("description"));
-        list.setListName(rs.getString("list_name"));
+        list.setListName(rs.getString("list_title"));
+        list.setClaimedId(rs.getInt("claimed"));
+        list.setDateModified(rs.getString("date_modified"));
         return list;
     }
 }

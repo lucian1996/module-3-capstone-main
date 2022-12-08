@@ -4,7 +4,7 @@ import com.techelevator.model.List;
 
 public interface ListDao {
 
-    java.util.List<List> getAllLists();
+    java.util.List<List> getAllListsForGroup(int groupId, String username);
 
     List getList(int groupId, int listId, String username);
 

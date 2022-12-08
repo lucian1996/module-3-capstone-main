@@ -18,7 +18,7 @@ import java.security.Principal;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/list")
+@RequestMapping("/group")
 @PreAuthorize("isAuthenticated()")
 
 
@@ -30,10 +30,10 @@ public class ListController {
     }
 
 
-    @GetMapping("")
-    public java.util.List<List> getAllLists() {
+    @GetMapping("/{groupId}")
+    public java.util.List<List> getAllLists(@PathVariable("groupId") int groupId, Principal principal) {
         try {
-            return listDao.getAllLists();
+            return listDao.getAllListsForGroup(groupId, principal.getName());
         } catch (GetException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve lists");
         }
