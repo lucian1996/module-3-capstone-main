@@ -31,7 +31,7 @@ public class ListController {
 
 
     @GetMapping("")
-    public java.util.List<List> findAllGroups() {
+    public java.util.List<List> getAllLists() {
         try {
             return listDao.getAllLists();
         } catch (GetException e) {
