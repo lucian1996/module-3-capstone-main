@@ -74,7 +74,6 @@ public class GroupController {
     @ResponseStatus(HttpStatus.CREATED)
     public void createAGroup(Principal principal, @RequestBody Group group){
         group.setGroupOwnerId(userDao.findIdByUsername(principal.getName()));
-        System.out.println(group);
         try {
            groupDao.createGroup(group);
         } catch (CreateException e) {
