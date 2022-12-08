@@ -2,7 +2,7 @@
   <div id="window" class="text-center">
     
     <form class="form-signin" @submit.prevent="login">
-      <h2 class="h3 mb-3 font-weight-normal">Please Sign In</h2>
+      <h2 class="h3 mb-3 font-weight-normal">Sign In</h2>
       <div
         class="alert alert-danger"
         role="alert"
@@ -81,28 +81,58 @@ export default {
 </script>
 
 <style scoped>
-#window {
+ #window {
   display:flex;
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-weight: light;
   display: flex;
   flex-direction: column;
-  justify-content: first baseline;
   align-items: center;
-  margin-bottom:  auto;
+  position: relative;
+  
+} 
+h1 {
+  align-items: center;
+  align-self: auto;
+  
+}
+h2{
+  margin: 15%;
+  color: rgba(255, 235, 205, 0.534);
+  text-shadow: black;
+  
+}
+input {
+  background: rgba(127, 255, 212, 0.514);
+  border: .5px solid rgba(255, 235, 205, 0.534);
+  text-align: center; 
+  margin-top: 3px;
+}
+button {
+  background: rgba(0, 255, 255, 0.493);
+  border: .5px solid rgba(255, 235, 205, 0.534) 
+}
+a.register{
+  color: rgba(255, 235, 205, 0.534);
+  text-decoration:none;
 }
 
 .form-signin {
+  align-content: center;
+  max-width: 25%;
   display:flex;
   flex-direction: column;
   text-align: center;
   line-height: 200%;
   background-color: #6b6a66;
   border-radius: 12%;
-  justify-content: space-around;
-  padding: 5%;
+  padding: 9%;
+  padding-top: 0%;
   flex-basis: 200px;
-  border: 5px solid #B7EC8C;
+
+  border: 5px solid #b7ec8c80;
+  border-top-color: rgba(0, 255, 255, 0.493);
+  border-bottom-color: rgba(127, 255, 212, 0.514);
 }
 /* .form-signin {
   grid-area: form;
