@@ -23,13 +23,12 @@ public class JdbcItemDao implements ItemDao {
         this.jdbcTemplate = new JdbcTemplate((dataSource));
         this.userDao = userDao;
     }
-    String sql = "SELECT balance FROM account as a JOIN tenmo_user as u ON u.user_id = a.user_id WHERE u.username = ?";
-    @Override
-    public boolean hasPermission(String username, int listId) {
-        String sql = "SELECT * FROM list as l JOIN group_member as gm ON gm.user_id = l.list_id WHERE l.list_id = 2001 AND gm.user_id = 1";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, listId, userDao.findIdByUsername(username));
-        return results.next();
-    }
+//    @Override
+//    public boolean hasPermission(String username, int listId) {
+//        String sql = "SELECT * FROM list as l JOIN group_member as gm ON gm.user_id = l.list_id WHERE l.list_id = 2001 AND gm.user_id = 1";
+//        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, listId, userDao.findIdByUsername(username));
+//        return results.next();
+//    }
 
     @Override
     public void createItem(Item item) {

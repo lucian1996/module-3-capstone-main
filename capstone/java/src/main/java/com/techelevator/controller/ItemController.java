@@ -26,10 +26,12 @@ public class ItemController {
         this.itemDao = itemDao;
     }
     //TODO chqange to pathvar not working
+    //TODO change sql statement to check verifiication
     @GetMapping("/")
     public List<Item> getAllItems(@PathVariable int groupId, @PathVariable int listId, Principal principal) {
-        //TODO validate principal
-        System.out.println("here");
+        if (!itemDao.hasPermission(principal.getName(), listId)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "you do not have permission");
+        }
         try {
             return itemDao.listItems(listId);
         } catch (GetException e) {
@@ -40,7 +42,9 @@ public class ItemController {
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public void createItem(@PathVariable int groupId, @PathVariable int listId, @RequestBody Item item, Principal principal) {
-        //TODO validate principal
+        if (!itemDao.hasPermission(principal.getName(), listId)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "you do not have permission");
+        }
         item.setDateModified("test");
         try {
             itemDao.createItem(item);
@@ -52,6 +56,9 @@ public class ItemController {
     @DeleteMapping("")
     @ResponseStatus(HttpStatus.OK)
     public void deleteItem(@PathVariable int groupId, @PathVariable int listId, @RequestBody Item item, Principal principal) {
+        if (!itemDao.hasPermission(principal.getName(), listId)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "you do not have permission");
+        }
         try {
              itemDao.deleteItem(item);
         } catch (DeleteException e) {
