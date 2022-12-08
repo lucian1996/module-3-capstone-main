@@ -70,10 +70,6 @@ public class JdbcListDao implements ListDao {
     //TODO: Who can delete a list?
     @Override
     public void deleteList(int groupId, int listId) {
-//            int userId = userDao.findIdByUsername();
-//            int ownerId = groupDao.getGroupById(groupId).getGroupOwnerId();
-//
-//            if (ownerId == userId) {
         String sql = "DELETE FROM list WHERE group_id = ? AND list_id = ?;";
                 try {
                     jdbcTemplate.update(sql, groupId, listId);
@@ -81,7 +77,7 @@ public class JdbcListDao implements ListDao {
                     throw new DeleteException(e);
                 }
             }
-            
+
     @Override
     public void updateList(List list) {
             String sql = "UPDATE list set list_title = ?, description = ?, claimed = ?, date_modified = ? WHERE group_id = ? AND list_id = ?;";
