@@ -1,8 +1,7 @@
 <template>
-  <div id="window" class="text-center">
-    
+  <div class="window">
     <form class="form-signin" @submit.prevent="login">
-      <h2 class="h3 mb-3 font-weight-normal">Sign In</h2>
+      <h2>Sign In</h2>
       <div
         class="alert alert-danger"
         role="alert"
@@ -32,9 +31,12 @@
         v-model="user.password"
         required
       />
-      <router-link :to="{ name: 'register' }" class="register" v-if="!this.$route.query.registration">Register</router-link>
+    </form> <br>
+
+    <div class="footer">
+      <router-link :to="{ name: 'register' }" class="register" v-if="!this.$route.query.registration">Register</router-link> <br>
       <button type="submit" class="btn" @click.prevent="login">Sign in</button>
-    </form>
+    </div>
 
     <div>
      
@@ -81,59 +83,68 @@ export default {
 </script>
 
 <style scoped>
- #window {
+ /* .window {
   display:flex;
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-weight: light;
-  display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   position: relative;
+  margin: 15%;
+  max-width: 15em;
+  min-width: 11em;
+}  */
+.form-signin {
+  background-color: #6b6a66;
+  display:flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  justify-content: flix-start;
+  flex-basis: 200px;
+
+  text-align: center;
+  line-height: 200%;
+  padding: 2em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  border-radius: 12%;
   
-} 
+  border: 5px solid #b7ec8c80;
+  border-top-color: rgba(0, 255, 255, 0.493);
+  border-bottom-color: rgba(127, 255, 212, 0.514);
+}
 h1 {
   align-items: center;
   align-self: auto;
-  
 }
 h2{
-  margin: 15%;
   color: rgba(255, 235, 205, 0.534);
   text-shadow: black;
-  
 }
 input {
   background: rgba(127, 255, 212, 0.514);
   border: .5px solid rgba(255, 235, 205, 0.534);
   text-align: center; 
   margin-top: 3px;
+  max-width: 7em;
+  border-radius: 10%;
+
 }
 button {
   background: rgba(0, 255, 255, 0.493);
-  border: .5px solid rgba(255, 235, 205, 0.534) 
+  border: .5px solid rgba(0, 255, 255, 0.493);
+  /* border: .5px solid rgba(255, 235, 205, 0.534)  */
+  border-radius: 10%;
+  max-width: 7em;
 }
 a.register{
   color: rgba(255, 235, 205, 0.534);
   text-decoration:none;
+  font-size: .7em;
 }
 
-.form-signin {
-  align-content: center;
-  max-width: 25%;
-  display:flex;
-  flex-direction: column;
-  text-align: center;
-  line-height: 200%;
-  background-color: #6b6a66;
-  border-radius: 12%;
-  padding: 9%;
-  padding-top: 0%;
-  flex-basis: 200px;
 
-  border: 5px solid #b7ec8c80;
-  border-top-color: rgba(0, 255, 255, 0.493);
-  border-bottom-color: rgba(127, 255, 212, 0.514);
-}
 /* .form-signin {
   grid-area: form;
   display: flex;

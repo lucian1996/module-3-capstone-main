@@ -8,14 +8,16 @@
     <router-view />
   </div>
 </template>
+
 <style>
 html {
   display: flex;
+  align-items: center;
   flex-direction: column;
   background-color: #3A2E34;
   font-family: Georgia, 'Times New Roman', Times, serif;
-  font-weight: light;
   height: 100%;
+  text-align: center;
 }
 #nav {
   display: flex;
