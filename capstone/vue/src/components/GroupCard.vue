@@ -1,14 +1,11 @@
 <template>
-   <div class="card">
+   <div class="card btn" role="button">
     <router-link v-bind:to=" {name:'group-details', params: { groupID: this.group.groupId}}">
-   
-   
-  <div class="container">
+    <div class="container btn" role="button">
     <div>{{group.groupName}}</div>
-    <!-- router link to 'Leaving' or 'Joining' both of which redirect to a new page -->
     <div> </div>
-    <div> LEAVE/JOIN</div>
   </div>
+  
   </router-link>
 </div>
 </template>
@@ -18,7 +15,19 @@
 export default {
   name: 'group-card',
   props: ['group'],
+
+// methods: {
+//   leaveJoinButton(){
+//     if(user is a member of group){
+//       display Leave group as a clickable button
+//     }
+//     display Join group which sends you to a joinGroup page
+//   }
+// }
 }
+
+
+
 </script>
 
 
