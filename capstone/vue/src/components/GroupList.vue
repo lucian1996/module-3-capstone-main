@@ -37,6 +37,7 @@ export default {
   background-color:#3a2e34;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 
   text-align: center;
   line-height: 200%;
@@ -44,6 +45,7 @@ export default {
   padding-top: 1em;
   padding-bottom: 1em;
   border-radius: 12%;
+  
   
   /* border: 5px solid #7db892; */
   border-top-color: #6c80a1;

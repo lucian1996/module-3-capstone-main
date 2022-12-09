@@ -1,8 +1,8 @@
 <template>
    <div class="card">
   <div class="container">
-      <router-link :to="{ name: 'createGroup' }"> Create Group</router-link>
-    </div>
+      <router-link :to="{ name: 'createGroup' }"> + Create Group</router-link> 
+    </div> 
 </div>
 </template>
 
@@ -25,6 +25,9 @@ export default {
   margin: .5em;
   margin-top: .25em;
   margin-bottom: .25em;
+}
+.container {
+  font-weight: b;
 }
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
