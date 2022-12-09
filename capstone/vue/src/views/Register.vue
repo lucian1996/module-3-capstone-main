@@ -29,12 +29,12 @@
         placeholder="confirm Password"
         v-model="user.confirmPassword"
         required />
-    </form>
-
     <div class="footer">
         <router-link :to="{ name: 'login' }" class="login">Have an account?</router-link> <br>
         <button class="btn btn-lg btn-primary btn-block" type="submit" @submit.prevent="register">Create Account</button>
     </div>
+    </form>
+
 
   </div>
 </template>

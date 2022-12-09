@@ -1,16 +1,14 @@
 <template>
    <div class="card">
   <div class="container">
-    <div>{{group.groupName}}</div>
-  </div>
+      <router-link :to="{ name: 'createGroup' }"> Create Group</router-link>
+    </div>
 </div>
 </template>
 
 <script>
-
 export default {
-  name: 'group-card',
-  props: ['group']
+  name: 'create-group-card',
 }
 </script>
 
@@ -28,7 +26,6 @@ export default {
   margin-top: .25em;
   margin-bottom: .25em;
 }
-
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }

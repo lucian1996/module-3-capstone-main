@@ -1,16 +1,18 @@
 <template>
   <form v-on:submit.prevent>
     <div class="field">
-      <label for="title">Group Name</label>
-      <input type="text" v-model="group.groupName" />
+      <h2>Create Group</h2>
+      <label for="title"></label>
+      <textarea id="groupName" name="description" rows="1" cols="30" placeholder="group name"
+      v-model="group.groupName" />
     </div>
     <div class="field">
-      <label for="description">What is this group to do?</label>
+      <label for="description"></label>
       <textarea id="description" name="description" rows="2" cols="30" placeholder="Description"
       v-model="group.groupDescription"></textarea>
         </div>
     <div class="actions">
-      <button type="submit" v-on:click="saveGroup()">create Group</button>
+      <button type="submit" v-on:click="saveGroup()">Create</button>
     </div>
   </form>
 </template>
@@ -46,3 +48,4 @@ export default {
   },
 };
 </script>
+

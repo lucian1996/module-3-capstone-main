@@ -1,7 +1,6 @@
 <template>
   <div>
       <h2 class="group-name">{{}}</h2>
-      
   </div>
 </template>
 
