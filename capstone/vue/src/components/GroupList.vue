@@ -25,7 +25,6 @@ export default {
   created() {
     GroupService.getGroups().then(response => {
       this.groups = response.data;
-      console.log(this.groups)
     })
   }
 }
