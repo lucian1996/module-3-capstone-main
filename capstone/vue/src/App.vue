@@ -1,28 +1,48 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
-      <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
+      <router-link v-bind:to="{ name: 'home' }">Home</router-link>
+       <div>
+       <router-link v-bind:to="{ name: 'editUser' }" v-if="$store.state.token != ''">this.username</router-link> &nbsp; &nbsp;
+       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
+      </div>
+
     </div>
-    <h1>Shoppers 'R' Us</h1>
+    <h1>Fridgrr</h1>
     <router-view />
   </div>
 </template>
+
+
+<script>
+export default {
+
+}
+</script>
+
+
 <style>
 html {
-  display: flex;
+  display:flex;
+  align-items: center;
   flex-direction: column;
-  background-color: rgb(102, 94, 89);
+  background-color: #51434a;
   font-family: Georgia, 'Times New Roman', Times, serif;
-  font-weight: light;
   height: 100%;
+  text-align: center;
+  color: rgba(255, 235, 205, 0.534);
+}
+a{
+  color: #6c80a1;
+  text-decoration:none;
 }
 #nav {
   display: flex;
   flex-direction: row;
-  justify-content: baseline;
+  justify-content: space-between;
 }
 h1 {
   text-align: center;
+  color: #F09374;
 }
 </style>

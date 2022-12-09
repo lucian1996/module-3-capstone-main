@@ -5,6 +5,9 @@
    
   <div class="container">
     <div>{{group.groupName}}</div>
+    <!-- router link to 'Leaving' or 'Joining' both of which redirect to a new page -->
+    <div> </div>
+    <div> LEAVE/JOIN</div>
   </div>
   </router-link>
 </div>
@@ -20,17 +23,28 @@ export default {
 
 
 <style>
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 100%;
-  border-style: solid;
-  border-color: #cccccc;
-  border-width: 1px;
-  border-radius: 4px;
+  .card {
+    width: 100px;
+    text-overflow: ellipsis;
+    height: 100px;
+  background-color: #51434a;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  border-radius: 6%;
+  padding: 1em;
+  padding-top: 0em;
+  padding-bottom: 0em;
+  margin: .5em;
+  margin-top: .25em;
+  margin-bottom: .25em;
+}
+.card > div {
+  text-overflow: ellipsis;
 }
 
 .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
+  box-shadow: 0px 1px 2px 3px #f09374c4;
+  text-emphasis: bolder;
+ }
 </style>

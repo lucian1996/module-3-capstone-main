@@ -1,8 +1,7 @@
 <template>
-  <div id="window" class="text-center">
-    
+  <div>
     <form class="form-signin" @submit.prevent="login">
-      <h2 class="h3 mb-3 font-weight-normal">Please Sign In</h2>
+      <h2>Sign In</h2>
       <div
         class="alert alert-danger"
         role="alert"
@@ -18,7 +17,7 @@
         type="text"
         id="username"
         class="form-control"
-        placeholder="Username"
+        placeholder="username"
         v-model="user.username"
         required
         autofocus
@@ -28,17 +27,18 @@
         type="password"
         id="password"
         class="form-control"
-        placeholder="Password"
+        placeholder="password"
         v-model="user.password"
         required
       />
-      <router-link :to="{ name: 'register' }" class="register" v-if="!this.$route.query.registration">Register</router-link>
-      <button type="submit" class="btn" @click.prevent="login">Sign in</button>
-    </form>
+        <button type="submit" v-show="false"></button>
+    </form> <br>
 
-    <div>
-     
-     </div>
+    <div class="footer">
+      <router-link :to="{ name: 'register' }" class="register" v-if="!this.$route.query.registration">Register</router-link> <br>
+      <button type="submit" class="btn" @click.prevent="login">Sign in</button>
+    </div>
+
   </div>
 </template>
 
@@ -81,31 +81,73 @@ export default {
 </script>
 
 <style scoped>
-#window {
+
+form {
+  background-color: #3a2e34;
+  display:flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  justify-content: flex-start;
+  flex-basis: 200px;
+
+  text-align: center;
+  line-height: 200%;
+  padding: 2em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  border-radius: 12%;
+  max-width: 15em;
+
+
+  /* border: 5px solid #b7ec8c80;
+  border-top-color: rgba(0, 255, 255, 0.493);
+  border-bottom-color: rgba(127, 255, 212, 0.514); */
+}
+h1 {
+  align-items: center;
+  align-self: auto;
+}
+h2{
+  color: rgba(255, 235, 205, 0.534);
+  text-shadow: black;
+}
+input {
+  background: #51434a;
+  border: .5px solid #3a2e34;
+  /* border: .5px solid rgba(255, 235, 205, 0.534); */
+  text-align: center; 
+  margin-top: 3px;
+  max-width: 7em;
+  border-radius: 10%;
+  color: rgba(255, 235, 205, 0.404);
+
+}
+button {
+  background: #5d7065;
+  border: .5px solid #5d7065;
+  /* border: .5px solid rgba(255, 235, 205, 0.534)  */
+  border-radius: 10%;
+  max-width: 7em;
+}
+a.register{
+  color: rgba(255, 235, 205, 0.534);
+  text-decoration:none;
+  font-size: .7em;
+}
+
+
+ /* .window {
   display:flex;
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-weight: light;
-  display: flex;
-  height: 80vh;
   flex-direction: column;
-  justify-content: first baseline;
-  align-items: center;
-  padding-top: 5%;
-  padding-bottom: 5%;
-  margin-bottom:  auto;
-}
-
-.form-signin {
-  display:flex;
-  flex-direction: column;
-  text-align: center;
-  line-height: 200%;
-  background-color: #AAA599;
-  border-radius: 18%;
-  justify-content: space-around;
-  padding: 5%;
-  flex-basis: 200px;
-}
+  align-items: stretch;
+  position: relative;
+  margin: 15%;
+  max-width: 15em;
+  min-width: 11em;
+}  */
 /* .form-signin {
   grid-area: form;
   display: flex;
@@ -140,6 +182,5 @@ export default {
   "form form form form form"
   "form form form form form"
   "form form form form form"
-  
 } */
 </style>

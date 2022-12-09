@@ -1,5 +1,6 @@
 <template>
   <div class="group-list">
+    <create-group-card/>
     <group-card 
     v-for="group in groups" 
     v-bind:key="group.groupId" 
@@ -11,8 +12,10 @@
 <script>
 import GroupService from '../services/GroupService'
 import GroupCard from './GroupCard.vue'
+import CreateGroupCard from './CreateGroupCard.vue'
+
 export default {
-  components: { GroupCard },
+  components: { GroupCard , CreateGroupCard },
   name: 'group-list',
   data() {
     return {
@@ -30,5 +33,35 @@ export default {
 
 
 <style>
+  .group-list {
+    display: grid;
+    /* grid-template-columns: 7fr 7fr; */
+    grid-column-gap: 0px;
+    grid-row-gap: 8px;
+    justify-items: stretch;
+    align-items: stretch;
+  grid-template-areas: 
+  "1 1 1 1 1 1 1 1 1";
 
+
+
+
+  background-color:#3a2e34;
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* flex-wrap: wrap; */
+
+  text-align: center;
+  line-height: 200%;
+  padding: 1em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  border-radius: 2.85%;
+  
+  
+  
+  /* border: 5px solid #7db892; */
+  border-top-color: #6c80a1;
+  border-bottom-color: #6c80a1;
+}
 </style>
