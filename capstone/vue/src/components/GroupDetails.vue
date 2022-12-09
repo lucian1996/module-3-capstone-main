@@ -1,9 +1,10 @@
 <template>
   <div>
     <div>{{group.groupId}}</div>
-      <router-link v-bind:to=" {name:'list-container', params: { groupID: group.groupId}}">
-        <list-container />
-      </router-link>
+        <list-container 
+        v-bind:key="group.groupId" 
+        v-bind:group="group" 
+        />
 
     
   </div>
@@ -26,7 +27,7 @@ export default {
     methods : {
      
       retrieveGroup() {
-        console.log('yo in here')
+        console.log('group detials print')
         GroupService.getGroup(this.$route.params.groupID)
         .then (response => {
           this.$store.commit("SET_CURRENT_GROUP", response.data);

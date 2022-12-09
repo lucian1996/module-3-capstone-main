@@ -14,6 +14,7 @@ export default {
         return axios.post('/groups', group)
       },
       getGroup(groupID) {
+          console.log('group service ', groupID)
           return axios.get(`/groups/${groupID}`)
       }
 }

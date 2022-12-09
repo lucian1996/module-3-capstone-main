@@ -7,11 +7,11 @@ import axios from 'axios';
 export default {
 
     getLists(groupID) {
+        console.log("service", groupID)
         return axios.get(`/groups/${groupID}/lists`)
     },
-    getList(groupID, listID)
-    {
-        return axios.get(`groups/${groupID}/lists/${listID}`)
-    }
-
+    // getList(groupID, listID)
+    // {
+    //     return axios.get(`groups/${groupID}/lists/${listID}`)
+    // }
 }
