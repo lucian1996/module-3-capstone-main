@@ -124,7 +124,7 @@ public class GroupController {
 
     @DeleteMapping("/{groupId}/members")
     public void removeUserFromGroup(Principal principal, @PathVariable int groupId){
-        if(!isOwner(principal.getName(),groupDao.getGroupById(groupId).getGroupOwnerId())){
+        if(isOwner(principal.getName(),groupDao.getGroupById(groupId).getGroupOwnerId())){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Owner can not remove themselves from group");
         }
         try {
