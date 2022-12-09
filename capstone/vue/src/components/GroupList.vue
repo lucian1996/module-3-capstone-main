@@ -43,8 +43,6 @@ export default {
   "1 1 1 1 1 1 1 1 1";
 
 
-
-
   background-color:#3a2e34;
   /* display: flex; */
   /* flex-direction: row; */
@@ -59,8 +57,33 @@ export default {
   
   
   
-  /* border: 5px solid #7db892; */
+  border: 4px solid #7db892;
   border-top-color: #6c80a1;
   border-bottom-color: #6c80a1;
 }
+@media only screen and (max-width: 1400px){
+    .group-list{
+    display: grid;
+    grid-template-areas:
+        " 1 1 1 1 1 ";
+        grid-template-columns: 1fr;
+}
+}
+@media only screen and (max-width: 820px){
+    .group-list{
+    display: grid;
+    grid-template-areas:
+        " 1 1 1 ";
+        grid-template-columns: 1fr;
+}
+}
+@media only screen and (max-width: 525px){
+    .group-list{
+    display: grid;
+    grid-template-areas:
+        " 1 1 ";
+        grid-template-columns: 1fr;
+}
+}
+
 </style>
