@@ -19,8 +19,8 @@ export default {
       //TODO need something along the lines of
       //button @click="removeUser({{$store.state.user.userID}}, {{$store.state.group.groupID}})">
       //in GroupDetails
-      removeUser(groupID, user) {
-        console.log("removeUser", groupID, user)
+      removeUser(groupID, userID) {
+        console.log("removeUser", groupID, userID)
         return axios.delete(`/groups/${groupID}/members`)
     },
 }
