@@ -131,11 +131,10 @@ public class JdbcGroupDao implements GroupDao {
 
     //TODO: implement
     @Override
-    public void removeUserFromGroup(GroupMember groupMember) {
+    public void removeUserFromGroup(int userId, int groupId){
         String sql = "DELETE FROM group_member WHERE user_id = ? AND group_id = ?;";
-
         try {
-            jdbcTemplate.update(sql, groupMember.getMemberId(), groupMember.getGroupId());
+            jdbcTemplate.update(sql, userId, groupId);
         } catch (DataAccessException e) {
             throw new DeleteException(e);
         }

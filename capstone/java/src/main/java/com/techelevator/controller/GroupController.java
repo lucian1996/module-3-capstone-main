@@ -123,12 +123,12 @@ public class GroupController {
     }
 
     @DeleteMapping("/{groupId}/members")
-    public void removeUserFromGroup(Principal principal, @PathVariable int groupId, GroupMember groupMember){
+    public void removeUserFromGroup(Principal principal, @PathVariable int groupId){
         if(!isOwner(principal.getName(),groupDao.getGroupById(groupId).getGroupOwnerId())){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Owner can not remove themselves from group");
         }
         try {
-            groupDao.removeUserFromGroup(groupMember);
+            groupDao.removeUserFromGroup(userDao.findIdByUsername(principal.getName()), groupId);
         } catch (DeleteException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not remove user from group");
         }

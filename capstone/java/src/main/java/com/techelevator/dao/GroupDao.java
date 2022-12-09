@@ -21,6 +21,6 @@ public interface GroupDao {
 
     List<GroupMember> getAllMembers(int groupId);
 
-    void removeUserFromGroup(GroupMember groupMember);
+    void removeUserFromGroup(int userId, int groupId);
 
 }
