@@ -34,7 +34,7 @@ export default {
 
 <style>
   .group-list {
-  background-color: #6b6a66;
+  background-color:#3a2e34;
   display: flex;
   flex-direction: row;
 
@@ -45,8 +45,8 @@ export default {
   padding-bottom: 1em;
   border-radius: 12%;
   
-  border: 5px solid #b7ec8c80;
-  border-top-color: rgba(0, 255, 255, 0.493);
-  border-bottom-color: rgba(127, 255, 212, 0.514);
+  /* border: 5px solid #7db892; */
+  border-top-color: #6c80a1;
+  border-bottom-color: #6c80a1;
 }
 </style>

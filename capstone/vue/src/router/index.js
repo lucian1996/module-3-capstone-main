@@ -7,6 +7,7 @@ import Register from "../views/Register.vue";
 import store from "../store/index";
 import GroupList from "../views/Groups.vue";
 import CreateGroup from "../views/CreateGroup.vue";
+import EditUser from "../views/EditUser.vue";
 
 Vue.use(Router);
 
@@ -67,6 +68,14 @@ const router = new Router({
       path: "/createGroup",
       name: "createGroup",
       component: CreateGroup,
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
+      path: "/editUser",
+      name: "editUser",
+      component: EditUser,
       meta: {
         requiresAuth: true,
       },

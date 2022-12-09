@@ -14,7 +14,7 @@ export default {
 
 <style>
   form {
-  background-color: #6b6a66;
+  background-color: #3a2e34;
   display:flex;
   flex-direction: column;
   align-content: center;
@@ -29,24 +29,22 @@ export default {
   padding-bottom: 1em;
   border-radius: 12%;
   
-  border: 5px solid #b7ec8c80;
-  border-top-color: rgba(0, 255, 255, 0.493);
-  border-bottom-color: rgba(127, 255, 212, 0.514);
+
 }
 
 textarea {
-  background: rgba(127, 255, 212, 0.514);
-  border: .5px solid rgba(255, 235, 205, 0.534);
+  background: #51434a;
+  border: .5px solid #51434a;
   text-align: center; 
   margin-top: 3px;
-  max-width: 15em;
+  max-width: 10em;
   border-radius: 10%;
 }
 button {
-  background: rgba(0, 255, 255, 0.493);
-  border: .5px solid rgba(0, 255, 255, 0.493);
+  background: #5d7065;
+  border: .5px solid #5d7065;
   /* border: .5px solid rgba(255, 235, 205, 0.534)  */
   border-radius: 10%;
-  max-width: 7em;
+  max-width: 10em;
 }
 </style>

@@ -17,7 +17,7 @@ export default {
 
 <style>
   .card {
-  background-color: rgb(61, 115, 129);
+  background-color: #3a2e34;
   display: flex;
   text-align: center;
   border-radius: 12%;

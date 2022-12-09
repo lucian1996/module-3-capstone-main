@@ -1,7 +1,7 @@
 <template>
   <div>
     <form class="form-register" @submit.prevent="register">
-      <h2 class="h3 mb-3 font-weight-normal">Create Account</h2>
+      <h2 class="h3 mb-3 font-weight-normal">Edit User... <br> but not really</h2>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
@@ -30,8 +30,7 @@
         v-model="user.confirmPassword"
         required />
     <div class="footer">
-        <router-link :to="{ name: 'login' }" class="login">Have an account?</router-link> <br>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" @submit.prevent="register">Create Account</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" @submit.prevent="register">Submit</button>
     </div>
     </form>
 
