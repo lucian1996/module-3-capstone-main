@@ -27,6 +27,14 @@ export default new Vuex.Store({
       groupName	: '',
       groupOwnerId : ''
     },
+    list : {
+      claimedId	: '',
+      dateModified : '',
+      description : '',
+      groupId	: '',
+      listId	: '',
+      listName : '',
+      }
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -47,6 +55,9 @@ export default new Vuex.Store({
     },
     SET_CURRENT_GROUP(state, data) {
       state.group = data;
+    },
+    SET_CURRENT_Lists(state, data) {
+      state.list = data;
     }
   }
 })

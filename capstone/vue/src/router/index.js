@@ -9,6 +9,7 @@ import GroupList from  '../views/Groups.vue'
 import GroupDetails from  '../components/GroupDetails.vue'
 import CreateGroup from "../views/CreateGroup.vue";
 import EditUser from "../views/EditUser.vue";
+import ListContainer from "../components/ListContainer.vue";
 
 Vue.use(Router);
 
@@ -88,6 +89,14 @@ const router = new Router({
     meta: {
       requiresAuth: true,
     },
+  },
+    {
+      path: "/groups/:groupID/lists",
+      name: "list-container",
+      component: ListContainer,
+      meta: {
+        requiresAuth: true,
+      },
   },]
 });
 
