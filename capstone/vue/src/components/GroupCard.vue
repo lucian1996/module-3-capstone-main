@@ -2,6 +2,9 @@
    <div class="card">
   <div class="container">
     <div>{{group.groupName}}</div>
+    <!-- router link to 'Leaving' or 'Joining' both of which redirect to a new page -->
+    <div> </div>
+    <div> LEAVE/JOIN</div>
   </div>
 </div>
 </template>
@@ -17,10 +20,14 @@ export default {
 
 <style>
   .card {
-  background-color: #3a2e34;
+    width: 100px;
+    text-overflow: ellipsis;
+    height: 100px;
+  background-color: #51434a;
   display: flex;
   text-align: center;
-  border-radius: 12%;
+  align-items: center;
+  border-radius: 6%;
   padding: 1em;
   padding-top: 0em;
   padding-bottom: 0em;
@@ -28,8 +35,12 @@ export default {
   margin-top: .25em;
   margin-bottom: .25em;
 }
+.card > div {
+  text-overflow: ellipsis;
+}
 
 .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
+  box-shadow: 0px 1px 2px 3px #f09374c4;
+  text-emphasis: bolder;
+ }
 </style>

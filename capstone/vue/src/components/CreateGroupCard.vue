@@ -30,6 +30,7 @@ export default {
   font-weight: b;
 }
 .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  box-shadow: 0px 1px 2px 3px #f09374c4;
+  text-emphasis: bolder;
 }
 </style>

@@ -88,7 +88,7 @@ form {
   flex-direction: column;
   align-content: center;
   align-items: center;
-  justify-content: flix-start;
+  justify-content: flex-start;
   flex-basis: 200px;
 
   text-align: center;

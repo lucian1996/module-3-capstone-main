@@ -34,17 +34,30 @@ export default {
 
 <style>
   .group-list {
+    display: grid;
+    /* grid-template-columns: 7fr 7fr; */
+    grid-column-gap: 0px;
+    grid-row-gap: 8px;
+    justify-items: stretch;
+    align-items: stretch;
+  grid-template-areas: 
+  "1 1 1 1 1 1 1 1 1";
+
+
+
+
   background-color:#3a2e34;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* flex-wrap: wrap; */
 
   text-align: center;
   line-height: 200%;
   padding: 1em;
   padding-top: 1em;
   padding-bottom: 1em;
-  border-radius: 12%;
+  border-radius: 2.85%;
+  
   
   
   /* border: 5px solid #7db892; */
