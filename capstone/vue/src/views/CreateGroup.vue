@@ -39,6 +39,8 @@ textarea {
   margin-top: 3px;
   max-width: 10em;
   border-radius: 10%;
+  color: rgba(255, 235, 205, 0.534);
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 button {
   background: #5d7065;
