@@ -31,6 +31,7 @@
         v-model="user.password"
         required
       />
+        <button type="submit" v-show="false"></button>
     </form> <br>
 
     <div class="footer">
