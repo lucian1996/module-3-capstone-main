@@ -27,7 +27,7 @@ export default {
     },
   methods : {
        getLists() {
-           console.log("get lits method ", this.groupId);
+           console.log("In components > ListContainer > getList", this.groupId);
         ListService.getLists(this.groupId)
         .then (response => {
           this.$store.commit("SET_CURRENT_LISTS", response.data);
@@ -37,7 +37,7 @@ export default {
       },
   },
   created () {
-          console.log('created container');
+          console.log('In components > ListContainer > create');
         this.getLists();
         console.log(this.lists);
         },
