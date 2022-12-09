@@ -10,7 +10,7 @@
         type="text"
         id="username"
         class="form-control"
-        placeholder="username"
+        placeholder="change username"
         v-model="user.username"
         required
         autofocus />
@@ -19,15 +19,23 @@
         type="password"
         id="password"
         class="form-control"
-        placeholder="password"
+        placeholder="new password"
         v-model="user.password"
         required />
       <input
         type="password"
         id="confirmPassword"
         class="form-control"
-        placeholder="confirm Password"
+        placeholder="confirm password"
         v-model="user.confirmPassword"
+        required /> <br>
+      <label for="password" class="sr-only"></label>
+      <input
+        type="password"
+        id="password"
+        class="form-control"
+        placeholder="current password"
+        v-model="user.password"
         required />
     <div class="footer">
         <button class="btn btn-lg btn-primary btn-block" type="submit" @submit.prevent="register">Submit</button>

@@ -3,7 +3,7 @@
     <div id="nav">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>
        <div>
-       <router-link v-bind:to="{ name: 'editUser' }" v-if="$store.state.token != ''">this.user</router-link> &nbsp;&nbsp;
+       <router-link v-bind:to="{ name: 'editUser' }" v-if="$store.state.token != ''">this.user</router-link> &nbsp; &nbsp;
        <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
       </div>
 
@@ -15,7 +15,7 @@
 
 <style>
 html {
-  display: flex;
+  display:flex;
   align-items: center;
   flex-direction: column;
   background-color: #51434a;

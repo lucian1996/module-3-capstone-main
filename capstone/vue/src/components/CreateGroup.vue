@@ -40,8 +40,7 @@ export default {
         if (response.status == 201) {
          this.group.groupName = '';
           this.group.groupDescription = '';
-          window.location.reload();
-          // this.$router.push({ name: "home" });
+          this.$router.push({ name: "home" });
         }
       });
     },

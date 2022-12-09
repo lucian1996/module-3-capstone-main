@@ -96,6 +96,9 @@ form {
   padding-top: 1em;
   padding-bottom: 1em;
   border-radius: 12%;
+  max-width: 15em;
+
+
   /* border: 5px solid #b7ec8c80;
   border-top-color: rgba(0, 255, 255, 0.493);
   border-bottom-color: rgba(127, 255, 212, 0.514); */
