@@ -18,7 +18,6 @@ export default {
     name: 'group-details',
     props: {
     groupID: {
-      type: Number,
       default: 0
     },
     },
@@ -32,12 +31,12 @@ export default {
           console.log(response, "retrieveGroup response")
         })
       },
-      //todo mutation(?)
+      //todo mutation to discard current group from $store?
       removeUser() {
-        console.log('In components > GroupDetails > removeUser', this.$store.state.group.groupID, this.$store.state.user.userID)
-        GroupService.removeUser(this.$store.state.group.groupID, this.$store.state.user.userID)
+        console.log('In components > GroupDetails > removeUser', this.$route.params.groupID)
+        GroupService.removeUser(this.$route.params.groupID)
         .then (response => {
-          this.$store.commit(response.data)
+          this.$router.push(`/`)
           console.log(response, "removeUser response")
         })
       }
