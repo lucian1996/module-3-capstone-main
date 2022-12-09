@@ -56,7 +56,7 @@ export default new Vuex.Store({
     SET_CURRENT_GROUP(state, data) {
       state.group = data;
     },
-    SET_CURRENT_Lists(state, data) {
+    SET_CURRENT_LISTS(state, data) {
       state.list = data;
     }
   }

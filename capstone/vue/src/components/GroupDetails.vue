@@ -2,8 +2,7 @@
   <div>
     <div>{{group.groupId}}</div>
         <list-container 
-        v-bind:key="group.groupId" 
-        v-bind:group="group" 
+        v-bind:groupId="$route.params.groupID"
         />
 
     

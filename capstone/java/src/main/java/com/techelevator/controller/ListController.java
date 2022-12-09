@@ -20,7 +20,7 @@ import java.security.Principal;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/groups/{groupId}/lists/")
+@RequestMapping("/groups/{groupId}/lists")
 @PreAuthorize("isAuthenticated()")
 
 
@@ -46,11 +46,12 @@ public class ListController {
         try {
             return listDao.getAllListsForGroup(groupId);
         } catch (GetException e) {
+            System.out.println("made it here list controller");
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve lists");
         }
     }
 
-    @GetMapping("{listId}")
+    @GetMapping("/{listId}")
     public List getListByListId(@PathVariable int groupId, @PathVariable int listId, Principal principal) {
         if (!utilDao.isVerified(principal.getName(), groupId)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "you do not have permission");
@@ -88,7 +89,7 @@ public class ListController {
     }
 
     //TODO: Should only be able to delete a list you have claimed(?)
-    @DeleteMapping("{listId}")
+    @DeleteMapping("/{listId}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteAList(@PathVariable int groupId, @PathVariable int listId, Principal principal) {
         if (!isOwner(principal.getName(), listDao.getList(groupId, listId).getClaimedId())) {
@@ -104,7 +105,7 @@ public class ListController {
             }
         }
 
-    @PutMapping("{listId}/claim")
+    @PutMapping("/{listId}/claim")
     public void claimAList(@PathVariable int groupId, @PathVariable int listId, Principal principal) {
         if (listDao.getList(groupId, listId).getClaimedId() > 0) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "this list is already claimed");
@@ -119,7 +120,7 @@ public class ListController {
         }
     }
 
-    @PutMapping("{listId}/unclaim")
+    @PutMapping("/{listId}/unclaim")
     public void unclaimAList(@PathVariable int groupId, @PathVariable int listId, Principal principal) {
         if (!isOwner(principal.getName(), listDao.getList(groupId, listId).getClaimedId())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "only list owner can unclaim a list");
