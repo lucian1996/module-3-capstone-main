@@ -31,6 +31,7 @@ export default {
         GroupService.getGroup(this.$route.params.groupID)
         .then (response => {
           this.$store.commit("SET_CURRENT_GROUP", response.data);
+          console.log(response, " list response ")
         })
       },
     },
