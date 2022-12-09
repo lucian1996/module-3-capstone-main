@@ -94,7 +94,7 @@ public class GroupController {
         }
     }
 // GroupMember Area ---------------------------------------------------------------------------------------------
-    @PostMapping("/{groupId}/members/")
+    @PostMapping("/{groupId}/members")
     public void addUserToGroup(Principal principal, @RequestBody Group group, @PathVariable int groupId, @RequestParam String groupCode){
         if(!group.getGroupCode().equals(groupCode)){
             throw new CreateException("Invalid group code");

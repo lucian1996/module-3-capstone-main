@@ -39,7 +39,6 @@ public class JdbcGroupDao implements GroupDao {
 
     @Override
     public void createGroup(Group group) {
-
         group.setGroupCode(getGroupCode());
         Integer groupId;
         String sql = "INSERT INTO groups (group_owner, group_name, group_code, description) values (?, ?, ?, ?) RETURNING group_id";
