@@ -12,6 +12,10 @@ public interface ListDao {
 
     void deleteList(int groupId, int listId);
 
+    void claimList(int groupId, int listId, int userId);
+
+    void unclaimList(int groupId, int listId, int userId);
+
     void updateList(List list);
 
 }
