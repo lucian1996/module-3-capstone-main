@@ -59,15 +59,14 @@ public class JdbcListDao implements ListDao {
     @Override
     public void createList(List list) {
         String sql = "INSERT INTO list (group_id, list_title, description, claimed, date_modified) " +
-                "VALUES (?, ?, ?, ?, ?);";
+                "VALUES (?, ?, ?, 0, ?);";
         try {
-            jdbcTemplate.update(sql, list.getGroupId(), list.getListName(), list.getDescription(), list.getClaimedId(), utilDao.currentDay());
+            jdbcTemplate.update(sql, list.getGroupId(), list.getListName(), list.getDescription(), utilDao.currentDay());
         } catch (DataAccessException e) {
             throw new GetException(e);
         }
     }
 
-    //TODO: Who can delete a list?
     @Override
     public void deleteList(int groupId, int listId) {
         String sql = "DELETE FROM list WHERE group_id = ? AND list_id = ?;";
@@ -77,6 +76,26 @@ public class JdbcListDao implements ListDao {
                     throw new DeleteException(e);
                 }
             }
+
+    @Override
+    public void claimList(int groupId, int listId, int userId) {
+        String sql = "Update list set claimed = ? WHERE group_id = ? AND list_id = ?;";
+        try {
+            jdbcTemplate.update(sql, userId, groupId, listId);
+        } catch (DataAccessException e) {
+            throw new DeleteException(e);
+        }
+    }
+
+    @Override
+    public void unclaimList(int groupId, int listId, int userId) {
+        String sql = "Update list set claimed = 0 WHERE group_id = ? AND list_id = ?;";
+        try {
+            jdbcTemplate.update(sql, groupId, listId);
+        } catch (DataAccessException e) {
+            throw new DeleteException(e);
+        }
+    }
 
     @Override
     public void updateList(List list) {

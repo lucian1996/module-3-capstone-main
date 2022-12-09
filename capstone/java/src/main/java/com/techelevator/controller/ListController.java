@@ -42,18 +42,20 @@ public class ListController {
     public java.util.List<List> getAllLists(@PathVariable int groupId, Principal principal) {
         if (!utilDao.isVerified(principal.getName(), groupId)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "you do not have permission");
-        } try {
-                return listDao.getAllListsForGroup(groupId);
-            } catch (GetException e) {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve lists");
-            }
+        }
+        try {
+            return listDao.getAllListsForGroup(groupId);
+        } catch (GetException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve lists");
+        }
     }
 
     @GetMapping("{listId}")
     public List getListByListId(@PathVariable int groupId, @PathVariable int listId, Principal principal) {
         if (!utilDao.isVerified(principal.getName(), groupId)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "you do not have permission");
-        } try {
+        }
+        try {
             return listDao.getList(groupId, listId);
         } catch (GetException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve list with id");
@@ -65,7 +67,8 @@ public class ListController {
     public void createAList(@PathVariable int groupId, @RequestBody List list, Principal principal) {
         if (!utilDao.isVerified(principal.getName(), groupId)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "you do not have permission");
-        } try {
+        }
+        try {
             listDao.createList(list);
         } catch (CreateException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not create list");
@@ -76,7 +79,8 @@ public class ListController {
     public void updateAList(@PathVariable int groupId, @PathVariable int listId, @RequestBody List list, Principal principal) {
         if (!utilDao.isVerified(principal.getName(), groupId)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "you do not have permission");
-        } try {
+        }
+        try {
             listDao.updateList(list);
         } catch (UpdateException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not update list");
@@ -84,15 +88,59 @@ public class ListController {
     }
 
     //TODO: Should only be able to delete a list you have claimed(?)
-    @DeleteMapping("}")
+    @DeleteMapping("{listId}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteAList(@PathVariable int groupId, @PathVariable int listId, Principal principal) {
+        if (!isOwner(principal.getName(), listDao.getList(groupId, listId).getClaimedId())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "only list owner can delete a list");
+        }
+            if (!utilDao.isVerified(principal.getName(), groupId)) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "you do not have permission");
+            }
+            try {
+                listDao.deleteList(groupId, listId);
+            } catch (DeleteException e) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not delete list");
+            }
+        }
+
+    @PutMapping("{listId}/claim")
+    public void claimAList(@PathVariable int groupId, @PathVariable int listId, Principal principal) {
+        if (listDao.getList(groupId, listId).getClaimedId() > 0) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "this list is already claimed");
+        }
         if (!utilDao.isVerified(principal.getName(), groupId)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "you do not have permission");
-        } try {
-            listDao.deleteList(groupId, listId);
-        } catch (DeleteException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not delete list");
+        }
+        try {
+            listDao.claimList(groupId, listId, userDao.findIdByUsername(principal.getName()));
+        } catch (UpdateException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not update list");
         }
     }
+
+    @PutMapping("{listId}/unclaim")
+    public void unclaimAList(@PathVariable int groupId, @PathVariable int listId, Principal principal) {
+        if (!isOwner(principal.getName(), listDao.getList(groupId, listId).getClaimedId())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "only list owner can unclaim a list");
+        }
+        if (!utilDao.isVerified(principal.getName(), groupId)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "you do not have permission");
+        }
+        try {
+            listDao.claimList(groupId, listId, userDao.findIdByUsername(principal.getName()));
+        } catch (UpdateException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not update list");
+        }
+    }
+
+
+    private boolean isOwner (String username,int ownerId){
+        int userId = userDao.findIdByUsername(username);
+        if (userId == ownerId) {
+            return true;
+        }
+        return false;
+    }
+
 }
