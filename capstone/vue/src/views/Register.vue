@@ -1,5 +1,5 @@
 <template>
-  <div id="register" class="text-center">
+  <div>
     <form class="form-register" @submit.prevent="register">
       <h2 class="h3 mb-3 font-weight-normal">Create Account</h2>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
@@ -10,119 +10,139 @@
         type="text"
         id="username"
         class="form-control"
-        placeholder="Username"
+        placeholder="username"
         v-model="user.username"
         required
-        autofocus
-      />
+        autofocus />
       <label for="password" class="sr-only"></label>
       <input
         type="password"
         id="password"
         class="form-control"
-        placeholder="Password"
+        placeholder="password"
         v-model="user.password"
-        required
-      />
+        required />
       <input
         type="password"
         id="confirmPassword"
         class="form-control"
-        placeholder="Confirm Password"
+        placeholder="confirm Password"
         v-model="user.confirmPassword"
-        required
-      />
-      <router-link :to="{ name: 'login' }">Have an account?</router-link>
-      <button class="btn btn-lg btn-primary btn-block" type="submit" @submit.prevent="register">
-        Create Account
-      </button>
+        required />
     </form>
-  <div>
-    
-  </div>
+
+    <div class="footer">
+        <router-link :to="{ name: 'login' }" class="login">Have an account?</router-link> <br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" @submit.prevent="register">Create Account</button>
+    </div>
+
   </div>
 </template>
 
 <script>
-import authService from '../services/AuthService';
+import authService from "../services/AuthService";
 
 export default {
-  name: 'register',
+  name: "register",
   data() {
     return {
       user: {
-        username: '',
-        password: '',
-        confirmPassword: '',
-        role: 'user',
+        username: "",
+        password: "",
+        confirmPassword: "",
+        role: "user",
       },
       registrationErrors: false,
-      registrationErrorMsg: 'There were problems registering this user.',
+      registrationErrorMsg: "There were problems registering this user.",
     };
   },
   methods: {
     register() {
       if (this.user.password != this.user.confirmPassword) {
         this.registrationErrors = true;
-        this.registrationErrorMsg = 'Password & Confirm Password do not match.';
+        this.registrationErrorMsg = "Password & Confirm Password do not match.";
       } else {
         authService
           .register(this.user)
           .then((response) => {
             if (response.status == 201) {
               this.$router.push({
-                path: '/login',
-                query: { registration: 'success' },
+                path: "/login",
+                query: { registration: "success" },
               });
             }
           })
           .catch((error) => {
-            console.log(error)
+            console.log(error);
             const response = error.response;
             console.log(response);
             this.registrationErrors = true;
             if (response.status === 400) {
-              this.registrationErrorMsg = 'Bad Request: Validation Errors';
+              this.registrationErrorMsg = "Bad Request: Validation Errors";
             }
           });
       }
     },
     clearErrors() {
       this.registrationErrors = false;
-      this.registrationErrorMsg = 'There were problems registering this user.';
+      this.registrationErrorMsg = "There were problems registering this user.";
     },
   },
 };
 </script>
 
 <style scoped>
-#window {
+form {
+  background-color: #6b6a66;
   display:flex;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  font-weight: light;
-  display: flex;
-  height: 80vh;
   flex-direction: column;
-  justify-content: first baseline;
+  align-content: center;
   align-items: center;
-  padding-top: 5%;
-  padding-bottom: 5%;
-  margin-bottom:  auto;
-}
+  justify-content: flix-start;
+  flex-basis: 200px;
 
-.form-register {
-  display:flex;
-  flex-direction: column;
   text-align: center;
   line-height: 200%;
-  background-color: #AAA599;
-  border-radius: 18%;
-  justify-content: space-around;
-  margin-right:25%;
-  margin-left:25%;  
-  padding: 5%;
-  flex-basis: 200px;
+  padding: 2em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  
+  border-radius: 12%;
+  border: 5px solid #b7ec8c80;
+  border-top-color: rgba(0, 255, 255, 0.493);
+  border-bottom-color: rgba(127, 255, 212, 0.514);
 }
+h1 {
+  align-items: center;
+  align-self: auto;
+}
+h2{
+  color: rgba(255, 235, 205, 0.534);
+  text-shadow: black;
+}
+input {
+  background: rgba(127, 255, 212, 0.514);
+  border: .5px solid rgba(255, 235, 205, 0.534);
+  text-align: center; 
+  margin-top: 3px;
+  max-width: 10em;
+  border-radius: 10%;
+
+}
+button {
+  background: rgba(0, 255, 255, 0.493);
+  border: .5px solid rgba(0, 255, 255, 0.493);
+  /* border: .5px solid rgba(255, 235, 205, 0.534)  */
+  border-radius: 10%;
+  max-width: 10em;
+}
+a.login{
+  color: rgba(255, 235, 205, 0.534);
+  text-decoration:none;
+  font-size: .7em;
+}
+
 /* .form-register {
   grid-area: register;
   display: flex;

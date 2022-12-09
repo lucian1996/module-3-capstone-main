@@ -1,5 +1,5 @@
 <template>
-  <div class="window">
+  <div>
     <form class="form-signin" @submit.prevent="login">
       <h2>Sign In</h2>
       <div
@@ -17,7 +17,7 @@
         type="text"
         id="username"
         class="form-control"
-        placeholder="Username"
+        placeholder="username"
         v-model="user.username"
         required
         autofocus
@@ -27,7 +27,7 @@
         type="password"
         id="password"
         class="form-control"
-        placeholder="Password"
+        placeholder="password"
         v-model="user.password"
         required
       />
@@ -38,9 +38,6 @@
       <button type="submit" class="btn" @click.prevent="login">Sign in</button>
     </div>
 
-    <div>
-     
-     </div>
   </div>
 </template>
 
@@ -83,18 +80,8 @@ export default {
 </script>
 
 <style scoped>
- /* .window {
-  display:flex;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  font-weight: light;
-  flex-direction: column;
-  align-items: stretch;
-  position: relative;
-  margin: 15%;
-  max-width: 15em;
-  min-width: 11em;
-}  */
-.form-signin {
+
+form {
   background-color: #6b6a66;
   display:flex;
   flex-direction: column;
@@ -145,6 +132,17 @@ a.register{
 }
 
 
+ /* .window {
+  display:flex;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: light;
+  flex-direction: column;
+  align-items: stretch;
+  position: relative;
+  margin: 15%;
+  max-width: 15em;
+  min-width: 11em;
+}  */
 /* .form-signin {
   grid-area: form;
   display: flex;
@@ -179,6 +177,5 @@ a.register{
   "form form form form form"
   "form form form form form"
   "form form form form form"
-  
 } */
 </style>
