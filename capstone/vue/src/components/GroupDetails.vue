@@ -4,8 +4,7 @@
         <list-container 
         v-bind:groupId="$route.params.groupID"
         />
-
-    
+        <button></button>
   </div>
   
 </template>
@@ -26,11 +25,11 @@ export default {
     methods : {
      
       retrieveGroup() {
-        console.log('group detials print')
+        console.log('In components > GroupDetails > retrieveGroup')
         GroupService.getGroup(this.$route.params.groupID)
         .then (response => {
           this.$store.commit("SET_CURRENT_GROUP", response.data);
-          console.log(response, " list response ")
+          console.log(response, "list response")
         })
       },
     },
