@@ -25,6 +25,11 @@ export default {
   margin: .5em;
   margin-top: .25em;
   margin-bottom: .25em;
+
+  overflow: hidden;
+  white-space: wrap;
+  /* TODO Not working.. */
+  text-overflow: " [..]";
 }
 .container {
   font-weight: b;

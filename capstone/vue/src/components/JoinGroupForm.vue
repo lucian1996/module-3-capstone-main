@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div>{{group}}</div>
+    <div>{{group.groupId}}</div>
        <form v-on:submit.prevent="addUser">
-        <label for="groupCode">Group code:</label><br>
-        <input v-model="inviteCode" id="inviteCode" name="inviteCode">
+        <label for="groupCode">Group code:</label>
+        <input v-model="inviteCode" id="inviteCode" name="inviteCode"> <br>
         <button>Submit</button>
       </form>
     </div>

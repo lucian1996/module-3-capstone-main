@@ -121,7 +121,6 @@ input {
   max-width: 7em;
   border-radius: 10%;
   color: rgba(255, 235, 205, 0.404);
-
 }
 button {
   background: #5d7065;

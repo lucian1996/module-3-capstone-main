@@ -45,4 +45,21 @@ h1 {
   text-align: center;
   color: #F09374;
 }
+input {
+  background: #51434a;
+  border: .5px solid #3a2e34;
+  /* border: .5px solid rgba(255, 235, 205, 0.534); */
+  text-align: center; 
+  margin-top: 3px;
+  max-width: 7em;
+  border-radius: 10%;
+  color: rgba(255, 235, 205, 0.404);
+}
+button {
+  background: #5d7065;
+  border: .5px solid #5d7065;
+  /* border: .5px solid rgba(255, 235, 205, 0.534)  */
+  border-radius: 10%;
+  max-width: 7em;
+}
 </style>
