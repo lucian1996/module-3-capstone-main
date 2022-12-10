@@ -95,13 +95,13 @@ public class GroupController {
     }
 // GroupMember Area ---------------------------------------------------------------------------------------------
     @PostMapping("/{groupId}/members")
-    public void addUserToGroup(Principal principal, @RequestBody Group group, @PathVariable int groupId, @RequestParam String groupCode){
-        if(!group.getGroupCode().equals(groupCode)){
+    public void addUserToGroup(Principal principal, @PathVariable int groupId, @RequestParam String groupCode, @RequestParam String confirmCode){
+        if(!groupCode.equals(confirmCode)){
             throw new CreateException("Invalid group code");
         }
         GroupMember groupMember = new GroupMember();
         groupMember.setMemberId(userDao.findIdByUsername(principal.getName()));
-        groupMember.setGroupId(group.getGroupId());
+        groupMember.setGroupId(groupId);
         groupMember.setDateJoined(utilDao.currentDay());
         try {
             groupDao.addUserToGroup(groupMember);

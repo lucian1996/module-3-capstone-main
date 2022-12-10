@@ -17,7 +17,6 @@ export default {
   name: 'list-container',
    props: {
     groupId: {
-      type: Number,
       default: 0
     },
    },
