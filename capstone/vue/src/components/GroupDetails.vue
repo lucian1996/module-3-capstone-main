@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div>{{group.groupId}}</div>
+    <div>{{group.groupName}}</div>
+    <div>join code: {{group.groupCode}}</div>
         <list-container 
         v-bind:groupId="$route.params.groupID"
         />
