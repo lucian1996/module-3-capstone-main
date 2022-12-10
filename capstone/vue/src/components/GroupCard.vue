@@ -11,7 +11,7 @@
   </router-link>
     
   <router-link 
-  v-if="groupMember"
+  v-if="isGroupMember"
   v-bind:to="{
     name:'join-group-form', 
     params: {group : this.group}
