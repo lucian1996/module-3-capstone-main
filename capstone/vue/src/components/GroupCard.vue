@@ -19,13 +19,13 @@
       <div>join</div>
     </router-link>
     
-    <router-link 
+    <!-- <router-link 
     v-bind:to="
-    {name:'join-group-form', 
+    {name:'leave-group-form', 
     params: {group : this.group}
     }">
       <div>leave</div>
-    </router-link>
+    </router-link> -->
 </div>
 </template>
 
