@@ -47,6 +47,7 @@ public class JdbcGroupDao implements GroupDao {
         } catch (DataAccessException e) {
             throw new CreateException(e);
         }
+
         String sqlUser = "INSERT INTO group_member (group_id, user_id, date_joined) values (?, ?, ?)";
         try {
             jdbcTemplate.update(sqlUser, groupId, group.getGroupOwnerId(), utilDao.currentDay());
