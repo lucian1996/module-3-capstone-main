@@ -9,7 +9,6 @@ export default {
     getGroups() {
         return axios.get('/groups')
     },
-
     createGroup(group) {
         return axios.post('/groups', group)
       },
@@ -23,4 +22,8 @@ export default {
         console.log("removeUser", groupID)
         return axios.delete(`/groups/${groupID}/members`)
     },
+    addUser(groupID, groupCode, confirmCode) {
+        console.log("addUser", groupID, groupCode, confirmCode)
+        return axios.post(`/groups/${groupID}/members?groupCode=${groupCode}?confirmCode=${confirmCode}`)
+    }
 }

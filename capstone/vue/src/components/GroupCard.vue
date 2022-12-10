@@ -1,9 +1,9 @@
 <template>
    <div class="card btn" role="button">
-    <router-link v-bind:to=" {name:'group-details', params: { groupID: this.group.groupId}}">
+    <router-link v-bind:to=" {name:'group-details', params: {groupID: this.group.groupId}}">
     <div class="container btn" role="button">
     <div>{{group.groupName}}</div>
-    <div> </div>
+    <div></div>
   </div>
   
   </router-link>

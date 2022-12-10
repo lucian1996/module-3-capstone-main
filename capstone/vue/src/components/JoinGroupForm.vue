@@ -1,12 +1,16 @@
 <template>
   <div>
     <div>{{group}}</div>
-    
-  </div>
-  
+       <form v-on:submit.prevent="addUser">
+        <label for="groupCode">Group code:</label><br>
+        <input v-model="inviteCode" id="inviteCode" name="inviteCode">
+        <button>Submit</button>
+      </form>
+    </div>
 </template>
 
 <script>
+import GroupService from '../services/GroupService'
 export default {
 
     name: 'join-group-form',
@@ -15,6 +19,19 @@ export default {
   //   let data = this.$route.params;
   //   console.log("data is", data.list.listId);
   // }
+  data() {
+    return {inviteCode:""}
+  },
+  methods: {
+    addUser() {
+        console.log('In components > JoinGroupForm > addUser', this.group.groupId, this.inviteCode)
+        GroupService.addUser(this.group.groupId, this.inviteCode, this.group.groupCode)
+        .then (response => {
+          this.$router.push(`/groups/${this.group.groupId}`);
+          console.log(response, "addUser response")
+        })
+       }
+   },
   computed : {
     group () {
       return this.$route.params.group
