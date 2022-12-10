@@ -2,6 +2,7 @@ package com.techelevator.dao.jdbc;
 
 import com.techelevator.dao.UserDao;
 import com.techelevator.dao.UtilDao;
+import com.techelevator.model.GroupMember;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -19,10 +20,10 @@ public class JdbcUtilDao implements UtilDao {
     }
     @Override
     public boolean isVerified(String username, int groupId) {
-        String sql = "SELECT * FROM group_member where group_id = ? and user_id = ?";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, groupId, userDao.findIdByUsername(username));
-       // return results.next();
-        return true;
+        int memberId = userDao.findIdByUsername(username);
+        String sql = "SELECT * FROM group_member WHERE user_id = ? AND group_id = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, memberId, groupId);
+        return results.next();
     }
 
     @Override
