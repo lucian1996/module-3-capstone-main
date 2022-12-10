@@ -14,13 +14,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
-import java.time.format.DateTimeFormatter;
-import java.time.LocalDateTime;
-
 import javax.sql.DataSource;
-import java.security.Principal;
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -127,6 +121,14 @@ public class JdbcGroupDao implements GroupDao {
             allMembers.add(groupMember);
         }
         return allMembers;
+    }
+    @Override
+    public boolean isMemberInGroupByUsername(int groupId, String username){
+        int memberId = userDao.findIdByUsername(username);
+        GroupMember groupMember = new GroupMember();
+        String sql = "SELECT * FROM group_member WHERE user_id = ? AND group_id =?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, memberId, groupId);
+        return results.next();
     }
 
     //TODO: implement

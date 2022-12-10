@@ -31,7 +31,8 @@ export default {
           console.log(response, "retrieveGroup response")
         })
       },
-      //todo mutation to discard current group from $store?
+      //todo mutation to discard current group from $store? 
+      //shouldn't this be elsewhere?
       removeUser() {
         console.log('In components > GroupDetails > removeUser', this.$route.params.groupID)
         GroupService.removeUser(this.$route.params.groupID)

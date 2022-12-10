@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
-import javax.websocket.server.PathParam;
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -120,6 +118,11 @@ public class GroupController {
         } catch (GetException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not get users in group");
         }
+    }
+    @GetMapping("/{groupId}/members/{username}")
+    public boolean isMemberInGroupByUsername(@PathVariable int groupId, Principal principal){
+        String username = principal.getName();
+        return groupDao.isMemberInGroupByUsername(groupId, username);
     }
 
     @DeleteMapping("/{groupId}/members")

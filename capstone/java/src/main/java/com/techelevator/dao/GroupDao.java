@@ -21,6 +21,8 @@ public interface GroupDao {
 
     List<GroupMember> getAllMembers(int groupId);
 
+    boolean isMemberInGroupByUsername(int groupId, String username);
+
     void removeUserFromGroup(int userId, int groupId);
 
 }

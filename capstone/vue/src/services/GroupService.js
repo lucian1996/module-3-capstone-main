@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 // const http = axios.create({
 //     baseURL: "http://localhost:9000"
 // })
@@ -7,7 +8,7 @@ import axios from 'axios';
 export default {
 
     getGroups() {
-        return axios.get('/groups')
+        return axios.get('/groups') 
     },
     createGroup(group) {
         return axios.post('/groups', group)
@@ -25,5 +26,9 @@ export default {
     addUser(groupID, groupCode, confirmCode) {
         console.log("addUser", groupID, groupCode, confirmCode)
         return axios.post(`/groups/${groupID}/members?groupCode=${groupCode}?confirmCode=${confirmCode}`)
+    },
+    getMemberByUsername(groupID, username) {
+        console.log("getAllMembers", groupID, username)
+        return axios.get(`/groups/${groupID}/members/${username}`)
     }
 }

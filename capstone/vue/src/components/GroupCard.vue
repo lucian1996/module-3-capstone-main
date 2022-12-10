@@ -11,6 +11,7 @@
   </router-link>
     
   <router-link 
+  v-if="groupMember"
   v-bind:to="{
     name:'join-group-form', 
     params: {group : this.group}
@@ -29,24 +30,23 @@
 </template>
 
 <script>
+import GroupService from '../services/GroupService'
 export default {
   name: "group-card",
   props: ["group"],
   data() {
     return {
       // TODO Wire this into if $store user is member of selected group
-        groupMember: true
+        groupMember: false
     };
   },
-  // methods: {
-  //   leaveJoinButton(){
-  //     if(user is a member of group){
-  //       display Leave group as a clickable button
-  //     }
-  //     display Join group which sends you to a joinGroup page
-  //   }
-  // }
-};
+  methods : {
+    isGroupMember(){
+      let userName = this.$store.state.user.username;
+      let groupId = this.$store.state.group.groupId;
+    return (GroupService.getMemberByUsername(groupID, userName));
+  },
+}
 </script>
 
 <style>
