@@ -21,7 +21,7 @@
     
     <router-link 
     v-bind:to="
-    {name:'leave-group-form', 
+    {name:'join-group-form', 
     params: {group : this.group}
     }">
       <div>leave</div>
@@ -44,8 +44,9 @@ export default {
     isGroupMember(){
       let userName = this.$store.state.user.username;
       let groupId = this.$store.state.group.groupId;
-    return (GroupService.getMemberByUsername(groupID, userName));
+    return (GroupService.getMemberByUsername(groupId, userName));
   },
+}
 }
 </script>
 
@@ -77,4 +78,5 @@ export default {
   box-shadow: 0px 1px 2px 3px #f09374c4;
   text-emphasis: bolder;
 }
+
 </style>
