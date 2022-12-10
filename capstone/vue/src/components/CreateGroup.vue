@@ -21,7 +21,7 @@
 import GroupService from "../services/GroupService";
 
 export default {
-  name: "create-group",
+  name: 'create-group',
   data() {
     return {
       group: {

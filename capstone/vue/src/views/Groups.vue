@@ -1,13 +1,13 @@
 <template>
   <div>
-      <group-list/>
+      <!-- <group-list/> -->
   </div>
 </template>
 
 <script>
-import GroupList from '../components/GroupList.vue'
+// import GroupList from '../components/GroupList.vue'
 export default {
-  components: { GroupList },
+//   components: { GroupList },
 
 }
 </script>

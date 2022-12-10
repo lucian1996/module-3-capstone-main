@@ -4,7 +4,7 @@
         <list-container 
         v-bind:groupId="$route.params.groupID"
         />
-        <button  v-on:click="removeUser()">LEAVE GROUP!</button>
+        <!-- <button  v-on:click="removeUser()">LEAVE GROUP!</button>  ------  The user should only be able to remove themselves outside of the group on the card, correct? -->
   </div>
   
 </template>

@@ -1,16 +1,17 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from '../views/Home.vue'
-import Login from '../views/Login.vue'
-import Logout from '../views/Logout.vue'
-import Register from '../views/Register.vue'
-import store from '../store/index'
-import GroupList from  '../views/Groups.vue'
-import GroupDetails from  '../components/GroupDetails.vue'
+import Vue from 'vue';
+import Router from 'vue-router';
+import Home from '../views/Home.vue';
+import Login from '../views/Login.vue';
+import Logout from '../views/Logout.vue';
+import Register from '../views/Register.vue';
+import store from '../store/index';
+import GroupList from  '../views/Groups.vue';
+import GroupDetails from  '../components/GroupDetails.vue';
 import CreateGroup from "../views/CreateGroup.vue";
 import EditUser from "../views/EditUser.vue";
 import ListDetails from "../components/ListDetails.vue";
 import JoinGroupForm from "../components/JoinGroupForm.vue";
+import LeaveGroupForm from "../components/LeaveGroupForm.vue";
 
 Vue.use(Router);
 
@@ -30,7 +31,7 @@ const router = new Router({
     {
       path: "/",
       name: "home",
-      component: Home,
+      component: Home, GroupList,
       meta: {
         requiresAuth: true,
       },
@@ -107,6 +108,14 @@ const router = new Router({
       requiresAuth: true,
     },
   },
+  {
+    path: "/leaveGroupForm",
+    name: "leave-group-form",
+    component: LeaveGroupForm,
+    meta: {
+      requiresAuth: true,
+    },
+  }
    ]
 });
 

@@ -3,13 +3,14 @@
     <router-link v-bind:to=" {name:'group-details', params: { groupID: this.group.groupId}}">
     <div class="container btn" role="button">
     <div>{{group.groupName}}</div>
-    <div> </div>
   </div>
-  
   </router-link>
     
   <router-link v-bind:to="{name:'join-group-form', params: {group : this.group}}">
       <div>join</div>
+    </router-link>
+    <router-link v-bind:to="{name:'leave-group-form', params: {group : this.group}}">
+      <div>leave</div>
     </router-link>
 </div>
 </template>

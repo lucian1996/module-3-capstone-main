@@ -1,6 +1,11 @@
 <template>
   <div>
     <div>{{group}}</div>
+    <form action="">
+      <label for="Join Group Code"></label>
+      <input type="text" placeholder="Group Code" id="">
+      
+    </form>
     
   </div>
   
