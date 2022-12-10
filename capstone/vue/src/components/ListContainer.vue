@@ -1,19 +1,18 @@
 <template>
   <div class="group-list">
-    <!-- <list-card 
+    <list-card 
         v-for="list in lists"
         v-bind:key = "list.listId"
         v-bind:list="list"
-     /> -->
-    {{ lists }}
+     />
   </div>
 </template>
 
 <script>
 import ListService from '../services/ListService'
-//import ListCard from './ListCard.vue'
+import ListCard from './ListCard.vue'
 export default {
-    //components: { ListCard },
+    components: { ListCard },
   
   name: 'list-container',
    props: {

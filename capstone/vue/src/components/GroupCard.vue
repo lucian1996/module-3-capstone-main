@@ -7,6 +7,10 @@
   </div>
   
   </router-link>
+    
+  <router-link v-bind:to="{name:'join-group-form', params: {group : this.group}}">
+      <div>join</div>
+    </router-link>
 </div>
 </template>
 
