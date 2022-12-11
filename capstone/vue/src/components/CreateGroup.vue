@@ -46,6 +46,7 @@ export default {
   methods: {
     saveGroup() {
       GroupService.createGroup(this.group).then((response) => {
+        //TODO: this can't be empty, else the user will never be able to navigate there
         //const data = response.data
         if (response.status == 201) {
           this.group.groupName = "";

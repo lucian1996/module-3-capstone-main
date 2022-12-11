@@ -120,7 +120,7 @@ public class GroupController {
         }
     }
     @GetMapping("/{groupId}/members/{username}")
-    public boolean isMemberInGroupByUsername(@PathVariable int groupId, Principal principal){
+    public int isMemberInGroupByUsername(@PathVariable int groupId, Principal principal){
         String username = principal.getName();
         return groupDao.isMemberInGroupByUsername(groupId, username);
     }

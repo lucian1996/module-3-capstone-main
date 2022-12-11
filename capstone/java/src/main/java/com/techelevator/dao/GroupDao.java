@@ -20,8 +20,8 @@ public interface GroupDao {
     void addUserToGroup(GroupMember groupMember);
 
     List<GroupMember> getAllMembers(int groupId);
-
-    boolean isMemberInGroupByUsername(int groupId, String username);
+    // returns 0 if member is not in group and 1 if member is in group. This is a work around for the truthiness that JS has.
+    int isMemberInGroupByUsername(int groupId, String username);
 
     void removeUserFromGroup(int userId, int groupId);
 

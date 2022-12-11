@@ -123,12 +123,14 @@ public class JdbcGroupDao implements GroupDao {
         return allMembers;
     }
     @Override
-    public boolean isMemberInGroupByUsername(int groupId, String username){
+    public int isMemberInGroupByUsername(int groupId, String username){
         int memberId = userDao.findIdByUsername(username);
-        GroupMember groupMember = new GroupMember();
+        int member = 0;
         String sql = "SELECT * FROM group_member WHERE user_id = ? AND group_id =?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, memberId, groupId);
-        return results.next();
+        if(results.next()){
+            member += 1;
+        } return member;
     }
 
     //TODO: implement

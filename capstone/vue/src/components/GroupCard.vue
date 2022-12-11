@@ -9,7 +9,12 @@
         <div>{{ group.groupName }}</div>
       </div>
     </router-link>
-    <div v-show="!this.$root.isMember">
+
+<!-- button to show the text 'leave' or 'join' @click method-->
+  <!-- in the method, you will be pushed to either form according to the status of the boolean expression -->
+    <!--  -->
+
+    <div v-show="this.$root.isMember==0">
       <router-link
         v-bind:to="{
           name: 'join-group-form',
@@ -19,12 +24,15 @@
       </router-link>
     </div>
 
-    <div v-show="this.$root.isMember">
+    <div v-show="this.$root.isMember==1">
       <router-link
         v-bind:to="{ name: 'leave-group-form', params: { group: this.group } }">
         <div>leave</div>
       </router-link>
     </div>
+
+
+
   </div>
 </template>
 
