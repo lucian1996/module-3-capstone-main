@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import GroupService from '../services/GroupService'
 export default {
 name: 'leave-group-form',
 data() {
@@ -21,9 +22,12 @@ data() {
 
 methods : {
     removeMemberFromGroup(){
-        return console.log('Attempt to remove user from group')
-        // Should remove group member then redirect member to "/"
-    }
+        console.log('Attempt to remove user from group')
+        GroupService.removeUser(this.group.groupId).then (response => {
+          this.$router.push('/');
+          console.log(response, "removeUser response");
+        })
+}
 },
 computed : {
     group () {

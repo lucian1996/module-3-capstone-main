@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/groups/{groupId}/lists/{listId}/items/")
+@RequestMapping("/groups/{groupId}/lists/{listId}/items")
 @PreAuthorize("isAuthenticated()")
 public class ItemController {
     private final ItemDao itemDao;

@@ -1,32 +1,36 @@
 <template>
-   <div class="card btn" role="button">
-    <router-link 
-    v-bind:to=" {
-      name:'group-details',
-      params: { groupID: this.group.groupId}
-      }">
-    <div class="container btn" role="button">
-    <div>{{group.groupName}}</div>
-  </div>
-  </router-link>
-    
-  <router-link 
-  v-if="isGroupMember()"
-  v-bind:to="{
-    name:'join-group-form', 
-    params: {group : this.group}
-    }">
-      <div>join</div>
+  <div class="card btn" role="button">
+    <router-link
+      v-bind:to="{
+        name: 'group-details',
+        params: { groupID: this.group.groupId },
+      }"
+    >
+      <div class="container btn" role="button">
+        <div>{{ group.groupName }}</div>
+      </div>
     </router-link>
-    
-    <!-- <router-link 
-    v-bind:to="
-    {name:'leave-group-form', 
-    params: {group : this.group}
-    }">
-      <div>leave</div>
-    </router-link> -->
-</div>
+    <div v-show="!this.$root.isMember">
+      <router-link
+        v-bind:to="{
+          name: 'join-group-form',
+          params: { group: this.group }
+        }"
+      >
+        <div>join</div>
+
+      </router-link>
+    </div>
+
+    <div v-show="this.$root.isMember">
+      <router-link
+        v-bind:to="{ name: 'leave-group-form', params: { group: this.group } }"
+      >
+        <div>leave</div>
+
+      </router-link>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -34,18 +38,22 @@ import GroupService from '../services/GroupService'
 export default {
   name: "group-card",
   props: ["group"],
-  data() {
-    return {
-      // TODO Wire this into if $store user is member of selected group
-        groupMember: false
-    };
+  
+  methods: {
+    data() {
+      return{
+        userName: '',
+        groupId: '',
+       
+        }
+    },
   },
-  methods : {
-    isGroupMember(){
-      let userName = this.$store.state.user.username;
-      let groupId = this.$store.state.group.groupId;
-    return (GroupService.getMemberByUsername(groupId, userName));
-  },
+computed: {
+  isMember() {
+      const userName = this.$store.state.user.username;
+      const groupId = this.$store.state.group.groupId;
+      return  GroupService.getMemberByUsername(userName, groupId);
+  }
 }
 }
 </script>
@@ -68,7 +76,6 @@ export default {
   margin: 0.5em;
   margin-top: 0.25em;
   margin-bottom: 0.25em;
-  
 }
 .card > div {
   text-overflow: ellipsis;
@@ -78,5 +85,4 @@ export default {
   box-shadow: 0px 1px 2px 3px #f09374c4;
   text-emphasis: bolder;
 }
-
 </style>
