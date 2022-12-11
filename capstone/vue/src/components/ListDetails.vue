@@ -1,15 +1,19 @@
 <template>
   <div>
     <div>{{list}}</div>
-    {{items}}
-    <button></button>
+    <item-card 
+    v-for="item in items"
+    v-bind:key = "item.itemId"
+    v-bind:item="item"
+    />
   </div>
-  
 </template>
 
 <script>
 import ItemService from '../services/ItemService'
+import ItemCard from './ItemCard.vue'
 export default {
+  components: { ItemCard },
   name: 'list-details',
   data() {
     return {
@@ -18,7 +22,8 @@ export default {
   },
  
     created () {
-      ItemService.getItems.then(response => {
+      ItemService.getItems(this.$route.params.list.groupId, this.$route.params.list.listId)
+      .then(response => {
         this.items = response.data;
       })
     },
