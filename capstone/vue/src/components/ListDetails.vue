@@ -17,8 +17,8 @@ export default {
   name: 'list-details',
   data() {
     return {
-      items : []
-    }
+      items: [],
+    };
   },
  
     created () {
@@ -31,10 +31,8 @@ export default {
     list () {
       return this.$route.params.list
     },
-  }
-  } 
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

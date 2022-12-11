@@ -1,5 +1,7 @@
 <template>
   <div>
+    <div> <br> </div>
+    <h1>Fridgrr</h1>
     <form class="form-register" @submit.prevent="register">
       <h2 class="h3 mb-3 font-weight-normal">Create Account</h2>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
@@ -29,13 +31,15 @@
         placeholder="confirm Password"
         v-model="user.confirmPassword"
         required />
-    <div class="footer">
-        <router-link :to="{ name: 'login' }" class="login">Have an account?</router-link> <br>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" @submit.prevent="register">Create Account</button>
-    </div>
     </form>
-
-
+    <div class="footer">
+      <br />
+      <router-link :to="{ name: 'login' }" class="login"
+        >Have an account?</router-link> <br>
+      <button
+        class="btn btn-lg btn-primary btn-block"
+        type="submit" @submit.prevent="register"> Create Account </button>
+    </div>
   </div>
 </template>
 
@@ -92,71 +96,21 @@ export default {
 </script>
 
 <style scoped>
-form {
-  background-color: #3a2e34;
-  display:flex;
-  flex-direction: column;
-  align-content: center;
-  align-items: center;
-  justify-content: flix-start;
-  flex-basis: 200px;
-
-  text-align: center;
-  line-height: 200%;
-  padding: 2em;
-  padding-top: 1em;
-  padding-bottom: 1em;
-  margin-bottom: 1em;
-  
-  border-radius: 12%;
-  /* border: 5px solid #b7ec8c80;
-  border-top-color: rgba(0, 255, 255, 0.493);
-  border-bottom-color: rgba(127, 255, 212, 0.514); */
-}
-h1 {
-  align-items: center;
-  align-self: auto;
-}
-h2{
-  color: rgba(255, 235, 205, 0.534);
-  text-shadow: black;
-}
 input {
   background: #51434a;
-  border: .5px solid #51434a;
-  text-align: center; 
+  border: 0.5px solid #51434a;
+  text-align: center;
   margin-top: 3px;
   max-width: 10em;
   border-radius: 10%;
   color: rgba(255, 235, 205, 0.534);
 }
+a.login {
+  color: rgba(255, 235, 205, 0.534);
+  text-decoration: none;
+  font-size: 0.7em;
+}
 button {
-  background: #5d7065;
-  border: .5px solid #5d7065;
-  /* border: .5px solid rgba(255, 235, 205, 0.534)  */
-  border-radius: 10%;
   max-width: 10em;
 }
-a.login{
-  color: rgba(255, 235, 205, 0.534);
-  text-decoration:none;
-  font-size: .7em;
-}
-
-/* .form-register {
-  grid-area: register;
-  display: flex;
-  background-color: rgb(184, 119, 184);
-  align-items: center;
-  flex-direction: column;
-  margin-right: 25%;
-  margin-left: 25%;
-  border-radius: 25px;
-  opacity: .90;
-  padding-bottom: 25px;
-}
-.btn {
-  grid-area: submit;
-  margin-top: 15px;
-} */
 </style>

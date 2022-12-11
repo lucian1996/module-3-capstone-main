@@ -1,20 +1,19 @@
 <template>
-   <div class="card">
-  <div class="container">
-      <router-link :to="{ name: 'createGroup' }"> + Create Group</router-link> 
-    </div> 
-</div>
+  <div class="card">
+    <div class="container">
+      <router-link :to="{ name: 'createGroup' }"> + Create Group</router-link>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'create-group-card',
-}
+  name: "create-group-card",
+};
 </script>
 
-
 <style>
-  .card {
+.card {
   background-color: #51434a;
   display: flex;
   text-align: center;
@@ -22,9 +21,9 @@ export default {
   padding: 1em;
   padding-top: 0em;
   padding-bottom: 0em;
-  margin: .5em;
-  margin-top: .25em;
-  margin-bottom: .25em;
+  margin: 0.5em;
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
 
   overflow: hidden;
   white-space: wrap;

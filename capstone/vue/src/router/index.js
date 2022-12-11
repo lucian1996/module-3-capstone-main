@@ -1,12 +1,11 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import Home from '../views/Home.vue';
-import Login from '../views/Login.vue';
-import Logout from '../views/Logout.vue';
-import Register from '../views/Register.vue';
-import store from '../store/index';
-import GroupList from  '../views/Groups.vue';
-import GroupDetails from  '../components/GroupDetails.vue';
+import Vue from "vue";
+import Router from "vue-router";
+import Home from "../views/Home.vue";
+import Login from "../views/Login.vue";
+import Logout from "../components/Logout.vue";
+import Register from "../views/Register.vue";
+import store from "../store/index";
+import GroupDetails from "../components/GroupDetails.vue";
 import CreateGroup from "../views/CreateGroup.vue";
 import EditUser from "../views/EditUser.vue";
 import ListDetails from "../components/ListDetails.vue";
@@ -31,7 +30,7 @@ const router = new Router({
     {
       path: "/",
       name: "home",
-      component: Home, GroupList,
+      component: Home,
       meta: {
         requiresAuth: true,
       },
@@ -60,63 +59,63 @@ const router = new Router({
         requiresAuth: false,
       },
     },
-  {
-    path: "/groups",
-    name: "groups",
-    component: GroupList,
-    meta: {
-      requiresAuth: true
+    {
+      path: "/groups",
+      name: "groups",
+      component: Home,
+      meta: {
+        requiresAuth: true,
+      },
     },
-  },
-  {
-    path: "/groups/:groupID",
-    name: "group-details",
-    component: GroupDetails,
-    meta: {
-      requiresAuth: true
+    {
+      path: "/groups/:groupID",
+      name: "group-details",
+      component: GroupDetails,
+      meta: {
+        requiresAuth: true,
+      },
     },
-  },
-  {
-    path: "/createGroup",
-    name: "createGroup",
-    component: CreateGroup,
-    meta: {
-      requiresAuth: true,
+    {
+      path: "/createGroup",
+      name: "createGroup",
+      component: CreateGroup,
+      meta: {
+        requiresAuth: true,
+      },
     },
-  },
-  {
-    path: "/editUser",
-    name: "editUser",
-    component: EditUser,
-    meta: {
-      requiresAuth: true,
+    {
+      path: "/editUser",
+      name: "editUser",
+      component: EditUser,
+      meta: {
+        requiresAuth: true,
+      },
     },
-  },
-  {
-    path: "/listDetails",
-    name: "list-details",
-    component: ListDetails,
-    meta: {
-      requiresAuth: true,
+    {
+      path: "/listDetails",
+      name: "list-details",
+      component: ListDetails,
+      meta: {
+        requiresAuth: true,
+      },
     },
-  },
-  {
-    path: "/joinGroupForm",
-    name: "join-group-form",
-    component: JoinGroupForm,
-    meta: {
-      requiresAuth: true,
+    {
+      path: "/joinGroupForm",
+      name: "join-group-form",
+      component: JoinGroupForm,
+      meta: {
+        requiresAuth: true,
+      },
     },
-  },
-  {
-    path: "/leaveGroupForm",
-    name: "leave-group-form",
-    component: LeaveGroupForm,
-    meta: {
-      requiresAuth: true,
+    {
+      path: "/leaveGroupForm",
+      name: "leave-group-form",
+      component: LeaveGroupForm,
+      meta: {
+        requiresAuth: true,
+      },
     },
-  }
-   ]
+  ],
 });
 
 router.beforeEach((to, from, next) => {
