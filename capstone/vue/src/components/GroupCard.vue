@@ -4,8 +4,7 @@
       v-bind:to="{
         name: 'group-details',
         params: { groupID: this.group.groupId },
-      }"
-    >
+      }">
       <div class="container btn" role="button">
         <div>{{ group.groupName }}</div>
       </div>
@@ -14,48 +13,43 @@
       <router-link
         v-bind:to="{
           name: 'join-group-form',
-          params: { group: this.group }
-        }"
-      >
-        <div>join</div>
-
+          params: { group: this.group },
+        }">
+        <button>join</button>
       </router-link>
     </div>
 
     <div v-show="this.$root.isMember">
       <router-link
-        v-bind:to="{ name: 'leave-group-form', params: { group: this.group } }"
-      >
+        v-bind:to="{ name: 'leave-group-form', params: { group: this.group } }">
         <div>leave</div>
-
       </router-link>
     </div>
   </div>
 </template>
 
 <script>
-import GroupService from '../services/GroupService'
+import GroupService from "../services/GroupService";
 export default {
   name: "group-card",
   props: ["group"],
-  
+
   methods: {
     data() {
-      return{
-        userName: '',
-        groupId: '',
-       
-        }
+      return {
+        userName: "",
+        groupId: "",
+      };
     },
   },
-computed: {
-  isMember() {
+  computed: {
+    isMember() {
       const userName = this.$store.state.user.username;
       const groupId = this.$store.state.group.groupId;
-      return  GroupService.getMemberByUsername(userName, groupId);
-  }
-}
-}
+      return GroupService.getMemberByUsername(userName, groupId);
+    },
+  },
+};
 </script>
 
 <style>
@@ -85,4 +79,5 @@ computed: {
   box-shadow: 0px 1px 2px 3px #f09374c4;
   text-emphasis: bolder;
 }
+
 </style>

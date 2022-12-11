@@ -1,35 +1,32 @@
 <template>
   <div>
-    <div>{{list}}</div>
-    {{items}}
+    <div>{{ list }}</div>
+         {{ items }}
     <button></button>
   </div>
-  
 </template>
 
 <script>
-import ItemService from '../services/ItemService'
+import ItemService from "../services/ItemService";
 export default {
-  name: 'list-details',
+  name: "list-details",
   data() {
     return {
-      items : []
-    }
+      items: [],
+    };
   },
- 
-    created () {
-      ItemService.getItems.then(response => {
-        this.items = response.data;
-      })
+
+  created() {
+    ItemService.getItems.then((response) => {
+      this.items = response.data;
+    });
+  },
+  computed: {
+    list() {
+      return this.$route.params.list;
     },
-     computed : {
-    list () {
-      return this.$route.params.list
-    },
-  }
-  } 
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

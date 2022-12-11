@@ -1,9 +1,26 @@
 <template>
-<div>
   <div>
-    <group-list />
+    <div id="nav">
+      <div>
+        <router-link v-bind:to="{ name: 'home' }">Home</router-link> &nbsp;
+        <button>Filter</button>
+      </div>
+      <div>
+        <router-link
+          v-bind:to="{ name: 'editUser' }"
+          v-if="$store.state.token != ''"
+          >{{ $store.state.user.username }}</router-link> &nbsp;|&nbsp;
+        <router-link
+          v-bind:to="{ name: 'logout' }"
+          v-if="$store.state.token != ''"
+          >Logout</router-link>
+      </div>
+    </div>
+    <div>
+      <h1>Fridgrr</h1>
+      <group-list />
+    </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -15,22 +32,7 @@ export default {
 </script>
 
 <style>
-form {
-  background-color: #6b6a66;
+#filter {
   display: flex;
-  text-align: center;
-  line-height: 200%;
-  padding: 2em;
-  padding-top: 1em;
-  padding-bottom: 1em;
-  border-radius: 12%;
 }
-#createGroup {
-  min-width: em;
-  max-width: 3em;
-}
-
-  /* border: 5px solid #b7ec8c80;
-  border-top-color: rgba(0, 255, 255, 0.493);
-  border-bottom-color: rgba(127, 255, 212, 0.514); */
 </style>
