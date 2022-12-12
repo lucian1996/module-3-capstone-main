@@ -35,16 +35,17 @@ public class JdbcGroupDao implements GroupDao {
     public void createGroup(Group group) {
         group.setGroupCode(getGroupCode());
         Integer groupId;
-        String sql = "INSERT INTO groups (group_owner, group_name, group_code, description) values (?, ?, ?, ?) RETURNING group_id";
+        String date = utilDao.currentDay();
+        String sql = "INSERT INTO groups (group_owner, group_name, group_code, description, date_created) values (?, ?, ?, ?, ?) RETURNING group_id";
         try {
-            groupId = jdbcTemplate.queryForObject(sql, Integer.class, group.getGroupOwnerId(), group.getGroupName(), group.getGroupCode(), group.getGroupDescription());
+            groupId = jdbcTemplate.queryForObject(sql, Integer.class, group.getGroupOwnerId(), group.getGroupName(), group.getGroupCode(), group.getGroupDescription(), date);
         } catch (DataAccessException e) {
             throw new CreateException(e);
         }
 
         String sqlUser = "INSERT INTO group_member (group_id, user_id, date_joined) values (?, ?, ?)";
         try {
-            jdbcTemplate.update(sqlUser, groupId, group.getGroupOwnerId(), utilDao.currentDay());
+            jdbcTemplate.update(sqlUser, groupId, group.getGroupOwnerId(), date);
         } catch (DataAccessException e) {
             throw new CreateException("group member failed admission test");
         }
@@ -144,16 +145,16 @@ public class JdbcGroupDao implements GroupDao {
         }
     }
 
-    @Override
-    public String getGroupCreatedDate(int groupId, int groupOwnerId){
-        String date = "";
-        String sql = "SELECT * FROM group_member as gm JOIN groups as g ON gm.group_id = g.group_id WHERE user_id = ? AND group_id = ?";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, groupOwnerId, groupId);
-        if(results.next()) {
-            date = mapRowToMemberGroup(results).getDateJoined();
-        }
-        return date;
-    }
+//    @Override
+//    public String getGroupCreatedDate(int groupId, int groupOwnerId){
+//        String date = "";
+//        String sql = "SELECT * FROM group_member as gm JOIN groups as g ON gm.group_id = g.group_id WHERE user_id = ? AND group_id = ?";
+//        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, groupOwnerId, groupId);
+//        if(results.next()) {
+//            date = mapRowToMemberGroup(results).getDateJoined();
+//        }
+//        return date;
+//    }
 
     private Group mapRowToGroup(SqlRowSet rs) {
         Group group = new Group();
@@ -162,6 +163,7 @@ public class JdbcGroupDao implements GroupDao {
         group.setGroupOwnerId(rs.getInt("group_owner"));
         group.setGroupCode(rs.getString("group_code"));
         group.setGroupDescription(rs.getString("description"));
+        group.setDatedCreated(rs.getString("date_created"));
         return group;
     }
 

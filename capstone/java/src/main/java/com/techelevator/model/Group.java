@@ -12,9 +12,18 @@ public class Group {
     private String groupDescription;
     private int groupOwnerId;
     private String groupCode;
+    private String datedCreated;
 
     public String getGroupCode() {
         return groupCode;
+    }
+
+    public String getDatedCreated() {
+        return datedCreated;
+    }
+
+    public void setDatedCreated(String datedCreated) {
+        this.datedCreated = datedCreated;
     }
 
     public void setGroupCode(String groupCode) {

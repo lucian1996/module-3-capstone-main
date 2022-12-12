@@ -15,13 +15,14 @@
           v-if="$store.state.token != ''"
           >Logout</router-link>
       </div>
+      <div>{{group.dateCreated}}</div>
     </div>
     <h1>hi {{ group.groupName }}</h1>
     <div>
       Group Code: <br />
       <div id="groupCode">{{ group.groupCode }}</div>
       <div>
-        {{this.groupDate}}
+        {{group.dateCreated}}
     </div>
 
     </div>
@@ -48,7 +49,7 @@ export default {
   },
   methods: {
     retrieveGroup() {
-      console.log(this.groupID)
+      console.log('groupID', this.groupID)
       console.log("In components > GroupDetails > retrieveGroup");
       GroupService.getGroup(this.$route.params.groupID).then((response) => {
         this.$store.commit("SET_CURRENT_GROUP", response.data);
