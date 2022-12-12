@@ -58,6 +58,9 @@ export default new Vuex.Store({
     },
     SET_CURRENT_LISTS(state, data) {
       state.list = data;
+    },
+    SET_CURRENT_MEMBERS(state, data) {
+      state.members = data
     }
   }
 })

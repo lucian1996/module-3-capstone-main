@@ -38,7 +38,7 @@
         >Have an account?</router-link> <br>
       <button
         class="btn btn-lg btn-primary btn-block"
-        type="submit" @submit.prevent="register"> Create Account </button>
+        type="submit" @click.prevent="register"> Create Account </button>
     </div>
   </div>
 </template>
