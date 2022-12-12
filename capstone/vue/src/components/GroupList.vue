@@ -1,5 +1,5 @@
 <template>
-  <div class="group-list">
+  <div >
     <create-group-card />
     <group-card
       v-for="group in groups"

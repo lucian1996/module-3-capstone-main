@@ -21,7 +21,7 @@ html {
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: #51434a;
+  background-color: #201d1f;
   font-family: Georgia, "Times New Roman", Times, serif;
   height: 100%;
   text-align: center;

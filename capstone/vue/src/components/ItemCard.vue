@@ -1,8 +1,8 @@
 <template>
        <div class="card">
         <div class="container">
-            <div>{{item.itemName}}</div>
-            <div> </div>
+            <div>{{item.itemId}}</div>
+            <button>edit</button>
         </div>
         </div>
 </template>

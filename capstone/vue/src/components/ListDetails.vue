@@ -6,6 +6,7 @@
     v-bind:key = "item.itemId"
     v-bind:item="item"
     />
+    {{items}}
   </div>
 </template>
 
@@ -25,6 +26,7 @@ export default {
       ItemService.getItems(this.$route.params.list.groupId, this.$route.params.list.listId)
       .then(response => {
         this.items = response.data;
+        console.log("here are items", this.items)
       })
     },
      computed : {

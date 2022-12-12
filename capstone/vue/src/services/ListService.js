@@ -7,11 +7,13 @@ import axios from 'axios';
 export default {
 
     getLists(groupID) {
-        console.log("service", groupID)
+        console.log(axios.get(`/groups/${groupID}/lists`), 'axios call')
         return axios.get(`/groups/${groupID}/lists`)
     },
-    // getList(groupID, listID)
-    // {
-    //     return axios.get(`groups/${groupID}/lists/${listID}`)
-    // }
+    createList(groupID, list) {
+        //    return axios.post(`/groups/${groupID}/members?groupCode=${groupCode}?confirmCode=${confirmCode}`)
+       return axios.post(`/groups${groupID}/lists?listDescription=${list.description}%20description&listName=${list.name}`);
+      //return axios.post(`/groups/1001/lists?listDescription=test%20description&listName=coolname`);
+     //   lists?listDescription=test%20description&listName=coolname
+    }
 }

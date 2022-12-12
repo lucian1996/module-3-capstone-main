@@ -23,7 +23,7 @@ public class JdbcUtilDao implements UtilDao {
         int memberId = userDao.findIdByUsername(username);
         String sql = "SELECT * FROM group_member WHERE user_id = ? AND group_id = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, memberId, groupId);
-        return results.next();
+      return results.next();
     }
 
     @Override

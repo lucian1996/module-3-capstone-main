@@ -7,6 +7,6 @@ import axios from 'axios';
 export default {
 
     getItems(groupID, listID) {
-        return axios.get(`/groups/${groupID}/lists/${listID}`)
+        return axios.get(`/groups/${groupID}/lists/${listID}/items`)
     },  
 }

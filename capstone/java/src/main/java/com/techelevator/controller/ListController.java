@@ -65,10 +65,14 @@ public class ListController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createAList(@PathVariable int groupId, @RequestBody List list, Principal principal) {
+    public void createAList(@PathVariable int groupId, @RequestParam String listName, @RequestParam String listDescription, Principal principal) {
         if (!utilDao.isVerified(principal.getName(), groupId)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "you do not have permission");
         }
+        List list = new List();
+        list.setListName(listName);
+        list.setDescription(listDescription);
+        list.setGroupId(groupId);
         try {
             listDao.createList(list);
         } catch (CreateException e) {

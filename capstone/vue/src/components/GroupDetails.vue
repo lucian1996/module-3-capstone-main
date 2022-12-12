@@ -21,16 +21,18 @@
       Group Code: <br />
       <div id="groupCode">{{ group.groupCode }}</div>
     </div>
+    <create-list-form  v-bind:groupID="groupID"/>
     <list-container v-bind:groupId="$route.params.groupID" />
-    <!-- <button  v-on:click="removeUser()">LEAVE GROUP!</button>  ------  The user should only be able to remove themselves outside of the group on the card, correct? -->
+    <button v-on:click="removeUser()">LEAVE GROUP!</button>
   </div>
 </template>
 
 <script>
 import GroupService from "../services/GroupService";
+import CreateListForm from './CreateListForm.vue';
 import ListContainer from "./ListContainer.vue";
 export default {
-  components: { ListContainer },
+  components: { ListContainer, CreateListForm },
 
   name: "group-details",
   props: {
@@ -40,6 +42,7 @@ export default {
   },
   methods: {
     retrieveGroup() {
+      console.log(this.groupID)
       console.log("In components > GroupDetails > retrieveGroup");
       GroupService.getGroup(this.$route.params.groupID).then((response) => {
         this.$store.commit("SET_CURRENT_GROUP", response.data);

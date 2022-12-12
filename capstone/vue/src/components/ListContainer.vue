@@ -1,5 +1,5 @@
 <template>
-  <div class="group-list">
+  <div >
     <list-card
       v-for="list in lists"
       v-bind:key="list.listId"
@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     getLists() {
-      console.log("In components > ListContainer > getList", this.groupId);
+      console.log("list container", this.groupId);
       ListService.getLists(this.groupId).then((response) => {
         this.$store.commit("SET_CURRENT_LISTS", response.data);
         console.log(response, "response");
