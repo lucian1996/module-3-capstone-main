@@ -30,5 +30,9 @@ export default {
     getMemberByUsername(groupID, username) {
         console.log("getAllMembers", groupID, username)
         return axios.get(`/groups/${groupID}/members/${username}`)
+    },
+    getGroupCreatedDate(groupID) {
+        console.log("GroupDate", groupID)
+        return axios.get(`/groups/${groupID}/created`)
     }
 }

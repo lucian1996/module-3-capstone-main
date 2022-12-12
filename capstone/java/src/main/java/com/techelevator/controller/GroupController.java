@@ -137,6 +137,12 @@ public class GroupController {
         }
     }
 
+    @GetMapping("/{groupId}/created")
+    public String getGroupCreatedDate(Principal principal, @PathVariable int groupId) {
+        Group curGroup = groupDao.getGroupById(groupId);
+        return groupDao.getGroupCreatedDate(groupId, curGroup.getGroupOwnerId());
+    }
+
     private boolean isOwner(String username, int ownerId){
        int userId = userDao.findIdByUsername(username);
        if(userId == ownerId){

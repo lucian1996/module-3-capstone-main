@@ -25,4 +25,6 @@ public interface GroupDao {
 
     void removeUserFromGroup(int userId, int groupId);
 
+    String getGroupCreatedDate(int groupId, int groupOwnerId);
+
 }

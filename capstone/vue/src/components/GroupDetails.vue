@@ -20,6 +20,10 @@
     <div>
       Group Code: <br />
       <div id="groupCode">{{ group.groupCode }}</div>
+      <div>
+        {{this.groupDate}}
+    </div>
+
     </div>
     <create-list-form  v-bind:groupID="groupID"/>
     <list-container v-bind:groupId="$route.params.groupID" />
@@ -63,9 +67,15 @@ export default {
         console.log(response, "removeUser response");
       });
     },
+    groupDate() {
+      
+      GroupService.getGroupCreatedDate(this.group.groupID).then((response) =>
+      {console.log(response, "groupDate response")})
+    }
   },
   created() {
     this.retrieveGroup();
+    // this.groupDate();
     console.log(this.group);
   },
   computed: {
