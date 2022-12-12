@@ -24,6 +24,7 @@
     <create-list-form  v-bind:groupID="groupID"/>
     <list-container v-bind:groupId="$route.params.groupID" />
     <button v-on:click="removeUser()">LEAVE GROUP!</button>
+    {group}
   </div>
 </template>
 
