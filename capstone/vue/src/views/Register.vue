@@ -18,14 +18,14 @@
         autofocus />
       <label for="password" class="sr-only"></label>
       <input
-        type="password"
+        type=""
         id="password"
         class="form-control"
         placeholder="password"
         v-model="user.password"
         required />
       <input
-        type="password"
+        type=""
         id="confirmPassword"
         class="form-control"
         placeholder="confirm Password"
@@ -38,7 +38,7 @@
         >Have an account?</router-link> <br>
       <button
         class="btn btn-lg btn-primary btn-block"
-        type="submit" @click="register"> Create Account </button>
+        type="submit" @submit.prevent="register"> Create Account </button>
     </div>
   </div>
 </template>
@@ -62,7 +62,6 @@ export default {
   },
   methods: {
     register() {
-      console.log(this.user);
       if (this.user.password != this.user.confirmPassword) {
         this.registrationErrors = true;
         this.registrationErrorMsg = "Password & Confirm Password do not match.";

@@ -25,7 +25,8 @@ export default {
   methods: {
     getLists() {
       console.log("list container", this.groupId);
-      ListService.getLists(this.groupId).then((response) => {
+      ListService.getLists(this.groupId)
+      .then((response) => {
         this.$store.commit("SET_CURRENT_LISTS", response.data);
         console.log(response, "response");
         this.retrieveLists = true;
