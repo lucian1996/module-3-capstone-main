@@ -104,9 +104,9 @@ public class JdbcGroupDao implements GroupDao {
     //TODO currentday is set in controller needs to be done
     @Override
     public void addUserToGroup(GroupMember groupMember) {
-        String sql = "INSERT INTO group_member (group_id, user_id, date_joined) values (?, ?, ?)";
+        String sql = "INSERT INTO group_member (group_id, user_id, username, date_joined) values (?, ?, ?, ?)";
         try {
-            jdbcTemplate.update(sql, groupMember.getGroupId(), groupMember.getMemberId(), groupMember.getDateJoined());
+            jdbcTemplate.update(sql, groupMember.getGroupId(), groupMember.getMemberId(), groupMember.getUsername(), groupMember.getDateJoined());
         } catch (DataAccessException e) {
             throw new CreateException(e);
         }
@@ -115,7 +115,7 @@ public class JdbcGroupDao implements GroupDao {
     @Override
     public List<GroupMember> getAllMembers(int groupId) {
         List<GroupMember> allMembers = new ArrayList<>();
-        String sql = "SELECT username FROM users as u JOIN group_member as gm ON u.user_id = gm.user_id WHERE group_id = ?";
+        String sql = "SELECT * FROM group_member WHERE group_id = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, groupId);
         while (results.next()) {
             GroupMember groupMember = mapRowToMemberGroup(results);
@@ -171,6 +171,7 @@ public class JdbcGroupDao implements GroupDao {
         GroupMember groupMember = new GroupMember();
         groupMember.setGroupId(rs.getInt("group_id"));
         groupMember.setMemberId(rs.getInt("user_id"));
+        groupMember.setUsername(rs.getString("username"));
         groupMember.setDateJoined(rs.getString("date_joined"));
         return groupMember;
     }

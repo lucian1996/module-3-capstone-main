@@ -23,6 +23,7 @@
       <div id="groupCode">{{ group.groupCode }}</div>
       <div>
         {{group.dateCreated}}
+        {{members[0].username}}
     </div>
 
     </div>
@@ -34,6 +35,7 @@
 </template>
 
 <script>
+import MemberService from "../services/MemberService"
 import GroupService from "../services/GroupService";
 import CreateListForm from './CreateListForm.vue';
 import ListContainer from "./ListContainer.vue";
@@ -68,6 +70,13 @@ export default {
         console.log(response, "removeUser response");
       });
     },
+    retrieveMembers() {
+     MemberService.getMembers(this.$route.params.groupID).then((response) => {
+        this.$store.commit("SET_CURRENT_MEMBERS", response.data);
+        console.log(response.data, "retrieveMembers response");
+     });
+    },
+
     groupDate() {
       
       GroupService.getGroupCreatedDate(this.group.groupID).then((response) =>
@@ -76,13 +85,16 @@ export default {
   },
   created() {
     this.retrieveGroup();
-    // this.groupDate();
+    this.retrieveMembers();
     console.log(this.group);
   },
   computed: {
     group() {
       return this.$store.state.group;
     },
+    members() {
+      return this.$store.state.members;
+    }
   },
 };
 </script>
