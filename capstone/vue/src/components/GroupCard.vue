@@ -1,6 +1,6 @@
 <template>
   <div class="card btn" role="button">
-    <router-link :class="{ disabled: memberStatus }"
+    <router-link :class="{ disabled: !memberStatus }"
       v-bind:to="{
         name: 'group-details',
         params: { groupID: this.group.groupId },
