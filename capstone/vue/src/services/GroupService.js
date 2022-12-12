@@ -23,9 +23,9 @@ export default {
         console.log("removeUser", groupID)
         return axios.delete(`/groups/${groupID}/members`)
     },
-    addUser(groupID, groupCode, confirmCode) {
-        console.log("addUser", groupID, groupCode, confirmCode)
-        return axios.post(`/groups/${groupID}/members?groupCode=${groupCode}?confirmCode=${confirmCode}`)
+    addUser(groupID, groupCode) {
+        console.log("addUser", groupID, groupCode)
+        return axios.post(`/groups/${groupID}/members?confirmCode=${groupCode}&groupCode=111`)
     },
     getMemberByUsername(groupID, username) {
         console.log("getAllMembers", groupID, username)

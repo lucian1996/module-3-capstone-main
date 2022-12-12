@@ -24,7 +24,7 @@
     <create-list-form  v-bind:groupID="groupID"/>
     <list-container v-bind:groupId="$route.params.groupID" />
     <button v-on:click="removeUser()">LEAVE GROUP!</button>
-    {group}
+    {{group}}
   </div>
 </template>
 
@@ -58,7 +58,7 @@ export default {
         "In components > GroupDetails > removeUser",
         this.$route.params.groupID
       );
-      GroupService.removeUser(this.$store.state.groupID).then((response) => {
+      GroupService.removeUser(this.$route.params.groupID).then((response) => {
         this.$router.push(`/`);
         console.log(response, "removeUser response");
       });
