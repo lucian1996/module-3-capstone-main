@@ -26,7 +26,7 @@ export default new Vuex.Store({
       groupId	: '',
       groupName	: '',
       groupOwnerId : '',
-      datedCreated: '',
+      dateCreated: '',
     },
     list : {
       claimedId	: '',

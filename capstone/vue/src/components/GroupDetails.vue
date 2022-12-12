@@ -22,7 +22,7 @@
       Group Code: <br />
       <div id="groupCode">{{ group.groupCode }}</div>
       <div>
-        {{group.dateCreated}}
+       <h1> {{group.dateCreated}}</h1>
     </div>
 
     </div>

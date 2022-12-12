@@ -163,7 +163,7 @@ public class JdbcGroupDao implements GroupDao {
         group.setGroupOwnerId(rs.getInt("group_owner"));
         group.setGroupCode(rs.getString("group_code"));
         group.setGroupDescription(rs.getString("description"));
-        group.setDatedCreated(rs.getString("date_created"));
+        group.setDateCreated(rs.getString("date_created"));
         return group;
     }
 
