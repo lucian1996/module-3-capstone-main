@@ -11,7 +11,7 @@
       </div>
     </router-link>
 
-    <div v-show="!memberStatus">
+    <div v-show="memberStatus">
       <router-link
         v-bind:to="{
           name: 'join-group-form',
@@ -40,29 +40,26 @@ export default {
   props: ["group"],
   memberStatus: false,
 
+  data () 
+    {
+      return {memberStatus: false}
+    },
+
   methods: {
     getMemberStatus() {
       let userName = this.$store.state.user.username;
       let groupId = this.group.groupId;
       console.table(this.$store.state);
-    if(GroupService.getMemberByUsername(groupId, userName)===1){
-        console.log("Am I here?", this.memberStatus)
-        this.memberStatus = !this.memberStatus;
-        console.log("I am here!", this.memberStatus)
-      }
+      console.log(GroupService.getMemberByUsername(groupId, userName))
+    return GroupService.getMemberByUsername(groupId, userName)
     },
     created() {
-    this.getMemberStatus();  
+    this.memberStatus = this.getMemberStatus();
+    
     },
 
   },
-computed : {
-  memberStatus() {
-  return this.getMemberStatus();
-},
 
-  
-}
   
 }
 </script>
