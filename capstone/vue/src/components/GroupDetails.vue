@@ -58,7 +58,7 @@ export default {
         "In components > GroupDetails > removeUser",
         this.$route.params.groupID
       );
-      GroupService.removeUser(this.$route.params.groupID).then((response) => {
+      GroupService.removeUser(this.$store.state.groupID).then((response) => {
         this.$router.push(`/`);
         console.log(response, "removeUser response");
       });

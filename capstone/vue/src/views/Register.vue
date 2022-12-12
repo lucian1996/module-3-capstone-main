@@ -38,7 +38,7 @@
         >Have an account?</router-link> <br>
       <button
         class="btn btn-lg btn-primary btn-block"
-        type="submit" @submit.prevent="register"> Create Account </button>
+        type="submit" @click="register"> Create Account </button>
     </div>
   </div>
 </template>
@@ -62,6 +62,7 @@ export default {
   },
   methods: {
     register() {
+      console.log(this.user);
       if (this.user.password != this.user.confirmPassword) {
         this.registrationErrors = true;
         this.registrationErrorMsg = "Password & Confirm Password do not match.";

@@ -4,35 +4,32 @@
       v-bind:to="{
         name: 'group-details',
         params: { groupID: this.group.groupId },
-      }">
+      }"
+    >
       <div class="container btn" role="button">
         <div>{{ group.groupName }}</div>
       </div>
     </router-link>
 
-<!-- button to show the text 'leave' or 'join' @click method-->
-  <!-- in the method, you will be pushed to either form according to the status of the boolean expression -->
-    <!--  -->
-
-    <div v-show="this.$root.isMember==0">
+    <div v-show="!memberStatus">
       <router-link
         v-bind:to="{
           name: 'join-group-form',
-          params: { group: this.group },
-        }">
+          params: {
+            group: this.group,
+          },
+        }"
+      >
         <button>join</button>
       </router-link>
     </div>
 
-    <div v-show="this.$root.isMember==1">
+    <!-- <div v-show="this.$root.isMember==1">
       <router-link
         v-bind:to="{ name: 'leave-group-form', params: { group: this.group } }">
         <div>leave</div>
       </router-link>
-    </div>
-
-
-
+    </div> -->
   </div>
 </template>
 
@@ -41,23 +38,33 @@ import GroupService from "../services/GroupService";
 export default {
   name: "group-card",
   props: ["group"],
+  memberStatus: false,
 
   methods: {
-    data() {
-      return {
-        userName: "",
-        groupId: "",
-      };
+    getMemberStatus() {
+      let userName = this.$store.state.user.username;
+      let groupId = this.group.groupId;
+      console.table(this.$store.state);
+    if(GroupService.getMemberByUsername(groupId, userName)===1){
+        console.log("Am I here?", this.memberStatus)
+        this.memberStatus = !this.memberStatus;
+        console.log("I am here!", this.memberStatus)
+      }
     },
-  },
-  computed: {
-    isMember() {
-      const userName = this.$store.state.user.username;
-      const groupId = this.$store.state.group.groupId;
-      return GroupService.getMemberByUsername(userName, groupId);
+    created() {
+    this.getMemberStatus();  
     },
+
   },
-};
+computed : {
+  memberStatus() {
+  return this.getMemberStatus();
+},
+
+  
+}
+  
+}
 </script>
 
 <style>
@@ -87,5 +94,4 @@ export default {
   box-shadow: 0px 1px 2px 3px #f09374c4;
   text-emphasis: bolder;
 }
-
 </style>
