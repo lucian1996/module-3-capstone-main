@@ -60,12 +60,14 @@ CREATE SEQUENCE seq_list_item_id
 CREATE TABLE list_item (
     list_item_id int NOT NULL DEFAULT nextval('seq_list_item_id'),
     list_id int NOT NULL,
+    group_id int NOT NULL,
     date_modified varchar(50) NULL,
     quantity int NOT NULL,
     last_modifier int NOT NULL,
-    description varchar(500),
+    item_name varchar(50),
     CONSTRAINT PK_list_item PRIMARY KEY (list_item_id),
     CONSTRAINT FK_list_item_list FOREIGN KEY (list_id) REFERENCES list (list_id),
+    CONSTRAINT FK_list_item_group FOREIGN KEY (group_id) REFERENCES groups (group_id),
     CONSTRAINT chk_quantity CHECK (quantity > 0)
     );
 

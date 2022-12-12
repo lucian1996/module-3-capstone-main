@@ -9,7 +9,6 @@ public class Item {
     private int itemId;
     @NotEmpty
     private int listId;
-    //TODO: Can be null.
    // private int claimedId; --NICK HAS DECIDED THIS STUPID THING
     @NotEmpty
     private String dateModified;
@@ -18,11 +17,27 @@ public class Item {
     @Min(1)
     @Max(64)
     private int quantity;
-    private String description;
-
+    private int groupId;
+    private String itemName;
 
     public int getItemId() {
         return itemId;
+    }
+
+    public String getItemName() {
+        return itemName;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public int getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(int groupId) {
+        this.groupId = groupId;
     }
 
     public void setItemId(int itemId) {
@@ -36,14 +51,6 @@ public class Item {
     public void setListId(int listId) {
         this.listId = listId;
     }
-
-//    public int getClaimedId() {
-//        return claimedId;
-//    }
-//
-//    public void setClaimedId(int claimedId) {
-//        this.claimedId = claimedId;
-//    }
 
     public String getDateModified() {
         return dateModified;
@@ -69,24 +76,4 @@ public class Item {
         this.quantity = quantity;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    @Override
-    public String toString() {
-        return "Item{" +
-                "itemId=" + itemId +
-                ", listId=" + listId +
-//                ", claimedId=" + claimedId +
-                ", dateModified='" + dateModified + '\'' +
-                ", lastModifier=" + lastModifier +
-                ", quantity=" + quantity +
-                ", description='" + description + '\'' +
-                '}';
-    }
 }

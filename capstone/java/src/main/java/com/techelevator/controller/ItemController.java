@@ -1,6 +1,7 @@
 package com.techelevator.controller;
 
 import com.techelevator.dao.ItemDao;
+import com.techelevator.dao.UserDao;
 import com.techelevator.dao.UtilDao;
 import com.techelevator.dao.exceptions.CreateException;
 import com.techelevator.dao.exceptions.DeleteException;
@@ -22,11 +23,12 @@ import java.util.List;
 public class ItemController {
     private final ItemDao itemDao;
     private final UtilDao utilDao;
-
-    public ItemController(ItemDao itemDao, UtilDao utilDao) {
+    private final UserDao userDao;
+    public ItemController(ItemDao itemDao, UtilDao utilDao, UserDao userDao) {
 
         this.itemDao = itemDao;
         this.utilDao = utilDao;
+        this.userDao = userDao;
     }
     //TODO chqange to pathvar not working
     //TODO change sql statement to check verifiication
@@ -44,11 +46,16 @@ public class ItemController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createItem(@PathVariable int groupId, @PathVariable int listId, @RequestBody Item item, Principal principal) {
+    public void createItem(@PathVariable int groupId, @PathVariable int listId, @RequestParam String itemName, @RequestParam int quantity, Principal principal) {
         if (!utilDao.isVerified(principal.getName(), groupId)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "you do not have permission");
         }
-        item.setDateModified("test");
+        Item item = new Item();
+        item.setGroupId(groupId);
+        item.setListId(listId);
+        item.setItemName(itemName);
+        item.setQuantity(quantity);
+        item.setLastModifier(userDao.findIdByUsername(principal.getName()));
         try {
             itemDao.createItem(item);
         } catch (CreateException e) {
@@ -69,12 +76,13 @@ public class ItemController {
         }
     }
 
-    @PutMapping("")
+    @PutMapping("/{itemId}")
     @ResponseStatus(HttpStatus.OK)
-    public void updateItem(@PathVariable int groupId, @PathVariable int listId, @RequestBody Item item, Principal principal) {
+    public void updateItem(@PathVariable int groupId, @PathVariable int listId, @PathVariable  int itemId, @RequestBody Item item, Principal principal) {
         if (!utilDao.isVerified(principal.getName(), groupId)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "you do not have permission");
         }
+        item.setLastModifier(userDao.findIdByUsername(principal.getName()));
         try {
             itemDao.updateItem(item);
         } catch (UpdateException e) {

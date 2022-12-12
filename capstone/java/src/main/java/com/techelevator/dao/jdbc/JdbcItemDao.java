@@ -2,6 +2,7 @@ package com.techelevator.dao.jdbc;
 
 import com.techelevator.dao.ItemDao;
 import com.techelevator.dao.UserDao;
+import com.techelevator.dao.UtilDao;
 import com.techelevator.dao.exceptions.CreateException;
 import com.techelevator.dao.exceptions.DeleteException;
 import com.techelevator.dao.exceptions.UpdateException;
@@ -19,27 +20,23 @@ import java.util.List;
 public class JdbcItemDao implements ItemDao {
     private final JdbcTemplate jdbcTemplate;
     private final UserDao userDao;
-    public JdbcItemDao(DataSource dataSource, UserDao userDao) {
+    private final UtilDao utilDao;
+    public JdbcItemDao(DataSource dataSource, UserDao userDao, UtilDao utilDao) {
         this.jdbcTemplate = new JdbcTemplate((dataSource));
         this.userDao = userDao;
+        this.utilDao = utilDao;
     }
-//    @Override
-//    public boolean hasPermission(String username, int listId) {
-//        String sql = "SELECT * FROM list as l JOIN group_member as gm ON gm.user_id = l.list_id WHERE l.list_id = 2001 AND gm.user_id = 1";
-//        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, listId, userDao.findIdByUsername(username));
-//        return results.next();
-//    }
 
     @Override
     public void createItem(Item item) {
-        String sql = "INSERT INTO list_item (list_id, date_modified, quantity, last_modifier, description) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO list_item(date_modified, quantity, last_modifier, list_id, group_id, item_name) VALUES (?, ?, ?, ?, ?, ?)";
+        System.out.println(jdbcTemplate.update(sql, utilDao.currentDay(), item.getQuantity(), item.getLastModifier(), item.getListId(), item.getGroupId(), item.getItemName()));
         try {
-            jdbcTemplate.update(sql, item.getListId(), item.getDateModified(), item.getQuantity(), item.getLastModifier(), item.getDescription());
+            jdbcTemplate.update(sql, utilDao.currentDay(), item.getQuantity(), item.getLastModifier(), item.getListId(), item.getGroupId(), item.getItemName()) ;
         } catch (DataAccessException e) {
             throw new CreateException(e);
         }
     }
-
     //TODO: make sure implementation works currently does not
     @Override
     public void deleteItem(Item item) {
@@ -54,9 +51,9 @@ public class JdbcItemDao implements ItemDao {
 
     @Override
     public void updateItem(Item item) {
-        String sql = "UPDATE list_item SET date_modified = ?, quantity = ?, last_modifier = ?, description = ? WHERE list_item_id = ?;";
+        String sql = "UPDATE list_item SET date_modified = ?, quantity = ?, last_modifier = ?, item_name = ? WHERE list_item_id = ?;";
         try {
-            jdbcTemplate.update(sql, item.getDateModified(), item.getQuantity(), item.getLastModifier(), item.getDescription(), item.getItemId());
+            jdbcTemplate.update(sql, utilDao.currentDay(), item.getQuantity(), item.getLastModifier(), item.getItemName(), item.getItemId());
         } catch (DataAccessException e) {
             throw new UpdateException(e);
         }
@@ -84,7 +81,8 @@ public class JdbcItemDao implements ItemDao {
         item.setDateModified(rs.getString("date_modified"));
         item.setLastModifier(rs.getInt("last_modifier"));
         item.setQuantity(rs.getInt("quantity"));
-        item.setDescription(rs.getString("description"));
+        item.setGroupId(rs.getInt("group_id"));
+        item.setItemName(rs.getString("item_name"));
         return item;
     }
 }

@@ -22,12 +22,9 @@
       Group Code: <br />
       <div id="groupCode">{{ group.groupCode }}</div>
       <div>
-<<<<<<< HEAD
        <h1> {{group.dateCreated}}</h1>
-=======
         {{group.dateCreated}}
         {{members[0].username}}
->>>>>>> 83c479bd1a9a116bdde927c52357e80f5fdbf75b
     </div>
 
     </div>
