@@ -100,6 +100,7 @@ public class GroupController {
         GroupMember groupMember = new GroupMember();
         groupMember.setMemberId(userDao.findIdByUsername(principal.getName()));
         groupMember.setGroupId(groupId);
+        groupMember.setUsername(principal.getName());
         groupMember.setDateJoined(utilDao.currentDay());
         try {
             groupDao.addUserToGroup(groupMember);

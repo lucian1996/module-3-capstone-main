@@ -31,6 +31,7 @@ CREATE TABLE  groups (
 CREATE TABLE group_member (
     user_id int NOT NULL,
     group_id int NOT NULL,
+    username varchar(50) NOT NULL,
     date_joined varchar(50) NOT NULL,
     CONSTRAINT PK_group_member PRIMARY KEY (user_id, group_id),
     CONSTRAINT FK_group_member_user FOREIGN KEY (user_id) REFERENCES users (user_id),
