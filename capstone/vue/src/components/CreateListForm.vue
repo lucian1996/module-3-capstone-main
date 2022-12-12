@@ -35,8 +35,8 @@ export default {
   },
   methods: {
     submit() {
-        console.log('hi new list', this.groupID)
-      ListService.createList(this.groupID, this.list);
+        console.log('hi new list',this.$store.state.group.groupId)
+      ListService.createList(this.$store.state.group.groupId, this.list);
         //TODO: this can't be empty, else the user will never be able to navigate there
         //const data = response.dat
     },

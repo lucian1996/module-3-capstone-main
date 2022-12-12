@@ -12,7 +12,7 @@ export default {
     },
     createList(groupID, list) {
         //    return axios.post(`/groups/${groupID}/members?groupCode=${groupCode}?confirmCode=${confirmCode}`)
-       return axios.post(`/groups${groupID}/lists?listDescription=${list.description}%20description&listName=${list.name}`);
+       return axios.post(`groups/${groupID}/lists?listDescription=${list.description}&listName=${list.name}`);
       //return axios.post(`/groups/1001/lists?listDescription=test%20description&listName=coolname`);
      //   lists?listDescription=test%20description&listName=coolname
     }
