@@ -78,9 +78,7 @@ export default {
             }
           })
           .catch((error) => {
-  
             const response = error.response
-            console.log(response);
             this.registrationErrors = true;
             if (response.status === 400) {
               this.registrationErrorMsg = error.response.data.message;
