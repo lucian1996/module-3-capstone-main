@@ -59,13 +59,25 @@ public class JdbcListDao implements ListDao {
     @Override
     public void createList(List list) {
         String sql = "INSERT INTO list (group_id, list_title, list_completed, claimed, description, date_modified) " +
-                "VALUES (?, ?, ?, 0, ?, ?)";
+                "VALUES (?, ?, ?, ?, ?, ?)";
         try {
             jdbcTemplate.update(sql, list.getGroupId(), list.getListName(), false, 0, list.getDescription(), utilDao.currentDay());
         } catch (DataAccessException e) {
             throw new GetException(e);
         }
     }
+//    CREATE TABLE list (
+//            list_id int NOT NULL DEFAULT nextval('seq_list_id'),
+//    group_id int NOT NULL,
+//    list_title varchar(50) NOT NULL,
+//    list_completed boolean,
+//    claimed int,
+//    description varchar(500),
+//    date_modified varchar(50) NOT NULL,
+//    CONSTRAINT PK_list PRIMARY KEY (list_id),
+//    CONSTRAINT FK_list_group FOREIGN KEY (group_id) REFERENCES groups (group_id)
+//            );
+
 
     @Override
     public void deleteList(int groupId, int listId) {

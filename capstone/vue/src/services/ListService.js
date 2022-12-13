@@ -11,6 +11,7 @@ export default {
         return axios.get(`/groups/${groupID}/lists`)
     },
     createList(groupID, list) {
+        console.log('groupID', list)
         //    return axios.post(`/groups/${groupID}/members?groupCode=${groupCode}?confirmCode=${confirmCode}`)
        return axios.post(`groups/${groupID}/lists?listDescription=${list.description}&listName=${list.name}`);
       //return axios.post(`/groups/1001/lists?listDescription=test%20description&listName=coolname`);
