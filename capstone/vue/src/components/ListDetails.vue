@@ -3,12 +3,12 @@
     <div>{{list}}</div>
       <div id="toggleClaim" >
         <div v-if="isClaimed" @click="isClaimed = !isClaimed">
-          <button >Claim</button> <br>
+          <button>Claim</button> unClaimed<br>
         </div>
-        <div v-show="isClaimed">
-          <button v-show="this.$store.state.user.id==list.claimedID">unClaim</button> <br>
-          <div v-show="this.$store.state.user.id!=list.claimedID">
-            List Claimed by
+        <div v-show="!isClaimed" @click="isClaimed = !isClaimed">
+          <button v-show="this.$store.state.user.id == list.claimedID">unClaim</button> <br>
+          <div v-show="this.$store.state.user.id != list.claimedID">
+            not Owner
           </div>
         </div>
       </div>
@@ -32,16 +32,16 @@ export default {
   data() {
     return {
       items: [],
-      isClaimed: true,
-    };
+      isClaimed: false,
+    }
   },
   methods: {
-    // getIsClaimed() {
-    //   if ( this.$store.state.user.userId
-    //     == this.$store.state.list.claimedId ) {
-    //     isClaimed = true
-    //   }
-    // },
+    getIsClaimed() {
+      if ( this.$store.state.user.userId
+        == this.$store.state.list.claimedId ) {
+        this.isClaimed = true
+      }
+    },
   },
   created() {
     ItemService.getItems(
