@@ -37,7 +37,7 @@ export default {
   name: "list-details",
   data() {
     return {
-      isClaimed: false,
+      isClaimed: ''
     }
   },
   methods: {
@@ -62,10 +62,13 @@ export default {
     unclaimList() {
       // check listId is not null
       ListService.unclaimList(this.list.groupId, this.list.listId).then(response => {
-        console.log(response)
-        this.isClaimed = false;
+        if(response.status == 200) {
+          this.$store.commit('UPDATE_CLAIMED_ID', {listId: this.list.listId, userId: null})
+          this.isClaimed = false;
+        }
       })
-    },
+    
+      },
     getItems () {
       ItemService.getItems(
       this.$route.params.groupID,

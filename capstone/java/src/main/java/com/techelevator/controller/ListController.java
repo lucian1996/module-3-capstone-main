@@ -142,10 +142,11 @@ public class ListController {
 
     private boolean isOwner (String username,int ownerId){
         int userId = userDao.findIdByUsername(username);
+        boolean owner = false;
         if (userId == ownerId) {
-            return true;
+            owner = true;
         }
-        return false;
+        return owner;
     }
 
 }
