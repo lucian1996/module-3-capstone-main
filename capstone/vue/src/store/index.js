@@ -35,15 +35,13 @@ export default new Vuex.Store({
       groupId	: '',
       listId	: '',
       listName : '',
-      },
-    members : [
-      {
+    },
+    members : [{ 
       groupId : '',
       userId : '',
       username : '',
       dateJoined : ''
-    }
-  ]
+    }]
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {

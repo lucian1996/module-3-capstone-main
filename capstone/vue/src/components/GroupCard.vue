@@ -40,18 +40,18 @@ export default {
   name: "group-card",
   props: ["group"],
   data() {
-        return {
-          memberStatus : false
-        }
+    return {
+      memberStatus : false
+    }
   },
 
   methods: {
     getMemberStatus() {
       GroupService.getMemberByUsername(this.group.groupId, this.$store.state.user.username)
-       .then (response => {
-         this.memberStatus = response.data;
-       }
-     )
+      .then (response => {
+          this.memberStatus = response.data;
+        }
+      )
     },
   },
   
