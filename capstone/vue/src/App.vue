@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <!-- <div id="nav">
+    <div id="nav">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>
        <div>
        <router-link v-bind:to="{ name: 'editUser' }" v-if="$store.state.token != ''">{{$store.state.user.username}}</router-link> &nbsp; &nbsp;
        <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
       </div>
-    </div> -->
-    <!-- <h1> Fridgrr </h1> -->
+    </div>
+     <h1> Fridgrr </h1>
     <router-view />
   </div>
 </template>

@@ -133,7 +133,7 @@ public class ListController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "you do not have permission");
         }
         try {
-            listDao.claimList(groupId, listId, userDao.findIdByUsername(principal.getName()));
+            listDao.unclaimList(groupId, listId, userDao.findIdByUsername(principal.getName()));
         } catch (UpdateException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not update list");
         }
