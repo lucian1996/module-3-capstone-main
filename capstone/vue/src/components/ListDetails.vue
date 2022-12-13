@@ -22,7 +22,7 @@
     <item-card 
     v-for="item in items"
     v-bind:key="item.itemId"
-    v-bind:item="item"/>
+    v-bind:itemID="item.itemId"/>
     {{items}}
   </div>
 </div>

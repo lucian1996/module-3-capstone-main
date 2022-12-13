@@ -29,10 +29,10 @@ public class JdbcItemDao implements ItemDao {
 
     @Override
     public void createItem(Item item) {
-        String sql = "INSERT INTO list_item (date_modified, quantity, last_modifier, list_id, group_id, item_name, claimed_id, claimed_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO list_item (date_modified, quantity, last_modifier, list_id, group_id, item_name, status) VALUES (?, ?, ?, ?, ?, ?, ?)";
         //System.out.println(jdbcTemplate.update(sql, utilDao.currentDay(), item.getQuantity(), item.getLastModifier(), item.getListId(), item.getGroupId(), item.getItemName(), null, null));
         try {
-            jdbcTemplate.update(sql, utilDao.currentDay(), item.getQuantity(), item.getLastModifier(), item.getListId(), item.getGroupId(), item.getItemName(), null, null) ;
+            jdbcTemplate.update(sql, utilDao.currentDay(), item.getQuantity(), item.getLastModifier(), item.getListId(), item.getGroupId(), item.getItemName(), null) ;
         } catch (DataAccessException e) {
             throw new CreateException(e);
         }
@@ -51,16 +51,13 @@ public class JdbcItemDao implements ItemDao {
 
     @Override
     public void updateItem(Item item) {
-        String sql = "UPDATE list_item SET date_modified = ?, quantity = ?, last_modifier = ?, item_name = ?, claimed_status = ?, claimed_id = ? WHERE list_item_id = ?;";
+        String sql = "UPDATE list_item SET date_modified = ?, quantity = ?, last_modifier = ?, item_name = ?, status = ? WHERE list_item_id = ?;";
         try {
-            jdbcTemplate.update(sql, utilDao.currentDay(), item.getQuantity(), item.getLastModifier(), item.getItemName(), item.getClaimedStatus(), item.getClaimedId(), item.getItemId());
+            jdbcTemplate.update(sql, utilDao.currentDay(), item.getQuantity(), item.getLastModifier(), item.getItemName(), item.getStatus(), item.getItemId());
         } catch (DataAccessException e) {
             throw new UpdateException(e);
         }
     }
-
-
-    //TODO have some verification that list id is valid
     @Override
     public List<Item> listItems(int listId) {
     List<Item> items = new ArrayList<>();
@@ -77,8 +74,7 @@ public class JdbcItemDao implements ItemDao {
         Item item = new Item();
         item.setItemId(rs.getInt("list_item_id"));
         item.setListId(rs.getInt("list_id"));
-        item.setClaimedId(rs.getInt("claimed_id"));
-        item.setClaimedStatus(rs.getString("claimed_status"));
+        item.setStatus(rs.getString("status"));
         item.setDateModified(rs.getString("date_modified"));
         item.setLastModifier(rs.getInt("last_modifier"));
         item.setQuantity(rs.getInt("quantity"));
