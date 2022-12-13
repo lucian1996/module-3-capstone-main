@@ -57,14 +57,13 @@ export default {
       console.log(response)
       this.$store.commit('UPDATE_CLAIMED_ID', {listId: this.list.listId, userId: this.$store.state.user.id})
       console.log(this.list.claimedId)
-      this.isClaimed = true})
+      })
         },
     unclaimList() {
       // check listId is not null
       ListService.unclaimList(this.list.groupId, this.list.listId).then(response => {
         if(response.status == 200) {
           this.$store.commit('UPDATE_CLAIMED_ID', {listId: this.list.listId, userId: 0})
-          this.isClaimed = false;
         }
       })
     
