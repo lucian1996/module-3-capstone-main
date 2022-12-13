@@ -20,7 +20,6 @@
     <h1>hi {{ group.groupName }}</h1>
     <div>
       Group Code: <br />
-      <div id="groupCode">{{ group.groupCode }}</div>
       <div>
        <h1> {{group.dateCreated}}</h1>
         {{group.dateCreated}}

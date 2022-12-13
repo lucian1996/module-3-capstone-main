@@ -28,14 +28,7 @@ export default new Vuex.Store({
       groupOwnerId : '',
       dateCreated: '',
     },
-    list : {
-      claimedId	: '',
-      dateModified : '',
-      description : '',
-      groupId	: '',
-      listId	: '',
-      listName : '',
-    },
+    list : [],
     members : [{ 
       groupId : '',
       userId : '',
@@ -68,6 +61,9 @@ export default new Vuex.Store({
     },
     SET_CURRENT_MEMBERS(state, data) {
       state.members = data
+    },
+    ADD_LIST (state, listToAdd) {
+      state.list.push(listToAdd);
     }
   }
 })

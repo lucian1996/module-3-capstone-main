@@ -42,19 +42,26 @@ export default {
     //     isClaimed = true
     //   }
     // },
+
+    getListById () {
+
+    }
   },
   created() {
     ItemService.getItems(
-      this.$route.params.list.groupId,
-      this.$route.params.list.listId
+      this.$route.params.groupID,
+      this.$route.params.listID
     ).then((response) => {
       this.items = response.data;
       console.log("here are items", this.items);
     });
   },
   computed: {
+
     list() {
-      return this.$route.params.list;
+      return this.$store.state.list.find(l => 
+        l.listId == this.$route.params.listID && l.groupId == this.$route.params.groupID
+    )
     },
   },
 };

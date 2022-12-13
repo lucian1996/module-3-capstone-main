@@ -36,7 +36,10 @@ export default {
   methods: {
     submit() {
         console.log('hi new list',this.$store.state.group.groupId)
-      ListService.createList(this.$store.state.group.groupId, this.list);
+      ListService.createList(this.$store.state.group.groupId, this.list.then (response => {
+        if (response == 201) {
+              this.$store.commit("ADD_LIST", response.data);
+      }}))
         //TODO: this can't be empty, else the user will never be able to navigate there
         //const data = response.dat
     },

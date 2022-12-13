@@ -1,6 +1,6 @@
 <template>
   <router-link
-    v-bind:to="{ name: 'list-details', params: { list: this.list } }">
+    v-bind:to="{ name: 'list-details', params: { listID: list.listId, groupID: list.groupId } }">
     <div class="card">
       <div class="container">
         <div>{{ list.listName }}</div>
