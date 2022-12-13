@@ -58,10 +58,10 @@ public class JdbcListDao implements ListDao {
 
     @Override
     public void createList(List list) {
-        String sql = "INSERT INTO list (group_id, list_title, description, date_modified) " +
-                "VALUES (?, ?, ?, 0, ?);";
+        String sql = "INSERT INTO list (group_id, list_title, list_completed, claimed, description, date_modified) " +
+                "VALUES (?, ?, ?, 0, ?, ?)";
         try {
-            jdbcTemplate.update(sql, list.getGroupId(), list.getListName(), list.getDescription(), utilDao.currentDay());
+            jdbcTemplate.update(sql, list.getGroupId(), list.getListName(), false, 0, list.getDescription(), utilDao.currentDay());
         } catch (DataAccessException e) {
             throw new GetException(e);
         }
