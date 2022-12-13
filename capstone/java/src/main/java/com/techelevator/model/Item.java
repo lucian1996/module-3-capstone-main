@@ -11,8 +11,7 @@ public class Item {
     private int listId;
     @NotEmpty
     private int groupId;
-    private int claimedId;
-    private String claimedStatus;
+    private String Status;
     @NotEmpty
     private String dateModified;
     //TODO: lastModifier defaults to creator of the list.
@@ -84,20 +83,14 @@ public class Item {
         this.quantity = quantity;
     }
 
-    public int getClaimedId() {
-        return claimedId;
+
+
+    public String getStatus() {
+        return Status;
     }
 
-    public void setClaimedId(int claimedId) {
-        this.claimedId = claimedId;
-    }
-
-    public String getClaimedStatus() {
-        return claimedStatus;
-    }
-
-    public void setClaimedStatus(String purchaseStatus) {
-        this.claimedStatus = purchaseStatus;
+    public void setStatus(String purchaseStatus) {
+        this.Status = purchaseStatus;
     }
 
     @Override
@@ -106,8 +99,6 @@ public class Item {
                 "itemId=" + itemId +
                 ", listId=" + listId +
                 ", groupId=" + groupId +
-                ", claimedId=" + claimedId +
-                ", claimedStatus='" + claimedStatus + '\'' +
                 ", dateModified='" + dateModified + '\'' +
                 ", lastModifier=" + lastModifier +
                 ", quantity=" + quantity +

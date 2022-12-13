@@ -21,8 +21,8 @@
   <div id="listItems">
     <item-card 
     v-for="item in items"
-    v-bind:key="item.itemId"
-    v-bind:item="item"/>
+    v-bind:key="item.dateModified"
+    v-bind:itemID="item.itemId"/>
     {{items}}
   </div>
 </div>
