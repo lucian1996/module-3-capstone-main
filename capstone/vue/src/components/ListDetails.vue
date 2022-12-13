@@ -1,19 +1,24 @@
 <template>
 <div>
   <div>{{list}}</div>
-    <div id="toggleClaim">
-      <div v-show="isClaimed">
-        <button @click="isClaimed = !isClaimed">Claim</button> <br> unClaimed <br>
-      </div>
-      <div v-show="!isClaimed">
-        <button v-show="this.$store.state.user.id == list.claimedID"
-                @click="isClaimed = !isClaimed">unClaim</button> <br>
-        <div v-show="this.$store.state.user.id != list.claimedID">
-            not Owner
-        </div>
+
+  <div id="toggleClaim">
+    <div v-show="isClaimed">
+      <button v-show="this.$store.state.user.id == list.claimedID"
+              @click="isClaimed = !isClaimed"
+              >unClaim</button> 
+      <div v-show="this.$store.state.user.id != list.claimedID">
+            <br> Claimed by another User
       </div>
     </div>
-  <div>
+    <div v-show="!isClaimed">
+          <button v-show="this.$store.state.user.id != list.claimedID"
+                  @click="isClaimed = !isClaimed"
+                  >Claim</button> <br>
+    </div>
+  </div>
+
+  <div id="listItems">
     <item-card 
     v-for="item in items"
     v-bind:key="item.itemId"
@@ -32,7 +37,7 @@ export default {
   data() {
     return {
       items: [],
-      isClaimed: true,
+      isClaimed: false,
     }
   },
   created() {
@@ -48,6 +53,21 @@ export default {
     list() {
       return this.$route.params.list;
     },
+
+    // isClaimedVerification() {
+    //   if (this.list.claimedId == 0) {
+    //     return this.isClaimed = false 
+    //   } else {
+    //     return this.isClaimed = true 
+    //   }
+    // }
+
+    // upadateClaimID() {
+    //   if (isClaimed == true) {
+    //     return this.list.claimedId = this.user.id
+    //   }
+    // } 
+
   },
 };
 </script>
