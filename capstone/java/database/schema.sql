@@ -18,12 +18,12 @@ CREATE SEQUENCE seq_group_id
 	START WITH 1001
 	NO MAXVALUE;
 CREATE TABLE  groups (
-	group_id int NOT NULL DEFAuLT nextval('seq_group_id'),
+	group_id int NOT NULL DEFAULT nextval('seq_group_id'),
 	group_name varchar(50) NOT NULL,
 	group_owner int NOT NULL,
 	description varchar(500),
 	group_code varchar(10) NOT NULL,
-	date_created varchar(50) NOT NULL,
+	date_created varchar(500) NOT NULL,
 	CONSTRAINT PK_group PRIMARY KEY (group_id),
 	CONSTRAINT FK_group_owner FOREIGN KEY (group_owner) REFERENCES users (user_id)
 );
@@ -31,7 +31,6 @@ CREATE TABLE  groups (
 CREATE TABLE group_member (
     user_id int NOT NULL,
     group_id int NOT NULL,
-    username varchar(50) NOT NULL,
     date_joined varchar(50) NOT NULL,
     CONSTRAINT PK_group_member PRIMARY KEY (user_id, group_id),
     CONSTRAINT FK_group_member_user FOREIGN KEY (user_id) REFERENCES users (user_id),
@@ -46,8 +45,9 @@ CREATE TABLE list (
 	list_id int NOT NULL DEFAULT nextval('seq_list_id'),
 	group_id int NOT NULL,
 	list_title varchar(50) NOT NULL,
+	list_completed boolean,
+	claimed int,
 	description varchar(500),
-    claimed int,
     date_modified varchar(50) NOT NULL,
 	CONSTRAINT PK_list PRIMARY KEY (list_id),
 	CONSTRAINT FK_list_group FOREIGN KEY (group_id) REFERENCES groups (group_id)
@@ -61,6 +61,8 @@ CREATE TABLE list_item (
     list_item_id int NOT NULL DEFAULT nextval('seq_list_item_id'),
     list_id int NOT NULL,
     group_id int NOT NULL,
+    claimed_id int NULL,
+    claimed_status varchar(25) NULL,
     date_modified varchar(50) NULL,
     quantity int NOT NULL,
     last_modifier int NOT NULL,

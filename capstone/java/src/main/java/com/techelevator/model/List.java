@@ -11,7 +11,17 @@ public class List {
     @NotEmpty
     private String listName;
     private int claimedId;
+    private boolean listCompleted;
     private String dateModified;
+
+
+    public boolean isListCompleted() {
+        return listCompleted;
+    }
+
+    public void setListCompleted(boolean listCompleted) {
+        this.listCompleted = listCompleted;
+    }
 
     public String getDateModified() {
         return dateModified;
@@ -69,6 +79,8 @@ public class List {
                 ", description='" + description + '\'' +
                 ", listName='" + listName + '\'' +
                 ", claimedId=" + claimedId +
+                ", listCompleted=" + listCompleted +
+                ", dateModified='" + dateModified + '\'' +
                 '}';
     }
 }

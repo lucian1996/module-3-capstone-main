@@ -58,7 +58,7 @@ public class JdbcListDao implements ListDao {
 
     @Override
     public void createList(List list) {
-        String sql = "INSERT INTO list (group_id, list_title, description, claimed, date_modified) " +
+        String sql = "INSERT INTO list (group_id, list_title, description, date_modified) " +
                 "VALUES (?, ?, ?, 0, ?);";
         try {
             jdbcTemplate.update(sql, list.getGroupId(), list.getListName(), list.getDescription(), utilDao.currentDay());
@@ -99,9 +99,9 @@ public class JdbcListDao implements ListDao {
 
     @Override
     public void updateList(List list) {
-            String sql = "UPDATE list set list_title = ?, description = ?, claimed = ?, date_modified = ? WHERE group_id = ? AND list_id = ?;";
+            String sql = "UPDATE list set list_title = ?, description = ?, date_modified = ? WHERE group_id = ? AND list_id = ?;";
             try {
-                jdbcTemplate.update(sql, list.getListName(), list.getDescription(), list.getClaimedId(), utilDao.currentDay(), list.getGroupId(), list.getListId());
+                jdbcTemplate.update(sql, list.getListName(), list.getDescription(), utilDao.currentDay(), list.getGroupId(), list.getListId());
             } catch (DataAccessException e) {
                 throw new GetException(e);
             }
@@ -113,7 +113,6 @@ public class JdbcListDao implements ListDao {
         list.setGroupId(rs.getInt("group_id"));
         list.setDescription(rs.getString("description"));
         list.setListName(rs.getString("list_title"));
-        list.setClaimedId(rs.getInt("claimed"));
         list.setDateModified(rs.getString("date_modified"));
         return list;
     }

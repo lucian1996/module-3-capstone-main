@@ -73,7 +73,7 @@ public class GroupController {
     public void createAGroup(Principal principal, @RequestBody Group group){
         group.setGroupOwnerId(userDao.findIdByUsername(principal.getName()));
         try {
-           groupDao.createGroup(group);
+           groupDao.createGroup(group, principal.getName());
         } catch (CreateException e) {
 
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not create group");
@@ -100,7 +100,6 @@ public class GroupController {
         GroupMember groupMember = new GroupMember();
         groupMember.setMemberId(userDao.findIdByUsername(principal.getName()));
         groupMember.setGroupId(groupId);
-        groupMember.setUsername(principal.getName());
         groupMember.setDateJoined(utilDao.currentDay());
         try {
             groupDao.addUserToGroup(groupMember);
@@ -138,11 +137,11 @@ public class GroupController {
         }
     }
 
-//    @GetMapping("/{groupId}/created")
-//    public String getGroupCreatedDate(Principal principal, @PathVariable int groupId) {
-//        Group curGroup = groupDao.getGroupById(groupId);
-//        return groupDao.getGroupCreatedDate(groupId, curGroup.getGroupOwnerId());
-//    }
+    @GetMapping("/{groupId}/created")
+    public String getGroupCreatedDate(Principal principal, @PathVariable int groupId) {
+        Group curGroup = groupDao.getGroupById(groupId);
+        return groupDao.getGroupCreatedDate(groupId, curGroup.getGroupOwnerId());
+    }
 
     private boolean isOwner(String username, int ownerId){
        int userId = userDao.findIdByUsername(username);

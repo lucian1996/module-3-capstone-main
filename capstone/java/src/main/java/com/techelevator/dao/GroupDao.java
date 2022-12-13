@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface GroupDao {
 
-    void createGroup(Group group);
+    void createGroup(Group group, String username);
 
     void deleteGroup(int groupId);
 
@@ -24,6 +24,8 @@ public interface GroupDao {
     int isMemberInGroupByUsername(int groupId, String username);
 
     void removeUserFromGroup(int userId, int groupId);
+
+    String getGroupCreatedDate(int groupId, int groupOwnerId);
 
 //    String getGroupCreatedDate(int groupId, int groupOwnerId);
 

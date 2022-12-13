@@ -71,6 +71,9 @@ public class Group {
                 ", groupName='" + groupName + '\'' +
                 ", groupDescription='" + groupDescription + '\'' +
                 ", groupOwnerId=" + groupOwnerId +
+                ", groupCode='" + groupCode + '\'' +
+                ", dateCreated='" + dateCreated + '\'' +
                 '}';
     }
 }
+

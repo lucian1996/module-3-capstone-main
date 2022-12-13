@@ -9,15 +9,23 @@ public class Item {
     private int itemId;
     @NotEmpty
     private int listId;
-   // private int claimedId; --NICK HAS DECIDED THIS STUPID THING
+    @NotEmpty
+    private int groupId;
+    private int claimedId;
+    private String claimedStatus;
     @NotEmpty
     private String dateModified;
     //TODO: lastModifier defaults to creator of the list.
     private int lastModifier;
     @Min(1)
     @Max(64)
+
+
+
+
+
     private int quantity;
-    private int groupId;
+
     private String itemName;
 
     public int getItemId() {
@@ -76,4 +84,34 @@ public class Item {
         this.quantity = quantity;
     }
 
+    public int getClaimedId() {
+        return claimedId;
+    }
+
+    public void setClaimedId(int claimedId) {
+        this.claimedId = claimedId;
+    }
+
+    public String getClaimedStatus() {
+        return claimedStatus;
+    }
+
+    public void setClaimedStatus(String purchaseStatus) {
+        this.claimedStatus = purchaseStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "itemId=" + itemId +
+                ", listId=" + listId +
+                ", groupId=" + groupId +
+                ", claimedId=" + claimedId +
+                ", claimedStatus='" + claimedStatus + '\'' +
+                ", dateModified='" + dateModified + '\'' +
+                ", lastModifier=" + lastModifier +
+                ", quantity=" + quantity +
+                ", itemName='" + itemName + '\'' +
+                '}';
+    }
 }
