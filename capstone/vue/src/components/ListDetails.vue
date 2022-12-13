@@ -5,7 +5,7 @@
   <div id="toggleClaim">
     <div v-show="isClaimed">
       <button v-show="this.$store.state.user.id == list.claimedID"
-              @click="isClaimed = !isClaimed"
+              @click="unclaimList"
               >unClaim</button> 
       <div v-show="this.$store.state.user.id != list.claimedID">
             <br> Claimed by another User
@@ -13,7 +13,7 @@
     </div>
     <div v-show="!isClaimed">
           <button v-show="this.$store.state.user.id != list.claimedID"
-                  @click="isClaimed = !isClaimed"
+                  @click="claimList"
                   >Claim</button> <br>
     </div>
   </div>
@@ -30,6 +30,7 @@
 
 <script>
 import ItemService from "../services/ItemService";
+import ListService from '../services/ListService';
 import ItemCard from "./ItemCard.vue";
 export default {
   components: { ItemCard },
@@ -38,6 +39,18 @@ export default {
     return {
       items: [],
       isClaimed: false,
+    }
+  },
+  methods: {
+    claimList() {
+      // check listId is null
+    ListService.claimList(this.list.groupId, this.list.listId)
+    this.isClaimed = true;
+  },
+    unclaimList() {
+      // check listId is not null
+      ListService.unclaimList(this.list.groupId, this.list.listId)
+      this.isClaimed = false;
     }
   },
   created() {
