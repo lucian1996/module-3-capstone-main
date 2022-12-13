@@ -16,6 +16,9 @@ export default {
       //return axios.post(`/groups/1001/lists?listDescription=test%20description&listName=coolname`);
      //   lists?listDescription=test%20description&listName=coolname
     },
+    getList(groupID, listID) {
+        return axios.get(`/groups/${groupID}/lists/${listID}`)
+    },
     claimList(groupID, listID) {
         return axios.put(`groups/${groupID}/lists/${listID}/claim`)
     },

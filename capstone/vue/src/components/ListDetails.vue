@@ -4,16 +4,16 @@
 
   <div id="toggleClaim">
     <div v-show="isClaimed">
-      <button v-show="this.$store.state.user.id == list.claimedID"
+      <button v-show="this.$store.state.user.id == this.list.claimedId"
               @click="unclaimList"
-              >unClaim</button> 
-      <div v-show="this.$store.state.user.id != list.claimedID">
+              >Unclaim</button> 
+      <div v-show="this.$store.state.user.id != this.list.claimedId">
             <br> Claimed by another User
       </div>
     </div>
     <div v-show="!isClaimed">
-          <button v-show="this.$store.state.user.id != list.claimedID"
-                  @click="claimList"
+          <button v-show="this.$store.state.user.id != this.list.claimedId"
+                  @click="claimList()"
                   >Claim</button> <br>
     </div>
   </div>
@@ -43,14 +43,29 @@ export default {
   },
   methods: {
     claimList() {
+    //   ListService.claimList(this.list.groupId, this.list.listId).then(response=> {
+    //     if(response.status == 200) {
+    //       this.isClaimed = true;
+    //   this.$router.push({name: 'list-details', params: {groupID: this.list.groupId, listID: this.list.listId}}
+    //     )
+    //     }
+    //   })
       // check listId is null
-    ListService.claimList(this.list.groupId, this.list.listId)
-    this.isClaimed = true;
-  },
+      console.log(this.list.claimedId)
+      ListService.claimList(this.list.groupId, this.list.listId).then(response => {
+        if(response.status == 200)
+      console.log(this.$store.state.user.id)
+      console.log(response)
+      this.$store.commit('UPDATE_CLAIMED_ID', {listId: this.list.listId, userId: this.$store.state.user.id})
+      console.log(this.list.claimedId)
+      this.isClaimed = true})
+        },
     unclaimList() {
       // check listId is not null
-      ListService.unclaimList(this.list.groupId, this.list.listId)
-      this.isClaimed = false;
+      ListService.unclaimList(this.list.groupId, this.list.listId).then(response => {
+        console.log(response)
+        this.isClaimed = false;
+      })
     }
   },
   created() {
@@ -62,6 +77,7 @@ export default {
       console.log("here are items", this.items);
     });
   },
+  
   computed: {
 
     list() {

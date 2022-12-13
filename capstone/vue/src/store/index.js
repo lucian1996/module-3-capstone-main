@@ -34,7 +34,7 @@ export default new Vuex.Store({
       userId : '',
       username : '',
       dateJoined : ''
-    }]
+    }],
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -64,6 +64,10 @@ export default new Vuex.Store({
     },
     ADD_LIST (state, listToAdd) {
       state.list.push(listToAdd);
+    },
+    UPDATE_CLAIMED_ID(state, listAndUser) {
+      let curList = state.list.find(l => l.listId == listAndUser.listId)
+      curList.claimedId = listAndUser.userId
     }
   }
 })
