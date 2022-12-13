@@ -7,18 +7,21 @@
     v-bind:item="item"
     />
     {{items}}
+      <create-item-form  v-bind:groupID="groupID"/>
   </div>
 </template>
 
 <script>
 import ItemService from '../services/ItemService'
+import CreateItemForm from './CreateItemForm.vue';
 import ItemCard from './ItemCard.vue'
 export default {
-  components: { ItemCard },
+  components: { ItemCard, CreateItemForm },
   name: 'list-details',
   data() {
     return {
       items: [],
+      groupID: this.$store.state.group.groupId
     };
   },
  
@@ -33,6 +36,7 @@ export default {
     list () {
       return this.$route.params.list
     },
+    
   },
 };
 </script>
