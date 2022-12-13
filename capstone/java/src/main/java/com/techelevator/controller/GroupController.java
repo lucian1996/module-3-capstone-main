@@ -43,7 +43,7 @@ public class GroupController {
     }
 
     @GetMapping("/{groupId}")
-    public Group findGroupById(@PathVariable int groupId, Principal principal) {
+    public Group findGroupById(@PathVariable int groupId) {
         //TODO: check firstly if the group exists. No issues right now besides the http response says it was OK.
         try {
             return groupDao.getGroupById(groupId);
@@ -93,8 +93,8 @@ public class GroupController {
     }
 // GroupMember Area ---------------------------------------------------------------------------------------------
     @PostMapping("/{groupId}/members")
-    public void addUserToGroup(Principal principal, @PathVariable int groupId, @RequestParam String groupCode, @RequestParam String confirmCode){
-        if(!groupCode.equals(confirmCode)){
+    public void addUserToGroup(Principal principal, @PathVariable int groupId, @RequestParam String groupCode){
+        if(!groupCode.equals(findGroupCodeByGroupId(groupId))){
             throw new CreateException("Invalid group code");
         }
         GroupMember groupMember = new GroupMember();
@@ -149,6 +149,9 @@ public class GroupController {
            return true;
        }
        return false;
+    }
+    private String findGroupCodeByGroupId(int groupId){
+        return groupDao.getGroupById(groupId).getGroupCode();
     }
 
 }

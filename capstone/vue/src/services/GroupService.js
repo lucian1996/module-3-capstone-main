@@ -25,7 +25,7 @@ export default {
     },
     addUser(groupID, groupCode) {
         console.log("addUser", groupID, groupCode)
-        return axios.post(`/groups/${groupID}/members?confirmCode=${groupCode}&groupCode=${groupCode}`)
+        return axios.post(`/groups/${groupID}/members?groupCode=${groupCode}`)
     },
     getMemberByUsername(groupID, username) {
         console.log("getAllMembers", groupID, username)

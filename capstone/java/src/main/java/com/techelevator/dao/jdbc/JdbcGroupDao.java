@@ -33,7 +33,7 @@ public class JdbcGroupDao implements GroupDao {
 
     @Override
     public void createGroup(Group group, String username) {
-        group.setGroupCode(getGroupCode());
+        group.setGroupCode(makeGroupCode());
         Integer groupId;
         String date = utilDao.currentDay();
         System.out.println("-------------");
@@ -76,7 +76,7 @@ public class JdbcGroupDao implements GroupDao {
         }
     }
 
-    //TODO add validation so only user that has access to the group can access a group
+    //TODO: why was it returning an new group?
     public Group getGroupById(int groupId) {
         String sql = "SELECT * FROM groups WHERE group_id = ?";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, groupId);
@@ -87,7 +87,7 @@ public class JdbcGroupDao implements GroupDao {
         } catch (DataAccessException e) {
             throw new GetException(e);
         }
-        return new Group();
+        return null;
     }
 
 
@@ -150,7 +150,7 @@ public class JdbcGroupDao implements GroupDao {
     @Override
     public String getGroupCreatedDate(int groupId, int groupOwnerId){
         String date = "";
-        String sql = "SELECT * FROM group_member as gm JOIN groups as g ON gm.group_id = g.group_id WHERE user_id = ? AND group_id = ?";
+        String sql = "SELECT * FROM group_member as gm JOIN groups as g ON gm.group_id = g.group_id WHERE user_id = ? AND gm.group_id = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, groupOwnerId, groupId);
         if(results.next()) {
             date = mapRowToMemberGroup(results).getDateJoined();
@@ -177,7 +177,7 @@ public class JdbcGroupDao implements GroupDao {
         return groupMember;
     }
 
-    private String getGroupCode() {
+    private String makeGroupCode() {
         char[] chars = new char[]{'a', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
                 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
         String groupCode = "";
@@ -187,8 +187,8 @@ public class JdbcGroupDao implements GroupDao {
             groupCode += chars[randomInt];
         }
         return groupCode;
-
     }
+
 //    boolean isVerified(String username, int groupId){
 //        String sql = "SELECT * FROM group_member where group_id = ? and user_id = ?";
 //        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, groupId, userDao.findIdByUsername(username));
