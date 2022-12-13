@@ -1,18 +1,20 @@
 <template>
-  <form v-on:submit.prevent="submit">
+
+  <div>
+    <form v-on:submit.prevent="submit">
     <div class="field">
-      <h2>Item</h2>
       <label for="title"></label>
       <textarea v-model="item.name" />
     </div>
     <div class="field">
       <label for="description"></label>
-      <textarea v-model="item.quantity"></textarea>
+      <input v-model.number="item.quantity"/>
     </div>
     <div class="actions">
       <button type="submit">Create</button>
     </div>
   </form>
+  </div>
 </template>
 
 <script>
@@ -20,15 +22,10 @@ import ItemService from "../services/ItemService";
 
 export default {
   name: "create-item-form",
-  props: {
-    groupID: {
-      default: 0,
-    },
-  },
   data() {
     return {
       item: {
-          quantity:'',
+          quantity:0,
           name: ''
       },
     };
@@ -36,10 +33,22 @@ export default {
   methods: {
     submit() {
       console.table(this.$store.state.list)
-      ItemService.createItem(this.$store.state.group.groupId, this.$route.params.list.listId, this.item);
-        //TODO: this can't be empty, else the user will never be able to navigate there
-        //const data = response.dat
+      ItemService.createItem(this.list.groupId, this.list.listId, this.item)
+      .then(r => {
+        console.warn(r)
+        if (r == 201) {
+          console.log('here')
+        this.$store.commit("ADD_ITEM", r.data)
+       }})
     },
   },
+   computed: {
+
+    list() {
+      return this.$store.state.list.find(l => 
+        l.listId == this.$route.params.listID
+    )
+    }
+    },
 };
 </script>

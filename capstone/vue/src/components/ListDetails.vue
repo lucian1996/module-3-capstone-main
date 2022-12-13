@@ -1,7 +1,7 @@
 <template>
 <div>
   <div>{{list}}</div>
-  
+  <create-item-form/>
   <div id="toggleClaim">
     <div v-show="this.list && this.list.claimedId != 0">
       <button v-show="this.list && this.$store.state.user.id == this.list.claimedId"
@@ -31,9 +31,10 @@
 <script>
 import ItemService from "../services/ItemService";
 import ListService from '../services/ListService';
+import CreateItemForm from './CreateItemForm.vue';
 import ItemCard from "./ItemCard.vue";
 export default {
-  components: { ItemCard },
+  components: { ItemCard, CreateItemForm },
   name: "list-details",
   data() {
     return {

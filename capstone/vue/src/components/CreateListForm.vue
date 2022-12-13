@@ -37,7 +37,8 @@ export default {
     submit() {
         console.log('hi new list',this.$store.state.group.groupId);
         console.log(this.list);
-      ListService.createList(this.$store.state.group.groupId, this.list).then (response => {
+      ListService.createList(this.$store.state.group.groupId, this.list)
+      .then (response => {
         if (response == 201) {
               this.$store.commit("ADD_LIST", response.data);
       }})

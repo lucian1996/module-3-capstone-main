@@ -66,6 +66,9 @@ export default new Vuex.Store({
     ADD_LIST (state, listToAdd) {
       state.list.push(listToAdd);
     },
+    ADD_ITEM(state, itemToAdd) {
+      state.items.push(itemToAdd)
+    },
     UPDATE_CLAIMED_ID(state, listAndUser) {
       let curList = state.list.find(l => l.listId == listAndUser.listId)
       console.log(listAndUser)
