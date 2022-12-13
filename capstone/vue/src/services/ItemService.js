@@ -12,9 +12,9 @@ export default {
     createItem(groupID, listID, item) {
         console.log(groupID, listID, item.name, item.quantity)
         return axios.post(`groups/${groupID}/lists/${listID}/items?itemName=${item.name}&quantity=${item.quantity}`)
-    }
+    },
     
-    // editItem(groupID, listID, item) {
-
-    // }
+    editItem(groupID, listID, item) {
+        return axios.put(`groups/${groupID}/lists/${listID}/lists`, item)
+    }
 }

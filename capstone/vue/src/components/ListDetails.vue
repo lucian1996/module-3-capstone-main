@@ -37,7 +37,6 @@ export default {
   name: "list-details",
   data() {
     return {
-      items: [],
       isClaimed: false,
     }
   },
@@ -66,16 +65,19 @@ export default {
         console.log(response)
         this.isClaimed = false;
       })
+    },
+    getItems () {
+      ItemService.getItems(
+      this.$route.params.groupID,
+      this.$route.params.listID
+      ).then((response) => {
+      this.$store.commit("SET_ITEMS", response.data)
+      console.log("here are items", this.items);
+    });
     }
   },
   created() {
-    ItemService.getItems(
-      this.$route.params.groupID,
-      this.$route.params.listID
-    ).then((response) => {
-      this.items = response.data;
-      console.log("here are items", this.items);
-    });
+    this.getItems()
   },
   
   computed: {
@@ -84,7 +86,11 @@ export default {
       return this.$store.state.list.find(l => 
         l.listId == this.$route.params.listID && l.groupId == this.$route.params.groupID
     )
+    
     },
+    items() {
+      return this.$store.state.items;
+    }
 
     // isClaimedVerification() {
     //   if (this.list.claimedId == 0) {
