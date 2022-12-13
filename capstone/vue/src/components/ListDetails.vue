@@ -1,18 +1,18 @@
 <template>
 <div>
   <div>{{list}}</div>
-
+  
   <div id="toggleClaim">
-    <div v-show="isClaimed">
-      <button v-show="this.$store.state.user.id == this.list.claimedId"
-              @click="unclaimList"
+    <div v-show="this.list && this.list.claimedId != 0">
+      <button v-show="this.list && this.$store.state.user.id == this.list.claimedId"
+              @click="unclaimList()"
               >Unclaim</button> 
-      <div v-show="this.$store.state.user.id != this.list.claimedId">
+      <div v-show="this.list && this.$store.state.user.id != this.list.claimedId">
             <br> Claimed by another User
       </div>
     </div>
-    <div v-show="!isClaimed">
-          <button v-show="this.$store.state.user.id != this.list.claimedId"
+    <div v-show="this.list && this.list.claimedId == 0">
+          <button v-show="this.list && this.$store.state.user.id != this.list.claimedId"
                   @click="claimList()"
                   >Claim</button> <br>
     </div>
@@ -37,7 +37,6 @@ export default {
   name: "list-details",
   data() {
     return {
-      isClaimed: ''
     }
   },
   methods: {

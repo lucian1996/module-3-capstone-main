@@ -126,6 +126,7 @@ public class JdbcListDao implements ListDao {
         list.setDescription(rs.getString("description"));
         list.setListName(rs.getString("list_title"));
         list.setDateModified(rs.getString("date_modified"));
+        list.setClaimedId(rs.getInt("claimed"));
         return list;
     }
 }
