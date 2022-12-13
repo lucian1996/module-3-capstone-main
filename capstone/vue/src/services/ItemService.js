@@ -14,7 +14,10 @@ export default {
         return axios.post(`groups/${groupID}/lists/${listID}/items?itemName=${item.name}&quantity=${item.quantity}`)
     },
     
-    editItem(groupID, listID, item) {
-        return axios.put(`groups/${groupID}/lists/${listID}/lists`, item)
+    editItem(groupID, listID, itemID, item) {
+        console.log(groupID, listID, itemID)
+        console.log(axios.put(`groups/${groupID}/lists/${listID}/items/${item.itemId}`, item))
+        return axios.put(`groups/${groupID}/lists/${listID}/items/${item.itemId}`, item)
     }
 }
+//http://localhost:9000/groups/1001/lists/2001/items/3001

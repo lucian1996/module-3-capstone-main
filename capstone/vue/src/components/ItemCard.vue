@@ -1,7 +1,7 @@
 <template>
        <div class="card">
         <div class="container">
-            <div>{{item.itemId}}</div>
+            <div></div>
             <button @click="markComplete">mark complete</button>
             <button>edit item</button>
         </div>
@@ -18,7 +18,10 @@ export default {
 
   methods : {
     markComplete () {
-      ItemService
+      
+      this.item.status = 'complete';
+      console.table(this.item)
+      ItemService.editItem(this.item.groupId, this.item.listId, this.item.itemId,this.item)
       }
     },
     created () {
