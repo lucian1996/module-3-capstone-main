@@ -55,6 +55,7 @@ public class ItemController {
         item.setListId(listId);
         item.setItemName(itemName);
         item.setQuantity(quantity);
+        System.out.println(item.toString());
         item.setLastModifier(userDao.findIdByUsername(principal.getName()));
         try {
             itemDao.createItem(item);

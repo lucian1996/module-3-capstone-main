@@ -15,9 +15,8 @@ export default {
     },
     
     editItem(groupID, listID, itemID, item) {
-        console.log(groupID, listID, itemID)
-        console.log(axios.put(`groups/${groupID}/lists/${listID}/items/${item.itemId}`, item))
-        return axios.put(`groups/${groupID}/lists/${listID}/items/${item.itemId}`, item)
+        console.log('edit item, data inside', groupID, listID, item)
+        return axios.put(`groups/${groupID}/lists/${listID}/items/${itemID}`, item)
     }
 }
 //http://localhost:9000/groups/1001/lists/2001/items/3001
