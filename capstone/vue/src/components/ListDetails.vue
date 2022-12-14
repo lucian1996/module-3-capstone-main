@@ -106,11 +106,10 @@ export default {
       });
     },
     completeList() {
-      this.listComplete = true;
+      
       ListService.markListComplete(
         this.list.groupId,
         this.list.listId,
-        this.isComplete
       ).then((response) => {
         if (response.status == 200) {
           this.$store.commit("MARK_LIST_COMPLETE", {
@@ -122,15 +121,13 @@ export default {
       })
       ItemService.markItemsComplete(this.list.groupId, this.list.listId).then(response => {
         if (response.status == 200) {
-          this.$store.commit("MARK_ITEMS_COMPLETE", 
-          {groupId: this.items.groupId,
-          listId: this.items.listId})
+          this.listComplete = true;
         }
       })
     },
     ListIncomplete() {
-      this.listComplete = false;
-      ListService.markListIncomplete(this.list.groupId, this.list.listId, this.isComplete).then(
+     
+      ListService.markListIncomplete(this.list.groupId, this.list.listId).then(
         (response) => {
           if (response.status == 200) {
             this.$store.commit("MARK_LIST_INCOMPLETE", {
@@ -143,9 +140,7 @@ export default {
       );
       ItemService.markItemsIncomplete(this.list.groupId, this.list.listId).then(response => {
         if (response.status == 200) {
-          this.$store.commit("MARK_ITEMS_INCOMPLETE", 
-          {groupId: this.items.groupId,
-          listId: this.items.listId})
+           this.listComplete = false;
         }
       })
     },
