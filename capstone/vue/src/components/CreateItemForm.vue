@@ -1,5 +1,4 @@
 <template>
-
   <div>
     <form v-on:submit.prevent="submit">
     <div class="field">

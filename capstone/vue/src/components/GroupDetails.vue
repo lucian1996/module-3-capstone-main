@@ -1,9 +1,8 @@
 <template>
   <div>
     <div id="nav">
-      <div>
+      <!-- <div>
         <router-link v-bind:to="{ name: 'home' }">Home</router-link> &nbsp;
-        <button>Filter</button>
       </div>
       <div>
         <router-link
@@ -14,19 +13,10 @@
           v-bind:to="{ name: 'logout' }"
           v-if="$store.state.token != ''"
           >Logout</router-link>
-      </div>
-      <div>{{group.dateCreated}}</div>
+      </div> -->
     </div>
-    <h1>hi {{ group.groupName }}</h1>
-    <div>
-      Group Code: <br />
-      <div>
-       <h1> {{group.dateCreated}}</h1>
-        {{group.dateCreated}}
-        {{members[0].username}}
-    </div>
-
-    </div>
+    <h1>{{ group.groupName }}</h1>
+    <h2>{{group.groupDescription}}</h2>
     <create-list-form  v-bind:groupID="groupID"/>
     <list-container v-bind:groupId="$route.params.groupID" />
     <button v-on:click="removeUser()">LEAVE GROUP!</button>
@@ -100,7 +90,5 @@ export default {
 </script>
 
 <style>
-#groupCode {
-  color: #f09374;
-}
+
 </style>

@@ -1,13 +1,15 @@
 <template>
-  <router-link
+ <div class="card">
+    <router-link
     v-bind:to="{ name: 'list-details', params: { listID: list.listId, groupID: list.groupId } }">
-    <div class="card">
+    <div>
       <div class="container">
         <div>{{ list.listName }}</div>
         <div></div>
       </div>
     </div>
   </router-link>
+ </div>
 </template>
 
 <script>

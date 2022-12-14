@@ -119,14 +119,4 @@ export default {
 };
 </script>
 
-<style scoped>
-input {
-  background: #51434a;
-  border: 0.5px solid #51434a;
-  text-align: center;
-  margin-top: 3px;
-  max-width: 10em;
-  border-radius: 10%;
-  color: rgba(255, 235, 205, 0.534);
-}
-</style>
+
