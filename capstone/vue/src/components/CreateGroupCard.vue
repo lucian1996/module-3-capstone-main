@@ -4,13 +4,11 @@
         width="600px"
       >
         <template v-slot:activator="{ on, attrs }">
-          <v-card
+          <v-card class="d-flex align-center justify-center"  min-height="250"
             v-bind="attrs"
             v-on="on"
           >
-            <v-card-text>
-              +
-            </v-card-text>
+          +
           </v-card>
         </template>
   
