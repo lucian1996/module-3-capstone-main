@@ -1,7 +1,11 @@
 <template>
   <div>
-    <div> <br> </div>
-    <h1>Fridgrr</h1>
+    <v-toolbar app>
+        <v-toolbar-title id="title">
+          {{ appTitle }}
+        </v-toolbar-title>
+      </v-toolbar>
+
     <form class="form-register" @submit.prevent="register">
       <h2 class="h3 mb-3 font-weight-normal">Create Account</h2>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
@@ -56,6 +60,11 @@ export default {
         confirmPassword: "",
         role: "user",
       },
+      appTitle: 'Fridgrr',
+        menuItems: [
+          { title: 'group', path: '/groups' },
+          { title: 'logout', path: '/login' },
+     ],
       registrationErrors: false,
       registrationErrorMsg: "There were problems registering this user.",
     };
@@ -104,4 +113,20 @@ export default {
   },
 };
 </script>
-
+<style scoped>
+#title{
+  font-family:    'Courier New', Courier, monospace;
+  font-size:      50px;
+  font-weight:    bold;
+  color:          whitesmoke;
+  text-shadow: 1.5px 1.5px 0px lightcoral;
+}
+.v-btn__content{
+  font-family:    'Courier New', Courier, monospace;
+  font-size:      15px;
+  font-weight:    bolder;
+}
+.v-toolbar__content{
+  background-color: #0EAD69;
+}
+</style>
