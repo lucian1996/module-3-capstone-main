@@ -28,8 +28,3 @@ export default {
 };
 </script>
 
-<style>
-#filter {
-  display: flex;
-}
-</style>

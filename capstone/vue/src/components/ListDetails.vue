@@ -1,6 +1,5 @@
 <template>
   <div>
-    <create-item-form />
     <div id="toggleClaim">
       <div v-show="this.list && this.list.claimedId != 0">
         <button
@@ -46,16 +45,15 @@
         <br />
       </div>
     </div>
-
-    <div id="listItems">
+     <div id ="container">
+        <create-item-form />
       <item-card
         v-for="item in items"
         v-bind:key="item.dateModified"
         v-bind:itemID="item.itemId"
         :class="{complete : listComplete==true}"
       />
-      {{ items }}
-    </div>
+     </div>
   </div>
 </template>
 
@@ -168,3 +166,13 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+#container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  width: 100%;
+  height: 500px;
+}
+</style>
