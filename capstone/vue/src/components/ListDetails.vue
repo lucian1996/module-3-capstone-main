@@ -18,7 +18,6 @@
       </v-toolbar-items>
 
 
-    <create-item-form />
     <div id="toggleClaim">
       <div v-show="this.list && this.list.claimedId != 0">
         <button
@@ -64,8 +63,9 @@
         <br />
       </div>
     </div>
-     <div id ="container">
-        <create-item-form />
+    <div @click="logLists()">log lists</div>
+     <div  data-app id ="container">
+     <create-item-form/>
       <item-card
         v-for="item in items"
         v-bind:key="item.dateModified"
@@ -73,6 +73,7 @@
         :class="{complete : listComplete==true}"
       />
      </div>
+     {{items}}
   </div>
 </template>
 
@@ -127,7 +128,6 @@ export default {
         this.$route.params.listID
       ).then((response) => {
         this.$store.commit("SET_ITEMS", response.data);
-        console.log("here are items", this.items);
       });
     },
     completeList() {
@@ -171,7 +171,9 @@ export default {
         }
       })
     },
-   
+   logLists () {
+       console.table(this.$store.state.lists);
+     }
   },
   created() {
     this.getItems();
@@ -181,11 +183,11 @@ export default {
     list() {
       return this.$store.state.list.find(
         (l) =>
-          l.listId == this.$route.params.listID &&
-          l.groupId == this.$route.params.groupID
+          l.listId == this.$route.params.listID
       );
     },
     items() {
+      console.log('items in state', this.$store.state.items)
       return this.$store.state.items;
     },
   },

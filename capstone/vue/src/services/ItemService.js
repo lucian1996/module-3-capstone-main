@@ -10,12 +10,11 @@ export default {
         return axios.get(`/groups/${groupID}/lists/${listID}/items`)
     },
     createItem(groupID, listID, item) {
-        console.log(groupID, listID, item.name, item.quantity)
         return axios.post(`groups/${groupID}/lists/${listID}/items?itemName=${item.name}&quantity=${item.quantity}`)
     },
     
     editItem(item) {
-        console.log('edit item', item)
+        console.table('item that ie being updated', item)
         return axios.put(`groups/${item.groupId}/lists/${item.listId}/items/${item.itemId}`, item)
     },
 

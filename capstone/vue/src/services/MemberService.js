@@ -7,7 +7,6 @@
 
 export default {
    getMembers(groupID) {
-        console.log(axios.get(`/groups/${groupID}/members`), 'axios call')
         return axios.get(`/groups/${groupID}/members`)
     }
    }

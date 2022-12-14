@@ -20,19 +20,16 @@ export default {
 
   methods : {
     markComplete () { 
-      this.item.status = 'complete';
-      console.table(this.item)
+      this.item.status = false;
       ItemService.editItem(this.item)
       },
       log() {
-        console.log('item id here', this.itemID)
       },
     editItem() {
       this.item.quantity = this.quantity;
-      console.log(this.item.quantity)
       this.item.itemName = this.name;
       console.table(this.item)
-      ItemService.editItem(this.item.groupId, this.item.listId, this.item.itemId,this.item).then (r =>console.log('here is the edit item response', r.data))
+      ItemService.editItem(this.item.groupId, this.item.listId, this.item.itemId,this.item)
     },
      removeItem() {
       ItemService.removeItem(this.item.groupId, this.item.listId, this.item.itemId).then(response => {
@@ -44,11 +41,12 @@ export default {
     }
     },
     created () {
+      
     },
     computed : {
       item () {
         return this.$store.state.items.find (i => 
-          i.itemId = this.itemID
+          i.itemId == this.itemID
         )
       }
     }

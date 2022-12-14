@@ -51,7 +51,7 @@ export default {
       .then(r => {
         console.warn(r)
         if (r == 201) {
-          console.log('here')
+
         this.$store.commit("ADD_ITEM", r.data)
         // this.$router.go()
        }})

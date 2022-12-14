@@ -17,7 +17,6 @@ export default {
   name: "list-card",
   props: ["list"],
   created() {
-    console.log("here", this.list.listId);
   },
 };
 </script>

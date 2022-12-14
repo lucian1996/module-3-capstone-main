@@ -1,18 +1,5 @@
 <template>
   <div>
-    <v-toolbar app>
-      <span class="hidden-sm-and-up">
-        <v-toolbar-side-icon @click="sidebar = !sidebar"> </v-toolbar-side-icon>
-      </span>
-      <v-toolbar-title>{{ appTitle }}</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-toolbar-items class="hidden-xs-only">
-        <v-btn flat v-for="item in menuItems" :key="item.title" :to="item.path">
-          {{ item.title }}
-        </v-btn>
-      </v-toolbar-items>
-    </v-toolbar>
-
     <v-content id="main" class="d-flex align-center justify-center">
       <router-view></router-view>
     </v-content>

@@ -31,12 +31,15 @@ public class JdbcItemDao implements ItemDao {
     public void createItem(Item item) {
         String sql = "INSERT INTO list_item (date_modified, quantity, last_modifier, list_id, group_id, item_name, status) VALUES (?, ?, ?, ?, ?, ?, ?)";
         //System.out.println(jdbcTemplate.update(sql, utilDao.currentDay(), item.getQuantity(), item.getLastModifier(), item.getListId(), item.getGroupId(), item.getItemName(), null, null));
+        System.out.println(item.toString());
         try {
-            jdbcTemplate.update(sql, utilDao.currentDay(), item.getQuantity(), item.getLastModifier(), item.getListId(), item.getGroupId(), item.getItemName(), null, false) ;
+            jdbcTemplate.update(sql, utilDao.currentDay(), item.getQuantity(), item.getLastModifier(), item.getListId(), item.getGroupId(), item.getItemName(), false) ;
         } catch (DataAccessException e) {
             throw new CreateException(e);
         }
     }
+
+
     //TODO: make sure implementation works currently does not
     @Override
     public void deleteItem(int itemId) {

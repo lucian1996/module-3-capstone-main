@@ -72,22 +72,16 @@ export default {
   },
   methods: {
     retrieveGroup() {
-      console.log('groupID', this.groupID)
-      console.log("In components > GroupDetails > retrieveGroup");
+
       GroupService.getGroup(this.$route.params.groupID).then((response) => {
         this.$store.commit("SET_CURRENT_GROUP", response.data);
-        console.log(response, "retrieveGroup response");
       });
     },
     //shouldn't this be elsewhere?
     removeUser() {
-      console.log(
-        "In components > GroupDetails > removeUser",
-        this.$route.params.groupID
-      );
-      GroupService.removeUser(this.$route.params.groupID).then((response) => {
+  
+      GroupService.removeUser(this.$route.params.groupID).then(() => {
         this.$router.push(`/`);
-        console.log(response, "removeUser response");
       })
       .catch((error => {
         const response = error.response
@@ -100,20 +94,17 @@ export default {
     retrieveMembers() {
      MemberService.getMembers(this.$route.params.groupID).then((response) => {
         this.$store.commit("SET_CURRENT_MEMBERS", response.data);
-        console.log(response.data, "retrieveMembers response");
      });
     },
 
     groupDate() {
       
-      GroupService.getGroupCreatedDate(this.group.groupID).then((response) =>
-      {console.log(response, "groupDate response")})
+      GroupService.getGroupCreatedDate(this.group.groupID)
     }
   },
   created() {
     this.retrieveGroup();
     this.retrieveMembers();
-    console.log(this.group);
   },
   computed: {
     group() {

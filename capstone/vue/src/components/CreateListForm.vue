@@ -37,11 +37,7 @@ import ListService from "../services/ListService";
 
 export default {
   name: "create-list-form",
-  props: {
-    groupID: {
-      default: 0,
-    },
-  },
+  
   data() {
     return {
       dialog: false,

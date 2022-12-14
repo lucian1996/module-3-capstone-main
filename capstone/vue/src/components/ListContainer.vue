@@ -17,13 +17,16 @@
         </v-btn> 
       </v-toolbar-items> -->
 
-  <div id="container">
-    <create-list-form  v-bind:groupID="groupID"/>
-    <list-card
+  <div data-app id="container">
+      <create-list-form />
+
+     <list-card
       v-for="list in lists"
       v-bind:key="list.listId"
       v-bind:list="list" />
+
   </div>
+   {{lists}}
 </div>
 </template>
 
@@ -35,14 +38,10 @@ export default {
   components: { ListCard, CreateListForm },
 
   name: "list-container",
-  props: {
-    groupId: {
-      default: 0,
-    },
-  },
+
+
   data() {
     return { 
-      retrieveLists: false,
       appTitle: 'Fridgrr',
       menuItems: [
           { title: 'group', path: '/groups' },
@@ -52,36 +51,23 @@ export default {
   },
   methods: {
     getLists() {
-      console.log("list container", this.groupId);
-      ListService.getLists(this.groupId)
+     ListService.getLists(this.$route.params.groupID)
       .then((response) => {
-        this.$store.commit("SET_CURRENT_LISTS", response.data);
-        console.log(response, "response");
-        this.retrieveLists = true;
-      });
+        this.$store.commit("SET_CURRENT_LISTS", response.data)
+        console.log(this.$store.state.list)
+     });
     },
   },
   created() {
-    console.log("In components > ListContainer > create");
+
     this.getLists();
-    console.log(this.lists);
+    console.log(this.$route.params.groupID)
   },
 
   computed: {
     lists() {
-      console.log(this.groupId, "groupId in lists()", this.retrieveLists);
-      if (this.groupId == 0) {
-        console.log("made it to first if");
-        return [];
-      } else if (this.retrieveLists) {
-        console.log("made to else if");
-        return this.$store.state.list;
-      } else {
-        this.getLists();
-        console.log("made to else");
-        return [];
-      }
-    },
+       return this.$store.state.list;
+    }
   },
 };
 </script>

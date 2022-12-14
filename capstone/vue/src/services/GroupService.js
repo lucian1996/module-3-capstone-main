@@ -20,19 +20,15 @@ export default {
       //button @click="removeUser({{$store.state.user.userID}}, {{$store.state.group.groupID}})">
       //in GroupDetails
       removeUser(groupID) {
-        console.log("removeUser", groupID)
         return axios.delete(`/groups/${groupID}/members`)
     },
     addUser(groupID, groupCode) {
-        console.log("addUser", groupID, groupCode)
         return axios.post(`/groups/${groupID}/members?groupCode=${groupCode}`)
     },
     getMemberByUsername(groupID, username) {
-        console.log("getAllMembers", groupID, username)
         return axios.get(`/groups/${groupID}/members/${username}`)
     },
     getGroupCreatedDate(groupID) {
-        console.log("GroupDate", groupID)
         return axios.get(`/groups/${groupID}/created`)
     }
 }

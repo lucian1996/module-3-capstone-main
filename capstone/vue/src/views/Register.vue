@@ -83,11 +83,7 @@ export default {
         this.registrationErrors = true;
         this.registrationErrorMsg = "Password field cannot be blank.";
       } else {
-        console.log(
-        "In register > register",
-        this.user.username,
-        this.user.password
-      );
+
         authService
           .register(this.user)
           .then((response) => {

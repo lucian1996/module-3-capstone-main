@@ -1,19 +1,5 @@
 <template>
 <div>
-
-
-      <!-- <v-spacer></v-spacer>
-      <v-toolbar-items>
-        <v-btn
-          flat
-          v-for="item in menuItems"
-          :key="item.title"
-          :to="item.path">
-          {{ item.title }}
-        </v-btn>
-      </v-toolbar-items> -->
-
-
       <group-list/>
   </div>
 

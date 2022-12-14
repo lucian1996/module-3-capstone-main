@@ -19,11 +19,6 @@
 import GroupService from "../services/GroupService";
 export default {
   name: "join-group-form",
-
-  //   mounted() {
-  //   let data = this.$route.params;
-  //   console.log("data is", data.list.listId);
-  // }
   data() {
     return { inviteCode: "", 
     joinErrors: false,
@@ -36,18 +31,13 @@ export default {
         this.joinErrors = true;
         this.joinErrorMsg = "Invalid invite code.";
       } else {
-      console.log(
-        "In components > JoinGroupForm > addUser",
-        this.group.groupId,
-        this.inviteCode
-      );
+  
       GroupService.addUser(
         this.group.groupId,
         this.inviteCode,
         this.group.groupCode
-      ).then((response) => {
+      ).then(() => {
         this.$router.push(`/groups/${this.group.groupId}`);
-        console.log(response, "addUser response");
       })
       .catch((error => {
         const response = error.response

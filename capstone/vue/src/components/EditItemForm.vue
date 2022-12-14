@@ -50,13 +50,10 @@ export default {
     methods : {
      submit() {
       this.item.quantity = this.quantity;
-      console.log(this.item.quantity)
       this.item.itemName = this.name;
-      console.table(this.item)
-      ItemService.editItem(this.item).then (r =>console.log('here is the edit item response', r.data))
+      ItemService.editItem(this.item)
     },
     log () {
-      console.log('edit item', this.itemID)
     }
     },
    computed : {

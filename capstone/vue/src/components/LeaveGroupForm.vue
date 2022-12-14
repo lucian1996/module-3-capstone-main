@@ -25,10 +25,8 @@ export default {
 
   methods: {
     removeMemberFromGroup() {
-      console.log("Attempt to remove user from group");
-      GroupService.removeUser(this.group.groupId).then((response) => {
+      GroupService.removeUser(this.group.groupId).then(() => {
         this.$router.push("/");
-        console.log(response, "removeUser response");
       });
     },
   },
