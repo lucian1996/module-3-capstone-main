@@ -62,9 +62,21 @@ export default {
   },
   methods: {
     register() {
+      if (this.use.username.length <= 0) {
+        this.registrationErrors = true;
+        this.registrationErrorMsg = "Username field cannot be blank.";
+      } 
+       if (this.use.username.length > 36) {
+        this.registrationErrors = true;
+        this.registrationErrorMsg = "Username cannot be more than 36 characters.";
+      } 
       if (this.user.password != this.user.confirmPassword) {
         this.registrationErrors = true;
         this.registrationErrorMsg = "Password & Confirm Password do not match.";
+      } 
+       if (this.user.password.length <= 0) {
+        this.registrationErrors = true;
+        this.registrationErrorMsg = "Password field cannot be blank.";
       } else {
         authService
           .register(this.user)
