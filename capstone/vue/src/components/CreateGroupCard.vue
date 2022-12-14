@@ -52,10 +52,6 @@ export default {
   },
   methods: {
     createGroup() {
-      if (this.group.groupName == "") {
-        this.groupErrors = true;
-        this.groupErrorMsg = "The group name cannot be blank."
-      }
       GroupService.createGroup(this.group).then((response) => {
         if (response.status == 201) {
           this.dialog = false
