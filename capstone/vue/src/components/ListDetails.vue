@@ -48,17 +48,12 @@ export default {
   },
   methods: {
     claimList() {
-      console.log(this.list.claimedId)
       ListService.claimList(this.list.groupId, this.list.listId).then(response => {
         if(response.status == 200)
-      console.log(this.$store.state.user.id)
-      console.log(response)
       this.$store.commit('UPDATE_CLAIMED_ID', {listId: this.list.listId, userId: this.$store.state.user.id})
-      console.log(this.list.claimedId)
       })
         },
     unclaimList() {
-      // check listId is not null
       ListService.unclaimList(this.list.groupId, this.list.listId).then(response => {
         if(response.status == 200) {
           this.$store.commit('UPDATE_CLAIMED_ID', {listId: this.list.listId, userId: 0})
@@ -80,9 +75,6 @@ export default {
         ListService.markListComplete(this.list.groupId, this.list.listId, this.isComplete).then(response => {
           if(response.status == 200) {
            this.$store.commit('MARK_LIST_COMPLETE', {groupId: this.list.groupId, listId: this.list.listId, isComplete: this.isComplete})
-            // for (this.item in this.list.listId) {
-            //   ItemService.markItemComplete(this.list.groupId, this.list.listId, this.item.id, this.isComplete)
-            // }
           }
         })
       },
