@@ -65,7 +65,9 @@ export default {
           { title: 'group', path: '/groups' },
           { title: 'logout', path: '/login' },
      ],
-  }
+    groupErrors: false,
+    groupErrorMsg: "There was a problem that prevented this action from completing."
+   };
   },
   methods: {
     retrieveGroup() {
@@ -76,7 +78,6 @@ export default {
         console.log(response, "retrieveGroup response");
       });
     },
-    //todo mutation to discard current group from $store?
     //shouldn't this be elsewhere?
     removeUser() {
       console.log(
@@ -86,7 +87,14 @@ export default {
       GroupService.removeUser(this.$route.params.groupID).then((response) => {
         this.$router.push(`/`);
         console.log(response, "removeUser response");
-      });
+      })
+      .catch((error => {
+        const response = error.response
+        this.groupErrors = true;
+        if (response.status === 400) {
+          this.groupErrorMsg = error.response.data.message;
+        }
+      }));
     },
     retrieveMembers() {
      MemberService.getMembers(this.$route.params.groupID).then((response) => {

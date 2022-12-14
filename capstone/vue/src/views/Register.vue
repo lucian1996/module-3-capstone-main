@@ -81,12 +81,17 @@ export default {
       } 
       if (this.user.password != this.user.confirmPassword) {
         this.registrationErrors = true;
-        this.registrationErrorMsg = "Password & Confirm Password do not match.";
+        this.registrationErrorMsg = "Password and confirmation must be identical.";
       } 
        if (this.user.password.length <= 0) {
         this.registrationErrors = true;
         this.registrationErrorMsg = "Password field cannot be blank.";
       } else {
+        console.log(
+        "In register > register",
+        this.user.username,
+        this.user.password
+      );
         authService
           .register(this.user)
           .then((response) => {
