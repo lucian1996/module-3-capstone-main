@@ -53,8 +53,26 @@ export default {
   }),
 };
 </script>
-<style>
+<style scoped>
 .form-card {
   padding: 16px;
+}
+body {
+  margin-left: 10%;
+  margin-right: 10%;
+  text-align: center;
+}
+v-card {
+  text-align:center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+div {
+  text-align:center;
+}
+.v-application a {
+    color: black;
+    text-decoration: none;
 }
 </style>

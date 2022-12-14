@@ -1,10 +1,12 @@
 <template>
   <v-app>
-      <create-group-card/>
+      <div id ="container">
+        <create-group-card/>
         <group-card
-      v-for="group in groups"
-      v-bind:key="group.groupId"
-      v-bind:group="group" />
+          v-for="group in groups"
+          v-bind:key="group.groupId"
+          v-bind:group="group" />
+      </div>
   </v-app>
 </template>
 
@@ -29,6 +31,12 @@ export default {
 };
 </script>
 
-<style>
-
+<style scoped>
+#container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+  height: 500px;
+}
 </style>

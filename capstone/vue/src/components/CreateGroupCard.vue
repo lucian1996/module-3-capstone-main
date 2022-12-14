@@ -4,14 +4,12 @@
         width="600px"
       >
         <template v-slot:activator="{ on, attrs }">
-          <v-btn
-            color="red lighten-2"
-            dark
+          <v-card
             v-bind="attrs"
             v-on="on"
           >
-            Click Me
-          </v-btn>
+            +
+          </v-card>
         </template>
   
         <v-card class="form-card">
@@ -26,7 +24,7 @@
               v-model="group.groupDescription">
               </v-textarea>
               <v-row justify="center">
-                 <v-btn @click="createGroup()" color="primary" elevation="2">Save</v-btn>
+                 <v-btn @click="createGroup()" color="primary" elevation="2">Create</v-btn>
               </v-row>
             </v-form>
         </v-card>
