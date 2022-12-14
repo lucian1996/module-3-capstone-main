@@ -1,44 +1,22 @@
 <template>
-       <div >
+       <v-card >
         <div>
             <div></div>
-            <button @click="markComplete">mark complete</button>
-            <button>Edit item</button>
-            <button @click="removeItem">Remove Item</button>
-            <form v-on:submit.prevent="editItem">
-              <div>
-                 <label for="quantity">Quantity</label>
-                  <input
-                  v-model.number="quantity"
-                  value=''/>
-              </div>
-              <div>
-                <label for="name">Name</label>
-                <input
-                  v-model="name"
-                  value="test"
-                  id ="name"/>
-              </div>
-              <button type="submit">Save</button>
-            </form>
+            <v-btn @click="markComplete">mark complete</v-btn>
+            <edit-item-form/>
         </div>
-        </div>
+        </v-card>
 </template>
 
 <script>
 import ItemService from '../services/ItemService'
-//import ItemService from '../services/ItemService'
+import EditItemForm from './EditItemForm.vue';
 
 export default {
+  components: {EditItemForm},
   name: 'item-card',
-  props: ['itemID'],
 
-  data () {
-    return {
-      quantity: 0,
-      name: '',
-    }
-  },
+
 
   methods : {
     markComplete () { 

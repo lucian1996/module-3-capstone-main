@@ -1,48 +1,16 @@
 <template>
 
   <div>
-  
-    <v-toolbar app>
-      <v-toolbar-title id="title">
-          {{ appTitle }}
-      </v-toolbar-title>
-    </v-toolbar>
-      <!-- <v-spacer></v-spacer>
-      <v-toolbar-items>
-        <v-btn
-          flat
-          v-for="item in menuItems"
-          :key="item.title"
-          :to="item.path">
-          {{ item.title }}
-        </v-btn> 
-      </v-toolbar-items> -->
-
-    
-
-    <!-- <div id="nav">
-      <div>
-        <router-link v-bind:to="{ name: 'home' }">Home</router-link> &nbsp;
-        <button>Filter</button>
-      </div>
-      <div>
-        <router-link
-          v-bind:to="{ name: 'editUser' }"
-          v-if="$store.state.token != ''"
-          >{{ $store.state.user.username }}</router-link> &nbsp;|&nbsp;
-        <router-link
-          v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
-      </div>
-    </div> -->
-      <login/>
+    <h1>Welcome, {{ $store.state.user.username }}.</h1>
+      <group-list />
   </div>
 </template>
 
 <script>
 // import GroupList from "../components/GroupList.vue";
-import Login from './Login.vue';
+// import Login from './Login.vue';
 export default {
-  components: { Login },
+  components: {  },
   name: "home",
   data(){
     return {

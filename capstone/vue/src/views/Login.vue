@@ -1,6 +1,10 @@
 <template>
   <div>
-    
+    <v-toolbar app>
+        <v-toolbar-title id="title">
+          {{ appTitle }}
+        </v-toolbar-title>
+      </v-toolbar>
      
 
 
@@ -94,7 +98,8 @@ export default {
     },
   },
   created() {
-
+    //this.$store.commit("LOGOUT")
+    
   }
 };
 </script>
