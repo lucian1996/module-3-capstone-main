@@ -12,19 +12,18 @@
           v-if="$store.state.token != ''"
           >{{ $store.state.user.username }}</router-link> &nbsp;|&nbsp;
         <router-link
-          v-bind:to="{ name: 'logout' }"
-          v-if="$store.state.token != ''"
-          >Logout</router-link>
+          v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
       </div>
     </div> -->
-      <group-list />
+      <login/>
   </div>
 </template>
 
 <script>
-import GroupList from "../components/GroupList.vue";
+// import GroupList from "../components/GroupList.vue";
+import Login from './Login.vue';
 export default {
-  components: { GroupList },
+  components: { Login },
   name: "home",
 };
 </script>

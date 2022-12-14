@@ -3,22 +3,22 @@
   <v-app>
     <v-navigation-drawer v-model="sidebar" app>
       <v-list>
+
         <v-list-tile
           v-for="item in menuItems"
           :key="item.title"
           :to="item.path">
           <v-list-tile-action>
           </v-list-tile-action>
+
           <v-list-tile-content>{{ item.title }}</v-list-tile-content>
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
 
     <v-toolbar app>
-      <span class="hidden-sm-and-up">
-        <v-toolbar-side-icon @click="sidebar = !sidebar">
-        </v-toolbar-side-icon>
-      </span>
+
+      
       <v-toolbar-title>
           {{ appTitle }}
       </v-toolbar-title>
@@ -31,6 +31,7 @@
           :to="item.path">
           {{ item.title }}
         </v-btn>
+        
       </v-toolbar-items>
     </v-toolbar>
     
@@ -41,7 +42,6 @@
 </template>
 
 <script>
-
 export default {
 name: "App",
   data(){
@@ -49,36 +49,15 @@ name: "App",
       appTitle: 'Fridgrr',
       sidebar: false,
       menuItems: [
-          { title: 'Group', path: '/groups' },
-          { title: 'Logout', path: '/login' },
-     ]
+          { title: 'group', path: '/groups' },
+          { title: 'logout', path: '/login' },
+     ],
     }
   }
 };
 </script>
-<style scoped>
+<style>
 .form-card {
   padding: 16px;
 }
-body {
-  text-align: center;
-}
-body {
-    min-height: 100vh;
-    max-width: 400px;
-    background-color: papayawhip; 
-    margin: 0 auto;
-}
-v-card {
-  text-align:center;
-  
-}
-div {
-  text-align:center;
-}
-.v-application a {
-    color: black;
-    text-decoration: none;
-}
-
 </style>
