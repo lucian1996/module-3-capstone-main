@@ -1,23 +1,36 @@
 <template>
- <div class="card" :class="[{active: isActive}]">
-   <div @click="setStatus()" v-show="!isActive">+</div>
-    <form v-show="isActive" v-on:submit.prevent>
-    <div v-show="phase == 1">
-      <div>Name</div>
-      <textarea
-      placeholder="enter the group name"
-      v-model="group.groupName" />
-      <button @click="goToNextPhase()">Next</button>
-    </div>
-    <div v-show="phase == 2">
-      <div>Description</div>
-      <textarea
-      placeholder="enter the description"
-      v-model="group.groupDescription"></textarea>
-    <button @click="createGroup()">Create</button>
-    </div>
-  </form>
- </div>
+      <v-dialog @click="dialog = true"
+        v-model="dialog"
+        width="600px"
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            color="red lighten-2"
+            dark
+            v-bind="attrs"
+            v-on="on"
+          >
+            Click Me
+          </v-btn>
+        </template>
+  
+        <v-card class="form-card">
+              <v-form v-on:submit.prevent>
+              <v-text-field
+              label="Name"
+              placeholder="enter the group name"
+              v-model="group.groupName"/>
+              <v-textarea
+              label="Description"
+              placeholder="enter the description"
+              v-model="group.groupDescription">
+              </v-textarea>
+              <v-row justify="center">
+                 <v-btn @click="createGroup()" color="primary" elevation="2">Save</v-btn>
+              </v-row>
+            </v-form>
+        </v-card>
+      </v-dialog>
 </template>
 
 <script>
@@ -27,8 +40,7 @@ export default {
   name: "create-group-card",
   data() {
     return {
-      isActive: false,
-      phase: 0,
+      dialog: false,
       group: {
         groupDescription: "",
         groupId: "",
@@ -39,23 +51,10 @@ export default {
     };
   },
   methods: {
-    setStatus() {
-      if (!this.isActive) {
-        this.isActive = true;
-        this.phase = 1
-        console.log('here')
-      }
-      else {
-        this.isActive = false;
-        console.log('there')
-      }
-    },
-    goToNextPhase() {
-        this.phase = 2
-    },
     createGroup() {
       GroupService.createGroup(this.group).then((response) => {
         if (response.status == 201) {
+          this.dialog = false
           this.setStatus();
         }
       });

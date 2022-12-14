@@ -1,12 +1,12 @@
 <template>
-    <div class="card" >
+    <v-card >
     <router-link :class="{ disabled: !memberStatus }"
       v-bind:to="{
         name: 'group-details',
         params: { groupID: this.group.groupId },
       }"
     >
-      <div class="container btn" role="button">
+      <div role="button">
         <div>{{ group.groupName }}</div>
       </div>
     </router-link>
@@ -22,7 +22,7 @@
         <button>join</button>
       </router-link>
     </div>
-  </div>
+  </v-card>
   
 </template>
 

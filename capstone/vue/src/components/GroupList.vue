@@ -1,11 +1,11 @@
 <template>
-  <div class="container">
+  <v-app>
       <create-group-card/>
-      <group-card
+        <group-card
       v-for="group in groups"
       v-bind:key="group.groupId"
       v-bind:group="group" />
-  </div>
+  </v-app>
 </template>
 
 <script>
