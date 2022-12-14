@@ -90,4 +90,22 @@ public class ItemController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not update item");
         }
     }
+
+    @PutMapping("/isComplete")
+    public void itemComplete(@PathVariable int groupId, @PathVariable int listId) {
+        try {
+            itemDao.itemComplete(groupId, listId);
+        } catch (UpdateException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not update item");
+        }
+    }
+
+    @PutMapping("/isIncomplete")
+    public void itemIncomplete(@PathVariable int groupId, @PathVariable int listId) {
+        try {
+            itemDao.itemIncomplete(groupId, listId);
+        } catch (UpdateException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not update item");
+        }
+    }
 }

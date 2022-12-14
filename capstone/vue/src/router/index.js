@@ -10,6 +10,7 @@ import EditUser from "../views/EditUser.vue";
 import ListDetails from "../components/ListDetails.vue";
 import JoinGroupForm from "../components/JoinGroupForm.vue";
 import LeaveGroupForm from "../components/LeaveGroupForm.vue";
+import Groups from "../views/Groups.vue"
 
 Vue.use(Router);
 
@@ -61,7 +62,7 @@ const router = new Router({
     {
       path: "/groups",
       name: "groups",
-      component: Home,
+      component: Groups,
       meta: {
         requiresAuth: true,
       },

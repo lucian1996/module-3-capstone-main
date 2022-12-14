@@ -11,7 +11,7 @@ public class Item {
     private int listId;
     @NotEmpty
     private int groupId;
-    private String Status;
+    private boolean status;
     @NotEmpty
     private String dateModified;
     //TODO: lastModifier defaults to creator of the list.
@@ -85,12 +85,12 @@ public class Item {
 
 
 
-    public String getStatus() {
-        return Status;
+    public boolean getStatus() {
+        return status;
     }
 
-    public void setStatus(String purchaseStatus) {
-        this.Status = purchaseStatus;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     @Override
