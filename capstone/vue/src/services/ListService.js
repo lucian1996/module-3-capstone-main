@@ -25,5 +25,8 @@ export default {
     },
     unclaimList(groupID, listID) {
         return axios.put(`groups/${groupID}/lists/${listID}/unclaim`)
+    },
+    markListComplete(groupID, listID, isComplete) {
+        return axios.put(`groups/${groupID}/lists/${listID}/${isComplete}`)
     }
 }

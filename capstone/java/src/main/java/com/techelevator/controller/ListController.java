@@ -139,6 +139,15 @@ public class ListController {
         }
     }
 
+    @PutMapping("/{listId}/isComplete")
+    public void completeList(@PathVariable int groupId, @PathVariable int listId, @PathVariable boolean listComplete) {
+        try {
+            listDao.completeList(groupId, listId, listComplete);
+        } catch (UpdateException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not update list");
+        }
+    }
+
 
     private boolean isOwner (String username,int ownerId){
         int userId = userDao.findIdByUsername(username);
