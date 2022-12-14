@@ -1,5 +1,5 @@
 <template>
-    <v-card class="d-flex align-center justify-center"  min-height="250" >
+    <v-card  class="d-flex align-center justify-center"  min-height="250" min-width="250" >
     <router-link :class="{ disabled: !memberStatus }"
       v-bind:to="{
         name: 'group-details',
@@ -18,7 +18,7 @@
           params: {
             group: this.group,
           },
-        }">
+        }"> <br>
         <button>join</button>
       </router-link>
     </div>
@@ -53,6 +53,3 @@ export default {
 }
 </script>
 
-<style>
-
-</style>

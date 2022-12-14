@@ -1,11 +1,8 @@
 <template>
 <div>
-    <v-toolbar app>
-      <v-toolbar-title id="title">
-          {{ appTitle }}
-      </v-toolbar-title>
 
-      <v-spacer></v-spacer>
+
+      <!-- <v-spacer></v-spacer>
       <v-toolbar-items>
         <v-btn
           flat
@@ -14,8 +11,7 @@
           :to="item.path">
           {{ item.title }}
         </v-btn>
-      </v-toolbar-items>
-    </v-toolbar>
+      </v-toolbar-items> -->
 
 
       <group-list/>
