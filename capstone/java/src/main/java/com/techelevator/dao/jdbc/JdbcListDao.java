@@ -129,6 +129,15 @@ public class JdbcListDao implements ListDao {
             throw new UpdateException(e);
         }
     }
+    @Override
+    public void incompleteList(int groupId, int listId) {
+        String sql = "UPDATE list SET list_completed = false WHERE group_id = ? AND list_id = ?;";
+        try {
+            jdbcTemplate.update(sql, groupId, listId);
+        } catch (UpdateException e) {
+            throw new UpdateException(e);
+        }
+    }
 
     private List mapRowToList(SqlRowSet rs) {
         List list = new List();

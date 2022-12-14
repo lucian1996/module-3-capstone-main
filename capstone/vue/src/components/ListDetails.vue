@@ -6,8 +6,12 @@
       <button v-show="this.list && this.$store.state.user.id == this.list.claimedId"
               @click="unclaimList()"
               >Unclaim</button> 
-        <button v-show="this.list && this.$store.state.user.id == this.list.claimedId"
+        <button v-show="this.list && this.$store.state.user.id == this.list.claimedId
+                        && this.list.listCompleted == false"
           @click="completeList()">Mark List complete</button>
+          <button v-show="this.list && this.$store.state.user.id == this.list.claimedId 
+                            && this.list.listCompleted == true"
+          @click="ListIncomplete()">Mark List Incomplete</button>
       <div v-show="this.list && this.$store.state.user.id != this.list.claimedId">
             <br> Claimed by another User
       </div>
@@ -79,6 +83,14 @@ export default {
             // for (this.item in this.list.listId) {
             //   ItemService.markItemComplete(this.list.groupId, this.list.listId, this.item.id, this.isComplete)
             // }
+          }
+        })
+      },
+      ListIncomplete() {
+        this.listComplete = false;
+        ListService.markListIncomplete(this.list.groupId, this.list.listId).then(response => {
+          if(response.status == 200) {
+            this.$store.commit('MARK_LIST_INCOMPLETE', {groupId: this.list.groupId, listId: this.list.listId, isComplete: this.isComplete})
           }
         })
       }

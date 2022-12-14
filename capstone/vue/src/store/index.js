@@ -79,6 +79,11 @@ export default new Vuex.Store({
     MARK_LIST_COMPLETE(state, GroupListComplete) {
     let curList = state.list.find(l => l.listId == GroupListComplete.listId)
     curList.listCompleted = true;
-  }
+  },
+  MARK_LIST_INCOMPLETE(state, GroupListComplete) {
+    let curList = state.list.find(l => l.listId == GroupListComplete.listId)
+    curList.listCompleted = false;
+  },
+
 }
 })

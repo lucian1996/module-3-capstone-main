@@ -28,5 +28,8 @@ export default {
     },
     markListComplete(groupID, listID) {
         return axios.put(`groups/${groupID}/lists/${listID}/isComplete`)
+    },
+    markListIncomplete(groupID, listID) {
+        return axios.put(`groups/${groupID}/lists/${listID}/isIncomplete`)
     }
 }
