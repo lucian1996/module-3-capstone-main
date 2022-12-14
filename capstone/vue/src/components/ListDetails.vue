@@ -1,5 +1,24 @@
 <template>
   <div>
+
+    <v-toolbar app>
+      <v-toolbar-title id="title">
+          {{ appTitle }}
+      </v-toolbar-title>
+    </v-toolbar> 
+      <v-spacer></v-spacer>
+      <v-toolbar-items>
+        <v-btn
+          flat
+          v-for="item in menuItems"
+          :key="item.title"
+          :to="item.path">
+          {{ item.title }}
+        </v-btn> 
+      </v-toolbar-items>
+
+
+    <create-item-form />
     <div id="toggleClaim">
       <div v-show="this.list && this.list.claimedId != 0">
         <button
@@ -68,6 +87,12 @@ export default {
   data() {
     return {
       listComplete: "",
+      appTitle: 'Fridgrr',
+      menuItems: [
+          { title: 'group', path: '/groups' },
+          { title: 'logout', path: '/login' },
+          { title: 'members', path: '/members'},
+             ]
     };
   },
   methods: {
@@ -79,6 +104,7 @@ export default {
               listId: this.list.listId,
               userId: this.$store.state.user.id,
             });
+            // this.$router.go()
         }
       );
     },
@@ -90,6 +116,7 @@ export default {
               listId: this.list.listId,
               userId: 0,
             });
+            // this.$router.go()
           }
         }
       );
@@ -120,6 +147,7 @@ export default {
       ItemService.markItemsComplete(this.list.groupId, this.list.listId).then(response => {
         if (response.status == 200) {
           this.listComplete = true;
+          // this.$router.go()
         }
       })
     },
@@ -139,9 +167,11 @@ export default {
       ItemService.markItemsIncomplete(this.list.groupId, this.list.listId).then(response => {
         if (response.status == 200) {
            this.listComplete = false;
+          //  this.$router.go()
         }
       })
     },
+   
   },
   created() {
     this.getItems();
@@ -161,8 +191,25 @@ export default {
   },
 };
 </script>
-
-<style scoped>
+<style>
+#filter {
+  display: flex;
+}
+#title{
+  font-family:    'Courier New', Courier, monospace;
+  font-size:      50px;
+  font-weight:    bold;
+  color:          whitesmoke;
+  text-shadow: 1.5px 1.5px 0px lightcoral;
+}
+.v-btn__content{
+  font-family:    'Courier New', Courier, monospace;
+  font-size:      15px;
+  font-weight:    bolder;
+}
+.v-toolbar__content{
+  background-color: #0EAD69;
+}
 #container {
   display: grid;
   grid-template-columns: 1fr;

@@ -64,14 +64,14 @@ public class ItemController {
         }
     }
 
-    @DeleteMapping("")
+    @DeleteMapping("/{itemId}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteItem(@PathVariable int groupId, @PathVariable int listId, @RequestBody Item item, Principal principal) {
+    public void deleteItem(@PathVariable int groupId, @PathVariable int listId, @PathVariable int itemId, Principal principal) {
         if (!utilDao.isVerified(principal.getName(), groupId)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "you do not have permission");
         }
         try {
-             itemDao.deleteItem(item);
+             itemDao.deleteItem(itemId);
         } catch (DeleteException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not delete item");
         }

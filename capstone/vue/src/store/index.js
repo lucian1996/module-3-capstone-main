@@ -85,8 +85,12 @@ export default new Vuex.Store({
   MARK_LIST_INCOMPLETE(state, GroupListComplete) {
     let curList = state.list.find(l => l.listId == GroupListComplete.listId)
     curList.listCompleted = false;
-    let items = state.items.filter(i => i.listId = GroupListComplete.listId)
+    let items = state.items.filter(i => i.listId == GroupListComplete.listId)
     items.map(i => {return i.status = false})
+  },
+  DELETE_ITEM(state, itemID) {
+    this.items = state.items.filter (i => i.itemId != itemID)
+
   }
 }
 })

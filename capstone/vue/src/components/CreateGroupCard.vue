@@ -59,7 +59,7 @@ export default {
       GroupService.createGroup(this.group).then((response) => {
         if (response.status == 201) {
           this.dialog = false
-          this.setStatus();
+          this.$router.go()
         }
       });
     },

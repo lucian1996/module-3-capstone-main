@@ -7,9 +7,6 @@
           v-bind:key="group.groupId"
           v-bind:group="group" />
       </div>
-      <div v-if="noGroups">
-        There are no groups available to join. Maybe you should create one?
-      </div>
   </v-app>
 </template>
 
@@ -28,9 +25,6 @@ export default {
   },
   created() {
     GroupService.getGroups().then((response) => {
-      if (response.data=="") {
-        this.noGroups = true;
-      }
       this.groups = response.data;
     });
   },
@@ -41,8 +35,11 @@ export default {
 #container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  /* display:flex; */
+  
+  
   gap: 20px;
-  width: 100%;
-  height: 500px;
+  /* max-width: 1200px;
+  min-width: 700px; */
 }
 </style>

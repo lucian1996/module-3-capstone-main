@@ -4,7 +4,7 @@
 
        <v-toolbar app>
       <v-toolbar-title id="title">
-          {{ appTitle }}
+          {{ appTitle }}  \ {{group.groupName}}
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
@@ -33,7 +33,7 @@
           >Logout</router-link>
       </div> -->
     </div>
-    <h1>{{ group.groupName }}</h1>
+    <h1>{{  }}</h1>
     <h2>{{group.groupDescription}}</h2>
     <div>
       
@@ -64,6 +64,7 @@ export default {
         menuItems: [
           { title: 'group', path: '/groups' },
           { title: 'logout', path: '/login' },
+          { title: 'members', path: '/members',},
      ],
     groupErrors: false,
     groupErrorMsg: "There was a problem that prevented this action from completing."

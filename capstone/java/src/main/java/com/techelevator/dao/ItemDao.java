@@ -8,7 +8,7 @@ public interface ItemDao {
     ///boolean hasPermission(String username, int listId);
     void createItem(Item item);
 
-    void deleteItem(Item item);
+    void deleteItem(int itemId);
 
     void updateItem(Item item);
 

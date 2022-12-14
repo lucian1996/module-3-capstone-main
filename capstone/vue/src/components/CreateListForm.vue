@@ -63,6 +63,8 @@ export default {
         if (response == 201) {
               this.$store.commit("ADD_LIST", response.data);
               this.dialog = false;
+              // this.$router.go()
+              // this.$router.push({name: 'group-details'})
       }})
         //TODO: this can't be empty, else the user will never be able to navigate there
         //const data = response.dat
