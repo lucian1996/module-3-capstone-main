@@ -6,7 +6,6 @@ import Logout from "../components/Logout.vue";
 import Register from "../views/Register.vue";
 import store from "../store/index";
 import GroupDetails from "../components/GroupDetails.vue";
-import CreateGroup from "../views/CreateGroup.vue";
 import EditUser from "../views/EditUser.vue";
 import ListDetails from "../components/ListDetails.vue";
 import JoinGroupForm from "../components/JoinGroupForm.vue";
@@ -71,14 +70,6 @@ const router = new Router({
       path: "/groups/:groupID",
       name: "group-details",
       component: GroupDetails,
-      meta: {
-        requiresAuth: true,
-      },
-    },
-    {
-      path: "/createGroup",
-      name: "createGroup",
-      component: CreateGroup,
       meta: {
         requiresAuth: true,
       },

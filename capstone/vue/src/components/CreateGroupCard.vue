@@ -1,40 +1,65 @@
 <template>
-  <div class="card">
-    <div class="container">
-      <router-link :to="{ name: 'createGroup' }"> + Create Group</router-link>
+ <div class="card" :class="[{active: isActive}]">
+   <div @click="setStatus()" v-show="!isActive">+</div>
+    <form v-show="isActive" v-on:submit.prevent>
+    <div v-show="phase == 1">
+      <div>Name</div>
+      <textarea
+      placeholder="enter the group name"
+      v-model="group.groupName" />
+      <button @click="goToNextPhase()">Next</button>
     </div>
-  </div>
+    <div v-show="phase == 2">
+      <div>Description</div>
+      <textarea
+      placeholder="enter the description"
+      v-model="group.groupDescription"></textarea>
+    <button @click="createGroup()">Create</button>
+    </div>
+  </form>
+ </div>
 </template>
 
 <script>
+import GroupService from "../services/GroupService";
+
 export default {
   name: "create-group-card",
+  data() {
+    return {
+      isActive: false,
+      phase: 0,
+      group: {
+        groupDescription: "",
+        groupId: "",
+        groupName: "",
+        groupOwnerId: "",
+        groupCode: "",
+      },
+    };
+  },
+  methods: {
+    setStatus() {
+      if (!this.isActive) {
+        this.isActive = true;
+        this.phase = 1
+        console.log('here')
+      }
+      else {
+        this.isActive = false;
+        console.log('there')
+      }
+    },
+    goToNextPhase() {
+        this.phase = 2
+    },
+    createGroup() {
+      GroupService.createGroup(this.group).then((response) => {
+        if (response.status == 201) {
+          this.setStatus();
+        }
+      });
+    },
+  },
 };
 </script>
-
-<style>
-.card {
-  background-color: #ebe6e8;
-  display: flex;
-  text-align: center;
-  border-radius: 12%;
-  padding: 1em;
-  padding-top: 0em;
-  padding-bottom: 0em;
-  margin: 0.5em;
-  margin-top: 0.25em;
-  margin-bottom: 0.25em;
-
-  overflow: hidden;
-  white-space: wrap;
-  /* TODO Not working.. */
-  text-overflow: " [..]";
-}
-.container {
-  font-weight: b;
-}
-.card:hover {
-  box-shadow: 0px 1px 2px 3px #f09374c4;
-  text-emphasis: bolder;
-}
-</style>

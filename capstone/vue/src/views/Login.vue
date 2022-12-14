@@ -85,20 +85,4 @@ export default {
 };
 </script>
 
-<style scoped>
-input {
-  background: #51434a;
-  border: 0.5px solid #3a2e34;
-  /* border: .5px solid rgba(255, 235, 205, 0.534); */
-  text-align: center;
-  margin-top: 3px;
-  max-width: 7em;
-  border-radius: 10%;
-  color: rgba(255, 235, 205, 0.404);
-}
-a.register {
-  color: rgba(255, 235, 205, 0.534);
-  text-decoration: none;
-  font-size: 0.7em;
-}
-</style>
+

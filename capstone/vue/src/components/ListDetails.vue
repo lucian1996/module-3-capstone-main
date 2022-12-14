@@ -1,6 +1,5 @@
 <template>
 <div>
-  <div>{{list}}</div>
   <create-item-form/>
   <div id="toggleClaim">
     <div v-show="this.list && this.list.claimedId != 0">
@@ -43,14 +42,6 @@ export default {
   },
   methods: {
     claimList() {
-    //   ListService.claimList(this.list.groupId, this.list.listId).then(response=> {
-    //     if(response.status == 200) {
-    //       this.isClaimed = true;
-    //   this.$router.push({name: 'list-details', params: {groupID: this.list.groupId, listID: this.list.listId}}
-    //     )
-    //     }
-    //   })
-      // check listId is null
       console.log(this.list.claimedId)
       ListService.claimList(this.list.groupId, this.list.listId).then(response => {
         if(response.status == 200)

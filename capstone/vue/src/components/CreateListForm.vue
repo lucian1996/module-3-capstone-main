@@ -1,18 +1,18 @@
 <template>
-  <form v-on:submit.prevent="submit">
-    <div class="field">
-      <h2>Create List</h2>
+  <div class="card"
+      :class="[{ active: isActive}, card-form] ">
+    <div @click="setStatus()" v-show="!isActive">+</div>
+    <form v-show="isActive" v-on:submit.prevent="submit">
       <label for="title"></label>
-      <textarea v-model="list.name" />
-    </div>
-    <div class="field">
+      <input v-model="list.name" 
+      placeholder="enter the name"
+      />
       <label for="description"></label>
-      <textarea v-model="list.description"></textarea>
-    </div>
-    <div class="actions">
+      <textarea v-model="list.description"
+      placeholder="enter the description">
+      </textarea>
       <button type="submit">Create</button>
-    </div>
-  </form>
+  </form></div>
 </template>
 
 <script>
@@ -27,6 +27,7 @@ export default {
   },
   data() {
     return {
+      isActive: false,
       list: {
           name:'',
           description: ''
@@ -34,13 +35,21 @@ export default {
     };
   },
   methods: {
+    setStatus() {
+      console.log("status", this.status)
+      if (this.isActive == true) {
+        this.isActive = false;
+      }
+      else {
+        this.isActive = true;
+      }
+    },
     submit() {
-        console.log('hi new list',this.$store.state.group.groupId);
-        console.log(this.list);
       ListService.createList(this.$store.state.group.groupId, this.list)
       .then (response => {
         if (response == 201) {
               this.$store.commit("ADD_LIST", response.data);
+              this.setStatus();
       }})
         //TODO: this can't be empty, else the user will never be able to navigate there
         //const data = response.dat

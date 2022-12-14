@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div id="nav">
+    <h1>Welcome Username goes here</h1>
+    <!-- <div id="nav">
       <div>
         <router-link v-bind:to="{ name: 'home' }">Home</router-link> &nbsp;
         <button>Filter</button>
@@ -15,11 +16,8 @@
           v-if="$store.state.token != ''"
           >Logout</router-link>
       </div>
-    </div>
-    <div>
-      <h1>Fridgrr</h1>
+    </div> -->
       <group-list />
-    </div>
   </div>
 </template>
 

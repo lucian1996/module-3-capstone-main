@@ -1,18 +1,5 @@
 <template>
   <div>
-    <div id="nav">
-      <router-link v-bind:to="{ name: 'home' }">Home</router-link>
-      <div>
-        <router-link
-          v-bind:to="{ name: 'editUser' }"
-          v-if="$store.state.token != ''"
-          >{{ $store.state.user.username }}</router-link> &nbsp; &nbsp;
-        <router-link
-          v-bind:to="{ name: 'logout' }"
-          v-if="$store.state.token != ''"
-          >Logout</router-link>
-      </div>
-    </div>
     <h1>{{ group.groupName }}</h1>
     <form v-on:submit.prevent="addUser">
       <label for="groupCode">Group code:</label>
