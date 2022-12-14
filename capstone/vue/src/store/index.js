@@ -75,7 +75,6 @@ export default new Vuex.Store({
     },
     SET_ITEMS (state, items) {
       state.items = items
-    },
-    MARK_LIST_COMPLETE(state, )
+    }
   }
 })
