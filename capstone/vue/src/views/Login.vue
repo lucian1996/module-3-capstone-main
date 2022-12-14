@@ -1,7 +1,9 @@
 <template>
   <div>
-    <div> <br> </div>
-    <h1>Fridgrr</h1>
+    
+     
+
+
     <form class="form-signin" @submit.prevent="login">
       <h2>Sign In</h2>
       <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
@@ -58,7 +60,13 @@ export default {
       user: {
         username: "",
         password: "",
+        
       },
+      appTitle: 'Fridgrr',
+        menuItems: [
+          { title: 'group', path: '/groups' },
+          { title: 'logout', path: '/login' },
+     ],
       invalidCredentials: false,
     };
   },
@@ -70,7 +78,7 @@ export default {
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
-            this.$router.push("/");
+            this.$router.push("/groups");
           }
         })
         .catch((error) => {
@@ -91,5 +99,21 @@ export default {
   }
 };
 </script>
-
+<style scoped>
+#title{
+  font-family:    'Courier New', Courier, monospace;
+  font-size:      50px;
+  font-weight:    bold;
+  color:          whitesmoke;
+  text-shadow: 1.5px 1.5px 0px lightcoral;
+}
+.v-btn__content{
+  font-family:    'Courier New', Courier, monospace;
+  font-size:      15px;
+  font-weight:    bolder;
+}
+.v-toolbar__content{
+  background-color: #0EAD69;
+}
+</style>
 

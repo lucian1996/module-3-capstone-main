@@ -46,10 +46,16 @@ export default {
         groupOwnerId: "",
         groupCode: "",
       },
+      groupErrors: false,
+      groupErrorMsg: "There was a problem creating this group."
     };
   },
   methods: {
     createGroup() {
+      if (this.group.groupName == "") {
+        this.groupErrors = true;
+        this.groupErrorMsg = "The group name cannot be blank."
+      }
       GroupService.createGroup(this.group).then((response) => {
         if (response.status == 201) {
           this.dialog = false
