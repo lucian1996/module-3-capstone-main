@@ -25,10 +25,17 @@ export default {
   //   console.log("data is", data.list.listId);
   // }
   data() {
-    return { inviteCode: "" };
+    return { inviteCode: "", 
+    joinErrors: false,
+      joinErrorMsg: "There was a problem when trying to join this group.",
+      };
   },
   methods: {
     addUser() {
+      if (this.group.groupCode != this.inviteCode) {
+        this.joinErrors = true;
+        this.joinErrorMsg = "Invalid invite code.";
+      } else {
       console.log(
         "In components > JoinGroupForm > addUser",
         this.group.groupId,
@@ -41,7 +48,15 @@ export default {
       ).then((response) => {
         this.$router.push(`/groups/${this.group.groupId}`);
         console.log(response, "addUser response");
-      });
+      })
+      .catch((error => {
+        const response = error.response
+        this.joinErrors = true;
+        if (response.status === 400) {
+          this.joinErrorMsg = error.response.data.message;
+        }
+      }));
+      }
     },
   },
   computed: {

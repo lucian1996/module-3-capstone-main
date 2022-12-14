@@ -32,6 +32,8 @@ export default {
           name:'',
           description: ''
       },
+      listErrors: false,
+      listErrorMsg: "There was a problem creating this list.",
     };
   },
   methods: {
@@ -39,13 +41,15 @@ export default {
       console.log("status", this.status)
       if (this.isActive == true) {
         this.isActive = false;
-      }
-      else {
+      } else {
         this.isActive = true;
       }
     },
     submit() {
-      ListService.createList(this.$store.state.group.groupId, this.list)
+      if (this.list.name.length <= 0) {
+        this.listErrors = true;
+        this.listErrorMsg = "List name cannot be blank."
+      } else {ListService.createList(this.$store.state.group.groupId, this.list)
       .then (response => {
         if (response == 201) {
               this.$store.commit("ADD_LIST", response.data);
@@ -53,7 +57,8 @@ export default {
       }})
         //TODO: this can't be empty, else the user will never be able to navigate there
         //const data = response.dat
-    },
+    }
+    }
   },
 };
 </script>
