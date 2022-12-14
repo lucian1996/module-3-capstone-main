@@ -13,4 +13,8 @@ public interface ItemDao {
     void updateItem(Item item);
 
     List<Item> listItems(int listId);
+
+    void itemComplete(int groupId, int listId);
+
+    void itemIncomplete(int groupId, int listId);
 }
