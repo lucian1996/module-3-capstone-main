@@ -53,11 +53,14 @@ public class AuthenticationController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public void register(@Valid @RequestBody RegisterUserDto newUser) {
 
+        if (newUser.getUsername().equals("")) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username field cannot be blank.");
+        }
         if (!doPasswordsMatch(newUser.getPassword(), newUser.getConfirmPassword())) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Passwords Do Not Match");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Password and confirmation must be the same.");
         }
         if (!isStrongPassword(newUser.getPassword())) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "password is not strong enough");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Password strength requirement not met.");
         }
 
         try {
