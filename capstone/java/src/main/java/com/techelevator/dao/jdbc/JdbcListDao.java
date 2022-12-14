@@ -122,7 +122,7 @@ public class JdbcListDao implements ListDao {
 
     @Override
     public void completeList(int groupId, int listId) {
-        String sql = "UPDATE list SET isComplete = true WHERE group_id = ? AND list_id = ?;";
+        String sql = "UPDATE list SET list_completed = true WHERE group_id = ? AND list_id = ?;";
         try {
             jdbcTemplate.update(sql, groupId, listId);
         } catch (UpdateException e) {
