@@ -1,5 +1,6 @@
 <template>
-  <div >
+  <div id="container">
+    <create-list-form  v-bind:groupID="groupID"/>
     <list-card
       v-for="list in lists"
       v-bind:key="list.listId"
@@ -9,9 +10,10 @@
 
 <script>
 import ListService from "../services/ListService";
+import CreateListForm from './CreateListForm.vue';
 import ListCard from "./ListCard.vue";
 export default {
-  components: { ListCard },
+  components: { ListCard, CreateListForm },
 
   name: "list-container",
   props: {
@@ -58,6 +60,12 @@ export default {
 };
 </script>
 
-<style>
-
+<style scoped>
+#container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+  height: 500px;
+}
 </style>

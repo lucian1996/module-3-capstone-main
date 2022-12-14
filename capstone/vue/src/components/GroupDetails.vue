@@ -17,8 +17,10 @@
     </div>
     <h1>{{ group.groupName }}</h1>
     <h2>{{group.groupDescription}}</h2>
-    <create-list-form  v-bind:groupID="groupID"/>
+    <div>
+      
     <list-container v-bind:groupId="$route.params.groupID" />
+    </div>
     <button v-on:click="removeUser()">LEAVE GROUP!</button>
     {{group}}
   </div>
@@ -27,10 +29,9 @@
 <script>
 import MemberService from "../services/MemberService"
 import GroupService from "../services/GroupService";
-import CreateListForm from './CreateListForm.vue';
 import ListContainer from "./ListContainer.vue";
 export default {
-  components: { ListContainer, CreateListForm },
+  components: { ListContainer },
 
   name: "group-details",
   props: {
