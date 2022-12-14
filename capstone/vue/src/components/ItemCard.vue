@@ -1,10 +1,10 @@
 <template>
        <v-card >
-        <div>
-            <div></div>
+         <div @click="log()">log</div>
+         {{item.quantity}}
+         {{item.itemName}}
             <v-btn @click="markComplete">mark complete</v-btn>
-            <edit-item-form/>
-        </div>
+            <edit-item-form  v-bind:itemID="itemID"/>
         </v-card>
 </template>
 
@@ -15,18 +15,20 @@ import EditItemForm from './EditItemForm.vue';
 export default {
   components: {EditItemForm},
   name: 'item-card',
-
+  props : ["itemID"],
 
 
   methods : {
     markComplete () { 
       this.item.status = 'complete';
       console.table(this.item)
-      ItemService.editItem(this.item.groupId, this.item.listId, this.item.itemId,this.item)
+      ItemService.editItem(this.item)
       },
+      log() {
+        console.log('item id here', this.itemID)
+      }
     },
     created () {
-      console.warn('today im here',this.item)
     },
     computed : {
       item () {

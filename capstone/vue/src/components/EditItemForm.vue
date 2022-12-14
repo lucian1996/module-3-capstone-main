@@ -13,12 +13,14 @@
         </template>
   
         <v-card class="form-card">
+          <div @click="log()">log</div>
               <v-form v-on:submit.prevent>
               <div>
                  <label for="quantity">Quantity</label>
-                  <v-text-field
-                  v-model.number="quantity"
-                  value=''/>
+                 <v-text-field
+                  v-model="quantity"
+                  type="number"
+                  />
               </div>
               <div>
                 <label for="name">Name</label>
@@ -27,7 +29,7 @@
                   value="test"
                   id ="name"/>
               </div>
-              <v-btn type="submit">Save</v-btn>
+              <v-btn @click="submit()" type="submit">Save</v-btn>
             </v-form>
         </v-card>
       </v-dialog>
@@ -37,21 +39,32 @@ import ItemService from '../services/ItemService'
 
 export default {
   name: 'edit-item-form',
+  props :['itemID'],
   data () {
     return {
       dialog: false,
-      quantity: 0,
+      quantity: 1,
       name: '',
     }
     },
     methods : {
-     editItem() {
+     submit() {
       this.item.quantity = this.quantity;
       console.log(this.item.quantity)
       this.item.itemName = this.name;
       console.table(this.item)
-      ItemService.editItem(this.item.groupId, this.item.listId, this.item.itemId,this.item).then (r =>console.log('here is the edit item response', r.data))
+      ItemService.editItem(this.item).then (r =>console.log('here is the edit item response', r.data))
+    },
+    log () {
+      console.log('edit item', this.itemID)
     }
-    }
+    },
+   computed : {
+      item () {
+        return this.$store.state.items.find (i => 
+          i.itemId = this.itemID
+        )
+      }
+   }
   }
 </script>

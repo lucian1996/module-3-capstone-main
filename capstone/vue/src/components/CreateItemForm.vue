@@ -12,7 +12,7 @@
           </v-card>
         </template>
     <v-card>
-      <form v-on:submit.prevent>
+      <v-form v-on:submit.prevent>
         <div class="field">
           <label for="title"></label>
           <v-text-field v-model="item.name" />
@@ -24,7 +24,7 @@
         <v-row justify="center">
                  <v-btn @click="submit()" color="primary" elevation="2">Create</v-btn>
               </v-row>
-      </form>
+      </v-form>
     </v-card>
   </v-dialog>
 </template>

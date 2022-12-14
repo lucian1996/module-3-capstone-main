@@ -14,9 +14,9 @@ export default {
         return axios.post(`groups/${groupID}/lists/${listID}/items?itemName=${item.name}&quantity=${item.quantity}`)
     },
     
-    editItem(groupID, listID, itemID, item) {
-        console.log('edit item, data inside', groupID, listID, item)
-        return axios.put(`groups/${groupID}/lists/${listID}/items/${itemID}`, item)
+    editItem(item) {
+        console.log('edit item', item)
+        return axios.put(`groups/${item.groupId}/lists/${item.listId}/items/${item.itemId}`, item)
     },
 
     markItemsComplete(groupID, listID) {
