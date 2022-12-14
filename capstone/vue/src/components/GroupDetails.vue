@@ -64,6 +64,7 @@ export default {
         menuItems: [
           { title: 'group', path: '/groups' },
           { title: 'logout', path: '/login' },
+          { title: 'members', path: '/members',},
      ],
     groupErrors: false,
     groupErrorMsg: "There was a problem that prevented this action from completing."

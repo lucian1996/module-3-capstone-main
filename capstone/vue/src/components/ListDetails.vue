@@ -64,16 +64,15 @@
         <br />
       </div>
     </div>
-
-    <div id="listItems">
+     <div id ="container">
+        <create-item-form />
       <item-card
         v-for="item in items"
         v-bind:key="item.dateModified"
         v-bind:itemID="item.itemId"
         :class="{complete : listComplete==true}"
       />
-      {{ items }}
-    </div>
+     </div>
   </div>
 </template>
 
@@ -92,7 +91,7 @@ export default {
       menuItems: [
           { title: 'group', path: '/groups' },
           { title: 'logout', path: '/login' },
-          { title: 'members'},
+          { title: 'members', path: '/members'},
              ]
     };
   },
@@ -205,5 +204,12 @@ export default {
 }
 .v-toolbar__content{
   background-color: #0EAD69;
+}
+#container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  width: 100%;
+  height: 500px;
 }
 </style>
