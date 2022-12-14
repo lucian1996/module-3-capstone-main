@@ -79,9 +79,15 @@ export default {
           if (response.status === 401) {
             this.invalidCredentials = true;
           }
+          if (response.status === 200) {
+            this.$router.push('/groups');
+          }
         });
     },
   },
+  created() {
+
+  }
 };
 </script>
 

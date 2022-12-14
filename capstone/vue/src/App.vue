@@ -1,81 +1,63 @@
 <template>
+
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
+    <v-navigation-drawer v-model="sidebar" app>
+      <v-list>
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
+        <v-list-tile
+          v-for="item in menuItems"
+          :key="item.title"
+          :to="item.path">
+          <v-list-tile-action>
+          </v-list-tile-action>
 
+          <v-list-tile-content>{{ item.title }}</v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
+
+    <v-toolbar app>
+
+      
+      <v-toolbar-title>
+          {{ appTitle }}
+      </v-toolbar-title>
       <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
-    <v-main>
-      <router-view/>
-    </v-main>
+      <v-toolbar-items class="hidden-xs-only">
+        <v-btn
+          flat
+          v-for="item in menuItems"
+          :key="item.title"
+          :to="item.path">
+          {{ item.title }}
+        </v-btn>
+        
+      </v-toolbar-items>
+    </v-toolbar>
+    
+    <v-content>
+      <router-view></router-view>
+    </v-content>
   </v-app>
 </template>
 
 <script>
-
 export default {
-  name: 'App',
-
-  data: () => ({
-    //
-  }),
+name: "App",
+  data(){
+    return {
+      appTitle: 'Fridgrr',
+      sidebar: false,
+      menuItems: [
+          { title: 'group', path: '/groups' },
+          { title: 'logout', path: '/login' },
+     ],
+    }
+  }
 };
 </script>
-<style scoped>
+<style>
 .form-card {
   padding: 16px;
 }
-body {
-  text-align: center;
-}
-body {
-    min-height: 100vh;
-    max-width: 400px;
-    background-color: papayawhip; 
-    margin: 0 auto;
-}
-v-card {
-  text-align:center;
-  
-}
-div {
-  text-align:center;
-}
-.v-application a {
-    color: black;
-    text-decoration: none;
-}
-
 </style>
