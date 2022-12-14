@@ -2,12 +2,12 @@
 
   <div>
   
-    <v-toolbar app>
+    <!-- <v-toolbar app>
       <v-toolbar-title id="title">
           {{ appTitle }}
       </v-toolbar-title>
-    </v-toolbar>
-      <!-- <v-spacer></v-spacer>
+    </v-toolbar> 
+      <v-spacer></v-spacer>
       <v-toolbar-items>
         <v-btn
           flat

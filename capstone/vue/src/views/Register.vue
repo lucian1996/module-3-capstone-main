@@ -61,10 +61,6 @@ export default {
         role: "user",
       },
       appTitle: 'Fridgrr',
-        menuItems: [
-          { title: 'group', path: '/groups' },
-          { title: 'logout', path: '/login' },
-     ],
       registrationErrors: false,
       registrationErrorMsg: "There were problems registering this user.",
     };

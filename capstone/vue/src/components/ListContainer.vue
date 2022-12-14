@@ -1,4 +1,22 @@
 <template>
+<div>
+
+  <!-- <v-toolbar app>
+      <v-toolbar-title id="title">
+          {{ appTitle }}
+      </v-toolbar-title>
+    </v-toolbar>
+      <v-spacer></v-spacer>
+      <v-toolbar-items>
+        <v-btn
+          flat
+          v-for="item in menuItems"
+          :key="item.title"
+          :to="item.path">
+          {{ item.title }}
+        </v-btn> 
+      </v-toolbar-items> -->
+
   <div id="container">
     <create-list-form  v-bind:groupID="groupID"/>
     <list-card
@@ -6,6 +24,7 @@
       v-bind:key="list.listId"
       v-bind:list="list" />
   </div>
+</div>
 </template>
 
 <script>
@@ -22,7 +41,14 @@ export default {
     },
   },
   data() {
-    return { retrieveLists: false };
+    return { 
+      retrieveLists: false,
+      appTitle: 'Fridgrr',
+      menuItems: [
+          { title: 'group', path: '/groups' },
+          { title: 'logout', path: '/login' },
+     ], 
+     };
   },
   methods: {
     getLists() {
@@ -67,5 +93,20 @@ export default {
   gap: 20px;
   width: 100%;
   height: 500px;
+}
+#title{
+  font-family:    'Courier New', Courier, monospace;
+  font-size:      50px;
+  font-weight:    bold;
+  color:          whitesmoke;
+  text-shadow: 1.5px 1.5px 0px lightcoral;
+}
+.v-btn__content{
+  font-family:    'Courier New', Courier, monospace;
+  font-size:      15px;
+  font-weight:    bolder;
+}
+.v-toolbar__content{
+  background-color: #0EAD69;
 }
 </style>

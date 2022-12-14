@@ -4,7 +4,7 @@
 
        <v-toolbar app>
       <v-toolbar-title id="title">
-          {{ appTitle }}
+          {{ appTitle }}  \ {{group.groupName}}
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
@@ -33,7 +33,7 @@
           >Logout</router-link>
       </div> -->
     </div>
-    <h1>{{ group.groupName }}</h1>
+    <h1>{{  }}</h1>
     <h2>{{group.groupDescription}}</h2>
     <div>
       
