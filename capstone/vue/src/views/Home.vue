@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Welcome Username goes here</h1>
+    <h1>Welcome, {{ $store.state.user.username }}.</h1>
     <!-- <div id="nav">
       <div>
         <router-link v-bind:to="{ name: 'home' }">Home</router-link> &nbsp;
