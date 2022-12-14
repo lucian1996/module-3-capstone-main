@@ -32,7 +32,7 @@ public class JdbcItemDao implements ItemDao {
         String sql = "INSERT INTO list_item (date_modified, quantity, last_modifier, list_id, group_id, item_name, status) VALUES (?, ?, ?, ?, ?, ?, ?)";
         //System.out.println(jdbcTemplate.update(sql, utilDao.currentDay(), item.getQuantity(), item.getLastModifier(), item.getListId(), item.getGroupId(), item.getItemName(), null, null));
         try {
-            jdbcTemplate.update(sql, utilDao.currentDay(), item.getQuantity(), item.getLastModifier(), item.getListId(), item.getGroupId(), item.getItemName(), null) ;
+            jdbcTemplate.update(sql, utilDao.currentDay(), item.getQuantity(), item.getLastModifier(), item.getListId(), item.getGroupId(), item.getItemName(), null, false) ;
         } catch (DataAccessException e) {
             throw new CreateException(e);
         }
