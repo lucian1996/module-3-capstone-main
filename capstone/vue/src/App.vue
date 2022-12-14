@@ -58,15 +58,17 @@ export default {
   padding: 16px;
 }
 body {
-  margin-left: 10%;
-  margin-right: 10%;
   text-align: center;
+}
+body {
+    min-height: 100vh;
+    max-width: 400px;
+    background-color: papayawhip; 
+    margin: 0 auto;
 }
 v-card {
   text-align:center;
-  align-items: center;
-  display: flex;
-  justify-content: center;
+  
 }
 div {
   text-align:center;
@@ -75,4 +77,5 @@ div {
     color: black;
     text-decoration: none;
 }
+
 </style>

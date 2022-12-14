@@ -1,5 +1,5 @@
 <template>
-    <v-card >
+    <v-card class="d-flex align-center justify-center"  min-height="250" >
     <router-link :class="{ disabled: !memberStatus }"
       v-bind:to="{
         name: 'group-details',
