@@ -17,6 +17,11 @@ export default {
     editItem(groupID, listID, itemID, item) {
         console.log('edit item, data inside', groupID, listID, item)
         return axios.put(`groups/${groupID}/lists/${listID}/items/${itemID}`, item)
-    }
+    },
+
+    // markItemComplete(groupID, listID, itemID, isComplete, item) {
+    //     return axios.put(`groups/${groupID}/lists/${listID}/items/${itemID}/${isComplete}`, item)
+    // }
+
 }
 //http://localhost:9000/groups/1001/lists/2001/items/3001

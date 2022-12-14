@@ -6,6 +6,7 @@ import com.techelevator.dao.UserDao;
 import com.techelevator.dao.UtilDao;
 import com.techelevator.dao.exceptions.DeleteException;
 import com.techelevator.dao.exceptions.GetException;
+import com.techelevator.dao.exceptions.UpdateException;
 import com.techelevator.model.List;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -119,6 +120,16 @@ public class JdbcListDao implements ListDao {
             }
         }
 
+    @Override
+    public void completeList(int groupId, int listId) {
+        String sql = "UPDATE list SET isComplete = true WHERE group_id = ? AND list_id = ?;";
+        try {
+            jdbcTemplate.update(sql, groupId, listId);
+        } catch (UpdateException e) {
+            throw new UpdateException(e);
+        }
+    }
+
     private List mapRowToList(SqlRowSet rs) {
         List list = new List();
         list.setListId(rs.getInt("list_id"));
@@ -127,6 +138,7 @@ public class JdbcListDao implements ListDao {
         list.setListName(rs.getString("list_title"));
         list.setDateModified(rs.getString("date_modified"));
         list.setClaimedId(rs.getInt("claimed"));
+        list.setListCompleted(rs.getBoolean("list_completed"));
         return list;
     }
 }

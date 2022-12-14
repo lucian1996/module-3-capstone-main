@@ -37,8 +37,8 @@ export default {
   name: "list-details",
   data() {
     return {
+      listComplete: false
     }
-    
   },
   methods: {
     claimList() {
@@ -68,6 +68,18 @@ export default {
       this.$store.commit("SET_ITEMS", response.data)
       console.log("here are items", this.items);
     });
+    },
+    completeList() {
+      if (this.listComplete) {
+        ListService.markListComplete(this.list.groupId, this.list.listId, this.isComplete).then(response => {
+          if(response.status == 200) {
+           this.$store.commit('MARK_LIST_COMPLETE', {groupId: this.list.groupId,listId: this.list.listId, isComplete: this.isComplete})
+            // for (this.item in this.list.listId) {
+            //   ItemService.markItemComplete(this.list.groupId, this.list.listId, this.item.id, this.isComplete)
+            // }
+          }
+        })
+      }
     }
   },
   created() {
