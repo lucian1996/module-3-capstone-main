@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <div>
     <v-toolbar app>
       <span class="hidden-sm-and-up">
         <v-toolbar-side-icon @click="sidebar = !sidebar"> </v-toolbar-side-icon>
@@ -16,7 +16,7 @@
     <v-content id="main" class="d-flex align-center justify-center">
       <router-view></router-view>
     </v-content>
-  </v-app>
+  </div>
 </template>
 
 <script>
