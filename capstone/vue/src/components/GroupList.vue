@@ -41,8 +41,11 @@ export default {
 #container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  /* display:flex; */
+  
+  
   gap: 20px;
-  width: 100%;
-  height: 500px;
+  /* max-width: 1200px;
+  min-width: 700px; */
 }
 </style>

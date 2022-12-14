@@ -1,27 +1,19 @@
 <template>
-
   <v-app>
-    <!--  -->
-    
-    <!-- <v-toolbar app>
-      <v-toolbar-title id="title">
-          {{ appTitle }}
-      </v-toolbar-title>
-
+    <v-toolbar app>
+      <span class="hidden-sm-and-up">
+        <v-toolbar-side-icon @click="sidebar = !sidebar"> </v-toolbar-side-icon>
+      </span>
+      <v-toolbar-title>{{ appTitle }}</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-toolbar-items>
-        <v-btn
-          flat
-          v-for="item in menuItems"
-          :key="item.title"
-          :to="item.path">
+      <v-toolbar-items class="hidden-xs-only">
+        <v-btn flat v-for="item in menuItems" :key="item.title" :to="item.path">
           {{ item.title }}
         </v-btn>
       </v-toolbar-items>
-    </v-toolbar> -->
+    </v-toolbar>
 
-    <!--  -->
-    <v-content>
+    <v-content id="main" class="d-flex align-center justify-center">
       <router-view></router-view>
     </v-content>
   </v-app>
@@ -29,39 +21,38 @@
 
 <script>
 export default {
-name: "App",
-// ----------------
-  data(){
+  name: "App",
+  data() {
     return {
-      appTitle: 'Fridgrr',
+      appTitle: "Fridgrr",
+      sidebar: false,
       menuItems: [
-          { title: 'group', path: '/groups' },
-          { title: 'logout', path: '/login' },
-     ],
-    }
-  }
-  // ---------------
+        { title: "Group", path: "/groups" },
+        { title: "Logout", path: "/login" },
+      ],
+    };
+  },
 };
 </script>
-<style>
-/* -------- */
+
+<style scoped>
 .form-card {
   padding: 16px;
 }
-#title{
-  font-family:    'Courier New', Courier, monospace;
-  font-size:      50px;
-  font-weight:    bold;
-  color:          whitesmoke;
-  text-shadow: 1.5px 1.5px 0px lightcoral;
+#main {
+  margin-left: auto;
+  margin-right: auto;
 }
-.v-btn__content{
-  font-family:    'Courier New', Courier, monospace;
-  font-size:      15px;
-  font-weight:    bolder;
+.content {
+  text-align: center;
+  max-height: 20px;
 }
-.v-toolbar__content{
-  background-color: #0EAD69;
+div {
+  text-align: center;
 }
-/* -------- */
+.v-application a {
+  color: black;
+  text-decoration: none;
+}
+
 </style>
