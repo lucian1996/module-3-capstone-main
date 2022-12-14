@@ -81,6 +81,7 @@ export default {
               listId: this.list.listId,
               userId: this.$store.state.user.id,
             });
+            this.$router.go()
         }
       );
     },
@@ -92,6 +93,7 @@ export default {
               listId: this.list.listId,
               userId: 0,
             });
+            this.$router.go()
           }
         }
       );
@@ -122,6 +124,7 @@ export default {
       ItemService.markItemsComplete(this.list.groupId, this.list.listId).then(response => {
         if (response.status == 200) {
           this.listComplete = true;
+          this.$router.go()
         }
       })
     },
@@ -141,9 +144,11 @@ export default {
       ItemService.markItemsIncomplete(this.list.groupId, this.list.listId).then(response => {
         if (response.status == 200) {
            this.listComplete = false;
+           this.$router.go()
         }
       })
     },
+   
   },
   created() {
     this.getItems();

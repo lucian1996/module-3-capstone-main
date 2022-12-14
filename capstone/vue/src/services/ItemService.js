@@ -24,6 +24,9 @@ export default {
     },
     markItemsIncomplete(groupID, listID) {
         return axios.put(`groups/${groupID}/lists/${listID}/items/isIncomplete`)
+    },
+    removeItem(groupID, listID, itemID) {
+        return axios.delete(`/groups/${groupID}/lists/${listID}/items/${itemID}`)
     }
 
 }

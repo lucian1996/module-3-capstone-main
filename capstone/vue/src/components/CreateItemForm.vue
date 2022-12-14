@@ -38,6 +38,7 @@ export default {
         if (r == 201) {
           console.log('here')
         this.$store.commit("ADD_ITEM", r.data)
+        this.$router.go()
        }})
     },
   },

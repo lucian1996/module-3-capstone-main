@@ -3,7 +3,8 @@
         <div>
             <div></div>
             <button @click="markComplete">mark complete</button>
-            <button>edit item</button>
+            <button>Edit item</button>
+            <button @click="removeItem">Remove Item</button>
             <form v-on:submit.prevent="editItem">
               <div>
                  <label for="quantity">Quantity</label>
@@ -51,6 +52,14 @@ export default {
       this.item.itemName = this.name;
       console.table(this.item)
       ItemService.editItem(this.item.groupId, this.item.listId, this.item.itemId,this.item).then (r =>console.log('here is the edit item response', r.data))
+    },
+     removeItem() {
+      ItemService.removeItem(this.item.groupId, this.item.listId, this.item.itemId).then(response => {
+        if(response.status == 200) {
+          this.$store.commit('DELETE_ITEM', this.item.itemId)
+          this.$router.push('list-details')
+        }
+      })
     }
     },
     created () {
