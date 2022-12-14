@@ -18,5 +18,5 @@ public interface ListDao {
 
     void updateList(List list);
 
-    void completeList(int groupId, int listId, boolean isComplete);
+    void completeList(int groupId, int listId);
 }
