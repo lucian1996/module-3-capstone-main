@@ -57,16 +57,16 @@ export default {
         role: "user",
       },
       registrationErrors: false,
-      registrationErrorMsg: "There were problems registering this user.",
+      registrationErrorMsg: "There was a problem registering this user.",
     };
   },
   methods: {
     register() {
-      if (this.use.username.length <= 0) {
+      if (this.user.username.length <= 0) {
         this.registrationErrors = true;
         this.registrationErrorMsg = "Username field cannot be blank.";
       } 
-       if (this.use.username.length > 36) {
+       if (this.user.username.length > 36) {
         this.registrationErrors = true;
         this.registrationErrorMsg = "Username cannot be more than 36 characters.";
       } 
@@ -92,13 +92,7 @@ export default {
                 query: { registration: "success" },
               });
             }
-          })
-          .catch((error) => {
-            const response = error.response
-            this.registrationErrors = true;
-            if (response.status === 400) {
-              this.registrationErrorMsg = error.response.data.message;
-            }
+          
           });
       }
     },
