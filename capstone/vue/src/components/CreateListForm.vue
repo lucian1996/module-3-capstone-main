@@ -1,18 +1,35 @@
 <template>
-  <div class="card"
-      :class="[{ active: isActive}, card-form] ">
-    <div @click="setStatus()" v-show="!isActive">+</div>
-    <form v-show="isActive" v-on:submit.prevent="submit">
+  <v-dialog
+    @click="dialog = true"
+        v-model="dialog"
+        width="600px"
+  >
+  <template v-slot:activator="{ on, attrs }">
+          <v-card class="d-flex align-center justify-center"  min-height="250"
+            v-bind="attrs"
+            v-on="on"
+          >
+          +
+          </v-card>
+        </template>
+    
+    <v-card class="form-card">
+      <v-label>
+        Create List
+      </v-label>
+      <form v-on:submit.prevent>
       <label for="title"></label>
-      <input v-model="list.name" 
+      <v-text-field v-model="list.name" 
       placeholder="enter the name"
       />
       <label for="description"></label>
-      <textarea v-model="list.description"
+      <v-textarea v-model="list.description"
       placeholder="enter the description">
-      </textarea>
-      <button type="submit">Create</button>
-  </form></div>
+      </v-textarea>
+      <v-btn @click="submit()" color="primary" elevation="2">Create</v-btn>
+    </form>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script>
@@ -27,7 +44,7 @@ export default {
   },
   data() {
     return {
-      isActive: false,
+      dialog: false,
       list: {
           name:'',
           description: ''
@@ -35,21 +52,12 @@ export default {
     };
   },
   methods: {
-    setStatus() {
-      console.log("status", this.status)
-      if (this.isActive == true) {
-        this.isActive = false;
-      }
-      else {
-        this.isActive = true;
-      }
-    },
     submit() {
       ListService.createList(this.$store.state.group.groupId, this.list)
       .then (response => {
         if (response == 201) {
               this.$store.commit("ADD_LIST", response.data);
-              this.setStatus();
+              this.dialog = false;
       }})
         //TODO: this can't be empty, else the user will never be able to navigate there
         //const data = response.dat
