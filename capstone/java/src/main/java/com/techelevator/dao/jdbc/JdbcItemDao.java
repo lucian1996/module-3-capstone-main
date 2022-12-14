@@ -70,11 +70,31 @@ public class JdbcItemDao implements ItemDao {
         return items;
 }
 
+    @Override
+    public void itemComplete(int groupId, int listId) {
+        String sql = "UPDATE list_item SET status = true WHERE group_id = ? AND list_id = ?";
+        try {
+            jdbcTemplate.update(sql, groupId, listId);
+        } catch (UpdateException e) {
+            throw new UpdateException(e);
+        }
+    }
+
+    @Override
+    public void itemIncomplete(int groupId, int listId) {
+        String sql = "UPDATE list_item SET status = false WHERE group_id = ? AND list_id = ?";
+        try {
+            jdbcTemplate.update(sql, groupId, listId);
+        } catch (UpdateException e) {
+            throw new UpdateException(e);
+        }
+    }
+
     private Item mapRowToItem(SqlRowSet rs) {
         Item item = new Item();
         item.setItemId(rs.getInt("list_item_id"));
         item.setListId(rs.getInt("list_id"));
-        item.setStatus(rs.getString("status"));
+        item.setStatus(rs.getBoolean("status"));
         item.setDateModified(rs.getString("date_modified"));
         item.setLastModifier(rs.getInt("last_modifier"));
         item.setQuantity(rs.getInt("quantity"));

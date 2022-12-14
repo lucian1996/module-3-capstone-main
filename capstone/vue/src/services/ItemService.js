@@ -19,9 +19,12 @@ export default {
         return axios.put(`groups/${groupID}/lists/${listID}/items/${itemID}`, item)
     },
 
-    // markItemComplete(groupID, listID, itemID, isComplete, item) {
-    //     return axios.put(`groups/${groupID}/lists/${listID}/items/${itemID}/${isComplete}`, item)
-    // }
+    markItemsComplete(groupID, listID) {
+        return axios.put(`groups/${groupID}/lists/${listID}/items/isComplete`)
+    },
+    markItemsIncomplete(groupID, listID) {
+        return axios.put(`groups/${groupID}/lists/${listID}/items/isIncomplete`)
+    }
 
 }
 //http://localhost:9000/groups/1001/lists/2001/items/3001

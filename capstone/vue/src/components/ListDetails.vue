@@ -52,6 +52,7 @@
         v-for="item in items"
         v-bind:key="item.dateModified"
         v-bind:itemID="item.itemId"
+        :class="{complete : listComplete==true}"
       />
       {{ items }}
     </div>
@@ -118,11 +119,18 @@ export default {
             isComplete: this.isComplete,
           });
         }
-      });
+      })
+      ItemService.markItemsComplete(this.list.groupId, this.list.listId).then(response => {
+        if (response.status == 200) {
+          this.$store.commit("MARK_ITEMS_COMPLETE", 
+          {groupId: this.items.groupId,
+          listId: this.items.listId})
+        }
+      })
     },
     ListIncomplete() {
       this.listComplete = false;
-      ListService.markListIncomplete(this.list.groupId, this.list.listId).then(
+      ListService.markListIncomplete(this.list.groupId, this.list.listId, this.isComplete).then(
         (response) => {
           if (response.status == 200) {
             this.$store.commit("MARK_LIST_INCOMPLETE", {
@@ -133,6 +141,13 @@ export default {
           }
         }
       );
+      ItemService.markItemsIncomplete(this.list.groupId, this.list.listId).then(response => {
+        if (response.status == 200) {
+          this.$store.commit("MARK_ITEMS_INCOMPLETE", 
+          {groupId: this.items.groupId,
+          listId: this.items.listId})
+        }
+      })
     },
   },
   created() {
