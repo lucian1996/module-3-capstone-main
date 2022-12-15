@@ -13,6 +13,9 @@
         </template>
   
         <v-card class="form-card">
+              <v-label>
+              Create Group
+            </v-label>
               <v-form v-on:submit.prevent>
               <v-text-field
               label="Name"
@@ -62,3 +65,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+.form-card{
+  padding: 5%;
+}
+</style>
