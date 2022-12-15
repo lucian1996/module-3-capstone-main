@@ -29,12 +29,7 @@ export default new Vuex.Store({
       dateCreated: '',
     },
     list : [],
-    members : [{ 
-      groupId : '',
-      userId : '',
-      username : '',
-      dateJoined : ''
-    }],
+    members : [],
     items : [],
   },
   mutations: {
