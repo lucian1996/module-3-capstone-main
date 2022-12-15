@@ -1,10 +1,10 @@
 <template>
- <v-card-title class="list-card text-center">
+ <v-card-title  class="list-card text-center">
     <!-- <router-link
-    v-bind:to="{ name: 'list-details', params: { listID: list.listId, groupID: list.groupId } }">
-      \ 
+    v-bind:to="{ name: 'list-details', params: { listID: list.listId, groupID: list.groupId } }"> 
   </router-link> -->
-  {{ list.listName }}
+  <v-btn @click="gotolistDetails()">{{ list.listName }}</v-btn>
+  
  </v-card-title>
 </template>
 
@@ -14,9 +14,11 @@ export default {
   props: ["list"],
   created() {
   },
-  listDetails() {
-    this.$router.push(`/listDetails/${this.list.groupId}/${this.list.listId}`)
-  }
+  methods: {gotolistDetails() {
+    console.log('shit balls');
+    this.$router.push({ name: 'list-details', params: { listID: this.list.listID, groupID: this.list.groupID } })
+  }}
+  
 };
 </script>
 <style scoped>
