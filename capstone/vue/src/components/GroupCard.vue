@@ -18,11 +18,7 @@
               <div v-show="!memberStatus">
                  <div id="join-button" role="button">
                    <join-group-form v-bind:group="group"/>
-<<<<<<< HEAD
-                   join
-=======
                    +
->>>>>>> df56294b1193739f0f745a546c0cf32e919216d0
               </div>
             </div>
           </div>
