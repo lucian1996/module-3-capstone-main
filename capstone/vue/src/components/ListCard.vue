@@ -1,12 +1,13 @@
 <template>
-        <div @click="gotolistDetails()"  class="wrap">
+        <router-link
+    v-bind:to="{ name: 'list-details', params: { listID: list.listId, groupID: list.groupId } }">
             <div class="card">
              <img src="@/assets/lord.png" alt="not working">
           <div class="info">
             <h4>{{list.listName}}</h4>
           </div>
         </div>
-        </div>
+        </router-link>
 </template>
 
 <script>
@@ -24,7 +25,7 @@ export default {
   },
   methods: {
     gotolistDetails() {
-    this.$router.push({ name: 'list-details', params: { listID: this.list.listID, groupID: this.list.groupID } })
+    this.$router.push({ name: 'list-details', params: { groupID: this.list.groupID, listID: this.list.listID } })
   }},
   randomImage() {
       const random = Math.floor(Math.random() * this.images.length)
