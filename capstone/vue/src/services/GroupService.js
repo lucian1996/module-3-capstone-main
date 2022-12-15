@@ -13,13 +13,13 @@ export default {
     createGroup(group) {
         return axios.post('/groups',group )
       },
-      getGroup(groupID) {
+    getGroup(groupID) {
           return axios.get(`/groups/${groupID}`)
       },
       //TODO need something along the lines of
       //button @click="removeUser({{$store.state.user.userID}}, {{$store.state.group.groupID}})">
       //in GroupDetails
-      removeUser(groupID) {
+    removeUser(groupID) {
         return axios.delete(`/groups/${groupID}/members`)
     },
     addUser(groupID, groupCode) {

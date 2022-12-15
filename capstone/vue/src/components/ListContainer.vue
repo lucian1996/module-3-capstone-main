@@ -7,7 +7,6 @@
       v-bind:key="list.listId"
       v-bind:list="list" />
   </div>
-   {{lists}}
 </div>
 </template>
 
@@ -26,7 +25,7 @@ export default {
       appTitle: 'Fridgrr',
       menuItems: [
           { title: 'group', path: '/groups' },
-          { title: 'logout', path: '/login' },
+          { title: 'logout', path: '/' },
      ], 
      };
   },

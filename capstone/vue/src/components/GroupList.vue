@@ -1,4 +1,5 @@
 <template>
+<body>
   <v-app>
       <div id ="container">
         <create-group-card/>
@@ -8,6 +9,8 @@
           v-bind:group="group" />
       </div>
   </v-app>
+</body>
+  
 </template>
 
 <script>
@@ -31,16 +34,30 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 #container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4,1fr) 60px;
+  grid-gap: 3%;
+  box-sizing: border-box;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  height: 150px;
+  width: 100vh;
   /* display:flex; */
-  width: 100%;
-  height: 500px;
-  
-  gap: 20px;
+  font-size: 200%;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bolder;
+  text-decoration-line: none;
+  /* height: 35%; */
+  padding: 2%; 
+
   /* max-width: 1200px;
   min-width: 700px; */
+}
+.v-application--wrap{
+  background-color: rgba(240, 128, 128, 0.667);
+  min-height: 100vh;
+  text-align: center;
 }
 </style>
