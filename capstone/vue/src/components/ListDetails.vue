@@ -3,7 +3,7 @@
 
     <v-toolbar app>
       <v-toolbar-title id="title">
-          \ {{ appTitle }} \ {{this.$store.state.user.username}} \ {{this.$store.state.group.groupName}} \ {{list.listName}}
+          \ {{ appTitle }}  \ {{this.$store.state.user.username}} \ {{this.$store.state.group.groupName}} \ {{this.$store.state.list.listName}}
       </v-toolbar-title>
     
       <v-spacer></v-spacer>
@@ -19,14 +19,15 @@
     </v-toolbar> 
 
     <div id="toggleClaim">
-      <div v-show="this.list && this.list.claimedId != 0">
-        <button
+      <div  v-show="this.list && this.list.claimedId != 0">
+        <button class="Claimed"
           v-show="this.list && this.$store.state.user.id == this.list.claimedId"
           @click="unclaimList()"
         >
-          Unclaim
+          Unclaim 
         </button>
-        <button
+      &nbsp;&nbsp;
+        <button class="Unclaimed"
           v-show="
             this.list &&
             this.$store.state.user.id == this.list.claimedId &&
@@ -34,9 +35,9 @@
           "
           @click="completeList()"
         >
-          Mark List complete
+          Mark All Complete
         </button>
-        <button
+        <button class="Claimed"
           v-show="
             this.list &&
             this.$store.state.user.id == this.list.claimedId &&
@@ -54,7 +55,7 @@
         </div>
       </div>
       <div v-show="this.list && this.list.claimedId == 0">
-        <button
+        <button class="Unclaimed"
           v-show="this.list && this.$store.state.user.id != this.list.claimedId"
           @click="claimList()"
         >
@@ -219,5 +220,34 @@ export default {
 }
 .theme--light.v-btn.v-btn--has-bg {
     background-color: #0EAD69;
+}
+.complete {
+  text-decoration-line: overline;
+}
+#toggleClaim {
+  
+  
+}
+.Claimed {
+    font-family:    'Courier New', Courier, monospace;
+  font-size:      16px;
+  font-weight:    bold;
+  color:          blanchedalmond;
+  /* text-shadow: 1.5px 1.5px 0px lightcoral; */
+  background-color: black;
+  padding: 10px;
+  border-radius: 3px;
+  margin-top: 15px;
+}
+.Unclaimed {
+    font-family:    'Courier New', Courier, monospace;
+  font-size:      16px;
+  font-weight:    bold;
+  color:          blanchedalmond;
+  /* text-shadow: 1.5px 1.5px 0px lightcoral; */
+  background-color:black;
+  padding: 10px;
+  border-radius: 3px;
+  margin-top: 15px;
 }
 </style>
