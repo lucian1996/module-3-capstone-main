@@ -6,7 +6,7 @@
       max-width="800"
       outlined>
               {{item.quantity}}
-               {{item.itemName}}
+              {{item.itemName}}
                 
             </div>
             </v-list-item-content>

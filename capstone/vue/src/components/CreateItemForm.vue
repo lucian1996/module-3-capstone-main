@@ -1,4 +1,5 @@
 <template>
+    
   <v-dialog @click="dialog = true"
   v-model="dialog"
         width="600px"
@@ -11,7 +12,7 @@
           + create item
           </v-btn>
         </template>
-    <v-card>
+    <v-card class="form-card">
       <v-form v-on:submit.prevent>
         <div class="field">
           <label for="name">Name</label>
@@ -22,7 +23,7 @@
           <v-text-field placeholder="quantity" v-model.number="item.quantity"/>
         </div>
         <v-row justify="center">
-                 <v-btn @click="submit()" color="primary" elevation="2">Create</v-btn>
+                 <v-btn @click="submit()" color="rgb(255, 235, 205)" elevation="2">Create</v-btn>
               </v-row>
       </v-form>
     </v-card>
@@ -68,3 +69,8 @@ export default {
     },
 };
 </script>
+<style scoped>
+.form-card{
+padding: 5%;
+}
+</style>
