@@ -19,14 +19,15 @@
     </v-toolbar> 
 
     <div id="toggleClaim">
-      <div v-show="this.list && this.list.claimedId != 0">
-        <button 
+      <div  v-show="this.list && this.list.claimedId != 0">
+        <button class="Claimed"
           v-show="this.list && this.$store.state.user.id == this.list.claimedId"
           @click="unclaimList()"
         >
-          Unclaim &nbsp;&nbsp;&nbsp;
+          Unclaim 
         </button>
-        <button 
+      &nbsp;&nbsp;
+        <button class="Unclaimed"
           v-show="
             this.list &&
             this.$store.state.user.id == this.list.claimedId &&
@@ -36,7 +37,7 @@
         >
           Mark All Complete
         </button>
-        <button 
+        <button class="Claimed"
           v-show="
             this.list &&
             this.$store.state.user.id == this.list.claimedId &&
@@ -54,7 +55,7 @@
         </div>
       </div>
       <div v-show="this.list && this.list.claimedId == 0">
-        <button
+        <button class="Unclaimed"
           v-show="this.list && this.$store.state.user.id != this.list.claimedId"
           @click="claimList()"
         >
@@ -224,7 +225,29 @@ export default {
   text-decoration-line: overline;
 }
 #toggleClaim {
-  background-color: whitesmoke
   
+  
+}
+.Claimed {
+    font-family:    'Courier New', Courier, monospace;
+  font-size:      16px;
+  font-weight:    bold;
+  color:          blanchedalmond;
+  /* text-shadow: 1.5px 1.5px 0px lightcoral; */
+  background-color: black;
+  padding: 10px;
+  border-radius: 3px;
+  margin-top: 15px;
+}
+.Unclaimed {
+    font-family:    'Courier New', Courier, monospace;
+  font-size:      16px;
+  font-weight:    bold;
+  color:          blanchedalmond;
+  /* text-shadow: 1.5px 1.5px 0px lightcoral; */
+  background-color:black;
+  padding: 10px;
+  border-radius: 3px;
+  margin-top: 15px;
 }
 </style>
