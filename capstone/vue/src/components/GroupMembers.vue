@@ -19,10 +19,10 @@
           </v-btn>
         </v-toolbar-items>
       </v-toolbar>
-      {{ $store.state.members}}
     </div>
-
-
+    <div class='members' v-for="(member, index) in $store.state.members" :key="index">
+        {{ member.username}}
+ </div>
   </div>
 </template>
 
