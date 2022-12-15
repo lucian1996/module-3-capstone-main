@@ -1,5 +1,6 @@
 <template>
 <div class="wrap">
+  
         <div class="card">
              <img src="@/assets/lord.png" alt="not working">
           <div class="info">
@@ -18,7 +19,7 @@
               <div v-show="!memberStatus">
                  <div id="join-button" role="button">
                    <join-group-form v-bind:group="group"/>
-                   +
+                   Join Group
               </div>
             </div>
           </div>

@@ -1,5 +1,8 @@
 <template>
 <body>
+  <br>
+  <br>
+  <br>
   <v-app>
       <div id ="container">
         <create-group-card/>
@@ -35,6 +38,9 @@ export default {
 </script>
 
 <style>
+body {
+  background-color: rgba(240, 128, 128, 0.31) !important;
+}
 #container {
   display: grid;
   align-items: center;
@@ -43,7 +49,7 @@ export default {
   box-sizing: border-box;
   white-space: nowrap;
   text-overflow: ellipsis;
-  height: 150px;
+  height: 100px;
   max-width: 400px;
   /* display:flex; */
   font-size: 200%;

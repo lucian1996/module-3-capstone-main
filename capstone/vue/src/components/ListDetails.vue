@@ -227,13 +227,9 @@ export default {
   font-family:    'Courier New', Courier, monospace;
   font-size:      50px;
   font-weight:    bold;
-<<<<<<< HEAD
-  color:          whitesmoke;
   text-shadow: 1.5px 1.5px 0px rgba(240, 128, 128, 0.349);
-=======
   color:          blanchedalmond;
   text-shadow: 1.5px 1.5px 0px lightcoral;
->>>>>>> b330136c024183a43138a8cc22be1ec5f113ea9a
 }
 .v-btn__content{
   font-family:    'Courier New', Courier, monospace;
@@ -265,9 +261,6 @@ export default {
   align-items: center;
   background: rgba(240, 128, 128, 0.03) !important;
 }
-<<<<<<< HEAD
-
-=======
 .complete {
   text-decoration-line: overline;
 }
@@ -297,5 +290,4 @@ export default {
   border-radius: 3px;
   margin-top: 15px;
 }
->>>>>>> b330136c024183a43138a8cc22be1ec5f113ea9a
 </style>
