@@ -98,4 +98,5 @@ export default {
   text-decoration-line: none;
   padding: 2%; 
 }
+
 </style>

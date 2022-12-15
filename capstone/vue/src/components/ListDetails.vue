@@ -19,53 +19,6 @@
       </v-toolbar-items>
 </v-toolbar> 
     </header>
-
-    <!-- <div id="toggleClaim">
-      <div v-show="this.list && this.list.claimedId != 0">
-        <button
-          v-show="this.list && this.$store.state.user.id == this.list.claimedId"
-          @click="unclaimList()"
-        >
-          Unclaim 
-        </button>
-      &nbsp;&nbsp;
-        <button class="Unclaimed"
-          v-show="
-            this.list &&
-            this.$store.state.user.id == this.list.claimedId &&
-            this.list.listCompleted == false
-          "
-          @click="completeList()"
-        >
-          Mark All Complete
-        </button>
-        <button class="Claimed"
-          v-show="
-            this.list &&
-            this.$store.state.user.id == this.list.claimedId &&
-            this.list.listCompleted == true
-          "
-          @click="ListIncomplete()"
-        >
-          Mark List Incomplete
-        </button>
-        <div
-          v-show="this.list && this.$store.state.user.id != this.list.claimedId"
-        >
-          <br />
-          Claimed by another User
-        </div>
-      </div>
-      <div v-show="this.list && this.list.claimedId == 0">
-        <button class="Unclaimed"
-          v-show="this.list && this.$store.state.user.id != this.list.claimedId"
-          @click="claimList()"
-        >
-          Claim
-        </button>
-        <br />
-      </div>
-    </div> -->
     <body>
       <br>
       <br>
@@ -74,12 +27,35 @@
       <br>
       <br>
       <br>
-       <div data-app data=app class="wrap">
-      <div>
+       <div id ="container" data-app >
          <create-item-form/>
-      </div>
-      </div>
+         <div @click="claimList()" v-show = "showCLaim" class="wrap">
+           <div class="card">
+            <img src="@/assets/lord.png" alt="not working">
+                <div class="info">
+                <h4>Claim List</h4>
+                </div>
+         </div>
+         </div>
+           <div @click="claimList()" v-show = "showUnclaim" class="wrap">
+           <div class="card">
+            <img src="@/assets/lord.png" alt="not working">
+                <div class="info">
+                <h4>Claim List</h4>
+                </div>
+         </div>
+         </div>
+        </div>
       <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+       <br>
       <br>
       <br>
       <br>
@@ -111,6 +87,8 @@ export default {
   name: "list-details",
   data() {
     return {
+      showClaim: false,
+      ShowUnClaim: false,
       listName: '',
       listComplete: "",
       appTitle: 'Fridgrr',
@@ -123,6 +101,9 @@ export default {
   },
   methods: {
     claimList() {
+      console.log(this.list.status, 'status')
+      this.list.status = !this.list.status;
+      console.log('status', this.list.status)
       ListService.claimList(this.list.groupId, this.list.listId).then(
         (response) => {
           if (response.status == 200)
@@ -130,20 +111,7 @@ export default {
               listId: this.list.listId,
               userId: this.$store.state.user.id,
             });
-            // this.$router.go()
-        }
-      );
-    },
-    unclaimList() {
-      ListService.unclaimList(this.list.groupId, this.list.listId).then(
-        (response) => {
-          if (response.status == 200) {
-            this.$store.commit("UPDATE_CLAIMED_ID", {
-              listId: this.list.listId,
-              userId: 0,
-            });
-            // this.$router.go()
-          }
+            
         }
       );
     },
@@ -198,11 +166,20 @@ export default {
     },
    logLists () {
        console.table(this.$store.state.lists);
+     },
+     getShowUnClaim () {
+        console.log('teklklklst', this.list.status == true && this.store.state.user.id == this.list.claimedId)
+        if (this.list.status == true && this.store.state.user.id == this.list.claimedId) {
+          return true;
+        }
+        return false;
      }
   },
   created() {
     this.getItems();
     this.listName = this.list.listName;
+    this.getShowUnClaim();
+  
   },
 
   computed: {
@@ -268,26 +245,5 @@ export default {
   
   
 }
-.Claimed {
-    font-family:    'Courier New', Courier, monospace;
-  font-size:      16px;
-  font-weight:    bold;
-  color:          blanchedalmond;
-  /* text-shadow: 1.5px 1.5px 0px lightcoral; */
-  background-color: black;
-  padding: 10px;
-  border-radius: 3px;
-  margin-top: 15px;
-}
-.Unclaimed {
-    font-family:    'Courier New', Courier, monospace;
-  font-size:      16px;
-  font-weight:    bold;
-  color:          blanchedalmond;
-  /* text-shadow: 1.5px 1.5px 0px lightcoral; */
-  background-color:black;
-  padding: 10px;
-  border-radius: 3px;
-  margin-top: 15px;
-}
+
 </style>

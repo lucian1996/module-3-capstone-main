@@ -22,9 +22,6 @@
     </header>
 
     <body>
-       <br>
-       <br>
-       <br>
         <div data-app class="wrap">
           <div class="card">
             <img src="@/assets/lord.png" alt="not working">
@@ -34,15 +31,12 @@
              </div>
           <create-list-form/>
               <div v-show="!isOwner" @click="removeUser()" class="card">
-              <img src="@/assets/lord.png" alt="not working">
-                <div class="info">
-                <h4>Leave Group</h4>
-                </div>
+                <img src="@/assets/lord.png" alt="not working">
+                  <div class="info">
+                  <h4>Leave Group</h4>
+              </div>
           </div>
         </div>
-       <br>
-       <br>
-       <br>
       <list-container v-bind:groupId="$route.params.groupID" />
     </body>
   </html>
@@ -150,19 +144,36 @@ export default {
 .theme--light.v-btn.v-btn--has-bg {
   background-color: #0ead69;
 }
-.wrap {
+/* .wrap {
   width: 30vw;
   height: 25vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background: rgba(240, 128, 128, 0.01);
+} */
+div.wrap{
+  max-width: 250px;
+  margin-bottom: 10px;
+  margin-inline: 12px;
 }
 body{
   background: rgba(240, 128, 128, 0.1);
 }
-.wrap[data-v-561d9173]{
-  width: 60vw;
+#container{
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(4,1fr) 1px;
+  grid-gap: 3%;
+  box-sizing: border-box;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  height: 350px;
+  max-width: 260px;
+  font-size: 200%;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bolder;
+  padding-left: 2%; 
 }
 .card{
   width: 260px;
