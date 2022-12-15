@@ -4,9 +4,7 @@
       <v-toolbar app>
         <v-toolbar-title id="title">
           {{ appTitle }} \
-          <!-- {{ group.groupName }} -->
         </v-toolbar-title>
-
         <v-spacer></v-spacer>
         <v-toolbar-items>
           <v-btn

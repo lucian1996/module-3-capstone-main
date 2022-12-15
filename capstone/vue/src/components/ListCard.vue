@@ -1,15 +1,10 @@
 <template>
- <v-card class="d-flex align-center justify-center"  min-height="250">
+ <v-card-title class="list-card text-center">
     <router-link
     v-bind:to="{ name: 'list-details', params: { listID: list.listId, groupID: list.groupId } }">
-    <div>
-      <div>
-        <div>{{ list.listName }}</div>
-        <div></div>
-      </div>
-    </div>
+      \ {{ list.listName }}
   </router-link>
- </v-card>
+ </v-card-title>
 </template>
 
 <script>
@@ -20,3 +15,12 @@ export default {
   },
 };
 </script>
+<style scoped>
+.list-card{
+  background-color: blanchedalmond;
+  text-decoration-line: none;
+  height: 150px;
+  width: 200px;
+  border-radius: 4px;
+}
+</style>

@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <html>
     <v-content id="main" class="d-flex align-center justify-center">
       <router-view></router-view>
     </v-content>
-  </div>
+  </html>
 </template>
 
 <script>
@@ -40,6 +40,10 @@ div {
 .v-application a {
   color: black;
   text-decoration: none;
+}
+html{
+  display: flexbox;
+
 }
 
 </style>

@@ -55,7 +55,9 @@ export default {
 <style scoped>
 #container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4,1fr) 60px;
+  grid-gap: 3%;
+  box-sizing: border-box;
   gap: 20px;
   width: 100%;
   height: 500px;
