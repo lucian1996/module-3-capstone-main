@@ -71,9 +71,9 @@ export default {
     return {
     appTitle: 'Fridgrr',
         menuItems: [
-          { title: 'group', path: '/groups' },
+          { title: 'groups', path: '/groups' },
+          { title: 'members', path: '/members'},
           { title: 'logout', path: '/login' },
-          { title: 'members', path: '/members',},
      ],
     groupErrors: false,
     groupErrorMsg: "There was a problem that prevented this action from completing."
@@ -147,5 +147,8 @@ export default {
 }
 .v-toolbar__content{
   background-color: #0EAD69;
+}
+.theme--light.v-btn.v-btn--has-bg {
+    background-color: #0EAD69;
 }
 </style>
