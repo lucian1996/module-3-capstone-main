@@ -1,34 +1,39 @@
 <template>
-    <v-card  class=" align-center justify-center"  min-height="250" min-width="250" >
-    <router-link class="text-decoration-none"
-      v-bind:to="{
-        name: 'group-details',
-        params: { groupID: this.group.groupId },
-      }"
-    >
-      <div role="button">
-        <v-list-item>
-          <v-list-item-content class="text-center">
-            {{ group.groupName }}
-          </v-list-item-content>
-        </v-list-item>
-        
-      </div>
-    </router-link>
-  <v-card-action>
-       <v-btn v-show="!memberStatus">
-      <router-link class="text-decoration-none"
-        v-bind:to="{
-          name: 'join-group-form',
-          params: {
-            group: this.group,
-          },
-        }">
-        Join
-      </router-link>
-    </v-btn>
-  </v-card-action>
-  </v-card>
+       <div class="wrap">
+        <div class="card">
+             <img src="@/assets/lord.png" alt="not working">
+          <div class="info">
+            <h4>
+              <router-link class="text-decoration-none"
+              v-bind:to="{
+              name: 'group-details',
+              params: { groupID: this.group.groupId },
+              }"
+              >
+              <div role="button">
+              <v-list-item>
+              <v-list-item-content class="text-center">
+              {{ group.groupName }}
+              </v-list-item-content>
+              </v-list-item>
+
+              </div>
+              </router-link>
+              <v-btn v-show="!memberStatus">
+              <router-link class="text-decoration-none"
+              v-bind:to="{
+              name: 'join-group-form',
+              params: {
+              group: this.group,
+              },
+              }">
+              Join
+              </router-link>
+              </v-btn>
+            </h4>
+          </div>
+        </div>
+</div>
   
 </template>
 
