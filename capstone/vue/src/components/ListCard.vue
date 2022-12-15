@@ -52,12 +52,13 @@ export default {
 .card {
   width: 260px;
   min-height: 200px;
-  background: #2B2B2B;
-  border-radius: 10px;
-  padding: 6px;
+  background: #0ead69;
+  box-shadow:0px 2px 1px 2px blanchedalmond;
+  border-radius: 4px;
+  padding: 8px;
    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   animation-name: x;
-  animation-duration: 1000s;
+  animation-duration: 5000s;
   animation-iteration-count: infinite;
   animation-timing-function: ease;
   transition: all;
@@ -66,7 +67,8 @@ export default {
   width: 100%;
 }
 .info h4{
-  color: white;
+  color: blanchedalmond;
+  text-decoration-line: none;
   padding: 0 10px;
 }
 

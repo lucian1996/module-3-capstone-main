@@ -3,7 +3,7 @@
     <div id="nav">
       <v-toolbar app>
         <v-toolbar-title id="title">
-          {{ appTitle }} \
+         \ {{ appTitle }} \ members
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items>
@@ -71,7 +71,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: lightcoral
+  background: rgba(240, 128, 128, 0.667)
 }
 .card {
   width: 260px;
