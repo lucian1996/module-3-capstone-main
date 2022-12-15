@@ -87,7 +87,7 @@ router-link a{
   padding: 6px;
    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   animation-name: x;
-  animation-duration: 3s;
+  animation-duration: .01s;
   animation-iteration-count: infinite;
   animation-timing-function: ease;
   transition: all;
@@ -101,10 +101,15 @@ router-link a{
 }
 
 @keyframes x {
-  0% {transform: rotateY(0deg) skewX(0deg);}
-  25% {transform: rotateY(-30deg) skewX(-4deg);}
+  /* 0% {transform: rotateY(0deg) skewX(0deg);}
+  25% {transform: rotateY(-0deg) skewX(-90deg);}
   50% {transform: rotateY(0deg) skewX(0deg);}
   75% {transform: rotateY(30deg) skewX(4deg);}
+  100% {transform: rotateY(0deg) skewX(0deg);} */
+    0% {transform: rotateY(0deg) skewX(0deg);}
+  25% {transform: rotateY(-0deg) skewX(-0deg);}
+  50% {transform: rotateY(1deg) skewX(1deg);}
+  75% {transform: rotateY(0deg) skewX(0deg);}
   100% {transform: rotateY(0deg) skewX(0deg);}
 }
 
