@@ -41,5 +41,7 @@ div {
   color: black;
   text-decoration: none;
 }
-
+.theme--light.v-btn.v-btn--has-bg {
+  background-color: #26b82d;
+}
 </style>
