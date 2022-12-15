@@ -23,17 +23,15 @@
 
     <body>
       <list-container v-bind:groupId="$route.params.groupID" />
-      <v-btn
-        @click.prevent="removeUser"
-        type="submit"
-        color="#0EAD69"
-        elevation="9"
-        small
-        >leave group</v-btn
-      >
+        <div v-show="!isOwner" @click="removeUser()" class="card">
+        <img src="@/assets/lord.png" alt="not working">
+        <div class="info">
+        <h4>Leave Group</h4>
+        </div>
+        </div>
+     
       <div>
         <div data-app id="container">
-          <join-group-form />
           <item-card
             v-for="item in items"
             v-bind:key="item.dateModified"
@@ -49,9 +47,8 @@
 import MemberService from "../services/MemberService";
 import GroupService from "../services/GroupService";
 import ListContainer from "./ListContainer.vue";
-import JoinGroupForm from "./JoinGroupForm.vue";
 export default {
-  components: { ListContainer, JoinGroupForm },
+  components: { ListContainer },
 
   name: "group-details",
   props: {
@@ -62,6 +59,7 @@ export default {
   },
   data() {
     return {
+      isOwner: false,
     appTitle: 'Fridgrr',
         menuItems: [
           { title: 'groups', path: '/groups' },
@@ -108,6 +106,11 @@ export default {
     this.retrieveGroup();
     this.retrieveMembers();
   },
+  mounted () {
+     if (this.$store.state.user.userId == this.$store.state.group.ownerId) {
+      this.isOwner = true;
+    }
+  },
   computed: {
     group() {
       return this.$store.state.group;
@@ -115,6 +118,8 @@ export default {
     members() {
       return this.$store.state.members;
     },
+
+
   },
 };
 </script>

@@ -1,13 +1,14 @@
 <template>
 <div>
-        <create-list-form />
-  <div data-app id="container">
+    
+  <div class="wrap">
+      <create-list-form />
      <list-card
       v-for="list in lists"
       v-bind:key="list.listId"
       v-bind:list="list" />
   </div>
-</div>
+  </div>
 </template>
 
 <script>
@@ -77,4 +78,11 @@ export default {
 .v-toolbar__content{
   background-color: #0EAD69;
 }
+.wrap {
+  width: 25vh;
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(240, 128, 128, 0.05);}
 </style>

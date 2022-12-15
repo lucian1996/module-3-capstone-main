@@ -81,7 +81,7 @@ router-link a{
   padding: 6px;
    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   animation-name: x;
-  animation-duration: 60s;
+  animation-duration: 1000s;
   animation-iteration-count: infinite;
   animation-timing-function: ease;
   transition: all;

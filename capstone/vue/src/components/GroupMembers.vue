@@ -26,7 +26,7 @@
             <h4>{{member.username}}</h4>
           </div>
         </div>
-</div>
+        </div>
  </div>
   </div>
 </template>
