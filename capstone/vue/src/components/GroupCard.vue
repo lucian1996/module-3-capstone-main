@@ -20,15 +20,7 @@
               </div>
               </router-link>
               <v-btn v-show="!memberStatus">
-              <router-link class="text-decoration-none"
-              v-bind:to="{
-              name: 'join-group-form',
-              params: {
-              group: this.group,
-              },
-              }">
-              Join
-              </router-link>
+              <join-group-form v-bind:group="group"/>
               </v-btn>
             </h4>
           </div>
@@ -39,7 +31,9 @@
 
 <script>
 import GroupService from "../services/GroupService";
+import JoinGroupForm from './JoinGroupForm.vue';
 export default {
+  components: { JoinGroupForm },
   name: "group-card",
   props: ["group"],
   data() {
