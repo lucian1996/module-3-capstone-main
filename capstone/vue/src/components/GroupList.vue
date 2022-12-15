@@ -41,30 +41,29 @@ export default {
 body {
   background-color: rgba(240, 128, 128, 0.31) !important;
 }
-#container {
+#container{
   display: grid;
   align-items: center;
-  grid-template-columns: repeat(5,1fr) 60px;
+  grid-template-columns: repeat(4,1fr) 1px;
   grid-gap: 3%;
   box-sizing: border-box;
   white-space: nowrap;
   text-overflow: ellipsis;
-  height: 100px;
-  max-width: 400px;
-  /* display:flex; */
+  height: 350px;
+  max-width: 260px;
   font-size: 200%;
   font-family: 'Courier New', Courier, monospace;
   font-weight: bolder;
-  text-decoration-line: none;
-  /* height: 35%; */
   padding: 2%; 
-
-  /* max-width: 1200px;
-  min-width: 700px; */
 }
-.v-application--wrap{
+div.wrap{
+  max-width: 250px;
+  margin-bottom: 120px;
+  margin-inline: 12px;
+}
+.v-application--wrap{ 
   background-color: rgba(240, 128, 128, 0.667);
-  min-height: 100vh;
+  height: 100%; 
   text-align: center;
 }
 </style>
