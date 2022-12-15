@@ -54,7 +54,8 @@ export default {
   box-shadow:0px 2px 1px 2px blanchedalmond;
   border-radius: 4px;
   padding: 8px;
-   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family:    'Courier New', Courier, monospace;
+  font-size: 16pt;
   animation-name: x;
   animation-duration: 5000s;
   animation-iteration-count: infinite;

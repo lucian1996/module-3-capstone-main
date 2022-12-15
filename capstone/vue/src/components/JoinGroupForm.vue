@@ -61,6 +61,5 @@ export default {
 <style scoped>
 .form-card {
   padding: 5%;
-  color: brown;
 }
 </style>
