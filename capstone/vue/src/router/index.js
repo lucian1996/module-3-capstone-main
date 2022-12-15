@@ -10,6 +10,7 @@ import ListDetails from "../components/ListDetails.vue";
 import JoinGroupForm from "../components/JoinGroupForm.vue";
 import LeaveGroupForm from "../components/LeaveGroupForm.vue";
 import Groups from "../views/Groups.vue"
+import GroupMembers from "../components/GroupMembers.vue"
 
 Vue.use(Router);
 
@@ -98,6 +99,14 @@ const router = new Router({
         requiresAuth: true,
       },
     },
+    {
+      path:"/members",
+      name:"group-members",
+      component: GroupMembers,
+      meta: {
+        requiresAuth: true,
+      }
+    }
  
   ],
 });
