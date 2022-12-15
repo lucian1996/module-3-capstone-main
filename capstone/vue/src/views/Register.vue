@@ -1,13 +1,16 @@
 <template>
-  <div>
+  <html>
+    <header>
     <v-toolbar app>
         <v-toolbar-title id="title">
-          {{ appTitle }}
+          \ {{ appTitle }}
         </v-toolbar-title>
       </v-toolbar>
-
-    <form class="form-register" @submit.prevent="register">
-      <h2 class="h3 mb-3 font-weight-normal">Create Account</h2>
+    </header>
+<body>
+  <div id="form-div">
+  <form class="form-register" @submit.prevent="register">
+      <h2 class="h3 mb-3 font-weight-normal">\ Create Account</h2>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
@@ -22,29 +25,42 @@
         autofocus />
       <label for="password" class="sr-only"></label>
       <input
-        type=""
+        type="password"
         id="password"
         class="form-control"
         placeholder="password"
         v-model="user.password"
         required />
       <input
-        type=""
+        type="password"
         id="confirmPassword"
         class="form-control"
         placeholder="confirm Password"
         v-model="user.confirmPassword"
         required />
+
+        <v-btn 
+        @click.prevent="register"
+        type="submit"
+        color="#0EAD69"
+        elevation="9"
+        small
+      >register
+      </v-btn>
+
+      <br>
+
+      <v-btn 
+        @click.prevent="login"
+        type="submit"
+        elevation="9"
+        small
+      >Have an account?
+      </v-btn>
     </form>
-    <div class="footer">
-      <br />
-      <router-link :to="{ name: 'login' }" class="login"
-        >Have an account?</router-link> <br>
-      <button
-        class="btn btn-lg btn-primary btn-block"
-        type="submit" @click.prevent="register"> Create Account </button>
     </div>
-  </div>
+</body>     
+  </html>
 </template>
 
 <script>
@@ -97,6 +113,9 @@ export default {
           });
       }
     },
+    login() {
+      this.$router.push("/");
+    },
     clearErrors() {
       this.registrationErrors = false;
       this.registrationErrorMsg = "There were problems registering this user.";
@@ -105,19 +124,64 @@ export default {
 };
 </script>
 <style scoped>
-#title{
+#title, .form-register{
   font-family:    'Courier New', Courier, monospace;
-  font-size:      50px;
+  font-size:      36px;
   font-weight:    bold;
-  color:          whitesmoke;
-  text-shadow: 1.5px 1.5px 0px lightcoral;
+  color:          blanchedalmond;
+  text-shadow: 2px 2px 0px lightcoral;
+}
+#form-div{
+  padding-top: 7%;
+}
+.form-register{
+   display: inline-block;
+    height: 480px;
+    width: 600px;
+    background-color: rgb(255, 235, 205);
+    
+    left: 50%;
+    border-radius: 4px;
+    backdrop-filter: blur(10px);
+    color:          #0EAD69;
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgb(8 7 16 / 60%);
+    padding: 50px 30px;
 }
 .v-btn__content{
   font-family:    'Courier New', Courier, monospace;
   font-size:      15px;
   font-weight:    bolder;
+  color: blanchedalmond;
 }
 .v-toolbar__content{
   background-color: #0EAD69;
+}
+body{
+  background-color: rgba(240, 128, 128, 0.667);
+  min-height: 100vh;
+  text-align: center;
+}
+input {
+  font-size: 10px;
+  text-align: center;
+    display: block;
+    height: 50px;
+    width: 100%;
+    background-color: rgba(255,255,255,0.07);
+    border-radius: 3px;
+    padding: 20px 20px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    font-weight: 300;
+}
+.alert-danger{
+  font-size: 15pt;
+}
+.form-control{
+  font-family:    'Courier New', Courier, monospace;
+  font-size:      30px;
+  font-weight: bolder;
+  background-color: whitesmoke;
 }
 </style>

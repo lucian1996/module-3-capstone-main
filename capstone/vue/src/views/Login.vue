@@ -45,16 +45,15 @@
         type="submit"
         color="#0EAD69"
         elevation="9"
-        large
+        small
       >Sign in
       </v-btn>
-
-      <br>
+<br>
       <v-btn
         @click.prevent="register"
         elevation="9"
         color="#0EAD69"
-        large>
+        small>
         register
         </v-btn>
     </form>
@@ -125,7 +124,6 @@ export default {
   text-shadow: 2px 2px 0px lightcoral;
 }
 .v-btn__content{
-  
   font-family:    'Courier New', Courier, monospace;
   font-size:      15px;
   font-weight:    bolder;
@@ -133,7 +131,6 @@ export default {
 }
 .v-toolbar__content{
   background-color: #0EAD69;
- 
 }
 #form-div{
   padding-top: 7%;
@@ -168,8 +165,10 @@ input {
     padding: 20px 20px;
     margin-top: 16px;
     margin-bottom: 16px;
-    font-size: 14px;
     font-weight: 300;
+}
+.alert-danger{
+  font-size: 15pt;
 }
 .form-control{
   font-family:    'Courier New', Courier, monospace;
