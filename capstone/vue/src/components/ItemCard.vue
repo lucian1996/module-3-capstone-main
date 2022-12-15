@@ -1,12 +1,12 @@
 <template>
-       <v-card  class="incomplete" v-bind:class="[{ complete: isComplete }]" max-width ="400 outlined">
+       <v-card  max-width ="800 outlined">
          <v-list-item>
-          <v-list-item-content>
+          <v-list-item-content class="incomplete" v-bind:class="[{ complete: isComplete }]">
            <div class="mx-auto"
-      max-width="344"
+      max-width="800"
       outlined>
-               Quantity: {{item.quantity}}
-                Name: {{item.itemName}}
+              {{item.quantity}}
+               {{item.itemName}}
                 
             </div>
             </v-list-item-content>
@@ -17,7 +17,10 @@
             </v-list-item-content>
          </v-list-item>
          <v-card-actions>
-            <v-btn @click="markComplete">mark complete</v-btn>
+            <v-btn @click="markComplete">
+              <div v-show="!isComplete">Mark Complete</div>
+                <div v-show="isComplete">Mark Incomplete</div>
+            </v-btn>
             <edit-item-form  v-bind:itemID="itemID"/>
          </v-card-actions>
         </v-card>
@@ -39,7 +42,7 @@ export default {
 
   methods : {
     markComplete () { 
-      this.item.status = true;
+      this.item.status = !this.item.status;
       ItemService.editItem(this.item)
       this.$router.go()
       },
@@ -76,9 +79,7 @@ export default {
 <style scoped>
 .complete {
   text-decoration: line-through;
-  background-color: gray !important;
 }
 .incomplete {
-  background-color: rgb(173, 173, 248);
 }
 </style>
