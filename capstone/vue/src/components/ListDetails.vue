@@ -3,7 +3,7 @@
 
     <v-toolbar app>
       <v-toolbar-title id="title">
-          \ {{ appTitle }}  \ {{this.$store.state.user.username}} \ {{this.$store.state.group.groupName}} \ {{list.listName}}
+          \ {{ appTitle }}  \ {{this.$store.state.user.username}} \ {{this.$store.state.group.groupName}} \ {{this.$store.state.list.listName}}
       </v-toolbar-title>
     
       <v-spacer></v-spacer>
@@ -24,7 +24,7 @@
           v-show="this.list && this.$store.state.user.id == this.list.claimedId"
           @click="unclaimList()"
         >
-          Unclaim
+          Unclaim &nbsp;&nbsp;&nbsp;
         </button>
         <button
           v-show="
@@ -34,7 +34,7 @@
           "
           @click="completeList()"
         >
-          Mark List complete
+          Mark All Complete
         </button>
         <button
           v-show="
@@ -219,5 +219,8 @@ export default {
 }
 .theme--light.v-btn.v-btn--has-bg {
     background-color: #0EAD69;
+}
+.complete {
+  text-decoration-line: overline;
 }
 </style>
