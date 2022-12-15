@@ -18,7 +18,7 @@
         Create List
       </v-label>
       <form v-on:submit.prevent>
-      <label for="title"></label>
+      <!-- <label for="title"></label> -->
       <v-text-field v-model="list.name" 
       placeholder="enter the name"
       />
@@ -26,7 +26,10 @@
       <v-textarea v-model="list.description"
       placeholder="enter the description">
       </v-textarea>
-      <v-btn @click="submit()" color="primary" elevation="2">Create</v-btn>
+      <v-btn @click="submit()" 
+      color="rgb(255, 235, 205)" 
+      elevation="15"
+      >Create</v-btn>
     </form>
     </v-card>
   </v-dialog>
@@ -69,3 +72,10 @@ export default {
   },
 };
 </script>
+<style scoped>
+.form-card{
+  padding: 5%;
+  color: brown;
+}
+
+</style>

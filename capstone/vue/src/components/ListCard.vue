@@ -1,9 +1,10 @@
 <template>
  <v-card-title class="list-card text-center">
-    <router-link
+    <!-- <router-link
     v-bind:to="{ name: 'list-details', params: { listID: list.listId, groupID: list.groupId } }">
-      \ {{ list.listName }}
-  </router-link>
+      \ 
+  </router-link> -->
+  {{ list.listName }}
  </v-card-title>
 </template>
 
@@ -13,6 +14,9 @@ export default {
   props: ["list"],
   created() {
   },
+  listDetails() {
+    this.$router.push(`/listDetails/${this.list.groupId}/${this.list.listId}`)
+  }
 };
 </script>
 <style scoped>
