@@ -40,7 +40,6 @@
     <list-container v-bind:groupId="$route.params.groupID" />
     </div>
     <button v-on:click="removeUser()">LEAVE GROUP!</button>
-    {{group}}
   </div>
 </template>
 
