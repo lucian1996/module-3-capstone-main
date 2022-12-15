@@ -55,7 +55,7 @@ export default {
       GroupService.createGroup(this.group).then((response) => {
         if (response.status == 201) {
           this.dialog = false
-          this.$router.go()
+          this.$router.go({path: '/groups'})
         }
       });
     },
