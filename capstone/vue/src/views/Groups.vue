@@ -1,5 +1,20 @@
 <template>
 <div>
+  <v-toolbar app>
+        <v-toolbar-title id="title">
+          {{ appTitle }}
+        </v-toolbar-title>
+  <v-spacer></v-spacer>
+      <v-toolbar-items>
+        <v-btn
+          flat
+          v-for="item in menuItems"
+          :key="item.title"
+          :to="item.path">
+          {{ item.title }}
+        </v-btn> 
+      </v-toolbar-items>
+</v-toolbar>
       <group-list/>
   </div>
 
@@ -16,7 +31,8 @@ data(){
       appTitle: 'Fridgrr',
       menuItems: [
           { title: 'group', path: '/groups' },
-          { title: 'logout', path: '/login' },
+          { title: 'logout', path: '/' },
+          { title: 'members', path: '/members'},
      ],
     }
   }

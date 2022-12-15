@@ -15,7 +15,7 @@ export default {
       sidebar: false,
       menuItems: [
         { title: "Group", path: "/groups" },
-        { title: "Logout", path: "/login" },
+        { title: "Logout", path: "/" },
       ],
     };
   },

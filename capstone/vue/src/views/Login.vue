@@ -1,15 +1,17 @@
 <template>
-  <div>
+<html>
+  <header>
     <v-toolbar app>
         <v-toolbar-title id="title">
-          {{ appTitle }}
+         \ {{ appTitle }}
         </v-toolbar-title>
-      </v-toolbar>
-     
+    </v-toolbar>
+  </header>
 
-
+<body>
+  <div id="form-div">
     <form class="form-signin" @submit.prevent="login">
-      <h2>Sign In</h2>
+      <h2>\ Sign-in</h2>
       <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
         Invalid username and password!
       </div>
@@ -27,7 +29,7 @@
         placeholder="username"
         v-model="user.username"
         required
-        autofocus />
+      />
       <label for="password" class="sr-only"></label>
       <input
         type="password"
@@ -36,21 +38,29 @@
         placeholder="password"
         v-model="user.password"
         required />
-      <button type="submit" v-show="false"></button>
-    </form>
-    <br />
 
-    <div class="footer">
-      <router-link
-        :to="{ name: 'register' }"
-        class="register"
-        v-if="!this.$route.query.registration"
-        >Register</router-link
-      >
-      <br />
-      <button type="submit" class="btn" @click.prevent="login">Sign in</button>
+
+      <v-btn 
+        @click.prevent="login"
+        type="submit"
+        color="#0EAD69"
+        elevation="9"
+        large
+      >Sign in
+      </v-btn>
+
+      <br>
+      <v-btn
+        @click.prevent="register"
+        elevation="9"
+        color="#0EAD69"
+        large>
+        register
+        </v-btn>
+    </form>
     </div>
-  </div>
+  </body>
+  </html>
 </template>
 
 <script>
@@ -69,7 +79,7 @@ export default {
       appTitle: 'Fridgrr',
         menuItems: [
           { title: 'group', path: '/groups' },
-          { title: 'logout', path: '/login' },
+          { title: 'logout', path: '/' },
      ],
       invalidCredentials: false,
     };
@@ -96,6 +106,9 @@ export default {
           }
         });
     },
+    register() {
+      this.$router.push("/register");
+    }
   },
   created() {
     //this.$store.commit("LOGOUT")
@@ -104,20 +117,65 @@ export default {
 };
 </script>
 <style scoped>
-#title{
+#title, .form-signin{
   font-family:    'Courier New', Courier, monospace;
   font-size:      50px;
   font-weight:    bold;
-  color:          whitesmoke;
-  text-shadow: 1.5px 1.5px 0px lightcoral;
+  color:          blanchedalmond;
+  text-shadow: 2px 2px 0px lightcoral;
 }
 .v-btn__content{
+  
   font-family:    'Courier New', Courier, monospace;
   font-size:      15px;
   font-weight:    bolder;
+  color: blanchedalmond;
 }
 .v-toolbar__content{
   background-color: #0EAD69;
+ 
+}
+#form-div{
+  padding-top: 7%;
+}
+.form-signin{
+   display: inline-block;
+    height: 480px;
+    width: 480px;
+    background-color: rgb(255, 235, 205);
+    
+    left: 50%;
+    border-radius: 4px;
+    backdrop-filter: blur(10px);
+    color:          #0EAD69;
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgb(8 7 16 / 60%);
+    padding: 50px 30px;
+}
+body{
+  background-color: rgba(240, 128, 128, 0.667);
+  min-height: 100vh;
+  text-align: center;
+}
+input {
+  font-size: 15px;
+  text-align: center;
+    display: block;
+    height: 50px;
+    width: 100%;
+    background-color: rgba(255,255,255,0.07);
+    border-radius: 3px;
+    padding: 20px 20px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    font-weight: 300;
+}
+.form-control{
+  font-family:    'Courier New', Courier, monospace;
+  font-size:      30px;
+  font-weight: bolder;
+  background-color: whitesmoke;
 }
 </style>
 
