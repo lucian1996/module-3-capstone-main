@@ -117,7 +117,7 @@ public class JdbcGroupDao implements GroupDao {
     @Override
     public List<GroupMember> getAllMembers(int groupId) {
         List<GroupMember> allMembers = new ArrayList<>();
-        String sql = "SELECT * FROM group_member WHERE group_id = ?";
+        String sql = "SELECT * FROM users as u JOIN group_member as gm ON u.user_id = gm.user_id WHERE group_id = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, groupId);
         while (results.next()) {
             GroupMember groupMember = mapRowToMemberGroup(results);
@@ -174,6 +174,7 @@ public class JdbcGroupDao implements GroupDao {
         groupMember.setGroupId(rs.getInt("group_id"));
         groupMember.setMemberId(rs.getInt("user_id"));
         groupMember.setDateJoined(rs.getString("date_joined"));
+        groupMember.setUsername(rs.getString("username"));
         return groupMember;
     }
 

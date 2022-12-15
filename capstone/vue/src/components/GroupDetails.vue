@@ -92,7 +92,7 @@ export default {
       }));
     },
     retrieveMembers() {
-     MemberService.getMembers(this.$route.params.groupID).then((response) => {
+     MemberService.getMembers(this.groupID).then((response) => {
         this.$store.commit("SET_CURRENT_MEMBERS", response.data);
      });
     },

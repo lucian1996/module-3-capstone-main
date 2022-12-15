@@ -29,12 +29,7 @@ export default new Vuex.Store({
       dateCreated: '',
     },
     list : [],
-    members : [{ 
-      groupId : '',
-      userId : '',
-      username : '',
-      dateJoined : ''
-    }],
+    members : [],
     items : [],
   },
   mutations: {
@@ -61,7 +56,7 @@ export default new Vuex.Store({
       state.list = data;
     },
     SET_CURRENT_MEMBERS(state, data) {
-      state.members = data
+      state.members.push(data)
     },
     ADD_LIST (state, listToAdd) {
       state.list.push(listToAdd);
