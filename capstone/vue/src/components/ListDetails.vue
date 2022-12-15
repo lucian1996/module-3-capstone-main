@@ -1,9 +1,10 @@
 <template>
-  <div>
+  <html>
 
-    <v-toolbar app>
+    <header>
+          <v-toolbar app>
       <v-toolbar-title id="title">
-          \ {{ appTitle }}  \ {{this.$store.state.user.username}} \ {{this.$store.state.group.groupName}} \ {{list.listName}}
+          \ {{ appTitle }}  \ {{this.$store.state.user.username}} \ {{this.$store.state.group.groupName}} \ {{listName}}
       </v-toolbar-title>
     
       <v-spacer></v-spacer>
@@ -17,8 +18,9 @@
         </v-btn> 
       </v-toolbar-items>
 </v-toolbar> 
+    </header>
 
-    <div id="toggleClaim">
+    <!-- <div id="toggleClaim">
       <div v-show="this.list && this.list.claimedId != 0">
         <button
           v-show="this.list && this.$store.state.user.id == this.list.claimedId"
@@ -62,17 +64,40 @@
         </button>
         <br />
       </div>
-    </div>
-     <div  data-app id ="container">
-     <create-item-form/>
-      <item-card
+    </div> -->
+    <body>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+       <div data-app data=app class="wrap">
+      <div>
+         <create-item-form/>
+      </div>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      
+       <div id="container">
+          <item-card
         v-for="item in items"
         v-bind:key="item.dateModified"
         v-bind:itemID="item.itemId"
         :class="{complete : listComplete==true}"
       />
      </div>
-  </div>
+    </body>
+     </html>
 </template>
 
 <script>
@@ -85,6 +110,7 @@ export default {
   name: "list-details",
   data() {
     return {
+      listName: '',
       listComplete: "",
       appTitle: 'Fridgrr',
       menuItems: [
@@ -175,6 +201,7 @@ export default {
   },
   created() {
     this.getItems();
+    this.listName = this.list.listName;
   },
 
   computed: {
@@ -200,7 +227,7 @@ export default {
   font-size:      50px;
   font-weight:    bold;
   color:          whitesmoke;
-  text-shadow: 1.5px 1.5px 0px lightcoral;
+  text-shadow: 1.5px 1.5px 0px rgba(240, 128, 128, 0.349);
 }
 .v-btn__content{
   font-family:    'Courier New', Courier, monospace;
@@ -210,14 +237,27 @@ export default {
 .v-toolbar__content{
   background-color: #0EAD69;
 }
-#container {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-  width: 100%;
-  height: 500px;
-}
+
 .theme--light.v-btn.v-btn--has-bg {
     background-color: #0EAD69;
 }
+
+#container {
+  display: grid;
+  grid-template-columns: repeat(4,1fr) 60px;
+  grid-gap: 3%;
+  box-sizing: border-box;
+  gap: 50px;
+  width: 100%;
+  height: 50px;
+}
+.wrap {
+  width: 30vw !important;
+  height: 25vh !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(240, 128, 128, 0.03) !important;
+}
+
 </style>

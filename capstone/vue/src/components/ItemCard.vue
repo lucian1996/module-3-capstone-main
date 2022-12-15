@@ -1,28 +1,21 @@
 <template>
-       <v-card  max-width ="800 outlined">
-         <v-list-item>
-          <v-list-item-content class="incomplete" v-bind:class="[{ complete: isComplete }]">
-           <div class="mx-auto"
-      max-width="800"
-      outlined>
-              {{item.quantity}}
-              {{item.itemName}}
-            </div>
-            </v-list-item-content>
-         </v-list-item>
-         <v-list-item>
-          <v-list-item-content>
-  
-            </v-list-item-content>
-         </v-list-item>
-         <v-card-actions>
-            <v-btn @click="markComplete">
-              <div v-show="!isComplete">Mark Complete</div>
-                <div v-show="isComplete">Mark Incomplete</div>
-            </v-btn>
-            <edit-item-form  v-bind:itemID="itemID"/>
-         </v-card-actions>
-        </v-card>
+  <div class="wrap">
+    <div class=" card incomplete" v-bind:class="[{ complete: isComplete }]">
+      <img src="@/assets/lord.png" alt="not working">
+      <div class="info">
+        {{item.quantity}}
+        <br>
+      {{item.itemName}}
+      </div>
+      <div @click="markComplete">
+      <v-btn v-show="!isComplete">Mark Complete
+      </v-btn>
+    <v-btn role=button v-show="isComplete">Mark Incomplete
+    </v-btn>
+    <edit-item-form  v-bind:itemID="itemID"/>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -81,4 +74,51 @@ export default {
 }
 .incomplete {
 }
+.wrap {
+  width: 25vh;
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(240, 128, 128, 0.05);
+}
+.card {
+  width: 260px;
+  min-height: 200px;
+  background: #0ead69;
+  box-shadow:0px 2px 1px 2px blanchedalmond;
+  border-radius: 4px;
+  padding: 8px;
+   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  animation-name: x;
+  animation-duration: 1000s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease;
+  transition: all;
+}
+#group-name {
+  color: blanchedalmond;
+  background: #0ead69;
+}
+#join-button {
+  color: blanchedalmond;
+  background-color: rgb(240, 128, 128);
+}
+.card img {
+  width: 100%;
+}
+.info h4{
+  color: white;
+  padding: 0 10px;
+}
+
+@keyframes x {
+  0% {transform: rotateY(0deg) skewX(0deg);}
+  25% {transform: rotateY(-0deg) skewX(-90deg);}
+  50% {transform: rotateY(0deg) skewX(0deg);}
+  75% {transform: rotateY(30deg) skewX(4deg);}
+  100% {transform: rotateY(0deg) skewX(0deg);}
+
+}
+
 </style>

@@ -5,12 +5,15 @@
         width="600px"
         >
      <template v-slot:activator="{ on, attrs }">
-          <v-btn class="d-flex align-center justify-center"  min-height="250"
-            v-bind="attrs"
-            v-on="on"
-          >
-          + create item
-          </v-btn>
+             <div v-bind="attrs"
+            v-on="on" class="wrap">
+              <div class="card">
+                <img src="@/assets/lord.png" alt="not working">
+                <div class="info">
+                <h4>Create Item</h4>
+              </div>
+              </div>
+            </div>
         </template>
     <v-card class="form-card">
       <v-form v-on:submit.prevent>
@@ -72,5 +75,41 @@ export default {
 <style scoped>
 .form-card{
 padding: 5%;
+}
+.wrap {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: lightcoral
+}
+.card {
+  width: 260px;
+  min-height: 200px;
+  background: #2B2B2B;
+  border-radius: 10px;
+  padding: 6px;
+   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  animation-name: x;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease;
+  transition: all;
+}
+.card img {
+  width: 100%;
+}
+.info h4{
+  color: white;
+  padding: 0 10px;
+}
+
+@keyframes x {
+  0% {transform: rotateY(0deg) skewX(0deg);}
+  25% {transform: rotateY(-30deg) skewX(-4deg);}
+  50% {transform: rotateY(0deg) skewX(0deg);}
+  75% {transform: rotateY(30deg) skewX(4deg);}
+  100% {transform: rotateY(0deg) skewX(0deg);}
 }
 </style>
