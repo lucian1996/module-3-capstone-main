@@ -105,7 +105,7 @@ export default {
           .then((response) => {
             if (response.status == 201) {
               this.$router.push({
-                path: "/login",
+                path: "/",
                 query: { registration: "success" },
               });
             }
@@ -179,7 +179,7 @@ input {
   font-size: 15pt;
 }
 .form-control{
-  font-family:    'Courier New', Courier, monospace;
+  font-family:'Courier New', Courier, monospace;
   font-size:      30px;
   font-weight: bolder;
   background-color: whitesmoke;
