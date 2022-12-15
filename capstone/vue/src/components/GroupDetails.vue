@@ -22,23 +22,22 @@
     </header>
 
     <body>
+       <br>
+       <br>
+       <br>
+        <div data-app class="wrap">
+          <create-list-form/>
+              <div v-show="!isOwner" @click="removeUser()" class="card">
+              <img src="@/assets/lord.png" alt="not working">
+                <div class="info">
+                <h4>Leave Group</h4>
+                </div>
+          </div>
+        </div>
+       <br>
+       <br>
+       <br>
       <list-container v-bind:groupId="$route.params.groupID" />
-        <div v-show="!isOwner" @click="removeUser()" class="card">
-        <img src="@/assets/lord.png" alt="not working">
-        <div class="info">
-        <h4>Leave Group</h4>
-        </div>
-        </div>
-     
-      <div>
-        <div data-app id="container">
-          <item-card
-            v-for="item in items"
-            v-bind:key="item.dateModified"
-            v-bind:itemID="item.itemId"
-            :class="{ complete: listComplete == true }" />
-        </div>
-      </div>
     </body>
   </html>
 </template>
@@ -47,8 +46,9 @@
 import MemberService from "../services/MemberService";
 import GroupService from "../services/GroupService";
 import ListContainer from "./ListContainer.vue";
+import CreateListForm from"./CreateListForm.vue"
 export default {
-  components: { ListContainer },
+  components: { ListContainer, CreateListForm },
 
   name: "group-details",
   props: {
@@ -107,8 +107,9 @@ export default {
     this.retrieveMembers();
   },
   mounted () {
-     if (this.$store.state.user.userId == this.$store.state.group.ownerId) {
+     if (this.$store.state.user.id == this.$store.state.group.ownerId) {
       this.isOwner = true;
+      console.log('here')
     }
   },
   computed: {
@@ -130,7 +131,7 @@ export default {
   font-size: 50px;
   font-weight: bold;
   color: whitesmoke;
-  text-shadow: 1.5px 1.5px 0px lightcoral;
+   background-color: rgba(240, 128, 128, 0.06);
 }
 .v-btn__content {
   font-family: "Courier New", Courier, monospace;
@@ -143,4 +144,13 @@ export default {
 .theme--light.v-btn.v-btn--has-bg {
   background-color: #0ead69;
 }
+.wrap {
+  width: 30vw;
+  height: 25vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(240, 128, 128, 0.1)
+}
+
 </style>

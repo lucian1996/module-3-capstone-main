@@ -1,22 +1,18 @@
 <template>
-<div>
     
-  <div class="wrap">
-      <create-list-form />
-     <list-card
+    <div id="container">
+       <list-card
       v-for="list in lists"
       v-bind:key="list.listId"
       v-bind:list="list" />
-  </div>
-  </div>
+    </div>
 </template>
 
 <script>
 import ListService from "../services/ListService";
-import CreateListForm from './CreateListForm.vue';
 import ListCard from "./ListCard.vue";
 export default {
-  components: { ListCard, CreateListForm },
+  components: { ListCard,  },
 
   name: "list-container",
 
@@ -59,9 +55,9 @@ export default {
   grid-template-columns: repeat(4,1fr) 60px;
   grid-gap: 3%;
   box-sizing: border-box;
-  gap: 20px;
+  gap: 50px;
   width: 100%;
-  height: 500px;
+  height: 50px;
 }
 #title{
   font-family:    'Courier New', Courier, monospace;
@@ -80,9 +76,30 @@ export default {
 }
 .wrap {
   width: 25vh;
-  height: 40vh;
+  height: 25vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background: rgba(240, 128, 128, 0.05);}
+  #container {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(5,1fr) 60px;
+  grid-gap: 3%;
+  box-sizing: border-box;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  height: 150px;
+  max-width: 400px;
+  /* display:flex; */
+  font-size: 200%;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bolder;
+  text-decoration-line: none;
+  /* height: 35%; */
+  padding: 2%; 
+
+  /* max-width: 1200px;
+  min-width: 700px; */
+}
 </style>

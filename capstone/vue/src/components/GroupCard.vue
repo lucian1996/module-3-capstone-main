@@ -3,7 +3,7 @@
         <div class="card">
              <img src="@/assets/lord.png" alt="not working">
           <div class="info">
-            <h4>
+            <div v-show="memberStatus">
               <router-link class="text-decoration-none"
               v-bind:to="{
               name: 'group-details',
@@ -11,18 +11,15 @@
               }"
               >
               <div role="button">
-              <v-list-item>
-              <v-list-item-content class="text-center">
               {{ group.groupName }}
-              </v-list-item-content>
-              </v-list-item>
-
               </div>
               </router-link>
-              <v-btn v-show="!memberStatus">
-              <join-group-form v-bind:group="group"/>
-              </v-btn>
-            </h4>
+              </div>
+              <div v-show="!memberStatus">
+                 <div role="button">
+                   <join-group-form v-bind:group="group"/>
+              </div>
+            </div>
           </div>
         </div>
 </div>

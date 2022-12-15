@@ -4,7 +4,7 @@
       <v-div
         v-bind="attrs"
         v-on="on">
-        Join
+        {{group.groupName}}
       </v-div>
     </template>
     <v-card class="form-card">

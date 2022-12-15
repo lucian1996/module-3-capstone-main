@@ -1,9 +1,11 @@
 <template>
-        <div   @click="gotolistDetails()" class="card">
+        <div @click="gotolistDetails()"  class="wrap">
+            <div class="card">
              <img src="@/assets/lord.png" alt="not working">
           <div class="info">
             <h4>{{list.listName}}</h4>
           </div>
+        </div>
         </div>
 </template>
 
@@ -74,5 +76,13 @@ export default {
   75% {transform: rotateY(30deg) skewX(4deg);}
   100% {transform: rotateY(0deg) skewX(0deg);}
 
+}
+.wrap {
+  width: 25vh;
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(240, 128, 128, 0.05);
 }
 </style>
