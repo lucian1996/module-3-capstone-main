@@ -63,7 +63,7 @@ export default {
   font-family:    'Courier New', Courier, monospace;
   font-size:      50px;
   font-weight:    bold;
-  color:          whitesmoke;
+  color:          blanchedalmond;
   text-shadow: 1.5px 1.5px 0px lightcoral;
 }
 .v-btn__content{

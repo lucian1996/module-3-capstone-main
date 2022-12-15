@@ -3,7 +3,7 @@
 
     <v-toolbar app>
       <v-toolbar-title id="title">
-          \ {{ appTitle }}  \ {{this.$store.state.user.username}} \ {{this.$store.state.group.groupName}} \ {{list.listName}}
+          \ {{ appTitle }} \ {{this.$store.state.user.username}} \ {{this.$store.state.group.groupName}} \ {{list.listName}}
       </v-toolbar-title>
     
       <v-spacer></v-spacer>
@@ -16,7 +16,7 @@
           {{ item.title }}
         </v-btn> 
       </v-toolbar-items>
-</v-toolbar> 
+    </v-toolbar> 
 
     <div id="toggleClaim">
       <div v-show="this.list && this.list.claimedId != 0">
@@ -199,7 +199,7 @@ export default {
   font-family:    'Courier New', Courier, monospace;
   font-size:      50px;
   font-weight:    bold;
-  color:          whitesmoke;
+  color:          blanchedalmond;
   text-shadow: 1.5px 1.5px 0px lightcoral;
 }
 .v-btn__content{
