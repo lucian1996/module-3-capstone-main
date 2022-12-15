@@ -38,7 +38,7 @@ div {
   text-align: center;
 }
 .v-application a {
-  color: black;
+  color: white;
   text-decoration: none;
 }
 .theme--light.v-btn.v-btn--has-bg {

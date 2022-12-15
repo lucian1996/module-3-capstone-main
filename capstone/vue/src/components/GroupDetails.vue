@@ -150,7 +150,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(240, 128, 128, 0.1)
+  background: rgba(240, 128, 128, 0.667);
 }
 
 </style>

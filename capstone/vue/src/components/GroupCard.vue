@@ -10,7 +10,7 @@
               params: { groupID: this.group.groupId },
               }"
               >
-              <div role="button">
+              <div id="group-name" role="button">
               {{ group.groupName }}
               </div>
               </router-link>
@@ -73,15 +73,20 @@ router-link a{
 .card {
   width: 260px;
   min-height: 200px;
-  background: #2B2B2B;
-  border-radius: 10px;
-  padding: 6px;
+  background: #0ead69;
+  box-shadow:0px 2px 2px 3px rgb(240, 128, 128, 1);
+  border-radius: 4px;
+  padding: 8px;
    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   animation-name: x;
   animation-duration: 1000s;
   animation-iteration-count: infinite;
   animation-timing-function: ease;
   transition: all;
+}
+#group-name {
+  color: blanchedalmond;
+  background: #0ead69;
 }
 .card img {
   width: 100%;
