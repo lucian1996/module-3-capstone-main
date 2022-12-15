@@ -1,8 +1,9 @@
 <template>
-<div>
+<html>
+  <header>
   <v-toolbar app>
         <v-toolbar-title id="title">
-          {{ appTitle }}
+          \ {{ appTitle }} \ {{this.$store.state.user.username}}
         </v-toolbar-title>
   <v-spacer></v-spacer>
       <v-toolbar-items>
@@ -11,12 +12,16 @@
           v-for="item in menuItems"
           :key="item.title"
           :to="item.path">
-          {{ item.title }}
+          \ {{ item.title }}
         </v-btn> 
       </v-toolbar-items>
 </v-toolbar>
-      <group-list/>
-  </div>
+</header>
+<body>
+  <group-list/>
+</body>
+      
+  </html>
 
 </template>
 
@@ -32,7 +37,6 @@ data(){
       menuItems: [
           { title: 'group', path: '/groups' },
           { title: 'logout', path: '/' },
-          { title: 'members', path: '/members'},
      ],
     }
   }
@@ -48,6 +52,7 @@ data(){
   color:          whitesmoke;
   text-shadow: 1.5px 1.5px 0px lightcoral;
 }
+
 .v-btn__content{
   font-family:    'Courier New', Courier, monospace;
   font-size:      15px;
@@ -55,5 +60,10 @@ data(){
 }
 .v-toolbar__content{
   background-color: #0EAD69;
+}
+body{
+  background-color: rgba(240, 128, 128, 0.667);
+  min-height: 100vh;
+  text-align: center;
 }
 </style>

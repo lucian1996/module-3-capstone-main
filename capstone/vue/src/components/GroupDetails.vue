@@ -1,23 +1,25 @@
 <template>
-  <div>
-    <div id="nav">
-
-       <v-toolbar app>
+  <html>
+    <header>
+      <v-toolbar app>
       <v-toolbar-title id="title">
-          {{ appTitle }}  \ {{group.groupName}}
+          \ {{ appTitle }}  \ {{this.$store.state.user.username}} \ {{group.groupName}}
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
       <v-toolbar-items>
         <v-btn
           flat
+          color="blanchedalmond"
           v-for="item in menuItems"
           :key="item.title"
           :to="item.path">
           {{ item.title }}
         </v-btn>
       </v-toolbar-items>
-    </v-toolbar>
+    </v-toolbar></header>
+
+       
 
       <!-- <div>
         <router-link v-bind:to="{ name: 'home' }">Home</router-link> &nbsp;
@@ -32,16 +34,20 @@
           v-if="$store.state.token != ''"
           >Logout</router-link>
       </div> -->
-    </div>
-    <h1>{{  }}</h1>
-    <h2>{{group.groupDescription}}</h2>
-    <div>
-      
-    <list-container v-bind:groupId="$route.params.groupID" />
-    </div>
-    <button v-on:click="removeUser()">LEAVE GROUP!</button>
-    {{group}}
-  </div>
+    
+     <body>
+       <list-container v-bind:groupId="$route.params.groupID" />
+       <v-btn 
+        @click.prevent="removeUser"
+        type="submit"
+        color="#0EAD69"
+        elevation="9"
+        small
+      >leave group
+      </v-btn>
+     </body> 
+    
+  </html>
 </template>
 
 <script>
@@ -77,12 +83,11 @@ export default {
         this.$store.commit("SET_CURRENT_GROUP", response.data);
       });
     },
-    //shouldn't this be elsewhere?
+    
     removeUser() {
-  
-      GroupService.removeUser(this.$route.params.groupID).then(() => {
-        this.$router.push(`/`);
-      })
+      GroupService.removeUser(this.$route.params.groupID).then(() =>
+        this.$router.push('/')
+      )
       .catch((error => {
         const response = error.response
         this.groupErrors = true;
