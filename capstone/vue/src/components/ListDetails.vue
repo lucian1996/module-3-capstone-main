@@ -3,7 +3,7 @@
 
     <v-toolbar app>
       <v-toolbar-title id="title">
-          \ {{ appTitle }}  \ {{this.$store.state.user.username}} \ {{group.groupName}} \ {{list.listName}}
+          \ {{ appTitle }}  \ {{this.$store.state.user.username}} \ {{this.$store.state.group.groupName}} \ {{list.listName}}
       </v-toolbar-title>
     </v-toolbar> 
       <v-spacer></v-spacer>
