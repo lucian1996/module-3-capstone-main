@@ -20,13 +20,13 @@
 
     <div id="toggleClaim">
       <div v-show="this.list && this.list.claimedId != 0">
-        <button
+        <button 
           v-show="this.list && this.$store.state.user.id == this.list.claimedId"
           @click="unclaimList()"
         >
           Unclaim &nbsp;&nbsp;&nbsp;
         </button>
-        <button
+        <button 
           v-show="
             this.list &&
             this.$store.state.user.id == this.list.claimedId &&
@@ -36,7 +36,7 @@
         >
           Mark All Complete
         </button>
-        <button
+        <button 
           v-show="
             this.list &&
             this.$store.state.user.id == this.list.claimedId &&
@@ -222,5 +222,9 @@ export default {
 }
 .complete {
   text-decoration-line: overline;
+}
+#toggleClaim {
+  background-color: whitesmoke
+  
 }
 </style>
