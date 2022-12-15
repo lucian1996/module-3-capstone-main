@@ -79,7 +79,8 @@ export default {
   background: #2B2B2B;
   border-radius: 10px;
   padding: 6px;
-   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family:    'Courier New', Courier, monospace;
+  font-size: 16pt;
   animation-name: x;
   animation-duration: 3s;
   animation-iteration-count: infinite;
@@ -90,7 +91,7 @@ export default {
   width: 100%;
 }
 .info h4{
-  color: white;
+  color: blanchedalmond;
   padding: 0 10px;
 }
 

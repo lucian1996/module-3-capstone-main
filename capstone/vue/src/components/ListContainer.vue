@@ -81,6 +81,7 @@ export default {
   justify-content: center;
   align-items: center;
   background: rgba(240, 128, 128, 0.05);}
+  
   #container {
   display: grid;
   align-items: center;
@@ -91,15 +92,10 @@ export default {
   text-overflow: ellipsis;
   height: 150px;
   max-width: 400px;
-  /* display:flex; */
   font-size: 200%;
   font-family: 'Courier New', Courier, monospace;
   font-weight: bolder;
   text-decoration-line: none;
-  /* height: 35%; */
   padding: 2%; 
-
-  /* max-width: 1200px;
-  min-width: 700px; */
 }
 </style>

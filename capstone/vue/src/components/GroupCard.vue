@@ -1,5 +1,5 @@
 <template>
-       <div class="wrap">
+<div class="wrap">
         <div class="card">
              <img src="@/assets/lord.png" alt="not working">
           <div class="info">
@@ -18,7 +18,11 @@
               <div v-show="!memberStatus">
                  <div id="join-button" role="button">
                    <join-group-form v-bind:group="group"/>
+<<<<<<< HEAD
                    join
+=======
+                   +
+>>>>>>> df56294b1193739f0f745a546c0cf32e919216d0
               </div>
             </div>
           </div>
@@ -78,7 +82,8 @@ router-link a{
   box-shadow:0px 2px 1px 2px blanchedalmond;
   border-radius: 4px;
   padding: 8px;
-   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family:    'Courier New', Courier, monospace;
+  font-size: 16pt;
   animation-name: x;
   animation-duration: 5000s;
   animation-iteration-count: infinite;
@@ -98,7 +103,7 @@ router-link a{
 }
 .info h4{
   color: white;
-  padding: 0 10px;
+  padding: 10px 10px;
 }
 
 @keyframes x {
