@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <html>
     <v-content id="main" class="d-flex align-center justify-center">
       <router-view></router-view>
     </v-content>
-  </div>
+  </html>
 </template>
 
 <script>
@@ -44,4 +44,9 @@ div {
 .theme--light.v-btn.v-btn--has-bg {
   background-color: #26b82d;
 }
+html{
+  display: flexbox;
+
+}
+
 </style>

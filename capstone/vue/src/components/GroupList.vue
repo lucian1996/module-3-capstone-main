@@ -37,13 +37,14 @@ export default {
 <style>
 #container {
   display: grid;
-  grid-template-columns: repeat(4,1fr) 60px;
+  align-items: center;
+  grid-template-columns: repeat(5,1fr) 60px;
   grid-gap: 3%;
   box-sizing: border-box;
   white-space: nowrap;
   text-overflow: ellipsis;
   height: 150px;
-  width: 100vh;
+  max-width: 400px;
   /* display:flex; */
   font-size: 200%;
   font-family: 'Courier New', Courier, monospace;
