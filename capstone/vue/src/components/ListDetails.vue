@@ -89,8 +89,8 @@ export default {
       appTitle: 'Fridgrr',
       menuItems: [
           { title: 'group', path: '/groups' },
-          { title: 'logout', path: '/login' },
           { title: 'members', path: '/members'},
+            { title: 'logout', path: '/login' },
              ]
     };
   },
@@ -216,5 +216,8 @@ export default {
   gap: 20px;
   width: 100%;
   height: 500px;
+}
+.theme--light.v-btn.v-btn--has-bg {
+    background-color: #0EAD69;
 }
 </style>
