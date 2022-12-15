@@ -1,27 +1,33 @@
 <template>
-    <v-card  class="d-flex align-center justify-center"  min-height="250" min-width="250" >
-    <router-link :class="{ disabled: !memberStatus }"
+    <v-card  class=" align-center justify-center"  min-height="250" min-width="250" >
+    <router-link class="text-decoration-none"
       v-bind:to="{
         name: 'group-details',
         params: { groupID: this.group.groupId },
       }"
     >
       <div role="button">
-        <div>{{ group.groupName }}</div>
+        <v-list-item>
+          <v-list-item-content class="text-center">
+            {{ group.groupName }}
+          </v-list-item-content>
+        </v-list-item>
+        
       </div>
     </router-link>
-
-    <div v-show="!memberStatus">
-      <router-link
+  <v-card-action>
+       <v-btn v-show="!memberStatus">
+      <router-link class="text-decoration-none"
         v-bind:to="{
           name: 'join-group-form',
           params: {
             group: this.group,
           },
-        }"> <br>
-        <button>join</button>
+        }">
+        Join
       </router-link>
-    </div>
+    </v-btn>
+  </v-card-action>
   </v-card>
   
 </template>
@@ -52,4 +58,14 @@ export default {
   }
 }
 </script>
+<style scoped>
+v-card > a {
+  text-decoration: none !important;
 
+}
+router-link a{
+    text-decoration: none !important;
+}
+
+
+</style>

@@ -75,6 +75,7 @@ export default {
 </script>
 <style scoped>
 .complete {
+  text-decoration: line-through;
   background-color: gray !important;
 }
 .incomplete {

@@ -45,6 +45,9 @@
         small
       >leave group
       </v-btn>
+      <div>
+        invite code {{group.groupCode}}
+      </div>
      </body> 
     
   </html>
@@ -86,7 +89,7 @@ export default {
     
     removeUser() {
       GroupService.removeUser(this.$route.params.groupID).then(() =>
-        this.$router.push('/')
+        this.$router.push('/groups')
       )
       .catch((error => {
         const response = error.response
