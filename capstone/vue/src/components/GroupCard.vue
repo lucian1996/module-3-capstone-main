@@ -1,5 +1,4 @@
 <template>
-       <div class="wrap">
         <div class="card">
              <img src="@/assets/lord.png" alt="not working">
           <div class="info">
@@ -33,7 +32,6 @@
             </h4>
           </div>
         </div>
-</div>
   
 </template>
 
