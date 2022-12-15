@@ -54,17 +54,15 @@ export default {
   },
   methods: {
     submit() {
+      this.dialog = false;
+      this.$router.go();
       if (this.list.name.length <= 0) {
         this.listErrors = true;
         this.listErrorMsg = "List name cannot be blank."
       } else {ListService.createList(this.$store.state.group.groupId, this.list)
-      .then (response => {
-        if (response == 201) {
+     .then (response => {
               this.$store.commit("ADD_LIST", response.data);
-              this.dialog = false;
-              // this.$router.go()
-              // this.$router.push({name: 'group-details'})
-      }})
+      })
         //TODO: this can't be empty, else the user will never be able to navigate there
         //const data = response.dat
     }
