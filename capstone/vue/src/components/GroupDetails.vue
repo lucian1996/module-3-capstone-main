@@ -155,6 +155,9 @@ export default {
 body{
   background: rgba(240, 128, 128, 0.1);
 }
+.wrap[data-v-561d9173]{
+  width: 60vw;
+}
 .card{
   width: 260px;
   min-height: 200px;
