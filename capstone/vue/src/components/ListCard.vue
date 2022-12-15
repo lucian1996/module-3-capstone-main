@@ -24,13 +24,11 @@ export default {
 
   },
   methods: {
-    gotolistDetails() {
-    this.$router.push({ name: 'list-details', params: { groupID: this.list.groupID, listID: this.list.listID } })
-  }},
   randomImage() {
       const random = Math.floor(Math.random() * this.images.length)
       this.resultImage = this.images[random];
   }
+}
 }
 </script>
 <style scoped>
