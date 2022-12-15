@@ -1,30 +1,11 @@
 <template>
 <div>
-
-  <!-- <v-toolbar app>
-      <v-toolbar-title id="title">
-          {{ appTitle }}
-      </v-toolbar-title>
-    </v-toolbar>
-      <v-spacer></v-spacer>
-      <v-toolbar-items>
-        <v-btn
-          flat
-          v-for="item in menuItems"
-          :key="item.title"
-          :to="item.path">
-          {{ item.title }}
-        </v-btn> 
-      </v-toolbar-items> -->
-
   <div data-app id="container">
       <create-list-form />
-
      <list-card
       v-for="list in lists"
       v-bind:key="list.listId"
       v-bind:list="list" />
-
   </div>
    {{lists}}
 </div>

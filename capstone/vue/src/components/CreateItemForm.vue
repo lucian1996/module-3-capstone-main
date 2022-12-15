@@ -4,12 +4,12 @@
         width="600px"
         >
      <template v-slot:activator="{ on, attrs }">
-          <v-card class="d-flex align-center justify-center"  min-height="250"
+          <v-btn class="d-flex align-center justify-center"  min-height="250"
             v-bind="attrs"
             v-on="on"
           >
-          +
-          </v-card>
+          + create item
+          </v-btn>
         </template>
     <v-card>
       <v-form v-on:submit.prevent>
@@ -38,7 +38,7 @@ export default {
     return {
       dialog: false,
       item: {
-          quantity:0,
+          quantity:'',
           name: ''
       },
     };

@@ -73,7 +73,6 @@
         :class="{complete : listComplete==true}"
       />
      </div>
-     {{items}}
   </div>
 </template>
 

@@ -36,7 +36,8 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   /* display:flex; */
-  
+  width: 100%;
+  height: 500px;
   
   gap: 20px;
   /* max-width: 1200px;

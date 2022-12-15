@@ -4,7 +4,7 @@
         width="600px"
       >
         <template v-slot:activator="{ on, attrs }">
-          <v-btn class="d-flex align-center justify-center"  min-height="250"
+          <v-btn
             v-bind="attrs"
             v-on="on"
           >
