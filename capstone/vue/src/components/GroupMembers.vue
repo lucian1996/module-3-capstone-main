@@ -3,7 +3,7 @@
     <div id="nav">
       <v-toolbar app>
         <v-toolbar-title id="title">
-          {{ appTitle }} \
+         \ {{ appTitle }} \ members
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items>
@@ -54,7 +54,7 @@ export default {
   font-family: "Courier New", Courier, monospace;
   font-size: 50px;
   font-weight: bold;
-  color: whitesmoke;
+  color: blanchedalmond;
   text-shadow: 1.5px 1.5px 0px lightcoral;
 }
 .v-btn__content {
@@ -71,7 +71,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: lightcoral
+  background: rgba(240, 128, 128, 0.667)
 }
 .card {
   width: 260px;

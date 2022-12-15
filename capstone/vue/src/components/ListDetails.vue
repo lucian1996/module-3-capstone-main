@@ -26,9 +26,10 @@
           v-show="this.list && this.$store.state.user.id == this.list.claimedId"
           @click="unclaimList()"
         >
-          Unclaim
+          Unclaim 
         </button>
-        <button
+      &nbsp;&nbsp;
+        <button class="Unclaimed"
           v-show="
             this.list &&
             this.$store.state.user.id == this.list.claimedId &&
@@ -36,9 +37,9 @@
           "
           @click="completeList()"
         >
-          Mark List complete
+          Mark All Complete
         </button>
-        <button
+        <button class="Claimed"
           v-show="
             this.list &&
             this.$store.state.user.id == this.list.claimedId &&
@@ -56,7 +57,7 @@
         </div>
       </div>
       <div v-show="this.list && this.list.claimedId == 0">
-        <button
+        <button class="Unclaimed"
           v-show="this.list && this.$store.state.user.id != this.list.claimedId"
           @click="claimList()"
         >
@@ -226,8 +227,13 @@ export default {
   font-family:    'Courier New', Courier, monospace;
   font-size:      50px;
   font-weight:    bold;
+<<<<<<< HEAD
   color:          whitesmoke;
   text-shadow: 1.5px 1.5px 0px rgba(240, 128, 128, 0.349);
+=======
+  color:          blanchedalmond;
+  text-shadow: 1.5px 1.5px 0px lightcoral;
+>>>>>>> b330136c024183a43138a8cc22be1ec5f113ea9a
 }
 .v-btn__content{
   font-family:    'Courier New', Courier, monospace;
@@ -259,5 +265,37 @@ export default {
   align-items: center;
   background: rgba(240, 128, 128, 0.03) !important;
 }
+<<<<<<< HEAD
 
+=======
+.complete {
+  text-decoration-line: overline;
+}
+#toggleClaim {
+  
+  
+}
+.Claimed {
+    font-family:    'Courier New', Courier, monospace;
+  font-size:      16px;
+  font-weight:    bold;
+  color:          blanchedalmond;
+  /* text-shadow: 1.5px 1.5px 0px lightcoral; */
+  background-color: black;
+  padding: 10px;
+  border-radius: 3px;
+  margin-top: 15px;
+}
+.Unclaimed {
+    font-family:    'Courier New', Courier, monospace;
+  font-size:      16px;
+  font-weight:    bold;
+  color:          blanchedalmond;
+  /* text-shadow: 1.5px 1.5px 0px lightcoral; */
+  background-color:black;
+  padding: 10px;
+  border-radius: 3px;
+  margin-top: 15px;
+}
+>>>>>>> b330136c024183a43138a8cc22be1ec5f113ea9a
 </style>

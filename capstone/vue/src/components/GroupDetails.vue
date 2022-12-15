@@ -130,7 +130,7 @@ export default {
   font-family: "Courier New", Courier, monospace;
   font-size: 50px;
   font-weight: bold;
-  color: whitesmoke;
+  color: blanchedalmond;
    background-color: rgba(240, 128, 128, 0.06);
 }
 .v-btn__content {
@@ -150,7 +150,29 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(240, 128, 128, 0.667);
+  background: rgba(240, 128, 128, 0.01);
+}
+body{
+  background: rgba(240, 128, 128, 0.1);
+}
+.card{
+  width: 260px;
+  min-height: 200px;
+  background: #0ead69;
+  box-shadow:0px 2px 1px 2px blanchedalmond;
+  border-radius: 4px;
+  padding: 8px;
+   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  animation-name: x;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease;
+  transition: all;
+}
+.info h4{
+  color: blanchedalmond;
+  background-color: blueviolet;
+  padding: 0 10px;
 }
 
 </style>
