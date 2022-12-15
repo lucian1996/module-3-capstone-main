@@ -120,7 +120,7 @@ export default {
   font-family:    'Courier New', Courier, monospace;
   font-size:      50px;
   font-weight:    bold;
-  color:          blanchedalmond;
+  color:          rgb(255, 235, 205);
   text-shadow: 2px 2px 0px lightcoral;
 }
 .v-btn__content{
