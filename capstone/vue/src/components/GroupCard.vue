@@ -16,8 +16,9 @@
               </router-link>
               </div>
               <div v-show="!memberStatus">
-                 <div role="button">
+                 <div id="join-button" role="button">
                    <join-group-form v-bind:group="group"/>
+                   +join
               </div>
             </div>
           </div>
@@ -74,7 +75,7 @@ router-link a{
   width: 260px;
   min-height: 200px;
   background: #0ead69;
-  box-shadow:0px 2px 2px 3px rgb(240, 128, 128, 1);
+  box-shadow:0px 2px 1px 2px blanchedalmond;
   border-radius: 4px;
   padding: 8px;
    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -87,6 +88,10 @@ router-link a{
 #group-name {
   color: blanchedalmond;
   background: #0ead69;
+}
+#join-button {
+  color: blanchedalmond;
+  background-color: rgb(240, 128, 128);
 }
 .card img {
   width: 100%;
