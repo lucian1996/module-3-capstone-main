@@ -71,6 +71,7 @@ export default {
 };
 </script>
 <style scoped>
+
 .form-card{
   padding: 5%;
 }

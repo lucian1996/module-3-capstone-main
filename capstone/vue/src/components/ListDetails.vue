@@ -3,7 +3,7 @@
 
     <v-toolbar app>
       <v-toolbar-title id="title">
-          {{ appTitle }}
+          \ {{ appTitle }}  \ {{this.$store.state.user.username}} \ {{group.groupName}} \ {{list.listName}}
       </v-toolbar-title>
     </v-toolbar> 
       <v-spacer></v-spacer>
@@ -90,7 +90,7 @@ export default {
       menuItems: [
           { title: 'group', path: '/groups' },
           { title: 'members', path: '/members'},
-            { title: 'logout', path: '/login' },
+            { title: 'logout', path: '/' },
              ]
     };
   },

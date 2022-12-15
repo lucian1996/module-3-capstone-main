@@ -41,7 +41,7 @@ export default {
       appTitle: "Fridgrr",
       menuItems: [
         { title: "group", path: "/groups" },
-        { title: "logout", path: "/login" },
+        { title: "logout", path: "/" },
         { title: "members", path: "/members" },
       ],
     };

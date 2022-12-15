@@ -73,7 +73,7 @@ export default {
         menuItems: [
           { title: 'groups', path: '/groups' },
           { title: 'members', path: '/members'},
-          { title: 'logout', path: '/login' },
+          { title: 'logout', path: '/' },
      ],
     groupErrors: false,
     groupErrorMsg: "There was a problem that prevented this action from completing."

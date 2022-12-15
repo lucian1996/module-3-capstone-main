@@ -7,7 +7,6 @@
       outlined>
               {{item.quantity}}
               {{item.itemName}}
-                
             </div>
             </v-list-item-content>
          </v-list-item>
