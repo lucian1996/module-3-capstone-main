@@ -63,7 +63,6 @@
         <br />
       </div>
     </div>
-    <div @click="logLists()">log lists</div>
      <div  data-app id ="container">
      <create-item-form/>
       <item-card

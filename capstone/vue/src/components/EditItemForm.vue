@@ -13,11 +13,11 @@
         </template>
   
         <v-card class="form-card">
-          <div @click="log()">log</div>
               <v-form v-on:submit.prevent>
               <div>
                  <label for="quantity">Quantity</label>
                  <v-text-field
+                 placeholder="quantity"
                   v-model="quantity"
                   type="number"
                   />
@@ -26,7 +26,6 @@
                 <label for="name">Name</label>
                 <v-text-field
                   v-model="name"
-                  value="test"
                   id ="name"/>
               </div>
               <v-btn @click="submit()" type="submit">Save</v-btn>

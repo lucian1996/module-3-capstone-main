@@ -1,5 +1,5 @@
 <template>
-       <v-card  v-bind:class="[{ complete: isComplete }, incomplete]" max-width ="400 outlined">
+       <v-card  class="incomplete" v-bind:class="[{ complete: isComplete }]" max-width ="400 outlined">
          <v-list-item>
           <v-list-item-content>
            <div class="mx-auto"
@@ -41,12 +41,14 @@ export default {
     markComplete () { 
       this.item.status = true;
       ItemService.editItem(this.item)
+      this.$router.go()
       },
     editItem() {
       this.item.quantity = this.quantity;
       this.item.itemName = this.name;
       console.table(this.item)
       ItemService.editItem(this.item.groupId, this.item.listId, this.item.itemId,this.item)
+
     },
      removeItem() {
       ItemService.removeItem(this.item.groupId, this.item.listId, this.item.itemId).then(response => {
@@ -57,7 +59,7 @@ export default {
       })
     }
     },
-    mounted () {
+    created () {
       this.isComplete = this.item.status;
     },
     computed : {
@@ -73,9 +75,9 @@ export default {
 </script>
 <style scoped>
 .complete {
-  background-color: gray;
+  background-color: gray !important;
 }
 .incomplete {
-  background-color: rgb(5, 5, 114);
+  background-color: rgb(173, 173, 248);
 }
 </style>
