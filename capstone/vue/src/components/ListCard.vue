@@ -14,8 +14,8 @@ export default {
   props: ["list"],
   created() {
   },
-  methods: {gotolistDetails() {
-    console.log('shit balls');
+  methods: {
+    gotolistDetails() {
     this.$router.push({ name: 'list-details', params: { listID: this.list.listID, groupID: this.list.groupID } })
   }}
   
