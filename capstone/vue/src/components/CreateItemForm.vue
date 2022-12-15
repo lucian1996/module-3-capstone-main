@@ -87,13 +87,14 @@ padding: 5%;
 .card {
   width: 260px;
   min-height: 200px;
-  background: #2B2B2B;
-  border-radius: 10px;
-  padding: 6px;
+  background: #0ead69;
+  box-shadow:0px 2px 1px 2px blanchedalmond;
+  border-radius: 4px;
+  padding: 8px;
   font-family:    'Courier New', Courier, monospace;
   font-size: 16pt;
   animation-name: x;
-  animation-duration: 3s;
+  animation-duration: 5s;
   animation-iteration-count: infinite;
   animation-timing-function: ease;
   transition: all;
@@ -102,7 +103,8 @@ padding: 5%;
   width: 100%;
 }
 .info h4{
-  color: white;
+  color: blanchedalmond;
+  background-color: blueviolet;
   padding: 0 10px;
 }
 
