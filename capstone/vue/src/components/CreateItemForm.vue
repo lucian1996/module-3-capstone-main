@@ -4,22 +4,22 @@
         width="600px"
         >
      <template v-slot:activator="{ on, attrs }">
-          <v-card class="d-flex align-center justify-center"  min-height="250"
+          <v-btn class="d-flex align-center justify-center"  min-height="250"
             v-bind="attrs"
             v-on="on"
           >
-          +
-          </v-card>
+          + create item
+          </v-btn>
         </template>
     <v-card>
       <v-form v-on:submit.prevent>
         <div class="field">
-          <label for="title"></label>
-          <v-text-field v-model="item.name" />
+          <label for="name">Name</label>
+          <v-text-field placeholder="name" v-model="item.name" />
         </div>
         <div class="field">
-          <label for="description"></label>
-          <v-text-field v-model.number="item.quantity"/>
+          <label for="quantity">Quantity</label>
+          <v-text-field placeholder="quantity" v-model.number="item.quantity"/>
         </div>
         <v-row justify="center">
                  <v-btn @click="submit()" color="primary" elevation="2">Create</v-btn>
@@ -38,7 +38,7 @@ export default {
     return {
       dialog: false,
       item: {
-          quantity:0,
+          quantity:'',
           name: ''
       },
     };
@@ -51,9 +51,10 @@ export default {
       .then(r => {
         console.warn(r)
         if (r == 201) {
+          
 
         this.$store.commit("ADD_ITEM", r.data)
-        // this.$router.go()
+        this.$router.go()
        }})
     },
   },

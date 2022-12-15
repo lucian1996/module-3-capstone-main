@@ -2,12 +2,10 @@
 <div>
   <div data-app id="container">
       <create-list-form />
-
      <list-card
       v-for="list in lists"
       v-bind:key="list.listId"
       v-bind:list="list" />
-
   </div>
 </div>
 </template>

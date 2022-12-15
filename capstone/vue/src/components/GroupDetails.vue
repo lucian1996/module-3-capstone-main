@@ -8,13 +8,13 @@
 
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn
+        <v-btn 
           flat
           color="blanchedalmond"
           v-for="item in menuItems"
           :key="item.title"
           :to="item.path">
-          {{ item.title }}
+            {{ item.title }}
         </v-btn>
       </v-toolbar-items>
     </v-toolbar></header>
@@ -97,16 +97,23 @@ export default {
       }));
     },
     retrieveMembers() {
-     MemberService.getMembers(this.groupID).then((response) => {
+     MemberService.getMembers(this.$route.params.groupID).then((response) => {
         this.$store.commit("SET_CURRENT_MEMBERS", response.data);
+      
      });
     },
 
     groupDate() {
       
       GroupService.getGroupCreatedDate(this.group.groupID)
+    },
+    getMembers() {
+      console.log('test')
+
     }
   },
+
+  
   created() {
     this.retrieveGroup();
     this.retrieveMembers();
