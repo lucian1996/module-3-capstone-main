@@ -1,4 +1,5 @@
 <template>
+<div>
        <v-card  max-width ="800 outlined">
          <v-list-item>
           <v-list-item-content class="incomplete" v-bind:class="[{ complete: isComplete }]">
@@ -7,22 +8,23 @@
       outlined>
               {{item.quantity}}
               {{item.itemName}}
+              
             </div>
             </v-list-item-content>
          </v-list-item>
-         <v-list-item>
-          <v-list-item-content>
-  
-            </v-list-item-content>
-         </v-list-item>
+
+        
          <v-card-actions>
             <v-btn @click="markComplete">
               <div v-show="!isComplete">Mark Complete</div>
-                <div v-show="isComplete">Mark Incomplete</div>
+              <div v-show="isComplete">Mark Incomplete</div>
             </v-btn>
-            <edit-item-form  v-bind:itemID="itemID"/>
+            
          </v-card-actions>
+         
+         <edit-item-form  v-bind:itemID="itemID"/>
         </v-card>
+</div>
 </template>
 
 <script>
