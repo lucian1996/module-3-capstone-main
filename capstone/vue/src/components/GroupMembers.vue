@@ -18,16 +18,17 @@
         </v-toolbar-items>
       </v-toolbar>
     </div>
+    <br> <br> <br>
     <div class='members' v-for="(member, index) in $store.state.members" :key="index">
        <div class="wrap">
         <div class="card">
              <img src="@/assets/lord.png" alt="not working">
           <div class="info">
             <h4>{{member.username}}</h4>
-          </div>
         </div>
         </div>
- </div>
+        </div>
+        </div>
   </div>
 </template>
 
