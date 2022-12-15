@@ -21,9 +21,9 @@ INSERT INTO list (group_id, list_title, description, date_modified, list_complet
 INSERT INTO list (group_id, list_title, description, date_modified, list_completed, claimed) VALUES (1002, 'Misc', 'Just some other groceries', 'date', false, 0);
 INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 10, 1, false, 2001, 1001, 'cool item');
 INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 2, 2, false, 2002, 1002, 'Half dozen eggs');
-INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 1, 4, false, 2002, 1002, 'Flour');
-INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 1, 4, false, 2002, 1002, 'Milk');
-INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 1, 5, false, 2002, 1002, 'Sugar');
+INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 1, 4, false, 2002, 1002, 'Bags of Flour');
+INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 1, 4, false, 2002, 1002, 'Gal. of Milk');
+INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 1, 5, false, 2002, 1002, 'lbs. Sugar');
 INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 21, 4, false, 2002, 1002, 'Birthday Candles');
 INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 1, 3, false, 2003, 1002, 'Hydrofluoric Acid');
 INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 1, 3, false, 2003, 1002, 'Tube furnace');
