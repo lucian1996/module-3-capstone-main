@@ -10,7 +10,6 @@
         <v-spacer></v-spacer>
         <v-toolbar-items>
           <v-btn
-            flat
             color="blanchedalmond"
             v-for="item in menuItems"
             :key="item.title"
