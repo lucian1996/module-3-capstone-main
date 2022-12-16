@@ -19,7 +19,6 @@
         class="alert alert-success"
         role="alert"
         v-if="this.$route.query.registration">
-        Thank you for registering, please sign in.
       </div>
       <label for="username" class="sr-only"></label>
       <input

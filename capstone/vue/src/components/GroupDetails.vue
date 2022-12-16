@@ -4,13 +4,12 @@
       <v-toolbar app>
         <v-toolbar-title id="title">
           \ {{ appTitle }} \ {{ this.$store.state.user.username }} \
-          {{ group.groupName }} \ 
+          {{ group.groupName }}
         </v-toolbar-title>
 
         <v-spacer></v-spacer>
         <v-toolbar-items>
           <v-btn
-            flat
             color="blanchedalmond"
             v-for="item in menuItems"
             :key="item.title"

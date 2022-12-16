@@ -10,7 +10,6 @@
       <v-spacer></v-spacer>
       <v-toolbar-items>
         <v-btn
-          flat
           v-for="item in menuItems"
           :key="item.title"
           :to="item.path">
@@ -55,7 +54,7 @@
       <br>
       <br>
       <br>
-       <br>
+      <br>
       <br>
       <br>
       <br>

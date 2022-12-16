@@ -8,7 +8,6 @@
         <v-spacer></v-spacer>
         <v-toolbar-items>
           <v-btn
-            flat
             v-for="item in menuItems"
             :key="item.title"
             :to="item.path"
@@ -42,8 +41,9 @@ export default {
       appTitle: "Fridgrr",
       menuItems: [
         { title: "group", path: "/groups" },
-        { title: "logout", path: "/" },
         { title: "members", path: "/members" },
+        { title: "logout", path: "/" },
+        
       ],
     };
   },
