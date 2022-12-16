@@ -87,7 +87,7 @@ padding: 5%;
 .card {
   width: 260px;
   min-height: 200px;
-  background: #2B2B2B;
+  background: #0ead69;
   border-radius: 10px;
   padding: 6px;
    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -101,8 +101,10 @@ padding: 5%;
   width: 100%;
 }
 .info h4{
-  color: white;
+  color: blanchedalmond;
   padding: 0 10px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 1000;
 }
 
 @keyframes x {
