@@ -63,54 +63,54 @@ INSERT INTO list (group_id, list_title, description, date_modified, list_complet
 
 
 
-INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 2, 2, false, 2001, 1001, 'Half eggs');
-INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 60, 2, false, 2002, 1001,'Half monthly eggs');
-INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 6, 2, false, 2003, 1001, 'Half yearly eggs');
-INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 5, 2, false, 2004, 1001, 'Half Xmas eggs');
-INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 4, 2, false, 2008, 1001, 'Half flags');
+INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 2, 2, false, 2001, 1001, 'lbs of rice');
+INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 60, 2, false, 2001, 1001,'gal of milk');
+INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 6, 2, false, 2001, 1001, 'bunches of bananas');
+INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 5, 2, false, 2002, 1001, 'fig bars');
+INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 4, 2, false, 2002, 1001, 'bags of prunes');
 
-INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 2, 2, false, 2001, 1001, 'dogs');
-INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 50,2, false, 2002, 1001, 'monthly dogs');
-INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 6, 2, false, 2003, 1001, 'yearly dogs');
-INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 5, 2, false, 2004, 1001, 'Christmas dogs');
-INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 4, 2, false, 2008, 1001, 'dozen flags');
+INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 2, 2, false, 2002, 1001, 'Chocolate');
+INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 50,2, false, 2003, 1001, 'vodka');
+INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 6, 2, false, 2002, 1001, 'peanuts');
+INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 5, 2, false, 2001, 1001, 'popcorn');
+INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 4, 2, false, 2003, 1001, 'ibuprofen');
 
 INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 9, 2, false, 2001, 1001, 'Cups of almonds');
-INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 29, 2, false, 2002, 1001, 'Cups of almonds');
+INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 29, 2, false, 2002, 1001, 'Cups of beef');
 INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 39, 2, false, 2003, 1001, 'lbs of flour');
-INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 49, 2, false, 2004, 1001, 'Cups of Xmas nuts');
-INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 59, 2, false, 2008, 1001, 'Cups of flags');
+INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 49, 2, false, 2003, 1001, 'Cups of Xmas nuts');
+INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 59, 2, false, 2008, 1001, 'Clotted Cream');
 
 
-INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 9, 2, false, 2001,  1002, 'Hydrous of almonds');
-INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 29, 2, false, 2002, 1002, 'Cups of juice');
+INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 9, 2, false, 2001,  1002, 'Wheat grass');
+INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 29, 2, false, 2002, 1002, 'OJ');
 INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 39, 2, false, 2003, 1002, 'lbs. Sugar');
 
-INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 6, 2, false, 2004, 1002, 'dozen hot yearly dogs');
-INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 5, 2, false, 2004, 1002, 'lbs. Sugar');
-INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 4, 2, false, 2005, 1002, 'Hydrous flags');
+INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 6, 2, false, 2004, 1002, 'dozen hot dogs');
+INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 5, 2, false, 2004, 1002, 'bell pepper');
+INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 4, 2, false, 2005, 1002, 'Depends');
 
 
 INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 1, 3, false, 2001, 1002, 'Barkeepers Friend');
-INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 1, 5, false, 2003, 1002, 'lbs. Sugar');
+INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 1, 5, false, 2003, 1002, 'bleach');
 
-INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 1, 4, false, 2001, 1002, 'Bags of Flour');
-INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 1, 4, false, 2002, 1002, 'Gal. of Milk');
+INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 1, 4, false, 2001, 1002, 'raisins');
+INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 1, 4, false, 2002, 1002, 'dried apricots');
 
 INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 21, 4, false,2001, 1002, 'Birthday Candles');
-INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 1, 3, false, 2002, 1002, 'Hydrofluoric Acid');
+INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 1, 3, false, 2002, 1002, 'gal of icecream');
 INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 1, 3, false, 2003, 1002, 'Tube furnace');
 
-INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 6, 3, false, 2002, 1002, 'Hydrous methylation');
+INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 6, 3, false, 2002, 1002, 'packs of oatmeal');
 
 
-INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 9, 2, false, 2009,  1003, 'Hydrous of almonds');
-INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 29, 2, false, 2010, 1003, 'Cups of juice');
-INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 39, 2, false, 2009, 1003, 'lbs. Sugar');
+INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 9, 2, false, 2009,  1003, 'mac and cheese');
+INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 29, 2, false, 2010, 1003, 'apples');
+INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 39, 2, false, 2009, 1003, 'clorox');
 
-INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 6, 2, false, 2009, 1003, 'dozen hot yearly dogs');
-INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 5, 2, false, 2010, 1003, 'lbs. Sugar');
-INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 4, 2, false, 2009, 1003, 'Hydrous flags');
+INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 6, 2, false, 2009, 1003, 'lottery tickets');
+INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 5, 2, false, 2010, 1003, 'cigarettes');
+INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 4, 2, false, 2009, 1003, 'bandaids');
 
 
 INSERT INTO list_item (date_modified, quantity, last_modifier, status, list_id, group_id, item_name) VALUES ('CHANGE date', 1, 3, false, 2009, 1003, 'Barkeepers Friend');
