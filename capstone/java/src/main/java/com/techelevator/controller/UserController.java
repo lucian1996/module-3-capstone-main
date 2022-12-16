@@ -29,32 +29,6 @@ public class UserController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve users");
         }
     }
-//
-//    @GetMapping(path = "/{userId}")
-//    public User getUserById(@PathVariable("userId") int userId) {
-//        try {
-//            return userDao.getUserById(userId);
-//        } catch (GetException e) {
-//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve user");
-//        }
-//    }
-//
-//    @GetMapping("/username")
-//    public User findByUsername(@RequestBody @Valid String username) {
-//        try {
-//            return userDao.findByUsername(username);
-//        } catch (GetException e) {
-//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve user");
-//        }
-//    }
-//    @GetMapping("")
-//    public int findIdByUsername(@RequestBody @Valid String username) {
-//        try {
-//            return userDao.findIdByUsername(username);
-//        } catch (GetException e) {
-//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve user");
-//        }
-//    }
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
