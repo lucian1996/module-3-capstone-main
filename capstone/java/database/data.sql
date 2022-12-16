@@ -27,9 +27,9 @@ INSERT INTO users (username,password_hash,role) VALUES ('Lacy','$2a$08$UkVvwpULi
 INSERT INTO users (username,password_hash,role) VALUES ('Maci','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
 
 INSERT INTO groups (group_owner, group_name, group_code, date_created) values (1, 'Fridggrs', '111', '10-11-2020');
-INSERT INTO groups (group_owner, group_name, group_code, date_created) values (2, 'All You', '222', '10-15-2021');
-INSERT INTO groups (group_owner, group_name, group_code, date_created) values (3, 'Need', '333', '10-12-2019');
-INSERT INTO groups (group_owner, group_name, group_code, date_created) values (2, 'No Kirks', '333', '10-13-2020');
+INSERT INTO groups (group_owner, group_name, group_code, date_created) values (2, 'All You', '111', '10-15-2021');
+INSERT INTO groups (group_owner, group_name, group_code, date_created) values (3, 'Need', '111', '10-12-2019');
+INSERT INTO groups (group_owner, group_name, group_code, date_created) values (2, 'No Kirks', '69', '10-13-2020');
 INSERT INTO groups (group_owner, group_name, group_code, date_created) values (2, 'Tony Hawks', '444', '10-14-2020');
 INSERT INTO groups (group_owner, group_name, group_code, date_created) values (3, 'Campers', '111', '10-15-2021');
 INSERT INTO groups (group_owner, group_name, group_code, date_created) values (2, 'Skaters', '111', '10-15-2021');
