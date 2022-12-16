@@ -4,7 +4,7 @@
       <v-toolbar app>
         <v-toolbar-title id="title">
           \ {{ appTitle }} \ {{ this.$store.state.user.username }} \
-          {{ group.groupName }}
+          {{ group.groupName }} \ 
         </v-toolbar-title>
 
         <v-spacer></v-spacer>
@@ -22,6 +22,12 @@
 
     <body>
         <div data-app class="wrap">
+          <div class="card">
+            <img src="@/assets/lord.png" alt="not working">
+            <div class ="info">
+            <h5 > Group Code: {{group.groupCode}} </h5>
+             </div>
+             </div>
           <create-list-form/>
               <div v-show="!isOwner" @click="removeUser()" class="card">
                 <img src="@/assets/lord.png" alt="not working">
@@ -186,6 +192,11 @@ body{
 .info h4{
   color: blanchedalmond;
   background-color: blueviolet;
+  padding: 0 10px;
+}
+.info h5{
+  color: blanchedalmond;
+  background-color: rgb(253, 109, 26);
   padding: 0 10px;
 }
 
