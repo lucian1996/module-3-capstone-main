@@ -29,7 +29,7 @@
       <br>
        <div id ="container" data-app >
          <create-item-form/>
-         <div @click="claimList()" v-show = "showCLaim" class="wrap">
+         <div @click="claimList()" v-show="$store.state.claimStatus == 'showClaim'" class="wrap">
            <div class="card">
             <img src="@/assets/lord.png" alt="not working">
                 <div class="info">
@@ -37,11 +37,11 @@
                 </div>
          </div>
          </div>
-           <div @click="claimList()" v-show = "showUnclaim" class="wrap">
+           <div @click="unclaimList()" v-show="$store.state.claimStatus == 'showUnclaim'" class="wrap">
            <div class="card">
             <img src="@/assets/lord.png" alt="not working">
                 <div class="info">
-                <h4>Claim List</h4>
+                <h4>Unclaim</h4>
                 </div>
          </div>
          </div>
@@ -64,6 +64,7 @@
       <br>
       <br>
       <br>
+      {{showClaim}}
       
        <div id="container">
           <item-card
@@ -79,7 +80,8 @@
 
 <script>
 import ItemService from "../services/ItemService";
-import ListService from "../services/ListService";
+import ListService from '../services/ListService';
+//import ListService from "../services/ListService";
 import CreateItemForm from "./CreateItemForm.vue";
 import ItemCard from "./ItemCard.vue";
 export default {
@@ -87,10 +89,7 @@ export default {
   name: "list-details",
   data() {
     return {
-      showClaim: false,
-      ShowUnClaim: false,
-      listName: '',
-      listComplete: "",
+      showClaim: '',
       appTitle: 'Fridgrr',
       menuItems: [
           { title: 'group', path: '/groups' },
@@ -100,22 +99,9 @@ export default {
     };
   },
   methods: {
-    claimList() {
-      console.log(this.list.status, 'status')
-      this.list.status = !this.list.status;
-      console.log('status', this.list.status)
-      ListService.claimList(this.list.groupId, this.list.listId).then(
-        (response) => {
-          if (response.status == 200)
-            this.$store.commit("UPDATE_CLAIMED_ID", {
-              listId: this.list.listId,
-              userId: this.$store.state.user.id,
-            });
-            
-        }
-      );
-    },
+  
     getItems() {
+      console.log('getting items')
       ItemService.getItems(
         this.$route.params.groupID,
         this.$route.params.listID
@@ -123,63 +109,44 @@ export default {
         this.$store.commit("SET_ITEMS", response.data);
       });
     },
-    completeList() {
+    claimList() {
+      ListService.claimList(this.list.groupId, this.list.listId).then(this.$router.go())
+    },
+    unclaimList() {
+      ListService.unclaimList(this.list.groupId, this.list.listId).then(this.$router.go())
+    },
+    setClaimStatus () { 
+      console.log('get claim', this.$store.state.user.id, this.list.claimedId)
+      if (this.$store.state.user.id == this.list.claimedId && this.claimedId != 0) {
+          this.$store.commit("SET_CLAIM_STATUS", 'showUnclaim')
+        }
+
+      if (this.list.claimedId == 0) {
+        this.$store.commit("SET_CLAIM_STATUS", 'showClaim')
+      }
       
-      ListService.markListComplete(
-        this.list.groupId,
-        this.list.listId,
-      ).then((response) => {
-        if (response.status == 200) {
-          this.$store.commit("MARK_LIST_COMPLETE", {
-            groupId: this.list.groupId,
-            listId: this.list.listId,
-            isComplete: this.isComplete,
-          });
-        }
-      })
-      ItemService.markItemsComplete(this.list.groupId, this.list.listId).then(response => {
-        if (response.status == 200) {
-          this.listComplete = true;
-          // this.$router.go()
-        }
-      })
     },
-    ListIncomplete() {
-     
-      ListService.markListIncomplete(this.list.groupId, this.list.listId).then(
-        (response) => {
-          if (response.status == 200) {
-            this.$store.commit("MARK_LIST_INCOMPLETE", {
-              groupId: this.list.groupId,
-              listId: this.list.listId,
-              isComplete: this.isComplete,
-            });
-          }
-        }
-      );
-      ItemService.markItemsIncomplete(this.list.groupId, this.list.listId).then(response => {
-        if (response.status == 200) {
-           this.listComplete = false;
-          //  this.$router.go()
-        }
-      })
-    },
-   logLists () {
-       console.table(this.$store.state.lists);
-     },
-     getShowUnClaim () {
-        console.log('teklklklst', this.list.status == true && this.store.state.user.id == this.list.claimedId)
-        if (this.list.status == true && this.store.state.user.id == this.list.claimedId) {
-          return true;
-        }
-        return false;
-     }
-  },
-  created() {
-    this.getItems();
-    this.listName = this.list.listName;
-    this.getShowUnClaim();
+    
   
+  },
+  mounted() {
+    console.log('mounted')
+    this.getItems()
+    console.warn('first')
+    this.listName = this.list.listName;
+    console.log('second')
+    console.log('get claim')
+      if (this.$store.state.user.id == this.list.claimedId && this.claimedId != 0) {
+          this.$store.commit("SET_CLAIM_STATUS", 'showUnclaim')
+        }
+
+      if (this.list.claimedId == 0) {
+        this.$store.commit("SET_CLAIM_STATUS", 'showClaim')
+      }
+  },
+  updated() {
+    console.log('updated')
+      this.setClaimStatus();
   },
 
   computed: {

@@ -1,11 +1,11 @@
 <template>
   <v-dialog @click="dialog = true" v-model="dialog">
     <template v-slot:activator="{ on, attrs }">
-      <v-div
+      <div
         v-bind="attrs"
         v-on="on">
         {{group.groupName}}
-      </v-div>
+      </div>
     </template>
     <v-card class="form-card">
       <v-label> Enter Group code </v-label>
@@ -26,6 +26,7 @@ export default {
   props: ["group"],
   data() {
     return {
+      listComplete: false,
       dialog: false,
       inviteCode: "",
       listErrors: false,

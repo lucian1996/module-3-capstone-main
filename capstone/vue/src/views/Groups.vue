@@ -62,8 +62,13 @@ data(){
   background-color: #0EAD69;
 }
 body{
-  background-color: rgba(240, 128, 128, 0.667);
+  background-color: rgba(240, 128, 128) !important;
   min-height: 100vh;
   text-align: center;
+}
+.v-application--wrap {
+    background-color: rgb(240, 128, 128)!important;
+    height: 100%;
+    text-align: center;
 }
 </style>

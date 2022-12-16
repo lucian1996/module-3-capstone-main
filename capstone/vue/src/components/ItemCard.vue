@@ -92,7 +92,7 @@ export default {
   font-family:    'Courier New', Courier, monospace;
   font-size: 16pt;
   animation-name: x;
-  animation-duration: 5000s;
+  animation-duration: 50s;
   animation-iteration-count: infinite;
   animation-timing-function: ease;
   transition: all;

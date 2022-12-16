@@ -31,6 +31,7 @@ export default new Vuex.Store({
     list : [],
     members : [],
     items : [],
+    claimStatus: ''
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -86,6 +87,9 @@ export default new Vuex.Store({
   DELETE_ITEM(state, itemID) {
     this.items = state.items.filter (i => i.itemId != itemID)
 
+  },
+  SET_CLAIM_STATUS (state, status) {
+    state.claimStatus = status;
   }
 }
 })
