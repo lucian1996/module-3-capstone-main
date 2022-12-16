@@ -2,19 +2,21 @@
   <div class="wrap">
     <div class=" card incomplete" v-bind:class="[{ complete: isComplete }]">
       <img src="@/assets/lord.png" alt="not working">
-      <div class="info">
+      <div v-bind:class="[{ complete: isComplete }]" class="info" >
         {{item.quantity}}
         <br>
       {{item.itemName}}
       </div>
-      <div @click="markComplete">
-      <v-btn v-show="!isComplete">Mark Complete
-      </v-btn>
-    <v-btn role=button v-show="isComplete">Mark Incomplete
-    </v-btn>
+     <div class="no">
+        <div @click="markComplete">
+      <div v-show="!isComplete">Mark Complete
+      </div>
+    <div role=button v-show="isComplete">Mark Incomplete
+    </div>
     <edit-item-form  v-bind:itemID="itemID"/>
       </div>
     </div>
+     </div>
   </div>
 </template>
 
@@ -71,6 +73,14 @@ export default {
 <style scoped>
 .complete {
   text-decoration: line-through;
+  text-decoration-color: rgb(0, 0, 0);
+  text-decoration-thickness: 4px;
+  color: blanchedalmond;
+  
+
+}
+.no {
+  text-decoration: none !important;
 }
 .incomplete {
 }
@@ -108,9 +118,11 @@ export default {
 .card img {
   width: 100%;
 }
-.info h4{
-  color: white;
+.info {
+  color: blanchedalmond;
   padding: 0 10px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 1000;
 }
 
 @keyframes x {
@@ -119,7 +131,6 @@ export default {
   50% {transform: rotateY(0deg) skewX(0deg);}
   75% {transform: rotateY(30deg) skewX(4deg);}
   100% {transform: rotateY(0deg) skewX(0deg);}
-
 }
 
 </style>

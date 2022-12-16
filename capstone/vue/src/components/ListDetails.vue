@@ -32,7 +32,7 @@
            <div class="card">
             <img src="@/assets/lord.png" alt="not working">
                 <div class="info">
-                <h4>Claim List</h4>
+                <h4 class="text">Claim List</h4>
                 </div>
          </div>
          </div>
@@ -47,19 +47,11 @@
         </div>
       <br>
       <br>
+    
       <br>
       <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
+    
+    
       <br>
       <br>
       <br>

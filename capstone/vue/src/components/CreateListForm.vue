@@ -104,7 +104,7 @@ export default {
 }
 .info h4{
   color: blanchedalmond;
-  background-color: blueviolet;
+  background-color: #0ead69;;
   padding: 0 10px;
 }
 

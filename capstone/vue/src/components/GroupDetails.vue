@@ -191,12 +191,12 @@ body{
 }
 .info h4{
   color: blanchedalmond;
-  background-color: blueviolet;
+  background-color: #0ead69;
   padding: 0 10px;
 }
 .info h5{
   color: blanchedalmond;
-  background-color: rgb(253, 109, 26);
+  background-color: #0ead69;
   padding: 0 10px;
 }
 

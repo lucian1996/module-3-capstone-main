@@ -77,7 +77,7 @@ export default {
 .card {
   width: 260px;
   min-height: 200px;
-  background: #2B2B2B;
+  background: #0ead69;
   border-radius: 10px;
   padding: 6px;
   font-family:    'Courier New', Courier, monospace;
