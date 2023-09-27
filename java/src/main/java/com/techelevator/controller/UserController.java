@@ -21,9 +21,14 @@ import java.util.List;
 public class UserController {
     private UserDao userDao;
 
+    public UserController(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
     @GetMapping("/all")
     public List<User> getAllUsers() {
         try {
+            System.out.println(userDao);
             return userDao.findAll();
         } catch (GetException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "could not retrieve users");
